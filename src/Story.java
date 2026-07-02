@@ -26,14 +26,18 @@ public class Story {
         System.out.println(
             "\n=============================== \n" +
             "BEFEHLE \n" +
-            "Items: \t\t\tZeigt das Inventar an. \n" +
-            "Nutze [Item]: \tVerwendet den angegebenen Gegenstand. \n" +
-            "Prüfe [Item]: \tRuft eine Beschreibung zum angegebenen Gegenstand genauer ab. \n" +
-            "Binden: \t\tZwingt einen neuen Dämon in deinen Dienst. \n" +
-            "Beschwören: \tRuft einen an dich gebundenen Dämon herbei. \n" +
-            "Daimon: \t\tBittet das Teufelchen auf deiner Schulter um Hilfe. \n" +
-            "Hilfe: \t\t\tRuft diese Anleitung auf. \n" +
-            "Nord/Ost/Süd/West/hoch/runter: Versucht, den aktuellen Ort in gewählter Richtung zu verlassen. \n" +
+            "Immer, wenn \"Zeit zu handeln!\" angezeigt wird, können folgende Befehle genutzt werden: \n\n" +
+            "Gehe [Richtung]: \tVersucht, den aktuellen Ort in gewählter Richtung zu verlassen. \n" +
+                    "\t\t\t\t\tRichtungen: Nord, Ost, Süd, West, hoch, runter; z. B. \"Gehe Nord\" \n" +
+            "Items: \t\t\t\tZeigt das Inventar an. \n" +
+            "Nimm [Item]: \t\tLegt einen erreichbaren Gegenstand ins Inventar, z. B. \"Nimm Zellenschlüssel\". \n" +
+            "Nutze [Item]: \t\tVerwendet den angegebenen Gegenstand. \n" +
+            "Prüfe [Item]: \t\tRuft eine genauere Beschreibung zum angegebenen Gegenstand ab. \n" +
+            "Binden: \t\t\tZwingt einen neuen Dämon in deinen Dienst. \n" +
+            "Beschwören: \t\tRuft einen an dich gebundenen Dämon herbei. \n" +
+            "Daimon: \t\t\tBittet das Teufelchen auf deiner Schulter um Hilfe. \n" +
+            "Hilfe: \t\t\t\tRuft diese Anleitung auf. \n" +
+            "Ende: \t\t\t\tBeendet das Spiel. \n" +
             "\n(Groß-/Kleinschreibung wird ignoriert.) \n" +
             "===============================\n"
         );
@@ -43,7 +47,8 @@ public class Story {
         System.out.println(
             "\"Malefiz, alter Halunke, da hast du dir aber was eingebrockt! \n" +
             "Kein Wunder, dass ein Griesgram wie du irgendwann im Kerker endet.\" \n\n" +
-            "Daimon, dein persönliches Teufelchen, erscheint auf deiner Schulter. \n"
+            "Daimon, dein persönliches Teufelchen, erscheint auf deiner Schulter. \n" +
+            "[Daimon macht etwas Charakterisierendes.] \n"
         );
         do {
             System.out.println(
