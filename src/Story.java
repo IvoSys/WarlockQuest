@@ -26,10 +26,14 @@ public class Story {
         System.out.println(
             "\n=============================== \n" +
             "BEFEHLE \n" +
+            "Items: \t\t\tZeigt das Inventar an. \n" +
+            "Nutze [Item]: \tVerwendet den angegebenen Gegenstand. \n" +
+            "Prüfe [Item]: \tRuft eine Beschreibung zum angegebenen Gegenstand genauer ab. \n" +
+            "Binden: \t\tZwingt einen neuen Dämon in deinen Dienst. \n" +
+            "Beschwören: \tRuft einen an dich gebundenen Dämon herbei. \n" +
+            "Daimon: \t\tBittet das Teufelchen auf deiner Schulter um Hilfe. \n" +
+            "Hilfe: \t\t\tRuft diese Anleitung auf. \n" +
             "Nord/Ost/Süd/West/hoch/runter: Versucht, den aktuellen Ort in gewählter Richtung zu verlassen. \n" +
-            "Item: Öffnet das Inventar. \n" +
-            "Daimon: Bittet das Teufelchen auf deiner Schulter um Hilfe. \n" +
-            "Hilfe: Ruft diese Anleitung auf. \n" +
             "\n(Groß-/Kleinschreibung wird ignoriert.) \n" +
             "===============================\n"
         );

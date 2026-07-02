@@ -5,6 +5,26 @@ import java.util.Scanner;
 
 public class WarlockQuest {
 
+    //Reminder für mich: Klassenübergreifende Zugriffe erfordern Klassen-/Instanzvariablen, nicht lokale Variablen in Methoden!
+
+    //Dämonen vorbereiten
+    static Demon dem01 = new Demon("Abbadon", "Herr des Abgrunds", 100);
+    static Demon[] allDem = {dem01};
+    static List<Demon> freeDem = new ArrayList<>(Arrays.asList(allDem));
+
+    //Beschwörungsformeln
+    static ItemEvoc evoc01 = new ItemEvoc("Beschwörungsformel des Abbaddon", "Hinweistext auf wahren Namen des Abbadon", "Abbadon");
+
+    //Potions
+    static ItemPotion pot01 = new ItemPotion("Geringer Heiltrank", "Ein schwacher Heiltrank.", 50);
+
+    //Spellscolls
+    static ItemScroll scr01 = new ItemScroll("Eislanze", "Schleudert eine Lanze aus Eis auf den Gegner.", 50);
+
+    //Schlüssel
+    static ItemKey key01 = new ItemKey("Zellenschlüssel", "Ein rostiger Klumpen von Schlüssel.", 1);
+
+    //3D-Array erstellen
     static Room[][][] castle = new Room[3][3][3];
     static int curX = 0;
     static int curY = 0;
@@ -15,8 +35,8 @@ public class WarlockQuest {
     static Scanner sc = new Scanner(System.in);
     static String input;
 
-    //Schloss bauen
-    public static void buildCastle(){
+    //Methode: Schloss bauen
+    public static void buildCastle() {
 
         //UG, Reihe unten
         castle[0][0][0] = new Room("Kerker", "", false, false, false, false, false, false);
@@ -64,21 +84,17 @@ public class WarlockQuest {
         castle[2][2][2] = new Room("", "", false, false, false, false, false, false);
 
 
+    }
+
+    //Methode: Gegner vorbereiten
+    public static void createEnemies() {
 
     }
 
-    //Dämonen vorbereiten
-    Demon dem01 = new Demon();
-
-    static Demon[] allDem = {dem01};
-    static List<Demon> freeDem = new ArrayList<>(Arrays.asList(allDem));
-
-
-    //Gegner bauen
-
-    //Items bauen
-
     static void main(String[] args){
+
+        buildCastle();
+        createEnemies();
 
         ASCII.title();
         Story.intro();
@@ -90,8 +106,11 @@ public class WarlockQuest {
         }
         System.out.println();
         Story.daimon01();
-        System.out.println("DEBUG: Ende erreicht");
 
+
+
+
+        System.out.println("DEBUG: Ende erreicht");
     }
 
 
