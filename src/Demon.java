@@ -27,4 +27,24 @@ public class Demon {
     //Spezialangriff
 
 
+    public static void summon(int index){
+        Player.activeDemon = Player.team.get(index);
+    }
+
+    public static void bind() {
+        boolean success = false;
+        System.out.print("Du machst dich bereit, einen neuen Dämon zu versklaven. \nGib seinen wahren Namen ein, und sei genau! \n> ");
+        WarlockQuest.input = WarlockQuest.sc.nextLine();
+        for (int i = 0; i < WarlockQuest.freeDem.size(); i++) {
+            if (WarlockQuest.freeDem.get(i).trueName.equals(WarlockQuest.input)) {
+                Player.team.add(WarlockQuest.freeDem.get(i));
+                System.out.println(WarlockQuest.freeDem.get(i).bound);
+                WarlockQuest.freeDem.remove(i);
+                success = true;
+                break;
+            }
+        }
+        if (!success)
+            System.out.println("Hämisches Gelächter hallt in deinem Schädel hin und her. \nDieses Mal hast du keinen neuen Diener erhalten.");
+    }
 }

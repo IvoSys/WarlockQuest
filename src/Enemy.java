@@ -1,4 +1,4 @@
-public class Enemy {
+public abstract class Enemy {
 
     String name;
     int hp;

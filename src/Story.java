@@ -4,6 +4,9 @@ public class Story {
 
     static Scanner sc = new Scanner(System.in);
     static String input = "0";
+    static int refuseViolence = 0;
+
+    static String daimonDidNotUnderstand = "DAIMON: \"Was nuschelst du da in deinen Ziegenbart?\" \n";
 
     public static void intro() {
         System.out.println(
@@ -26,18 +29,48 @@ public class Story {
             "\n=============================== \n" +
             "BEFEHLE \n" +
             "Immer, wenn \"Zeit zu handeln!\" angezeigt wird, können folgende Befehle genutzt werden: \n\n" +
-            "Gehe [Richtung]: \tVersucht, den aktuellen Ort in gewählter Richtung zu verlassen. \n" +
-                    "\t\t\t\t\tRichtungen: Nord, Ost, Süd, West, hoch, runter; z. B. \"Gehe Nord\" \n" +
-            "Items (I): \t\t\tZeigt das Inventar an. \n" +
-            "Nimm [Item]: \t\tLegt einen erreichbaren Gegenstand ins Inventar, z. B. \"Nimm Zellenschlüssel\". \n" +
-            "Nutze [Item]: \t\tVerwendet den angegebenen Gegenstand. \n" +
-            "Prüfe [Item]: \t\tRuft eine genauere Beschreibung zum angegebenen Gegenstand ab. \n" +
-            "Binden (B): \t\tZwingt einen neuen Dämon in deinen Dienst. \n" +
-            "Daimon (D): \t\tBittet das Teufelchen auf deiner Schulter um Hilfe. \n" +
-            "Hilfe (H): \t\t\tRuft diese Anleitung auf. \n" +
-            "Ende (E): \t\t\tBeendet das Spiel. \n" +
-            "\n(Groß-/Kleinschreibung wird ignoriert, außer beim Binden. Copy-paste ist möglich.) \n" +
-            "===============================\n"
+            "Handlung\t\t\t| Befehl\t\t| Effekt \n" +
+            "------------------------------------------------------------------------------------------------------------- \n" +
+            "Inventar zeigen\t\t| I\t\t\t\t| Zeigt an, welche Gegenstände du besitzt. \n" +
+            "Item nehmen\t\t\t| N.[Item]\t\t| Legt erreichbaren Gegenstand ins Inventar, z. B. \"n.Zellenschlüssel\". \n" +
+            "Item verwenden \t\t| V.[Item]\t\t| Verwendet den angegebenen Gegenstand, z. B. \"v.Zellenschlüssel\". \n" +
+            "Item untersuchen\t| U.[Item]\t\t| Ruft eine genauere Beschreibung zum angegebenen Gegenstand auf. \n" +
+            "In Richtung gehen\t| G.[Richtung]\t| Versucht, den aktuellen Ort in gewählter Richtung zu verlassen. \n" +
+            "\t\t\t\t\t|\t\t\t\t| Richtungen: Norden (N), Osten (O), Süden (S), Westen (W), hoch (h), runter (r) \n" +
+            "\t\t\t\t\t|\t\t\t\t| (z. B. \"Gehe.Norden\" oder einfach \"g.n\") \n" +
+            "Daimon fragen\t\t| D \t\t\t| Bittet das Teufelchen auf deiner Schulter um Hilfe. \n" +
+            "Dämon binden\t\t| B \t\t\t| Zwingt einen neuen Dämon in deinen Dienst. \n" +
+            "Hilfe\t\t\t\t| H \t\t\t| Ruft diese Anleitung auf. \n" +
+            "Kampftutorial\t\t| K \t\t\t| Ruft die Anleitung zum Kampfsystem auf. \n" +
+            "Ende\t\t\t\t| E \t\t\t| Beendet das Spiel. \n" +
+            "\nGroß-/Kleinschreibung wird ignoriert, außer beim Binden. Copy-paste ist hilfreich. \n" +
+            "============================================================================================================= \n"
+        );
+    }
+
+    public static void helpBattle() {
+        System.out.println(
+                "\n=============================== \n" +
+                "KAMPF \n" +
+                "Maleficarius lässt einen beschworenen Dämonen für sich kämpfen und kann ihn mit Zaubern und Tränken unterstützen. \n" +
+                "Zu Beginn des Kampfes wählst du einen zu beschwörenden Dämonen. Wenn du am Zug bist, wird eine Liste mit Optionen angezeigt. \n" +
+                "Oben stehen die Fähigkeiten des Dämons, unter der gestrichelten Linie die Möglichkeiten von Maleficarius. \n" +
+                "Nach deinem Dämon sind die Gegner an der Reihe. Soll Maleficarius handeln, kann er dies vor dem Dämon tun, \n" +
+                "ohne dass dessen Zug verfällt. Tränke und Schriftrollen werden beim Einsatz aber verbraucht, Maleficarius \n" +
+                "sollte sie also mit Bedacht einsetzen.\n\n" +
+
+                "(Beispiel:) \n\n" +
+                "[Name und Lebenspunkte des aktiven Dämons] \n" +
+                "[1] Angriff\t\t\t\t(Dämon)\n" +
+                "[2] Besondere Fähigkeit\t(Dämon)\n" +
+                "------------------------\n" +
+                "[3] Trank\t\t\t\t(Maleficarius) \n" +
+                "[4] Zauber\t\t\t\t(Maleficarius) \n" +
+                "[5] Beschwören\t\t\t(Maleficarius) \n\n" +
+
+                "Du kannst auch einen neuen Dämon beschwören, anschließend sind aber zuerst die Gegner an der Reihe. \n" +
+                "Zu jedem Zeitpunkt kann nur ein Dämon im Kampf sein. \n" +
+                "============================================================================================================= \n"
         );
     }
 
@@ -73,99 +106,161 @@ public class Story {
                     System.out.println("Daimon: \"Er mag dich anscheinend auch nicht. Die Zelle ist bestimmt ein Diss speziell gegen dich – schau, die \nGitterstäbe sind so weit auseinander, dass du nicht durchpasst, ich aber schon. Bestimmt mag er mich lieber als dich.\"\n");
                     break;
                 case "0":
-                    System.out.println("Eine Weile sitzt ihr schweigend da. Wie kommst du nun aus dieser Zelle heraus?");
+                    System.out.println("Eine Weile sitzt ihr schweigend da. Wie kommst du nun aus dieser Zelle heraus? \nDu siehst dich noch einmal um:");
                     break;
                 default:
-                    System.out.println("Daimon: \"Was murmelst du da?\"\n");
+                    System.out.println(daimonDidNotUnderstand);
             }
         } while (!input.equals("0"));
     }
 
     public static void getKey000(){
         System.out.println();
-        System.out.println("DAIMON: \"Ach, auf einmal hast du's eilig und willst du meine Hilfe, was? \nNa gut, bin ja nicht so ein Sauertopf wie du …\" \nDaimon schlüpft durch die Gitterstäbe, fingert den Schlüssel aus dem Gürtelring \ndes Wärters, der dies mit verschlafenem Grunzen quittiert, und kehrt zu dir zurück.\n");
-        Player.inv.add(WarlockQuest.key000);
-        System.out.printf("Du erhältst einen %s. \n\n", WarlockQuest.key000.name);
-        System.out.println("DAIMON: \"Und jetzt lächle und sag brav Danke.\"");
         System.out.println(
-                "Wähle eine Antwort: \n" +
-                        "[1]\t … \n" +
-                        "[2]\t … Danke. "
+                "Maleficarius liegt etwas auf der Zunge: \n" +
+                "[1]\t Sei einfach still. \n" +
+                "[2]\t Was … bist du eigentlich? \n" +
+                "[3]\t Kannst du dich durch die Gitterstäbe zwängen? \n" +
+                "[4]\t Kannst du den Wärter mit Dämonenmagie in Brand stecken? \n" +
+                "[0]\t (Lieber schweigen)"
         );
         System.out.print("> ");
         input = sc.nextLine().toLowerCase().trim();
         switch (input) {
             case "1":
-                System.out.println("DAIMON: \"Meh, was hab ich erwartet.\"\n");
+                System.out.println("DAIMON: \"Na klar, Chef!\"");
                 break;
             case "2":
-                System.out.println("DAIMON: \"Na, das hat doch gar nicht weh getan!\"\n");
+                System.out.println("DAIMON: \"Ein Teil von jener Kraft, die stets das Böse will und stets das Gute schafft.\"");
+                break;
+            case "3":
+                System.out.println("DAIMON: \"Ach, auf einmal hast du's eilig und willst meine Hilfe, was? \nNa gut, bin ja nicht so ein Sauertopf wie du …\" \n\nDaimon schlüpft durch die Gitterstäbe und fingert den Schlüssel aus dem Gürtelring \ndes Wärters, der dies mit verschlafenem Grunzen quittiert. Dann kehrt das Teufelchen \nzu dir zurück, dreht noch einmal um, verknotet dem Wärter die Schnürsenkel, \nschlüpft zurück in die Zelle und hält dir den Schlüssel unter die Nase. \nDAIMON: \"Da!\".\n");
+                Player.inv.add(Player.room.reward);
+                System.out.printf("Du erhältst den %s. \n\n", Player.room.reward.name);
+                Player.room.reward = null;
+                System.out.println("DAIMON: \"Und jetzt lächle und sag brav danke.\"");
+                System.out.println(
+                        "Wähle eine Antwort: \n" +
+                                "[1]\t … \n" +
+                                "[2]\t … danke. "
+                );
+                System.out.print("> ");
+                input = sc.nextLine().toLowerCase().trim();
+                switch (input) {
+                    case "1":
+                        System.out.println("DAIMON: \"Meh, was hab ich erwartet.\"\n");
+                        break;
+                    case "2":
+                        System.out.println("DAIMON: \"Na, das hat doch gar nicht weh getan!\"\n");
+                        break;
+                    default:
+                        System.out.println(daimonDidNotUnderstand);
+                }
+                break;
+            case "4":
+                if (refuseViolence == 0) {
+                    refuseViolence++;
+                    System.out.println("DAIMON: \"Ich bin nicht SO ein Dämon!\"");
+                } else {
+                    refuseViolence++;
+                    System.out.printf("DAIMON: \"Ich sag's dir jetzt zum %d. Mal: Ich bin nicht SO ein Dämon!\" \n", refuseViolence);
+                }
+                break;
+            case "0":
                 break;
             default:
-                System.out.println("DAIMON: \"Was nuschelst du schon wieder?!\"\n");
+                System.out.println(daimonDidNotUnderstand);
         }
     }
 
     //RAUM-BESCHREIBUNGEN UND DAIMON-KOMMENTARE
     //region
-    static String desc000 = "Eine klamme Nische hinter Eisenstangen, gegenüber ein schnarchender Wärter mit einem Schlüssel am Gürtel. Klassiker. \nDie Tür nach Osten steht offen, aber erstmal musst du aus der Zelle rauskommen.";
-    static String daimon000 = "DAIMON: \"Mit dem Schnarchen nur eine Frage der Zeit, bis der Wärter die Gitterstäbe selbst durchgesägt hat …\"";
+    static String desc000 = "Eine klamme Nische hinter Eisenstangen, gegenüber ein schnarchender Wärter mit einem Schlüssel am Gürtel. Klassiker. \nDie Tür nach Osten steht offen, aber erstmal musst du dich aus der Zelle befreien.";
+    static String daimon000 = "DAIMON: \"Bei dem Schnarchen ist's nur eine Frage der Zeit, bis der Wärter die Gitterstäbe selbst durchgesägt hat …\"";
+    static String solved000 = "Mit rostigem Knarzen schwingt die Zellentür auf, \ndu kannst nach Osten aus der Zelle heraustreten.";
     static String desc001 = "Der Wachraum liefert guten Blick auf die westliche Zelle – wenn man wach bleibt. Durch die offene Tür im Osten kriecht ein kalter Zug.";
     static String daimon001 = "DAIMON: \"Sieh mal zu, dass du dein Zeug wiederbekommst. Bevor sie dich eingebuchtet hat, hat dir die Königsgarde alles abgenommen.\"";
+    static String solved001 = "Platzhalter unten in Story-Klasse";
     static String desc002 = "Der Gang führt um die Ecke nach Norden, aus der Ferne hallen Geräusche.";
-    static String daimon002 = "DAIMON: \"\"";
-    static String desc010 = "";
-    static String daimon010 = "DAIMON: \"\"";
-    static String desc011 = "";
-    static String daimon011 = "DAIMON: \"\"";
-    static String desc012 = "";
-    static String daimon012 = "DAIMON: \"\"";
-    static String desc020 = "";
-    static String daimon020 = "DAIMON: \"\"";
-    static String desc021 = "";
-    static String daimon021 = "DAIMON: \"\"";
-    static String desc022 = "";
-    static String daimon022 = "DAIMON: \"\"";
+    static String daimon002 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String solved002 = "Platzhalter unten in Story-Klasse";
+    static String desc010 = "Platzhalter unten in Story-Klasse";
+    static String daimon010 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String solved010 = "Platzhalter unten in Story-Klasse";
+    static String desc011 = "Platzhalter unten in Story-Klasse";
+    static String daimon011 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String solved011 = "Platzhalter unten in Story-Klasse";
+    static String desc012 = "Platzhalter unten in Story-Klasse";
+    static String daimon012 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String solved012 = "Platzhalter unten in Story-Klasse";
+    static String desc020 = "Platzhalter unten in Story-Klasse";
+    static String daimon020 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String solved020 = "Platzhalter unten in Story-Klasse";
+    static String desc021 = "Platzhalter unten in Story-Klasse";
+    static String daimon021 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String solved021 = "Platzhalter unten in Story-Klasse";
+    static String desc022 = "Platzhalter unten in Story-Klasse";
+    static String daimon022 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String solved022 = "Platzhalter unten in Story-Klasse";
 
-    static String desc100 = "";
-    static String daimon100 = "DAIMON: \"\"";
-    static String desc101 = "";
-    static String daimon101 = "DAIMON: \"\"";
-    static String desc102 = "";
-    static String daimon102 = "DAIMON: \"\"";
-    static String desc110 = "";
-    static String daimon110 = "DAIMON: \"\"";
-    static String desc111 = "";
-    static String daimon111 = "DAIMON: \"\"";
-    static String desc112 = "";
-    static String daimon112 = "DAIMON: \"\"";
-    static String desc120 = "";
-    static String daimon120 = "DAIMON: \"\"";
-    static String desc121 = "";
-    static String daimon121 = "DAIMON: \"\"";
-    static String desc122 = "";
-    static String daimon122 = "DAIMON: \"\"";
+    static String desc100 = "Platzhalter unten in Story-Klasse";
+    static String daimon100 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String solved100 = "Platzhalter unten in Story-Klasse";
+    static String desc101 = "Platzhalter unten in Story-Klasse";
+    static String daimon101 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String solved101 = "Platzhalter unten in Story-Klasse";
+    static String desc102 = "Platzhalter unten in Story-Klasse";
+    static String daimon102 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String solved102 = "Platzhalter unten in Story-Klasse";
+    static String desc110 = "Platzhalter unten in Story-Klasse";
+    static String daimon110 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String solved110 = "Platzhalter unten in Story-Klasse";
+    static String desc111 = "Platzhalter unten in Story-Klasse";
+    static String daimon111 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String solved111 = "Platzhalter unten in Story-Klasse";
+    static String desc112 = "Platzhalter unten in Story-Klasse";
+    static String daimon112 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String solved112 = "Platzhalter unten in Story-Klasse";
+    static String desc120 = "Platzhalter unten in Story-Klasse";
+    static String daimon120 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String solved120 = "Platzhalter unten in Story-Klasse";
+    static String desc121 = "Platzhalter unten in Story-Klasse";
+    static String daimon121 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String solved121 = "Platzhalter unten in Story-Klasse";
+    static String desc122 = "Platzhalter unten in Story-Klasse";
+    static String daimon122 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String solved122 = "Platzhalter unten in Story-Klasse";
 
-    static String desc200 = "";
-    static String daimon200 = "DAIMON: \"\"";
-    static String desc201 = "";
-    static String daimon201 = "DAIMON: \"\"";
-    static String desc202 = "";
-    static String daimon202 = "DAIMON: \"\"";
-    static String desc210 = "";
-    static String daimon210 = "DAIMON: \"\"";
-    static String desc211 = "";
-    static String daimon211 = "DAIMON: \"\"";
-    static String desc212 = "";
-    static String daimon212 = "DAIMON: \"\"";
-    static String desc220 = "";
-    static String daimon220 = "DAIMON: \"\"";
-    static String desc221 = "";
-    static String daimon221 = "DAIMON: \"\"";
-    static String desc222 = "";
-    static String daimon222 = "DAIMON: \"\"";
+    static String desc200 = "Platzhalter unten in Story-Klasse";
+    static String daimon200 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String solved200 = "Platzhalter unten in Story-Klasse";
+    static String desc201 = "Platzhalter unten in Story-Klasse";
+    static String daimon201 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String solved201 = "Platzhalter unten in Story-Klasse";
+    static String desc202 = "Platzhalter unten in Story-Klasse";
+    static String daimon202 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String solved202 = "Platzhalter unten in Story-Klasse";
+    static String desc210 = "Platzhalter unten in Story-Klasse";
+    static String daimon210 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String solved210 = "Platzhalter unten in Story-Klasse";
+    static String desc211 = "Platzhalter unten in Story-Klasse";
+    static String daimon211 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String solved211 = "Platzhalter unten in Story-Klasse";
+    static String desc212 = "Platzhalter unten in Story-Klasse";
+    static String daimon212 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String solved212 = "Platzhalter unten in Story-Klasse";
+    static String desc220 = "Platzhalter unten in Story-Klasse";
+    static String daimon220 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String solved220 = "Platzhalter unten in Story-Klasse";
+    static String desc221 = "Platzhalter unten in Story-Klasse";
+    static String daimon221 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String solved221 = "Platzhalter unten in Story-Klasse";
+    static String desc222 = "Platzhalter unten in Story-Klasse";
+    static String daimon222 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String solved222 = "Platzhalter unten in Story-Klasse";
     //endregion
 
-
-
+    public static void credits(){
+        System.out.println("Erdacht und umgesetzt von Ivo Haarmann, 2026");
+    }
 }
