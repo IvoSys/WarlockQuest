@@ -14,7 +14,7 @@ public class Player {
     static int curX = 0;
     static int curY = 0;
     static int curZ = 0;
-    static Room room = WarlockQuest.castle[curX][curY][curZ];
+    static Room room = WorldBuilder.castle[curX][curY][curZ];
     static boolean moved = true;
 
     public static void move(String input){
@@ -57,7 +57,41 @@ public class Player {
     public static void showInv(){
         System.out.println("\n===================");
         for (Item i : inv){
+            if (i instanceof ItemIngred)
+                continue;
             System.out.printf("· %s \n", i.name);
+        }
+        System.out.println("===================\n");
+    }
+
+    public static void showIngredients(){
+        boolean empty = true;
+        System.out.println("\n===================");
+        for (Item i : inv){
+            if (i instanceof ItemIngred) {
+                System.out.printf("· %s \n", i.name);
+                empty = false;
+            }
+        }
+        if (empty){
+            System.out.println("Keine einzige Zutat.");
+        }
+        System.out.println("===================\n");
+    }
+
+    public static void showSpells(){
+        boolean empty = true;
+        System.out.println("\n===================");
+        for (Spell i : spellbook) {
+            System.out.printf("· \t%s \n", i.name);
+            System.out.printf("\tMana: %d, \tStärke: %d \t", i.mpCost, i.str);
+            if (i.aoe)
+                System.out.print("Flächenwirkung");
+            System.out.printf("\n\t%s \n", i.desc);
+            empty = false;
+        }
+        if (empty){
+            System.out.println("Kein einziger Zauber.");
         }
         System.out.println("===================\n");
     }
@@ -67,6 +101,10 @@ public class Player {
         for (Item i : inv){
             if (input.contains(i.name.toLowerCase())){
                 System.out.println(i.desc);
+                if (i == WorldBuilder.bag)
+                    showIngredients();
+                else if (i == WorldBuilder.book)
+                    showSpells();
                 found = true;
                 break;
             }
@@ -76,6 +114,22 @@ public class Player {
     }
 
     public static void combine(String input1, String input2){
+
+    }
+
+    public static void status(){
+        boolean first = true;
+        System.out.printf("Maleficarius: \t%d/%d MP \n", mp, mpMax);
+        for (Demon i : team){
+            if (first){
+                System.out.println("----------------------------");
+            }
+            System.out.printf("%s: \t%d/%d HP");
+            first = false;
+        }
+        if (first){
+            System.out.println("Keine Dämonen gebunden");
+        }
 
     }
 }

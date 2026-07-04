@@ -26,6 +26,12 @@ public class Room {
         this.puzzleID = puzzleID;
     }
 
+    public static void describe(){
+        System.out.println();
+        System.out.println(Player.room.name.toUpperCase());
+        System.out.println(Player.room.desc);
+    }
+
     public void loot(String input) {
         if (loot != null){
             if(input.contains(loot.name.toLowerCase())){
@@ -74,7 +80,7 @@ public class Room {
 
     public static void solveThisRoom(){                       //Zu nah an "Universalskript"?
         if (Player.room.puzzleID == 0) {                      //Individuelle Ereignisse für gelöste Räume
-            WarlockQuest.castle[0][0][0].east = true;         //Zellentür öffnet sich, Raum kann nach Osten verlassen werden
+            WorldBuilder.castle[0][0][0].east = true;         //Zellentür öffnet sich, Raum kann nach Osten verlassen werden
         }
     }
 

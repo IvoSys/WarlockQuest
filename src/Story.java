@@ -27,24 +27,39 @@ public class Story {
     public static void help() {
         System.out.println(
             "\n=============================== \n" +
-            "BEFEHLE \n" +
-            "Immer, wenn \"Zeit zu handeln!\" angezeigt wird, können folgende Befehle genutzt werden: \n\n" +
-            "Handlung\t\t\t| Befehl\t\t| Effekt \n" +
-            "------------------------------------------------------------------------------------------------------------- \n" +
-            "Inventar zeigen\t\t| I\t\t\t\t| Zeigt an, welche Gegenstände du besitzt. \n" +
-            "Item nehmen\t\t\t| N.[Item]\t\t| Legt erreichbaren Gegenstand ins Inventar, z. B. \"n.Zellenschlüssel\". \n" +
-            "Item verwenden \t\t| V.[Item]\t\t| Verwendet den angegebenen Gegenstand, z. B. \"v.Zellenschlüssel\". \n" +
-            "Item untersuchen\t| U.[Item]\t\t| Ruft eine genauere Beschreibung zum angegebenen Gegenstand auf. \n" +
-            "In Richtung gehen\t| G.[Richtung]\t| Versucht, den aktuellen Ort in gewählter Richtung zu verlassen. \n" +
-            "\t\t\t\t\t|\t\t\t\t| Richtungen: Norden (N), Osten (O), Süden (S), Westen (W), hoch (h), runter (r) \n" +
-            "\t\t\t\t\t|\t\t\t\t| (z. B. \"Gehe.Norden\" oder einfach \"g.n\") \n" +
-            "Daimon fragen\t\t| D \t\t\t| Bittet das Teufelchen auf deiner Schulter um Hilfe. \n" +
-            "Dämon binden\t\t| B \t\t\t| Zwingt einen neuen Dämon in deinen Dienst. \n" +
-            "Hilfe\t\t\t\t| H \t\t\t| Ruft diese Anleitung auf. \n" +
-            "Kampftutorial\t\t| K \t\t\t| Ruft die Anleitung zum Kampfsystem auf. \n" +
-            "Ende\t\t\t\t| E \t\t\t| Beendet das Spiel. \n" +
-            "\nGroß-/Kleinschreibung wird ignoriert, außer beim Binden. Copy-paste ist hilfreich. \n" +
-            "============================================================================================================= \n"
+                    "BEFEHLE \n" +
+                    "Immer, wenn \"Zeit zu handeln!\" angezeigt wird, können folgende Befehle genutzt werden: \n\n" +
+                    "Handlung\t\t\t| Befehl\t\t\t| Effekt \n" +
+                    "------------------------------------------------------------------------------------------------------------- \n" +
+                    "Daimon fragen\t\t| (D)aimon \t\t\t| Bittet das Teufelchen auf deiner Schulter um Hilfe. \n" +
+                    "\t\t\t\t\t|\t\t\t\t\t| \n" +
+                    "Inventar zeigen\t\t| (I)tems\t\t\t| Zeigt an, welche Gegenstände du besitzt (ohne alchemistische Zutaten). \n" +
+                    "Nimm Item\t\t\t| N.[Item]\t\t\t| Legt erreichbaren Gegenstand ins Inventar, z. B. \"n.Zellenschlüssel\". \n" +
+                    "Verwende Item \t\t| V.[Item]\t\t\t| Verwendet einen Gegenstand im Inventar, z. B. \"v.Zellenschlüssel\". \n" +
+                    "Untersuche Item\t\t| U.[Item]\t\t\t| Beschreibt einen Gegenstand aus deinem Inventar genauer. \n" +
+                    "Kombiniere Items\t| K.[Item].[Item]\t| Kombiniert zwei deiner Gegenstände miteinander, \n" +
+                    "\t\t\t\t\t|\t\t\t\t\t| z. B. \"k.blaue Farbe.gelbe Farbe\" -> Maleficarius erhält grüne Farbe! \n" +
+                    "\t\t\t\t\t|\t\t\t\t\t| \n" +
+                    "Status anzeigen\t\t| (S)tatus\t\t\t| Zeigt den Stand von Lebens- und Magiepunkten an.\n" +
+                    "Zauberbuch\t\t\t| (Z)auber\t\t\t| Listet die von dir gelernten Zauber auf.\n" +
+                    "Alchemiezutaten\t\t| (A)lchemie\t\t| Zeigt deine alchemistischen Zutaten an. \n" +
+                    "Raum ansehen\t\t| (R)aum \t\t\t| Zeigt erneut Namen und Beschreibung des aktuellen Raums an. \n" +
+                    "\t\t\t\t\t|\t\t\t\t\t| \n" +
+                    "In Richtung gehen\t| G.[Richtung]\t\t| Versucht, den aktuellen Ort in gewählter Richtung zu verlassen. \n" +
+                    "\t\t\t\t\t|\t\t\t\t\t| Richtungen: Nord (N), Ost (O), Süd (S), West (W), hoch (h), runter (r) \n" +
+                    "\t\t\t\t\t|\t\t\t\t\t| z. B. \"Gehe.Norden\" oder einfach \"g.n\" \n" +
+                    "\t\t\t\t\t|\t\t\t\t\t| \n" +
+                    "Zauber lernen\t\t| (L)ernen \t\t\t| Lernt einen neuen Zauber anhand einer Formel. \n" +
+                    "Dämon binden\t\t| (B)inden \t\t\t| Zwingt einen neuen Dämon in deinen Dienst. \n" +
+                    "\t\t\t\t\t|\t\t\t\t\t| \n" +
+                    "Spielanleitung\t\t| Hilfe \t\t\t| Ruft diese Anleitung auf. \n" +
+                    "Kampftutorial\t\t| Kampf \t\t\t| Ruft die Anleitung zum Kampfsystem auf. \n" +
+                    "Alchemietutorial\t| Kombinieren \t\t| Ruft die Anleitung zum Kombinierbefehl/Alchemiesystem auf. \n" +
+                    "\t\t\t\t\t|\t\t\t\t\t| \n" +
+                    "Mitwirkende\t\t\t| Credits \t\t\t| Zeigt die Mitwirkenden. \n" +
+                    "Beenden\t\t\t\t| Ende \t\t\t\t| Beendet das Spiel. \n" +
+                    "\nGroß-/Kleinschreibung wird ignoriert, außer beim Binden. Copy-paste ist hilfreich. \n" +
+                    "============================================================================================================= \n"
         );
     }
 
@@ -59,7 +74,7 @@ public class Story {
                 "ohne dass dessen Zug verfällt. Tränke werden beim Einsatz verbraucht und Zauber kosten MP, \n" +
                 "Maleficarius sollte sie also mit Bedacht einsetzen.\n\n" +
 
-                "Beispiel: \n\n" +
+                "Beispiel: \n" +
                 "100/100 HP \t\t50/50 MP \t\t(Lebenspunkte des Dämonen und Magiepunkte von Maleficarius)\n" +
                 "[NAME DES AKTIVEN DÄMONS] \n" +
                 "[1] Angriff 1\t\t\t\t(Dämon)\n" +
@@ -70,7 +85,10 @@ public class Story {
                 "[5] Beschwören\t\t\t(Maleficarius) \n\n" +
 
                 "Du kannst auch einen neuen Dämon beschwören, anschließend sind aber zuerst die Gegner an der Reihe. \n" +
-                "Zu jedem Zeitpunkt kann nur ein Dämon im Kampf sein. \n" +
+                "Zu jedem Zeitpunkt kann nur ein Dämon im Kampf sein. \n\n" +
+
+                "Fallen die HP eines Dämonen auf 0, kannst du einen neuen beschwören. \n" +
+                "Hast du im Kampf keine kampffähigen Dämonen mehr übrig, ist Maleficarius' Ende gekommen.\n" +
                 "============================================================================================================= \n"
         );
     }
@@ -78,26 +96,16 @@ public class Story {
     public static void helpAlchemy() {
         System.out.println(
                 "\n=============================== \n" +
-                        "ALCHEMIE \n" +
-                        "Maleficarius lässt einen beschworenen Dämonen für sich kämpfen und kann ihn mit Zaubern und Tränken unterstützen. \n" +
-                        "Zu Beginn des Kampfes wählst du einen zu beschwörenden Dämonen. Wenn du am Zug bist, wird eine Liste mit Optionen angezeigt. \n" +
-                        "Oben stehen die Fähigkeiten des Dämons, unter der gestrichelten Linie die Möglichkeiten von Maleficarius. \n" +
-                        "Nach deinem Dämon sind die Gegner an der Reihe. Soll Maleficarius handeln, kann er dies vor dem Dämon tun, \n" +
-                        "ohne dass dessen Zug verfällt. Tränke und Schriftrollen werden beim Einsatz aber verbraucht, Maleficarius \n" +
-                        "sollte sie also mit Bedacht einsetzen.\n\n" +
+                "ALCHEMIE \n" +
+                "Mit dem Befehl \"Kombinieren\" (k.[Item 1].[Item 2]) verwendest zu zwei Gegenstände miteinander. \n" +
+                "Dies könnte mit allen möglichen Gegenständen im Inventar funktionieren, " +
+                "insbesondere aber mit alchemistischen Zutaten. Beispiele: \n\n" +
 
-                        "(Beispiel:) \n\n" +
-                        "[Name und Lebenspunkte des aktiven Dämons] \n" +
-                        "[1] Angriff\t\t\t\t(Dämon)\n" +
-                        "[2] Besondere Fähigkeit\t(Dämon)\n" +
-                        "------------------------\n" +
-                        "[3] Trank\t\t\t\t(Maleficarius) \n" +
-                        "[4] Zauber\t\t\t\t(Maleficarius) \n" +
-                        "[5] Beschwören\t\t\t(Maleficarius) \n\n" +
+                "Heiltrank = [Flüssigkeit] + [Zutat, die den Körper stärkt] \n" +
+                "Manatrank = [Flüssigkeit] + [Zutat, die den Geist erfrischt] \n\n" +
 
-                        "Du kannst auch einen neuen Dämon beschwören, anschließend sind aber zuerst die Gegner an der Reihe. \n" +
-                        "Zu jedem Zeitpunkt kann nur ein Dämon im Kampf sein. \n" +
-                        "============================================================================================================= \n"
+                "Probiere alles Mögliche aus! \n" +
+                "============================================================================================================= \n"
         );
     }
 
@@ -288,6 +296,8 @@ public class Story {
     //endregion
 
     public static void credits(){
-        System.out.println("Erdacht und umgesetzt von Ivo Haarmann, 2026");
+        System.out.println("WARLOCK QUEST " + WarlockQuest.version);
+        System.out.println("Erdacht und umgesetzt von Ivo Haarmann");
+        System.out.println("Handgetippt am Ammersee, 2026");
     }
 }

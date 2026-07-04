@@ -1,9 +1,11 @@
-public class WorldBuilder {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
+public class WorldBuilder {
 
     //3D-Array erstellen
     static Room[][][] castle = new Room[3][3][3];
-
 
     //Methode: Schloss bauen
     public static void buildCastle() {
@@ -55,5 +57,48 @@ public class WorldBuilder {
         castle[2][2][1] = new Room("", Story.desc221, Story.daimon221, Story.solved221, false, false, false, false, false, false, 221);
         castle[2][2][2] = new Room("", Story.desc222, Story.daimon222, Story.solved222, false, false, false, false, false, false, 222);
     }
+
+    //Methode: Gegner vorbereiten
+    public static void createEnemies() {
+
+    }
+
+    //DÄMONEN
+    //region
+    static Demon dem01 = new Demon("Abbadon", "Herr des Abgrunds", 100, "");
+    static Demon[] allDem = {dem01};
+    static List<Demon> freeDem = new ArrayList<>(Arrays.asList(allDem));
+    //endregion
+
+    //BESCHWÖRUNGSFORMELN
+    //region
+    static ItemEvoc evoc00 = new ItemEvoc("Beschwörungsformel des Daimon", "Diesen okkulten Text hast du vor einer Weile schon entschlüsselt. \nDer wahre Name des Daimon lautet: \n\033[3mAgathos Daímōn Týchē, Spritus benefactum\033[0m \n\nDAIMON: \"Nooohh, Malle, ich bin doch schon bei dir!\"\n\n… ob es so eine gute Idee war, diesen Plagegeist zu beschwören?", "Daimon");
+    static ItemEvoc evoc01 = new ItemEvoc("Beschwörungsformel des Abbaddon", "Hinweistext auf wahren Namen des Abbadon", "Abbadon");
+    //endregion
+
+    //TRÄNKE
+    //region
+    static ItemPotion pot01 = new ItemPotion("Geringer Heiltrank", "Ein schwacher Heiltrank.", 50);
+    //endregion
+
+    //SCHRIFTROLLEN
+    //region
+    static ItemScroll scr01 = new ItemScroll("Fluch", "XXX.");
+    //endregion
+
+    //ZAUBER
+    //region
+
+    static Spell[] allSpells = {};
+    static ArrayList<Spell> freeSpells = new ArrayList<>();
+    //endregion
+
+    //Schlüssel
+    //region
+    static ItemKey bookBlackArts = new ItemKey("\"Die schwarzen Künste\"", "Das Standardwerk über Hexerei, Alchemie und Dämonologie verfasst von Meister Maleficarius Liebwerk. \n[…] Zauber werden mittels Schriftrollen erlernt und können bis zur geistigen Erschöpfung gewirkt werden. \n[…] Tränke werden mit Verabreichung verbraucht und entfalten unvergleichliche Heilkraft, selbst bei Dämonen. \n[…] Spricht man den wahren Namen eines Dämonen deulich aus, zwingt man ihn in seinen Dienst. Doch Obacht, er wird dies nicht schätzen!", 99);
+    static ItemKey key000 = new ItemKey("Zellenschlüssel", "Ein rostiger Klumpen von Schlüssel.", 0);
+    static ItemKey bag = new ItemKey("Alchemiebeutel", "Ein samtener Beutel mit all deinen alchemistischen Zutaten: \n", 99);
+    static ItemKey book = new ItemKey("Zauberbuch", "Ein ledergebundener Foliant, in dem all deine Zauber verzeichnet sind: \n", 99);
+    //endregion
 
 }

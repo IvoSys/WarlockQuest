@@ -1,18 +1,18 @@
-public abstract class Demon {
+public class Demon {                //Speziellere Dämonenklassen anlegen und diese abstrakt machen
 
     String shortName;
     String trueName;
-    String bound;
+    String textWhenBound;
     int hp;
     int hpMax;
     boolean ko = false;
 
-    public Demon (String shortName, String trueName, int hp, String bound) {
+    public Demon (String shortName, String trueName, int hp, String textWhenBound) {
         this.shortName = shortName;
         this.trueName = trueName;
         this.hp = hp;
         this.hpMax = hp;
-        this.bound = bound;
+        this.textWhenBound = textWhenBound;
     }
 
     //Setter
@@ -35,11 +35,11 @@ public abstract class Demon {
         boolean success = false;
         System.out.print("Du machst dich bereit, einen neuen Dämon zu versklaven. \nGib seinen wahren Namen ein, und sei genau! \n> ");
         WarlockQuest.input = WarlockQuest.sc.nextLine();
-        for (int i = 0; i < WarlockQuest.freeDem.size(); i++) {
-            if (WarlockQuest.freeDem.get(i).trueName.equals(WarlockQuest.input)) {
-                Player.team.add(WarlockQuest.freeDem.get(i));
-                System.out.println(WarlockQuest.freeDem.get(i).bound);
-                WarlockQuest.freeDem.remove(i);
+        for (int i = 0; i < WorldBuilder.freeDem.size(); i++) {
+            if (WorldBuilder.freeDem.get(i).trueName.equals(WarlockQuest.input)) {
+                Player.team.add(WorldBuilder.freeDem.get(i));
+                System.out.println(WorldBuilder.freeDem.get(i).textWhenBound);
+                WorldBuilder.freeDem.remove(i);
                 success = true;
                 break;
             }
