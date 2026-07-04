@@ -3,25 +3,18 @@ import java.util.Scanner;
 public class WarlockQuest {
 
     static String version = "v0.1.0";
-
-    //Reminder für mich: Klassenübergreifende Zugriffe erfordern Klassen-/Instanzvariablen, nicht lokale Variablen in Methoden!
-    //                   Statics greifen nicht auf Objekte zu!
-
-
-    //Boolean für Spielschleife
     static boolean running = true;
 
-    //Scanner
     static Scanner sc = new Scanner(System.in);
     static String input;
     static String[] inputSplit;
 
-    // MAIN
     static void main(String[] args){
 
         WorldBuilder.buildCastle();
         WorldBuilder.createEnemies();
 
+        //Methode hierfür bauen?
         Player.inv.add(WorldBuilder.bookBlackArts);
         Player.inv.add((WorldBuilder.book));
         Player.inv.add((WorldBuilder.bag));
@@ -56,7 +49,7 @@ public class WarlockQuest {
             } else if (input.equals("hilfe")){
                 Story.help();
             } else if (input.equals("s") || input.equals("status")){
-                Player.status();
+                Player.showStatus();
             } else if (input.equals("i") || input.equals("items")){
                 Player.showInv();
             } else if (input.equals("a") || input.equals("zutaten")){
@@ -86,7 +79,7 @@ public class WarlockQuest {
                 } else if (inputSplit[0].equals("v") || inputSplit[0].equals("verwende") || inputSplit[0].contains("nutze")){
                     Room.solve(inputSplit[1]);
                 } else if (inputSplit[0].equals("k") || inputSplit[0].contains("kombi")) {
-                    Player.combine(inputSplit[1], inputSplit[2]);
+                    Player.combineItems(inputSplit[1], inputSplit[2]);
                 } else {
                     System.out.println("Du redest wirr!");
                 }

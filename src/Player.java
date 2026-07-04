@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Player {
 
+    static int level;
     static int mp = 50;
     static int mpMax = 50;
 
@@ -113,13 +114,13 @@ public class Player {
             System.out.println("So etwas habe ich nicht.");
     }
 
-    public static void combine(String input1, String input2){
+    public static void combineItems(String input1, String input2){
 
     }
 
-    public static void status(){
+    public static void showStatus(){
         boolean first = true;
-        System.out.printf("Maleficarius: \t%d/%d MP \n", mp, mpMax);
+        System.out.printf("Maleficarius [Lv. %d]: \t%d/%d MP \n", level, mp, mpMax);
         for (Demon i : team){
             if (first){
                 System.out.println("----------------------------");
@@ -132,4 +133,11 @@ public class Player {
         }
 
     }
+
+    public static void (){
+        level++;
+        mp *= 1.25f;
+        mpMax *= 1.25f;
+    }
+
 }

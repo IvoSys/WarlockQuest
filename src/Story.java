@@ -58,7 +58,7 @@ public class Story {
                     "\t\t\t\t\t|\t\t\t\t\t| \n" +
                     "Mitwirkende\t\t\t| Credits \t\t\t| Zeigt die Mitwirkenden. \n" +
                     "Beenden\t\t\t\t| Ende \t\t\t\t| Beendet das Spiel. \n" +
-                    "\nGroß-/Kleinschreibung wird ignoriert, außer beim Binden. Copy-paste ist hilfreich. \n" +
+                    "\nGroß-/Kleinschreibung wird ignoriert, außer beim Binden und Lernen. Copy-paste ist hilfreich. \n" +
                     "============================================================================================================= \n"
         );
     }
