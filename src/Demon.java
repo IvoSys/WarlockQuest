@@ -1,17 +1,17 @@
-public class Demon {
+public abstract class Demon {
 
     String shortName;
     String trueName;
     String bound;
     int hp;
-    int maxHp;
+    int hpMax;
     boolean ko = false;
 
     public Demon (String shortName, String trueName, int hp, String bound) {
         this.shortName = shortName;
         this.trueName = trueName;
         this.hp = hp;
-        this.maxHp = hp;
+        this.hpMax = hp;
         this.bound = bound;
     }
 
@@ -22,9 +22,9 @@ public class Demon {
             hp = 0;
     }
 
-    //Angriff
+    //Angriff 1
 
-    //Spezialangriff
+    //Angriff 2
 
 
     public static void summon(int index){
@@ -45,6 +45,6 @@ public class Demon {
             }
         }
         if (!success)
-            System.out.println("Hämisches Gelächter hallt in deinem Schädel hin und her. \nDieses Mal hast du keinen neuen Diener erhalten.");
+            System.out.println("Hämisches Gelächter hämmert in deinem Schädel hin und her wie der Klöppel eine Glocke. \nDieses Mal hast du keinen neuen Diener erhalten.");
     }
 }

@@ -2,7 +2,11 @@ import java.util.ArrayList;
 
 public class Player {
 
+    static int mp = 50;
+    static int mpMax = 50;
+
     static ArrayList<Item> inv = new ArrayList<>();
+    static ArrayList<Spell> spellbook = new ArrayList<>();
     static ArrayList<Demon> team = new ArrayList<>();
     static Demon activeDemon;
 
@@ -69,5 +73,9 @@ public class Player {
         }
         if (!found)
             System.out.println("So etwas habe ich nicht.");
+    }
+
+    public static void combine(String input1, String input2){
+
     }
 }

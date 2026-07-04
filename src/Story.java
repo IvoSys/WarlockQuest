@@ -52,17 +52,18 @@ public class Story {
         System.out.println(
                 "\n=============================== \n" +
                 "KAMPF \n" +
-                "Maleficarius lässt einen beschworenen Dämonen für sich kämpfen und kann ihn mit Zaubern und Tränken unterstützen. \n" +
-                "Zu Beginn des Kampfes wählst du einen zu beschwörenden Dämonen. Wenn du am Zug bist, wird eine Liste mit Optionen angezeigt. \n" +
+                "Maleficarius lässt einen Dämonen für sich kämpfen und kann ihn mit Zaubern und Tränken unterstützen. \n" +
+                "Zu Beginn des Kampfes beschwörst du einen Dämon. Wenn du am Zug bist, wird eine Liste mit Optionen angezeigt. \n" +
                 "Oben stehen die Fähigkeiten des Dämons, unter der gestrichelten Linie die Möglichkeiten von Maleficarius. \n" +
                 "Nach deinem Dämon sind die Gegner an der Reihe. Soll Maleficarius handeln, kann er dies vor dem Dämon tun, \n" +
-                "ohne dass dessen Zug verfällt. Tränke und Schriftrollen werden beim Einsatz aber verbraucht, Maleficarius \n" +
-                "sollte sie also mit Bedacht einsetzen.\n\n" +
+                "ohne dass dessen Zug verfällt. Tränke werden beim Einsatz verbraucht und Zauber kosten MP, \n" +
+                "Maleficarius sollte sie also mit Bedacht einsetzen.\n\n" +
 
-                "(Beispiel:) \n\n" +
-                "[Name und Lebenspunkte des aktiven Dämons] \n" +
-                "[1] Angriff\t\t\t\t(Dämon)\n" +
-                "[2] Besondere Fähigkeit\t(Dämon)\n" +
+                "Beispiel: \n\n" +
+                "100/100 HP \t\t50/50 MP \t\t(Lebenspunkte des Dämonen und Magiepunkte von Maleficarius)\n" +
+                "[NAME DES AKTIVEN DÄMONS] \n" +
+                "[1] Angriff 1\t\t\t\t(Dämon)\n" +
+                "[2] Angriff 2\t\t\t\t(Dämon)\n" +
                 "------------------------\n" +
                 "[3] Trank\t\t\t\t(Maleficarius) \n" +
                 "[4] Zauber\t\t\t\t(Maleficarius) \n" +
@@ -71,6 +72,32 @@ public class Story {
                 "Du kannst auch einen neuen Dämon beschwören, anschließend sind aber zuerst die Gegner an der Reihe. \n" +
                 "Zu jedem Zeitpunkt kann nur ein Dämon im Kampf sein. \n" +
                 "============================================================================================================= \n"
+        );
+    }
+
+    public static void helpAlchemy() {
+        System.out.println(
+                "\n=============================== \n" +
+                        "ALCHEMIE \n" +
+                        "Maleficarius lässt einen beschworenen Dämonen für sich kämpfen und kann ihn mit Zaubern und Tränken unterstützen. \n" +
+                        "Zu Beginn des Kampfes wählst du einen zu beschwörenden Dämonen. Wenn du am Zug bist, wird eine Liste mit Optionen angezeigt. \n" +
+                        "Oben stehen die Fähigkeiten des Dämons, unter der gestrichelten Linie die Möglichkeiten von Maleficarius. \n" +
+                        "Nach deinem Dämon sind die Gegner an der Reihe. Soll Maleficarius handeln, kann er dies vor dem Dämon tun, \n" +
+                        "ohne dass dessen Zug verfällt. Tränke und Schriftrollen werden beim Einsatz aber verbraucht, Maleficarius \n" +
+                        "sollte sie also mit Bedacht einsetzen.\n\n" +
+
+                        "(Beispiel:) \n\n" +
+                        "[Name und Lebenspunkte des aktiven Dämons] \n" +
+                        "[1] Angriff\t\t\t\t(Dämon)\n" +
+                        "[2] Besondere Fähigkeit\t(Dämon)\n" +
+                        "------------------------\n" +
+                        "[3] Trank\t\t\t\t(Maleficarius) \n" +
+                        "[4] Zauber\t\t\t\t(Maleficarius) \n" +
+                        "[5] Beschwören\t\t\t(Maleficarius) \n\n" +
+
+                        "Du kannst auch einen neuen Dämon beschwören, anschließend sind aber zuerst die Gegner an der Reihe. \n" +
+                        "Zu jedem Zeitpunkt kann nur ein Dämon im Kampf sein. \n" +
+                        "============================================================================================================= \n"
         );
     }
 

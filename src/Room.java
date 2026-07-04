@@ -2,7 +2,9 @@ public class Room {
 
     protected String name;
     protected String desc;
+    protected String descSolved;
     protected String daimon;
+    protected String daimonSolved;
     protected String solvedText;
     protected boolean solved = false;
     protected boolean north, east, south, west, up, down;   //In welche Richtungen der Raum verlassen werden kann
@@ -43,15 +45,22 @@ public class Room {
         for (Item i : Player.inv){
             if (input.contains(i.name.toLowerCase())){              // Wenn Eingabe den Namen eines Key-Items im Inventar enthält und
                 if(i.puzzleID == Player.room.puzzleID){             // wenn die puzzleID dieses Key-Items zu der des aktuellen Raums passt,
-                    System.out.println(Player.room.solvedText);     //Raum gelöst!
-                    if (Player.room.reward != null){                //Wenn es eine Belohnung gibt, wird sie ins Inventar verschoben
+                    System.out.println(Player.room.solvedText);     // Raum gelöst!
+                    if (Player.room.reward != null){                // Wenn es eine Belohnung gibt, wird sie ins Inventar verschoben
                         Player.inv.add(Player.room.reward);
                         Player.room.reward = null;
+                    }
+                    if (Player.room.descSolved != null){            // Raumbeschreibung und Daimon-Kommentar werden ggf. aktualisiert
+                        Player.room.desc = Player.room.descSolved;
+                    }
+                    if (Player.room.daimonSolved != null) {
+                        Player.room.daimon = Player.room.daimonSolved;
                     }
                     if (i.isConsumed) {                              // Wenn das Key-Item verbraucht wird, wird es aus dem Inventar gelöscht
                         Player.inv.remove(i);
                     }
                     solveThisRoom();                                 // spezifisches Ereignis für Raum, falls vorhanden
+                    Player.room.solved = true;                       // Raum als gelöst markieren
                 } else {
                     System.out.println("Damit kann ich hier nichts anfangen.");
                 }

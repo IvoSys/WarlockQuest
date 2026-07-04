@@ -1,16 +1,11 @@
 public class ItemScroll extends Item {
 
-    protected int str;
-    protected int num;
-
-    public ItemScroll(String name, String desc, int str) {
+    public ItemScroll(String name, String desc) {
         this.name = name;
         this.desc = desc;
-        this.str = str;
-        num = 1;
     }
 
-    public int cast(){
-        return str;
+    public static void learn(String spell){
+
     }
 }

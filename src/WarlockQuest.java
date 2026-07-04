@@ -7,32 +7,39 @@ public class WarlockQuest {
 
     //Reminder für mich: Klassenübergreifende Zugriffe erfordern Klassen-/Instanzvariablen, nicht lokale Variablen in Methoden!
 
-    //Dämonen
+    //DÄMONEN
     //region
-    static Demon dem01 = new Demon("Abbadon", "Herr des Abgrunds", 100, "");
-    static Demon[] allDem = {dem01};
-    static List<Demon> freeDem = new ArrayList<>(Arrays.asList(allDem));
+    //static Demon dem01 = new Demon("Abbadon", "Herr des Abgrunds", 100, "");
+    //static Demon[] allDem = {dem01};
+    //static List<Demon> freeDem = new ArrayList<>(Arrays.asList(allDem));
     //endregion
 
-    //Beschwörungsformeln
+    //BESCHWÖRUNGSFORMELN
     //region
     static ItemEvoc evoc00 = new ItemEvoc("Beschwörungsformel des Daimon", "Diesen okkulten Text hast du vor einer Weile schon entschlüsselt. \nDer wahre Name des Daimon lautet: \n\033[3mAgathos Daímōn Týchē, Spritus benefactum\033[0m \n\nDAIMON: \"Nooohh, Malle, ich bin doch schon bei dir!\"\n\n… ob es so eine gute Idee war, diesen Plagegeist zu beschwören?", "Daimon");
     static ItemEvoc evoc01 = new ItemEvoc("Beschwörungsformel des Abbaddon", "Hinweistext auf wahren Namen des Abbadon", "Abbadon");
     //endregion
 
-    //Potions
+    //TRÄNKE
     //region
     static ItemPotion pot01 = new ItemPotion("Geringer Heiltrank", "Ein schwacher Heiltrank.", 50);
     //endregion
 
-    //Spellscolls
+    //SCHRIFTRROLLEN
     //region
-    static ItemScroll scr01 = new ItemScroll("Eislanze", "Schleudert eine Lanze aus Eis auf den Gegner.", 50);
+    static ItemScroll scr01 = new ItemScroll("Fluch", "XXX.");
+    //endregion
+
+    //ZAUBER
+    //region
+
+    static Spell[] allSpells = {};
+    static ArrayList<Spell> freeSpells = new ArrayList<>();
     //endregion
 
     //Schlüssel
     //region
-    static ItemKey book = new ItemKey("\"Die schwarzen Künste\"", "Das Standardwerk über Hexerei, Alchemie und Dämonologie verfasst von Meister Maleficarius Liebwerk. \n[…] Zauberschriftrollen speichern die Energie eines Zaubers für den einmaligen Gebrauch. \n[…] Tränke entfalten unvergleichliche Heilkraft, selbst bei Dämonen. \n[…] Spricht man den wahren Namen eines Dämonen deulich aus, zwingt man ihn in seinen Dienst. Doch Obacht, er wird dies nicht schätzen!", 99);
+    static ItemKey book = new ItemKey("\"Die schwarzen Künste\"", "Das Standardwerk über Hexerei, Alchemie und Dämonologie verfasst von Meister Maleficarius Liebwerk. \n[…] Zauber werden mittels Schriftrollen erlernt und können bis zur geistigen Erschöpfung gewirkt werden. \n[…] Tränke werden mit Verabreichung verbraucht und entfalten unvergleichliche Heilkraft, selbst bei Dämonen. \n[…] Spricht man den wahren Namen eines Dämonen deulich aus, zwingt man ihn in seinen Dienst. Doch Obacht, er wird dies nicht schätzen!", 99);
     static ItemKey key000 = new ItemKey("Zellenschlüssel", "Ein rostiger Klumpen von Schlüssel.", 0);
     //endregion
 
@@ -141,16 +148,18 @@ public class WarlockQuest {
             Control.cta();
             if (input.equals("ende") || input.equals("e")){
                 Control.quit();
-            } else if (input.equals("hilfe") || input.equals("h")){
+            } else if (input.contains("hilfe")){
                 Story.help();
-            } else if (input.equals("items") || input.equals("i")){
+            } else if (input.equals("i") || input.equals("items")){
                 Player.showInv();
-            } else if (input.equals("daimon") || input.equals("d")){
+            } else if (input.equals("d") || input.equals("daimon")){
                 Player.daimon();
-            } else if (input.equals("binden") || input.equals("b")){
+            } else if (input.equals("b") || input.equals("binden")){
                 Demon.bind();
-            } else if (input.contains("kampf") || input.equals("k")){
+            } else if (input.contains("kampf")){
                 Story.helpBattle();
+            } else if (input.contains("alchemie")){
+                Story.helpAlchemy();
             } else if (input.contains(".")) {
                 inputSplit = input.split("\\.", 3);
                 if (inputSplit[0].equals("g") || inputSplit[0].contains("geh")){
@@ -161,7 +170,10 @@ public class WarlockQuest {
                     Player.room.loot(inputSplit[1]);
                 } else if (inputSplit[0].equals("v") || inputSplit[0].equals("verwende") || inputSplit[0].contains("nutze")){
                     Room.solve(inputSplit[1]);
-             // } else if KOMBINIEREN() { ??
+                } else if (inputSplit[0].equals("l") || inputSplit[0].contains("lern")){
+                    ItemScroll.learn(inputSplit[1]);
+                } else if (inputSplit[0].equals("k") || inputSplit[0].contains("kombi")) {
+                    Player.combine(inputSplit[1], inputSplit[2]);
                 } else {
                     System.out.println("Du redest wirr!");
                 }
