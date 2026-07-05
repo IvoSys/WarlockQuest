@@ -57,7 +57,7 @@ public class Player {
     }
 
     public static void showInv(){
-        System.out.println("=============INVENTAR=============");
+        System.out.println("=============INVENTAR==============");
         for (Item i : inv){
             if (i instanceof ItemIngred)
                 continue;
@@ -67,7 +67,7 @@ public class Player {
             else
                 System.out.print("\n");
         }
-        System.out.println("==================================");
+        System.out.println("===================================");
     }
 
     public static void showIngredients(){
@@ -124,53 +124,52 @@ public class Player {
     }
 
     public static void combineItems(String input1, String input2){
-        if (input1.equals(input2)) {                //Abbruch, wenn zweimal gleiches Item eingegeben wurde
+        if (input1.equals(input2)) {                // Abbruch, wenn zweimal gleiches Item eingegeben wurde
             System.out.println("Das funktioniert nur mit zwei unterschiedlichen Gegenständen.");
         } else {
-            boolean sucess = false;
-            int id1 = 404;                          //Standardwert für "nicht gefunden"
-            int id2 = 404;
+            Item item1 = null;
+            Item item2 = null;
+            boolean successConsumeItem1 = false;
+            boolean successConsumeItem2 = false;
 
-            for (Item i : inv) {                                //Inventar durchgeben,
-                if (input1.equals(i.name.toLowerCase())) {      //wenn input mit Namen eines Items genau übereinstimmt
-                    id1 = i.combiID;                            //ID mit dessen combiID überschreiben
+            for (Item i : inv) {                                // Inventar durchgeben,
+                if (input1.equals(i.name.toLowerCase())) {      // wenn input mit Namen eines Items genau übereinstimmt
+                    item1 = i;                                  // Item in Wegwerfvariable speichern
                 }
-                if (input2.equals(i.name.toLowerCase())) {
-                    id2 = i.combiID;
+                if (input2.equals(i.name.toLowerCase())) {      // für zweiten Input auch
+                    item2 = i;
                 }
             }
-            if (id1 == 404 && id2 == 404)                       //Abbruch, wenn eine oder beide IDs nicht überschrieben wurden
+            // Abbruch, wenn eine oder beide Variablen nicht befüllt wurden, d.h. die angegebenen Items nicht im Inventar sind
+            if (item1 == null && item2 == null )
                 System.out.println("Ich habe nichts davon.");
-            else if (id1 == 404)
+            else if (item1 == null)
                 System.out.println("Den ersten Gegenstand hast du nicht.");
-            else if (id2 == 404)
+            else if (item2 == null)
                 System.out.println("Den zweiten Gegenstand hast du nicht.");
             else {
-                if (id1 != id2) {                                 //Abbruch, wenn IDs nicht gleich
-                    System.out.println("Diese beiden Gegenstände lassen sich nicht kombinieren.");
-                } else if (id1 == 1) {                               //Wenn ID übereinstimmt, wird ein passendes Item erzeugt: Heiltrank
-                    if (Player.inv.contains(WorldBuilder.pot01))
-                        Player.inv.get(WorldBuilder.pot01.num++);
-                    else
-                        Player.inv.add(WorldBuilder.pot01);
-                    System.out.printf("Du hast einen %s gebraut. \n", WorldBuilder.pot01.name);
-                    sucess = true;                                // Erfolg erst kennzeichnen, wenn wirklich ein Item erzeugt wurde.
-                }
 
-                if (sucess) {                                     // Wenn Erfolg, dann verwendete Items reduzieren bzw. entfernen.
-                    for (Item i : inv) {
-                        if (input1.equals(i.name.toLowerCase())) {
-                            if (i.num > 1)
-                                i.num--;
-                            else
-                                Player.inv.remove(i);
+                // Items sind im Inventar
+                // Abbruch, wenn IDs unterschiedlich oder 0 sind – diese Items können nicht kombiniert werden können
+                if ((item1.combiID != item2.combiID) || item1.combiID == 0) {
+                    System.out.println("Diese beiden Gegenstände lassen sich nicht kombinieren.");
+
+                // Items sind im Inventar vorhanden und können kombiniert werden.
+                // Versuchen, die benötigte Anzahl anzuziehen:
+                } else {
+                    successConsumeItem1 = Item.consumeItem(item1, 1);
+                    if (successConsumeItem1) {
+                        successConsumeItem2 = Item.consumeItem(item2, 1);
                         }
-                        if (input2.equals(i.name.toLowerCase())) {
-                            if (i.num > 1)
-                                i.num--;
-                            else
-                                Player.inv.remove(i);
-                        }
+                }
+                // Wenn Zutaten erfolgreich verbraucht, dann Item erzeugen:
+                if (successConsumeItem1 && successConsumeItem2) {
+                    if (item1.combiID == 1) {               // id = 1: Heiltrank
+                        Item.obtainItem(WorldBuilder.pot01, 1);
+                        System.out.printf("Du hast einen %s gebraut. \n", WorldBuilder.pot01.name);
+                    } else if (item1.combiID == 2) {        // id = 2: Manatrank
+                        Item.obtainItem(WorldBuilder.pot02, 1);
+                        System.out.printf("Du hast einen %s gebraut. \n", WorldBuilder.pot02.name);
                     }
                 }
             }

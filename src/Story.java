@@ -104,6 +104,8 @@ public class Story {
                 "Heiltränke werden vorwiegend aus roten Zutaten gebraut, Manatränke aus blauen. \n" +
                 "Probiere alles Mögliche aus! \n" +
                 "============================================================================================================= \n"
+                // Schwäche des Systems: Jeder Trank könnte potenziell aus vielen verschiedenen Zutaten gebraut werden,
+                // doch jede Zutat kann nur zu genau einem Zweck verwendet werden. Lahm!
         );
     }
 
@@ -167,7 +169,7 @@ public class Story {
                 System.out.println("DAIMON: \"Ein Teil von jener Kraft, die stets das Böse will und stets das Gute schafft.\"");
                 break;
             case "3":
-                System.out.println("DAIMON: \"Ach, auf einmal hast du's eilig und willst meine Hilfe, was? \nNa gut, bin ja nicht so ein Sauertopf wie du …\" \n\nDaimon schlüpft durch die Gitterstäbe und fingert den Schlüssel aus dem Gürtelring \ndes Wärters, der dies mit verschlafenem Grunzen quittiert. Dann kehrt das Teufelchen \nzu dir zurück, dreht noch einmal um, verknotet dem Wärter die Schnürsenkel, \nschlüpft zurück in die Zelle und hält dir den Schlüssel unter die Nase. \nDAIMON: \"Da!\".\n");
+                System.out.println("DAIMON: \"Ach, auf einmal hast du's eilig und willst meine Hilfe, was? \nNa gut, bin ja nicht so ein Sauertopf wie du …\" \n\nDaimon schlüpft durch die Gitterstäbe und fingert den Schlüssel aus dem Gürtelring \ndes Wärters, der dies mit verschlafenem Grunzen quittiert. Dann kehrt das Teufelchen \nzu dir zurück, dreht noch einmal um, verknotet dem Wärter die Schnürsenkel, \nschlüpft zurück in die Zelle und hält dir den Schlüssel unter die Nase. \nDAIMON: \"Da!\"\n");
                 Player.inv.add(Player.room.reward);
                 System.out.printf("Du erhältst den %s. \n\n", Player.room.reward.name);
                 Player.room.reward = null;
@@ -210,9 +212,9 @@ public class Story {
     //RAUM-BESCHREIBUNGEN UND DAIMON-KOMMENTARE
     //region
     static String desc000 = "Eine klamme Nische hinter Eisenstangen, gegenüber ein schnarchender Wärter mit einem Schlüssel am Gürtel. Klassiker. \nDie Tür nach Osten steht offen, aber erstmal musst du dich aus der Zelle befreien.";
-    static String descSolved000 = "Eine klamme Nische hinter Eisenstangen, gegenüber ein schnarchender Wärter mit einem Schlüssel am Gürtel. Klassiker \nDie Zellentür nach Osten steht offen.";
+    static String descSolved000 = "Eine klamme Nische hinter Eisenstangen, gegenüber ein schnarchender Wärter mit einem Schlüssel am Gürtel. Klassiker \nDie Zellentür nach Osten steht nun offen.";
     static String daimon000 = "DAIMON: \"Bei dem Schnarchen ist's nur eine Frage der Zeit, bis der Wärter die Gitterstäbe selbst durchgesägt hat …\"";
-    static String daimonSolved000 = "DAIMON: \"Der Wärter ratzt einfach weiter.  …\"";
+    static String daimonSolved000 = "DAIMON: \"Der Wärter ratzt einfach weiter …\"";
     static String solved000 = "Mit rostigem Knarzen schwingt die Zellentür auf, \ndu kannst nach Osten aus der Zelle heraustreten.";
     static String desc001 = "Der Wachraum liefert guten Blick auf die westliche Zelle – wenn man wach bleibt. Durch die offene Tür im Osten kriecht ein kalter Zug.";
     static String descSolved001;

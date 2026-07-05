@@ -12,7 +12,7 @@ public class WorldBuilder {
 
         //UG, Reihe unten
         castle[0][0][0] = new Room("Gefängniszelle", Story.desc000, Story.daimon000, Story.solved000, false, false, false, false, false, false, 0);
-        castle[0][0][0].reward = key000; castle[0][0][0].dummyLoot = "Zellenschlüssel, Waffe, Ausrüstung"; castle[0][0][0].dummyFeedback = "Ich komme nicht dran";
+        castle[0][0][0].reward = key000; castle[0][0][0].dummyLoot = "Zellenschlüssel, Waffe, Ausrüstung"; castle[0][0][0].dummyFeedback = "Ich komme nicht dran"; castle[0][0][0].descSolved = Story.descSolved000; castle[0][0][0].daimonSolved = Story.daimonSolved000;
         castle[0][0][1] = new Room("Kerker", Story.desc001, Story.daimon001, Story.solved001, false, true, false, true, false, false, 1);
         castle[0][0][1].dummyLoot = "Zeug, Ausrüstung, Sachen"; castle[0][0][1].dummyFeedback = "Das ist leider nicht hier.";
         castle[0][0][2] = new Room("zugiger Kellergang", Story.desc002, Story.daimon002, Story.solved002, true, false, false, false, false, false, 2);
@@ -79,16 +79,16 @@ public class WorldBuilder {
 
     //ALCHEMIEZUTATEN
     //region
-    static ItemIngred alch11 = new ItemIngred("Molchauge", "Feine Blutgefäße ziehen sich in unruhigen Fäden durch den Augapfel.", 1);
-    static ItemIngred alch12 = new ItemIngred("Blutorchidee", "Rein optisch wird diese empfindliche Blüte ihrem Namen gerecht.", 1);
-    static ItemIngred alch21 = new ItemIngred("Mondbeere", "Eisblaue Früchte, die den Geist erfrischen.", 2);
-    static ItemIngred alch22 = new ItemIngred("Mitternachtskraut", "Fahlblaue Blätter, die sich lieber dem Mondlicht als der Sonne zuwenden.", 2);
+    static ItemIngred alch11 = new ItemIngred("Molchauge", "Molchaugen", "Feine Blutgefäße ziehen sich in unruhigen Fäden durch den Augapfel.", 1);
+    static ItemIngred alch12 = new ItemIngred("Glutorchidee", "Glutorchideen", "Rein optisch wird diese empfindliche Blüte ihrem Namen gerecht.", 1);
+    static ItemIngred alch21 = new ItemIngred("Mondbeere", "Mondbeeren", "Eisblaue Früchte, die den Geist erfrischen.", 2);
+    static ItemIngred alch22 = new ItemIngred("Mitternachtskraut", "Bund Mitternachtskraut", "Fahlblaue Blätter, die sich lieber dem Mondlicht als der Sonne zuwenden.", 2);
     //endregion
 
     //TRÄNKE
     //region
-    static ItemPotion pot01 = new ItemPotion("Heiltrank", "Ein rot strahlender Trank, stellt 50 HP wiederher.", 50, 10);
-    static ItemPotion pot02 = new ItemPotion("Manatrank", "Ein blau schimmernder Trank, stellt 25 MP wiederher.", 25, 20);
+    static ItemPotion pot01 = new ItemPotion("Heiltrank", "Heiltränke", "Ein rot strahlender Trank, stellt 50 HP wiederher.", 50, 10);
+    static ItemPotion pot02 = new ItemPotion("Manatrank", "Manatränke", "Ein blau schimmernder Trank, stellt 25 MP wiederher.", 25, 20);
     //endregion
 
     //SCHRIFTROLLEN

@@ -40,12 +40,12 @@ public class Room {
                 Player.inv.add(loot);
                 System.out.printf("Du nimmst an dich: %s \n", loot.name);
                 loot = null;
-            } else if (dummyLoot.toLowerCase().contains(input) && input.length() > 3) {
-                System.out.println(dummyFeedback);
-            } else {
+            } else if (dummyLoot.toLowerCase().contains(input) && input.length() > 2) {         //Wenn es einen oder mehrere Gegenstände gibt, die für Loot gehalten werden könnten, aber nicht sind,
+                System.out.println(dummyFeedback);                                              //Erhält Spieler entsprechendes Feedback. Spieler muss mindestens drei Buchstaben eingeben,
+            } else {                                                                            //damit Spieler nicht durch eingabe einzelner Buchstaben mogeln kann
                 System.out.println("Leider nicht.");
             }
-        } else if (dummyLoot.toLowerCase().contains(input) && input.length() > 3) {
+        } else if (dummyLoot.toLowerCase().contains(input) && input.length() > 2) {
             System.out.println(dummyFeedback);
         } else {
             System.out.println("Hier ist nichts zu holen.");
@@ -56,8 +56,8 @@ public class Room {
         boolean found = false;
         for (Item i : Player.inv){
             if (input.contains(i.name.toLowerCase())){              // Wenn Eingabe den Namen eines Key-Items im Inventar enthält und
-                if(i.puzzleID == Player.room.puzzleID){             // wenn die puzzleID dieses Key-Items zu der des aktuellen Raums passt,
-                    System.out.println(Player.room.solvedText);     // Raum gelöst!
+                if(i.puzzleID == Player.room.puzzleID){             // wenn die puzzleID dieses Key-Items zu der des aktuellen Raums passt, dann
+                    System.out.println(Player.room.solvedText);     // Raum gelöst! Entsprechender Text wird ausgegeben.
                     if (Player.room.reward != null){                // Wenn es eine Belohnung gibt, wird sie ins Inventar verschoben
                         Player.inv.add(Player.room.reward);
                         Player.room.reward = null;
@@ -71,7 +71,7 @@ public class Room {
                     if (i.isConsumed) {                              // Wenn das Key-Item verbraucht wird, wird es aus dem Inventar gelöscht
                         Player.inv.remove(i);
                     }
-                    solveThisRoom();                                 // spezifisches Ereignis für Raum, falls vorhanden
+                    solveThisRoom();                                 // spezifisches Ereignis für Raum, falls vorhanden, z.B. Tür öffnet sich und bestimmter boolean wird umgeschaltet
                     Player.room.solved = true;                       // Raum als gelöst markieren
                 } else {
                     System.out.println("Damit kann ich hier nichts anfangen.");
