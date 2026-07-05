@@ -7,7 +7,7 @@ public class ItemScroll extends Item {
 
     public static void learn() {
         boolean success = false;
-        System.out.print("Du machst dich bereit, einen neuen Zauber zu erlernen. \nGib die Zauberformel, und sei genau! \n> ");
+        System.out.print("Du machst dich bereit, einen neuen Zauber zu erlernen. \nGib die Zauberformel ein, und sei genau! \n> ");
         WarlockQuest.input = WarlockQuest.sc.nextLine();
         for (int i = 0; i < WorldBuilder.freeSpells.size(); i++) {
             if (WorldBuilder.freeSpells.get(i).formula.equals(WarlockQuest.input)) {

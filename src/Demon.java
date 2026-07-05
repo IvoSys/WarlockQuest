@@ -22,6 +22,12 @@ public class Demon {                //Speziellere Dämonenklassen anlegen und di
             hp = 0;
     }
 
+    public void applyHeal(int heal){
+        hp += heal;
+        if (hp > hpMax)
+            hp = hpMax;
+    }
+
     //Angriff 1
 
     //Angriff 2

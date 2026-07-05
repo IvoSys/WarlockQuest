@@ -12,8 +12,9 @@ public class WorldBuilder {
 
         //UG, Reihe unten
         castle[0][0][0] = new Room("Gefängniszelle", Story.desc000, Story.daimon000, Story.solved000, false, false, false, false, false, false, 0);
-        castle[0][0][0].reward = key000;
+        castle[0][0][0].reward = key000; castle[0][0][0].dummyLoot = "Zellenschlüssel, Waffe, Ausrüstung"; castle[0][0][0].dummyFeedback = "Ich komme nicht dran";
         castle[0][0][1] = new Room("Kerker", Story.desc001, Story.daimon001, Story.solved001, false, true, false, true, false, false, 1);
+        castle[0][0][1].dummyLoot = "Zeug, Ausrüstung, Sachen"; castle[0][0][1].dummyFeedback = "Das ist leider nicht hier.";
         castle[0][0][2] = new Room("zugiger Kellergang", Story.desc002, Story.daimon002, Story.solved002, true, false, false, false, false, false, 2);
         //    [z][y][x]
 
@@ -76,9 +77,18 @@ public class WorldBuilder {
     static ItemEvoc evoc01 = new ItemEvoc("Beschwörungsformel des Abbaddon", "Hinweistext auf wahren Namen des Abbadon", "Abbadon");
     //endregion
 
+    //ALCHEMIEZUTATEN
+    //region
+    static ItemIngred alch11 = new ItemIngred("Molchauge", "Feine Blutgefäße ziehen sich in unruhigen Fäden durch den Augapfel.", 1);
+    static ItemIngred alch12 = new ItemIngred("Blutorchidee", "Rein optisch wird diese empfindliche Blüte ihrem Namen gerecht.", 1);
+    static ItemIngred alch21 = new ItemIngred("Mondbeere", "Eisblaue Früchte, die den Geist erfrischen.", 2);
+    static ItemIngred alch22 = new ItemIngred("Mitternachtskraut", "Fahlblaue Blätter, die sich lieber dem Mondlicht als der Sonne zuwenden.", 2);
+    //endregion
+
     //TRÄNKE
     //region
-    static ItemPotion pot01 = new ItemPotion("Geringer Heiltrank", "Ein schwacher Heiltrank.", 50);
+    static ItemPotion pot01 = new ItemPotion("Heiltrank", "Ein rot strahlender Trank, stellt 50 HP wiederher.", 50, 10);
+    static ItemPotion pot02 = new ItemPotion("Manatrank", "Ein blau schimmernder Trank, stellt 25 MP wiederher.", 25, 20);
     //endregion
 
     //SCHRIFTROLLEN
@@ -97,7 +107,7 @@ public class WorldBuilder {
     //region
     static ItemKey bookBlackArts = new ItemKey("\"Die schwarzen Künste\"", "Das Standardwerk über Hexerei, Alchemie und Dämonologie verfasst von Meister Maleficarius Liebwerk. \n[…] Zauber werden mittels Schriftrollen erlernt und können bis zur geistigen Erschöpfung gewirkt werden. \n[…] Tränke werden mit Verabreichung verbraucht und entfalten unvergleichliche Heilkraft, selbst bei Dämonen. \n[…] Spricht man den wahren Namen eines Dämonen deulich aus, zwingt man ihn in seinen Dienst. Doch Obacht, er wird dies nicht schätzen!", 99);
     static ItemKey key000 = new ItemKey("Zellenschlüssel", "Ein rostiger Klumpen von Schlüssel.", 0);
-    static ItemKey bag = new ItemKey("Alchemiebeutel", "Ein samtener Beutel mit all deinen alchemistischen Zutaten: \n", 99);
+    static ItemKey bag = new ItemKey("Alchemiebeutel", "Ein samtener Beutel, in dem du all deine alchemistischen Zutaten aufbewahrst: \n", 99);
     static ItemKey book = new ItemKey("Zauberbuch", "Ein ledergebundener Foliant, in dem all deine Zauber verzeichnet sind: \n", 99);
     //endregion
 

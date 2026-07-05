@@ -11,7 +11,7 @@ public class Story {
     public static void intro() {
         System.out.println(
             "Dieses Mal ist der König zu weit gegangen! \n" +
-            "Du, Maleficarius Liebwerk, der größte Hexenmeister und Dämonologe im Diesseits, sollst \"ethisch nicht mehr tragbar\" sein?! Lächerlich! \n" +
+            "Du, Maleficarius Liebwerk, der größte Hexenmeister, Alchemist und Dämonologe im Diesseits, sollst \"ethisch nicht mehr tragbar\" sein?! Lächerlich! \n" +
             "Wo stünde dieses kümmerliche Reich schon ohne deine Forschung? \"Aber Meister Liebwerk, Ihr lÄsTeRt DeR ScHöPfUnG GoTtEs!\". Pahh!\n\n" +
             "Und dann haben sie dich in den Kerker geworfen. Bauerntrampel ohne Ambition oder Vorstellungskraft! \n" +
             "Es wird Zeit, den König über kleiner Flamme zu rösten! \n"
@@ -29,14 +29,14 @@ public class Story {
             "\n=============================== \n" +
                     "BEFEHLE \n" +
                     "Immer, wenn \"Zeit zu handeln!\" angezeigt wird, können folgende Befehle genutzt werden: \n\n" +
-                    "Handlung\t\t\t| Befehl\t\t\t| Effekt \n" +
+                    "Handlung\t\t\t| Eingabe\t\t\t| Effekt \n" +
                     "------------------------------------------------------------------------------------------------------------- \n" +
                     "Daimon fragen\t\t| (D)aimon \t\t\t| Bittet das Teufelchen auf deiner Schulter um Hilfe. \n" +
                     "\t\t\t\t\t|\t\t\t\t\t| \n" +
                     "Inventar zeigen\t\t| (I)tems\t\t\t| Zeigt an, welche Gegenstände du besitzt (ohne alchemistische Zutaten). \n" +
                     "Nimm Item\t\t\t| N.[Item]\t\t\t| Legt erreichbaren Gegenstand ins Inventar, z. B. \"n.Zellenschlüssel\". \n" +
                     "Verwende Item \t\t| V.[Item]\t\t\t| Verwendet einen Gegenstand im Inventar, z. B. \"v.Zellenschlüssel\". \n" +
-                    "Untersuche Item\t\t| U.[Item]\t\t\t| Beschreibt einen Gegenstand aus deinem Inventar genauer. \n" +
+                    "Untersuche Item\t\t| U.[Item]\t\t\t| Beschreibt einen Gegenstand aus dem Inventar genauer. \n" +
                     "Kombiniere Items\t| K.[Item].[Item]\t| Kombiniert zwei deiner Gegenstände miteinander, \n" +
                     "\t\t\t\t\t|\t\t\t\t\t| z. B. \"k.blaue Farbe.gelbe Farbe\" -> Maleficarius erhält grüne Farbe! \n" +
                     "\t\t\t\t\t|\t\t\t\t\t| \n" +
@@ -53,8 +53,8 @@ public class Story {
                     "Dämon binden\t\t| (B)inden \t\t\t| Zwingt einen neuen Dämon in deinen Dienst. \n" +
                     "\t\t\t\t\t|\t\t\t\t\t| \n" +
                     "Spielanleitung\t\t| Hilfe \t\t\t| Ruft diese Anleitung auf. \n" +
-                    "Kampftutorial\t\t| Kampf \t\t\t| Ruft die Anleitung zum Kampfsystem auf. \n" +
-                    "Alchemietutorial\t| Kombinieren \t\t| Ruft die Anleitung zum Kombinierbefehl/Alchemiesystem auf. \n" +
+                    "Kampftutorial\t\t| KampfTut \t\t\t| Ruft die Anleitung zum Kampfsystem auf. \n" +
+                    "Alchemietutorial\t| AlcheTut \t\t\t| Ruft die Anleitung zum Alchemiesystem/Kombinierbefehl auf. \n" +
                     "\t\t\t\t\t|\t\t\t\t\t| \n" +
                     "Mitwirkende\t\t\t| Credits \t\t\t| Zeigt die Mitwirkenden. \n" +
                     "Beenden\t\t\t\t| Ende \t\t\t\t| Beendet das Spiel. \n" +
@@ -74,8 +74,8 @@ public class Story {
                 "ohne dass dessen Zug verfällt. Tränke werden beim Einsatz verbraucht und Zauber kosten MP, \n" +
                 "Maleficarius sollte sie also mit Bedacht einsetzen.\n\n" +
 
-                "Beispiel: \n" +
-                "100/100 HP \t\t50/50 MP \t\t(Lebenspunkte des Dämonen und Magiepunkte von Maleficarius)\n" +
+                "Beispiel: \n\n" +
+                "100/100 HP \t\t50/50 MP \t(Dämon-Lebenspunkte und Maleficarius' Magiepunkte)\n" +
                 "[NAME DES AKTIVEN DÄMONS] \n" +
                 "[1] Angriff 1\t\t\t\t(Dämon)\n" +
                 "[2] Angriff 2\t\t\t\t(Dämon)\n" +
@@ -87,8 +87,10 @@ public class Story {
                 "Du kannst auch einen neuen Dämon beschwören, anschließend sind aber zuerst die Gegner an der Reihe. \n" +
                 "Zu jedem Zeitpunkt kann nur ein Dämon im Kampf sein. \n\n" +
 
-                "Fallen die HP eines Dämonen auf 0, kannst du einen neuen beschwören. \n" +
-                "Hast du im Kampf keine kampffähigen Dämonen mehr übrig, ist Maleficarius' Ende gekommen.\n" +
+                "Verschiedene Dämonen sind möglicherweise unterschiedlich stark gegen bestimmte Arten von Gegnern. \n\n" +
+
+                "Fallen die HP eines Dämons auf 0, kannst du einen neuen beschwören. \n" +
+                "Wurden alle deine Dämonen besiegt, ist Maleficarius' Ende gekommen.\n" +
                 "============================================================================================================= \n"
         );
     }
@@ -98,12 +100,8 @@ public class Story {
                 "\n=============================== \n" +
                 "ALCHEMIE \n" +
                 "Mit dem Befehl \"Kombinieren\" (k.[Item 1].[Item 2]) verwendest zu zwei Gegenstände miteinander. \n" +
-                "Dies könnte mit allen möglichen Gegenständen im Inventar funktionieren, " +
-                "insbesondere aber mit alchemistischen Zutaten. Beispiele: \n\n" +
-
-                "Heiltrank = [Flüssigkeit] + [Zutat, die den Körper stärkt] \n" +
-                "Manatrank = [Flüssigkeit] + [Zutat, die den Geist erfrischt] \n\n" +
-
+                "Dies könnte mit allen möglichen Gegenständen im Inventar funktionieren, insbesondere aber mit Alchemiezutaten. \n" +
+                "Heiltränke werden vorwiegend aus roten Zutaten gebraut, Manatränke aus blauen. \n" +
                 "Probiere alles Mögliche aus! \n" +
                 "============================================================================================================= \n"
         );
@@ -173,6 +171,7 @@ public class Story {
                 Player.inv.add(Player.room.reward);
                 System.out.printf("Du erhältst den %s. \n\n", Player.room.reward.name);
                 Player.room.reward = null;
+                WorldBuilder.castle[0][0][0].dummyLoot = null;
                 System.out.println("DAIMON: \"Und jetzt lächle und sag brav danke.\"");
                 System.out.println(
                         "Wähle eine Antwort: \n" +
@@ -211,93 +210,142 @@ public class Story {
     //RAUM-BESCHREIBUNGEN UND DAIMON-KOMMENTARE
     //region
     static String desc000 = "Eine klamme Nische hinter Eisenstangen, gegenüber ein schnarchender Wärter mit einem Schlüssel am Gürtel. Klassiker. \nDie Tür nach Osten steht offen, aber erstmal musst du dich aus der Zelle befreien.";
+    static String descSolved000 = "Eine klamme Nische hinter Eisenstangen, gegenüber ein schnarchender Wärter mit einem Schlüssel am Gürtel. Klassiker \nDie Zellentür nach Osten steht offen.";
     static String daimon000 = "DAIMON: \"Bei dem Schnarchen ist's nur eine Frage der Zeit, bis der Wärter die Gitterstäbe selbst durchgesägt hat …\"";
+    static String daimonSolved000 = "DAIMON: \"Der Wärter ratzt einfach weiter.  …\"";
     static String solved000 = "Mit rostigem Knarzen schwingt die Zellentür auf, \ndu kannst nach Osten aus der Zelle heraustreten.";
     static String desc001 = "Der Wachraum liefert guten Blick auf die westliche Zelle – wenn man wach bleibt. Durch die offene Tür im Osten kriecht ein kalter Zug.";
-    static String daimon001 = "DAIMON: \"Sieh mal zu, dass du dein Zeug wiederbekommst. Bevor sie dich eingebuchtet hat, hat dir die Königsgarde alles abgenommen.\"";
+    static String descSolved001;
+    static String daimon001 = "DAIMON: \"Sieh mal zu, dass du dein Zeug wiederbekommst. Die Königsgarde hat dir alles abgenommen, bevor man dich eingebuchtet hat.\"";
+    static String daimonSolved001;
     static String solved001 = "Platzhalter unten in Story-Klasse";
     static String desc002 = "Der Gang führt um die Ecke nach Norden, aus der Ferne hallen Geräusche.";
+    static String descSolved002;
     static String daimon002 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimonSolved002;
     static String solved002 = "Platzhalter unten in Story-Klasse";
     static String desc010 = "Platzhalter unten in Story-Klasse";
+    static String descSolved010;
     static String daimon010 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimonSolved010;
     static String solved010 = "Platzhalter unten in Story-Klasse";
     static String desc011 = "Platzhalter unten in Story-Klasse";
+    static String descSolved011;
     static String daimon011 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimonSolved011;
     static String solved011 = "Platzhalter unten in Story-Klasse";
     static String desc012 = "Platzhalter unten in Story-Klasse";
+    static String descSolved012;
     static String daimon012 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimonSolved012;
     static String solved012 = "Platzhalter unten in Story-Klasse";
     static String desc020 = "Platzhalter unten in Story-Klasse";
+    static String descSolved020;
     static String daimon020 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimonSolved020;
     static String solved020 = "Platzhalter unten in Story-Klasse";
     static String desc021 = "Platzhalter unten in Story-Klasse";
+    static String descSolved021;
     static String daimon021 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimonSolved021;
     static String solved021 = "Platzhalter unten in Story-Klasse";
     static String desc022 = "Platzhalter unten in Story-Klasse";
+    static String descSolved022;
     static String daimon022 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimonSolved022;
     static String solved022 = "Platzhalter unten in Story-Klasse";
 
     static String desc100 = "Platzhalter unten in Story-Klasse";
+    static String descSolved100;
     static String daimon100 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimonSolved100;
     static String solved100 = "Platzhalter unten in Story-Klasse";
     static String desc101 = "Platzhalter unten in Story-Klasse";
+    static String descSolved101;
     static String daimon101 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimonSolved101;
     static String solved101 = "Platzhalter unten in Story-Klasse";
     static String desc102 = "Platzhalter unten in Story-Klasse";
+    static String descSolved102;
     static String daimon102 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimonSolved102;
     static String solved102 = "Platzhalter unten in Story-Klasse";
     static String desc110 = "Platzhalter unten in Story-Klasse";
+    static String descSolved110;
     static String daimon110 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimonSolved110;
     static String solved110 = "Platzhalter unten in Story-Klasse";
     static String desc111 = "Platzhalter unten in Story-Klasse";
+    static String descSolved111;
     static String daimon111 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimonSolved111;
     static String solved111 = "Platzhalter unten in Story-Klasse";
     static String desc112 = "Platzhalter unten in Story-Klasse";
+    static String descSolved112;
     static String daimon112 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimonSolved112;
     static String solved112 = "Platzhalter unten in Story-Klasse";
     static String desc120 = "Platzhalter unten in Story-Klasse";
+    static String descSolved120;
     static String daimon120 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimonSolved120;
     static String solved120 = "Platzhalter unten in Story-Klasse";
     static String desc121 = "Platzhalter unten in Story-Klasse";
+    static String descSolved121;
     static String daimon121 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimonSolved121;
     static String solved121 = "Platzhalter unten in Story-Klasse";
     static String desc122 = "Platzhalter unten in Story-Klasse";
+    static String descSolved122;
     static String daimon122 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimonSolved122;
     static String solved122 = "Platzhalter unten in Story-Klasse";
 
     static String desc200 = "Platzhalter unten in Story-Klasse";
+    static String descSolved200;
     static String daimon200 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimonSolved200;
     static String solved200 = "Platzhalter unten in Story-Klasse";
     static String desc201 = "Platzhalter unten in Story-Klasse";
+    static String descSolved201;
     static String daimon201 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimonSolved201;
     static String solved201 = "Platzhalter unten in Story-Klasse";
     static String desc202 = "Platzhalter unten in Story-Klasse";
+    static String descSolved202;
     static String daimon202 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimonSolved202;
     static String solved202 = "Platzhalter unten in Story-Klasse";
     static String desc210 = "Platzhalter unten in Story-Klasse";
+    static String descSolved210;
     static String daimon210 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimonSolved210;
     static String solved210 = "Platzhalter unten in Story-Klasse";
     static String desc211 = "Platzhalter unten in Story-Klasse";
+    static String descSolved211;
     static String daimon211 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimonSolved211;
     static String solved211 = "Platzhalter unten in Story-Klasse";
     static String desc212 = "Platzhalter unten in Story-Klasse";
+    static String descSolved212;
     static String daimon212 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimonSolved212;
     static String solved212 = "Platzhalter unten in Story-Klasse";
     static String desc220 = "Platzhalter unten in Story-Klasse";
+    static String descSolved220;
     static String daimon220 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimonSolved220;
     static String solved220 = "Platzhalter unten in Story-Klasse";
     static String desc221 = "Platzhalter unten in Story-Klasse";
+    static String descSolved221;
     static String daimon221 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimonSolved221;
     static String solved221 = "Platzhalter unten in Story-Klasse";
     static String desc222 = "Platzhalter unten in Story-Klasse";
+    static String descSolved222;
     static String daimon222 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimonSolved222;
     static String solved222 = "Platzhalter unten in Story-Klasse";
     //endregion
 
-    public static void credits(){
-        System.out.println("WARLOCK QUEST " + WarlockQuest.version);
-        System.out.println("Erdacht und umgesetzt von Ivo Haarmann");
-        System.out.println("Handgetippt am Ammersee, 2026");
-    }
 }

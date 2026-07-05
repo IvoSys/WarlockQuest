@@ -9,6 +9,8 @@ public class Room {
     protected boolean solved = false;
     protected boolean north, east, south, west, up, down;   //In welche Richtungen der Raum verlassen werden kann
     protected Item loot;                                    //Offen einsammelbarer Gegenstand
+    protected String dummyLoot;                             //Erwähnte, aber nicht erhältliche Items, gibt passendes Feedback, mehrere Einträge möglich
+    protected String dummyFeedback = "Das lasse ich lieber hier.";
     protected Item reward;                                  //Nach Lösung des Rätsels erhältlicher Gegenstand
     protected int puzzleID;                                 //ID zum Lösen des Rätsels eines Raums, muss mit Key-Item oder in Daimon-Methode übereinstimmen, von Raumkoordinate abgeleitet
 
@@ -33,14 +35,18 @@ public class Room {
     }
 
     public void loot(String input) {
-        if (loot != null){
-            if(input.contains(loot.name.toLowerCase())){
+        if (loot != null){                                                  // Spieler gibt ein "nimm.[Item]"
+            if(input.contains(loot.name.toLowerCase())){                    // Wenn Item offen als Loot verfügbar -> Erfolg
                 Player.inv.add(loot);
                 System.out.printf("Du nimmst an dich: %s \n", loot.name);
                 loot = null;
+            } else if (dummyLoot.toLowerCase().contains(input) && input.length() > 3) {
+                System.out.println(dummyFeedback);
             } else {
                 System.out.println("Leider nicht.");
             }
+        } else if (dummyLoot.toLowerCase().contains(input) && input.length() > 3) {
+            System.out.println(dummyFeedback);
         } else {
             System.out.println("Hier ist nichts zu holen.");
         }

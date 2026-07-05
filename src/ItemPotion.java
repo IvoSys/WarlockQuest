@@ -1,13 +1,12 @@
 public class ItemPotion extends Item {
 
     protected int str;
-    protected int num;
 
-    public ItemPotion(String name, String desc, int str) {
+    public ItemPotion(String name, String desc, int str, int combiID) {
         this.name = name;
         this.desc = desc;
         this.str = str;
-        num = 1;
+        this.combiID = combiID;
     }
 
     public int heal(){
