@@ -5,7 +5,7 @@ public class ItemScroll extends Item {
         this.desc = desc;
     }
 
-    /*public static void learn() {
+    public static void learn() {
         boolean success = false;
         System.out.print("Du machst dich bereit, einen neuen Zauber zu erlernen. \nGib die Zauberformel ein, und sei genau! \n> ");
         WarlockQuest.input = WarlockQuest.sc.nextLine();
@@ -21,6 +21,5 @@ public class ItemScroll extends Item {
         if (!success)
             System.out.println("Dir raucht der Kopf vor Anstrengung. \nDieses Mal hast du keinen neuen Zauber erlernt.");
     }
-     */
 
 }

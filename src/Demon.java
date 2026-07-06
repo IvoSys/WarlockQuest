@@ -8,6 +8,8 @@ public abstract class Demon {
     int hpMax;
     boolean ko = false;
 
+    public Demon () {}
+
     public Demon (String name, String trueName, int hp, String textWhenBound) {
         this.name = name;
         this.trueName = trueName;
@@ -45,7 +47,7 @@ public abstract class Demon {
         System.out.println(Player.activeDemon.textWhenSummoned);
     }
 
-    /*public static void bind() {
+    public static void bind() {
         boolean success = false;
         System.out.print("Du machst dich bereit, einen neuen Dämon zu versklaven. \nGib seinen wahren Namen ein, und sei genau! \n> ");
         WarlockQuest.input = WarlockQuest.sc.nextLine();
@@ -62,5 +64,5 @@ public abstract class Demon {
             System.out.println("Hämisches Gelächter hämmert in deinem Schädel hin und her wie der Klöppel eine Glocke. \nDieses Mal hast du keinen neuen Diener erhalten.");
 
     }
-     */
+
 }

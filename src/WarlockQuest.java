@@ -68,10 +68,10 @@ public class WarlockQuest {
                 Player.showIngredients();                                                                               // Alchemiezutaten
             } else if (input.equals("r") || input.equals("raum")){
                 Room.describe();                                                                                        // Raum ansehen
-            //} else if (input.equals("l") || input.equals("lernen")){
-            //    ItemScroll.learn();                                                                                     // Zauber lernen
-            //} else if (input.equals("b") || input.equals("binden")){
-            //    Demon.bind();                                                                                           // Dämon binden
+            } else if (input.equals("l") || input.equals("lernen")){
+                ItemScroll.learn();                                                                                     // Zauber lernen
+            } else if (input.equals("b") || input.equals("binden")){
+                Demon.bind();                                                                                           // Dämon binden
             } else if (input.equals("hilfe")){
                 Story.help();                                                                                           // Hilfe
             } else if (input.equals("befehle")){

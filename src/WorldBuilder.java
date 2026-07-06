@@ -66,9 +66,11 @@ public class WorldBuilder {
 
 
     //DÄMONEN
-    //static Demon dem01 = new Demon("Abbadon", "Herr des Abgrunds", 100, "");
-    //static Demon[] allDem = {dem01};
-    //static List<Demon> freeDem = new ArrayList<>(Arrays.asList(allDem));
+    static DemonKind1 dem01 = new DemonKind1();
+    static DemonKind2 dem02 = new DemonKind2();
+    static DemonKind3 dem03 = new DemonKind3();
+    static Demon[] allDem = {dem01, dem02, dem03};
+    static List<Demon> freeDem = new ArrayList<>(Arrays.asList(allDem));
 
     //BESCHWÖRUNGSFORMELN
     static ItemEvoc evoc00 = new ItemEvoc("Beschwörungsformel des Daimon", "Diesen okkulten Text hast du vor einer Weile schon entschlüsselt. \nDer wahre Name des Daimon lautet: \n\033[3mAgathos Daímōn Týchē, Spritus benefactum\033[0m \n\nDAIMON: \"Nooohh, Malle, ich bin doch schon bei dir!\"\n\n… ob es so eine gute Idee war, diesen Plagegeist zu beschwören?", "Daimon");
