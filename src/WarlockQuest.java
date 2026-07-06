@@ -12,28 +12,12 @@ public class WarlockQuest {
     static void main(String[] args){
 
         WorldBuilder.buildCastle();
-        WorldBuilder.createEnemies();
 
-        //Methode hierfür bauen?
-        Player.inv.add(WorldBuilder.bookBlackArts);
-        Player.inv.add((WorldBuilder.book));
-        Player.inv.add((WorldBuilder.bag));
-        Player.inv.add(WorldBuilder.evoc00);
-
-        //DEBUG: Alchemie-Kram
-        Player.inv.add(WorldBuilder.alch11);
-        Player.inv.add(WorldBuilder.alch12);
-        Player.inv.add(WorldBuilder.alch11);
-        Player.inv.add(WorldBuilder.alch12);
-        Player.inv.add(WorldBuilder.alch11);
-        Player.inv.add(WorldBuilder.alch11);
-
-
-        //ENDE DEBUG
-
+        WorldBuilder.giveStartItems();
 
         ASCII.title();
-        /*Story.intro();
+        /*
+        Story.intro();
         Story.needHelp();
         input = sc.nextLine().toLowerCase().trim();
         if (input.contains("j")){
@@ -42,7 +26,6 @@ public class WarlockQuest {
         }
         System.out.println();
         Story.daimonIntro();
-
          */
 
         gameLoop();
@@ -85,10 +68,10 @@ public class WarlockQuest {
                 Player.showIngredients();                                                                               // Alchemiezutaten
             } else if (input.equals("r") || input.equals("raum")){
                 Room.describe();                                                                                        // Raum ansehen
-            } else if (input.equals("l") || input.equals("lernen")){
-                ItemScroll.learn();                                                                                     // Zauber lernen
-            } else if (input.equals("b") || input.equals("binden")){
-                Demon.bind();                                                                                           // Dämon binden
+            //} else if (input.equals("l") || input.equals("lernen")){
+            //    ItemScroll.learn();                                                                                     // Zauber lernen
+            //} else if (input.equals("b") || input.equals("binden")){
+            //    Demon.bind();                                                                                           // Dämon binden
             } else if (input.equals("hilfe")){
                 Story.help();                                                                                           // Hilfe
             } else if (input.equals("befehle")){

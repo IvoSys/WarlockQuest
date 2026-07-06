@@ -17,4 +17,10 @@ public class Spell {
         this.str = str;
         this.aoe = aoe;
     }
+
+    public int cast(){
+        int dmg = str;
+        System.out.println("Zauber macht bumms.");
+        return dmg;
+    }
 }

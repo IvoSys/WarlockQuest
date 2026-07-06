@@ -9,6 +9,7 @@ public class Player {
     static ArrayList<Item> inv = new ArrayList<>();
     static ArrayList<Spell> spellbook = new ArrayList<>();
     static ArrayList<Demon> team = new ArrayList<>();
+    static int counterKO;
     static Demon activeDemon;
 
     //Position
@@ -19,28 +20,28 @@ public class Player {
     static boolean moved = true;
 
 
-    public static void move(String input){
-        if (input.contains("nord") || input.equals("n") && room.north){
+    public static void move(String input) {
+        if (input.contains("nord") || input.equals("n") && room.north) {
             curY++;
             moved = true;
             System.out.println("Du gehst nach Norden.");
-        } else if (input.contains("ost") || input.equals("o") && room.east){
+        } else if (input.contains("ost") || input.equals("o") && room.east) {
             curX++;
             moved = true;
             System.out.println("Du gehst nach Osten.");
-        } else if (input.contains("süd") || input.equals("s") && room.south){
+        } else if (input.contains("süd") || input.equals("s") && room.south) {
             curY--;
             moved = true;
             System.out.println("Du gehst nach Süden.");
-        } else if (input.contains("west") || input.equals("w") && room.west){
+        } else if (input.contains("west") || input.equals("w") && room.west) {
             curX--;
             moved = true;
             System.out.println("Du gehst nach Westen.");
-        } else if (input.contains("hoch") || input.equals("h") || input.contains("oben") && room.up){
+        } else if (input.contains("hoch") || input.equals("h") || input.contains("oben") && room.up) {
             curZ++;
             moved = true;
             System.out.println("Du gehst nach oben.");
-        } else if (input.contains("runter") || input.equals("r") || input.contains("unten") && room.down){
+        } else if (input.contains("runter") || input.equals("r") || input.contains("unten") && room.down) {
             curZ--;
             moved = true;
             System.out.println("Du gehst nach unten.");
@@ -49,16 +50,16 @@ public class Player {
         }
     }
 
-    public static void daimon(){                                //Zu nah an "Universalskript"?
+    public static void daimon() {                                //Zu nah an "Universalskript"?
         System.out.println(room.daimon);                        //Daimon-Kommentar für diesen Raum
         if ((room.puzzleID == 0) && (room.reward != null)) {    //In bestimmten Räumen führt Daimon spezielle Methoden aus
             Story.getKey000();
         }
     }
 
-    public static void showInv(){
+    public static void showInv() {
         System.out.println("=============INVENTAR==============");
-        for (Item i : inv){
+        for (Item i : inv) {
             if (i instanceof ItemIngred)
                 continue;
             System.out.printf("· %s ", i.name);
@@ -70,22 +71,22 @@ public class Player {
         System.out.println("===================================");
     }
 
-    public static void showIngredients(){
+    public static void showIngredients() {
         boolean empty = true;
         System.out.println("==========ALCHEMIEZUTATEN==========");
-        for (Item i : inv){
+        for (Item i : inv) {
             if (i instanceof ItemIngred) {
                 System.out.printf("· %s [%d] \n", i.name, i.num);
                 empty = false;
             }
         }
-        if (empty){
+        if (empty) {
             System.out.println("Keine einzige Zutat.");
         }
         System.out.println("====================================");
     }
 
-    public static void showSpells(){
+    public static void showSpells() {
         boolean empty = true;
         System.out.println("=============ZAUBERBUCH=============");
         for (Spell i : spellbook) {
@@ -96,16 +97,16 @@ public class Player {
             System.out.printf("\n\t%s \n", i.desc);
             empty = false;
         }
-        if (empty){
+        if (empty) {
             System.out.println("Kein einziger Zauber.");
         }
         System.out.println("====================================");
     }
 
-    public static void checkItem(String input){
+    public static void checkItem(String input) {
         boolean found = false;
-        for (Item i : inv){
-            if (input.contains(i.name.toLowerCase())){
+        for (Item i : inv) {
+            if (input.contains(i.name.toLowerCase())) {
                 System.out.println(i.desc);
                 if (i == WorldBuilder.bag)
                     showIngredients();
@@ -119,7 +120,7 @@ public class Player {
             System.out.println("So etwas habe ich nicht.");
     }
 
-    public static void combineItems(String input1, String input2){
+    public static void combineItems(String input1, String input2) {
         if (input1.equals(input2)) {                // Abbruch, wenn zweimal gleiches Item eingegeben wurde
             System.out.println("Das funktioniert nur mit zwei unterschiedlichen Gegenständen.");
         } else {
@@ -137,7 +138,7 @@ public class Player {
                 }
             }
             // Abbruch, wenn eine oder beide Variablen nicht befüllt wurden, d.h. die angegebenen Items nicht im Inventar sind
-            if (item1 == null && item2 == null )
+            if (item1 == null && item2 == null)
                 System.out.println("Ich habe nichts davon.");
             else if (item1 == null)
                 System.out.println("Den ersten Gegenstand hast du nicht.");
@@ -150,13 +151,13 @@ public class Player {
                 if ((item1.combiID != item2.combiID) || item1.combiID == 0) {
                     System.out.println("Diese beiden Gegenstände lassen sich nicht kombinieren.");
 
-                // Items sind im Inventar vorhanden und können kombiniert werden.
-                // Versuchen, die benötigte Anzahl anzuziehen:
+                    // Items sind im Inventar vorhanden und können kombiniert werden.
+                    // Versuchen, die benötigte Anzahl anzuziehen:
                 } else {
                     successConsumeItem1 = Item.consumeItemMult(item1, 1);
                     if (successConsumeItem1) {
                         successConsumeItem2 = Item.consumeItemMult(item2, 1);
-                        }
+                    }
                 }
                 // Wenn Zutaten erfolgreich verbraucht, dann Item erzeugen:
                 if (successConsumeItem1 && successConsumeItem2) {
@@ -172,38 +173,38 @@ public class Player {
         }
     }
 
-    public static void showStatus(){
+    public static void showStatus() {
         boolean first = true;
         System.out.printf("Maleficarius: \t%d/%d MP \n", mp, mpMax);
-        for (Demon i : team){
-            if (first){
+        for (Demon i : team) {
+            if (first) {
                 System.out.println("----------------------------");
             }
-            System.out.printf("%s: \t%d/%d HP \n", i.shortName, i.hp, i.hpMax);
+            System.out.printf("%s: \t%d/%d HP \n", i.name, i.hp, i.hpMax);
             first = false;
         }
-        if (first){
+        if (first) {
             System.out.println("Keine Dämonen gebunden");
         }
 
     }
 
+    //Funktioniert noch nicht richtig!!!
     public static void cleanUpInv() {
         boolean merge;
-
-        do {
-            merge = false;
-            for (int i = 0; i < Player.inv.size() - 1; i++) {
-                for (int j = i + 1; j < Player.inv.size(); j++) {
-                    if (Player.inv.get(i).name.equals(Player.inv.get(j).name)) {
-                        Player.inv.get(i).num += Player.inv.get(j).num;
-                        //Player.inv.get(j).num = 0;
-                        Player.inv.remove(j);
-                        merge = true;
-                    }
+        // Schleife von hinten nach vorne durchlaufen, damit keine Fehler entstehen,
+        // wenn sich die Indexe durch Löschen eines Eintrags verschieben
+        for (int i = Player.inv.size() - 1; i >= 1; i--) {
+            for (int j = i - 1; j >= 0; j--) {
+                if (Player.inv.get(i).name.equals(Player.inv.get(j).name)) {
+                    Player.inv.get(j).num += Player.inv.get(i).num;
+                    Player.inv.remove(i);
+                    break;
                 }
             }
-        } while (merge);
+        }
         System.out.println("Inventar und Alchemiebeutel aufgeräumt.");
     }
+
+
 }

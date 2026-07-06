@@ -69,9 +69,10 @@ public class Story {
                         "Kampftutorial\t\t| KampfTut \t\t\t| Ruft die Anleitung zum Kampfsystem auf. \n" +
                         "Alchemietutorial\t| AlcheTut \t\t\t| Ruft die Anleitung zum Alchemiesystem/Kombinierbefehl auf. \n" +
                         "\t\t\t\t\t|\t\t\t\t\t| \n" +
-                        "Inventar aufräumen\t| Cleanup\t\t\t| Führt doppelte Einträge in Inventar/Alchemiebeutel zusammen.\n" +
-                        "\t\t\t\t\t|\t\t\t\t\t| (Falls dies je nötig ist, ist etwas schiefgelaufen.)\n" +
-                        "\t\t\t\t\t|\t\t\t\t\t| \n" +
+                        //"Inventar aufräumen\t| Cleanup\t\t\t| Führt doppelte Einträge in Inventar/Alchemiebeutel zusammen.\n" +
+                        //"\t\t\t\t\t|\t\t\t\t\t| (Falls dies je nötig ist, ist etwas schiefgelaufen.)\n" +
+                        //"\t\t\t\t\t|\t\t\t\t\t| NOCH FEHLERHAFT!\n" +
+                        //"\t\t\t\t\t|\t\t\t\t\t| \n" +
                         "Mitwirkende\t\t\t| Credits \t\t\t| Zeigt die Mitwirkenden. \n" +
                         "Beenden\t\t\t\t| Ende \t\t\t\t| Beendet das Spiel. \n" +
                         "\nGroß-/Kleinschreibung wird ignoriert, außer beim Binden und Lernen. Copy-paste ist hilfreich. \n" +
@@ -96,8 +97,8 @@ public class Story {
                 "[1] Angriff 1\t\t\t\t(Dämon)\n" +
                 "[2] Angriff 2\t\t\t\t(Dämon)\n" +
                 "------------------------\n" +
-                "[3] Trank\t\t\t\t(Maleficarius) \n" +
-                "[4] Zauber\t\t\t\t(Maleficarius) \n" +
+                "[3] Zauber\t\t\t\t(Maleficarius) \n" +
+                "[4] Trank\t\t\t\t(Maleficarius) \n" +
                 "[5] Beschwören\t\t\t(Maleficarius) \n\n" +
 
                 "Du kannst auch einen neuen Dämon beschwören, anschließend sind aber zuerst die Gegner an der Reihe. \n" +

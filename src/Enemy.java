@@ -2,7 +2,8 @@ public abstract class Enemy {
 
     String name;
     int hp;
-    int maxHp;
+    int hpMax;
+    int str;
     boolean ko = false;
 
     // Konstruktor
@@ -14,7 +15,8 @@ public abstract class Enemy {
             hp = 0;
     }
 
-    //Angriff
+    public abstract int attack();
 
-    //Spezialangriff
+    public abstract int ability();
+
 }

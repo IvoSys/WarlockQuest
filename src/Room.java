@@ -13,6 +13,8 @@ public class Room {
     protected String dummyFeedback = "Das lasse ich lieber hier.";
     protected Item reward;                                  //Nach Lösung des Rätsels erhältlicher Gegenstand
     protected int puzzleID;                                 //ID zum Lösen des Rätsels eines Raums, muss mit Key-Item oder in Daimon-Methode übereinstimmen, von Raumkoordinate abgeleitet
+    protected Encounter encounter;
+    protected boolean encounterBeaten;
 
     public Room(String name, String desc, String daimon, String solvedText, boolean north, boolean east, boolean south, boolean west, boolean up, boolean down, int puzzleID) {
         this.name = name;
