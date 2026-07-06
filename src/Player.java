@@ -75,11 +75,7 @@ public class Player {
         System.out.println("==========ALCHEMIEZUTATEN==========");
         for (Item i : inv){
             if (i instanceof ItemIngred) {
-                System.out.printf("· %s ", i.name);
-                if (i.num > 1)
-                    System.out.printf("[%d] \n", i.num);
-                else
-                    System.out.print("\n");
+                System.out.printf("· %s [%d] \n", i.name, i.num);
                 empty = false;
             }
         }
@@ -157,18 +153,18 @@ public class Player {
                 // Items sind im Inventar vorhanden und können kombiniert werden.
                 // Versuchen, die benötigte Anzahl anzuziehen:
                 } else {
-                    successConsumeItem1 = Item.consumeItem(item1, 1);
+                    successConsumeItem1 = Item.consumeItemMult(item1, 1);
                     if (successConsumeItem1) {
-                        successConsumeItem2 = Item.consumeItem(item2, 1);
+                        successConsumeItem2 = Item.consumeItemMult(item2, 1);
                         }
                 }
                 // Wenn Zutaten erfolgreich verbraucht, dann Item erzeugen:
                 if (successConsumeItem1 && successConsumeItem2) {
                     if (item1.combiID == 1) {               // id = 1: Heiltrank
-                        Item.obtainItem(WorldBuilder.pot01, 1);
+                        Item.obtainItemMult(WorldBuilder.pot01, 1);
                         System.out.printf("Du hast einen %s gebraut. \n", WorldBuilder.pot01.name);
                     } else if (item1.combiID == 2) {        // id = 2: Manatrank
-                        Item.obtainItem(WorldBuilder.pot02, 1);
+                        Item.obtainItemMult(WorldBuilder.pot02, 1);
                         System.out.printf("Du hast einen %s gebraut. \n", WorldBuilder.pot02.name);
                     }
                 }
@@ -192,4 +188,22 @@ public class Player {
 
     }
 
+    public static void cleanUpInv() {
+        boolean merge;
+
+        do {
+            merge = false;
+            for (int i = 0; i < Player.inv.size() - 1; i++) {
+                for (int j = i + 1; j < Player.inv.size(); j++) {
+                    if (Player.inv.get(i).name.equals(Player.inv.get(j).name)) {
+                        Player.inv.get(i).num += Player.inv.get(j).num;
+                        //Player.inv.get(j).num = 0;
+                        Player.inv.remove(j);
+                        merge = true;
+                    }
+                }
+            }
+        } while (merge);
+        System.out.println("Inventar und Alchemiebeutel aufgeräumt.");
+    }
 }

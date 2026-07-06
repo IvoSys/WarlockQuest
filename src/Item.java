@@ -8,63 +8,76 @@ public abstract class Item {
     protected int puzzleID = 99;                   //ID zum Lösen des Rätsels in einem Raum, wird mit der ID des Raums abgeglichen, 99 für kein Schloss
     protected int combiID = 0;                     //ID zum Kombinieren zweier Items. Zwei Items mit gleicher combiID können kombiniert werden, nur Items mit combiID = 0 können nicht kombiniert werden, daher Standardwert.
 
-    public static boolean consumeItem(Item itemConsumed, int numConsumed){
+
+    public static boolean consumeItem(Item itemConsumed) {
         boolean success = false;
-        boolean owned = false;
-        for (Item i : Player.inv) {
-            if ((itemConsumed.name.equals(i.name))){
-                owned = true;
-                if (i.num < numConsumed) {
-                    System.out.printf("Nicht ausreichend %s im Inventar. \n", i.namePlural);
-                } else {
-                    i.num -= numConsumed;
-                    success = true;
-                    if (numConsumed == 1)
-                        System.out.printf("%s verbraucht. ", i.name);
-                    else
-                        System.out.printf("%d %s verbraucht. ", numConsumed, i.namePlural);
-                }
-                if (i.num == 0) {
-                        Player.inv.remove(i);
-                        System.out.print("Vorrat erschöpft. \n");
-                } else
-                    System.out.println();
+
+        if (Player.inv.contains(itemConsumed)) {
+            int i = Player.inv.indexOf(itemConsumed);
+            Player.inv.get(i).num--;
+            System.out.printf("%s verbraucht", Player.inv.get(i).name);
+            success = true;
+            if  (Player.inv.get(i).num <= 0) {
+                Player.inv.remove(i);
+                System.out.println(", Vorrat erschöpft.");
+            } else {
+                System.out.println(".");
             }
-        }
-        if (!owned) {
-            System.out.printf("%s nicht im Inventar. \n", itemConsumed.name);
-        }
-        if (!success) {
-            System.out.printf("Kein %s wurde verbraucht. \n", itemConsumed.name);
+        } else {
+            System.out.println("Item nicht im Inventar.");
         }
         return success;
     }
 
-    public static void obtainItem(Item itemObtained, int numObtained){
-        boolean owned = false;
-        for (Item i : Player.inv) {
-            if (itemObtained.name.equals(i.name)){
-                i.num += numObtained;
-                owned = true;
-                if (numObtained == 1) {
-                    System.out.printf("%s erhalten. \n", i.name);
-                } else {
-                    System.out.printf("%d %s erhalten. \n", numObtained, i.namePlural);
-                }
-                break;
+    public static boolean consumeItemMult(Item itemConsumed, int numConsumed) {
+        boolean success = false;
+
+        if (Player.inv.contains(itemConsumed)) {
+            int i = Player.inv.indexOf(itemConsumed);
+            if (Player.inv.get(i).num >= numConsumed) {
+                Player.inv.get(i).num -= numConsumed;
+                success = true;
+                System.out.printf("%d %s verbraucht", numConsumed, Player.inv.get(i).namePlural);
+            } else {
+                System.out.printf("Du hast nicht genug %s. \n", itemConsumed.namePlural);
             }
-        }
-        if (!owned){
-            for (int i = 0; i < numObtained; i++) {
-                Player.inv.add(itemObtained);
+            if  (Player.inv.get(i).num <= 0) {
+                Player.inv.remove(i);
+                System.out.println(", Vorrat erschöpft.");
+            } else {
+                System.out.println(".");
             }
-            if (numObtained == 1)
-                System.out.printf("%s erhalten \n", itemObtained.name);
-            else
-                System.out.printf("%d %s erhalten \n", numObtained, itemObtained.namePlural);
+        } else {
+            System.out.println("Item nicht im Inventar.");
         }
+        return success;
     }
+
+    public static void obtainItem(Item itemObtained) {
+        if (Player.inv.contains(itemObtained)) {
+            int i = Player.inv.indexOf(itemObtained);
+            Player.inv.get(i).num++;
+        } else {
+            Player.inv.add(itemObtained);
+        }
+        System.out.printf("%s erhalten \n", itemObtained.name);
+    }
+
+    public static void obtainItemMult(Item itemObtained, int numObtained) {
+        if (Player.inv.contains(itemObtained)) {
+            int i = Player.inv.indexOf(itemObtained);
+            Player.inv.get(i).num += numObtained;
+        } else {
+            Player.inv.add(itemObtained);
+            Player.inv.getLast().num = numObtained;
+        }
+        System.out.printf("%d %s erhalten \n", numObtained, itemObtained.namePlural);
+    }
+
+
 }
+
+
 
 /*
 Je zwei unterschiedliche Items mit gleicher combiID =! 0 ergeben

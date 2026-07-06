@@ -27,7 +27,7 @@ public class Story {
     public static void help() {
         System.out.println(
             "\n=============================== \n" +
-                    "BEFEHLE \n" +
+                    "DIE WICHTIGESTEN BEFEHLE \n" +
                     "Immer, wenn \"Zeit zu handeln!\" angezeigt wird, können folgende Befehle genutzt werden: \n\n" +
                     "Handlung\t\t\t| Eingabe\t\t\t| Effekt \n" +
                     "------------------------------------------------------------------------------------------------------------- \n" +
@@ -40,26 +40,42 @@ public class Story {
                     "Kombiniere Items\t| K.[Item].[Item]\t| Kombiniert zwei deiner Gegenstände miteinander, \n" +
                     "\t\t\t\t\t|\t\t\t\t\t| z. B. \"k.blaue Farbe.gelbe Farbe\" -> Maleficarius erhält grüne Farbe! \n" +
                     "\t\t\t\t\t|\t\t\t\t\t| \n" +
-                    "Status anzeigen\t\t| (S)tatus\t\t\t| Zeigt den Stand von Lebens- und Magiepunkten an.\n" +
-                    "Zauberbuch\t\t\t| (Z)auber\t\t\t| Listet die von dir gelernten Zauber auf.\n" +
-                    "Alchemiezutaten\t\t| (A)lchemie\t\t| Zeigt deine alchemistischen Zutaten an. \n" +
-                    "Raum ansehen\t\t| (R)aum \t\t\t| Zeigt erneut Namen und Beschreibung des aktuellen Raums an. \n" +
-                    "\t\t\t\t\t|\t\t\t\t\t| \n" +
-                    "In Richtung gehen\t| G.[Richtung]\t\t| Versucht, den aktuellen Ort in gewählter Richtung zu verlassen. \n" +
-                    "\t\t\t\t\t|\t\t\t\t\t| Richtungen: Nord (N), Ost (O), Süd (S), West (W), hoch (h), runter (r) \n" +
+                    "Gehe in Richtung\t| G.[Richtung]\t\t| Versucht, den aktuellen Ort in gewählter Richtung zu verlassen. \n" +
+                    "(Raum wechseln)\t\t|\t\t\t\t\t| Richtungen: Nord (N), Ost (O), Süd (S), West (W), hoch (h), runter (r) \n" +
                     "\t\t\t\t\t|\t\t\t\t\t| z. B. \"Gehe.Norden\" oder einfach \"g.n\" \n" +
                     "\t\t\t\t\t|\t\t\t\t\t| \n" +
-                    "Zauber lernen\t\t| (L)ernen \t\t\t| Lernt einen neuen Zauber anhand einer Formel. \n" +
-                    "Dämon binden\t\t| (B)inden \t\t\t| Zwingt einen neuen Dämon in deinen Dienst. \n" +
-                    "\t\t\t\t\t|\t\t\t\t\t| \n" +
                     "Spielanleitung\t\t| Hilfe \t\t\t| Ruft diese Anleitung auf. \n" +
-                    "Kampftutorial\t\t| KampfTut \t\t\t| Ruft die Anleitung zum Kampfsystem auf. \n" +
-                    "Alchemietutorial\t| AlcheTut \t\t\t| Ruft die Anleitung zum Alchemiesystem/Kombinierbefehl auf. \n" +
-                    "\t\t\t\t\t|\t\t\t\t\t| \n" +
-                    "Mitwirkende\t\t\t| Credits \t\t\t| Zeigt die Mitwirkenden. \n" +
-                    "Beenden\t\t\t\t| Ende \t\t\t\t| Beendet das Spiel. \n" +
-                    "\nGroß-/Kleinschreibung wird ignoriert, außer beim Binden und Lernen. Copy-paste ist hilfreich. \n" +
+                    "Weitere Befehle\t\t| Befehle \t\t\t| Zeigt weitere Befehle an, die im Lauf des Spiels nützlich sein könnten. \n" +
+                    "\nGroß-/Kleinschreibung wird ignoriert. Copy-paste ist hilfreich. \n" +
                     "============================================================================================================= \n"
+        );
+    }
+
+    public static void help2() {
+        System.out.println(
+                "\n=============================== \n" +
+                        "WEITERE BEFEHLE \n" +
+                        "Immer, wenn \"Zeit zu handeln!\" angezeigt wird, können folgende weitere Befehle genutzt werden: \n\n" +
+                        "Handlung\t\t\t| Eingabe\t\t\t| Effekt \n" +
+                        "------------------------------------------------------------------------------------------------------------- \n" +
+                        "Status anzeigen\t\t| (S)tatus\t\t\t| Zeigt den Stand von Lebens- und Magiepunkten an.\n" +
+                        "Zauberbuch\t\t\t| (Z)auber\t\t\t| Listet die von dir gelernten Zauber auf.\n" +
+                        "Alchemiezutaten\t\t| (A)lchemie\t\t| Zeigt deine alchemistischen Zutaten an. \n" +
+                        "Raum ansehen\t\t| (R)aum \t\t\t| Zeigt erneut Namen und Beschreibung des aktuellen Raums an. \n" +
+                        "\t\t\t\t\t|\t\t\t\t\t| \n" +
+                        "Zauber lernen\t\t| (L)ernen \t\t\t| Lernt einen neuen Zauber anhand einer Formel. \n" +
+                        "Dämon binden\t\t| (B)inden \t\t\t| Zwingt einen neuen Dämon in deinen Dienst. \n" +
+                        "\t\t\t\t\t|\t\t\t\t\t| \n" +
+                        "Kampftutorial\t\t| KampfTut \t\t\t| Ruft die Anleitung zum Kampfsystem auf. \n" +
+                        "Alchemietutorial\t| AlcheTut \t\t\t| Ruft die Anleitung zum Alchemiesystem/Kombinierbefehl auf. \n" +
+                        "\t\t\t\t\t|\t\t\t\t\t| \n" +
+                        "Inventar aufräumen\t| Cleanup\t\t\t| Führt doppelte Einträge in Inventar/Alchemiebeutel zusammen.\n" +
+                        "\t\t\t\t\t|\t\t\t\t\t| (Falls dies je nötig ist, ist etwas schiefgelaufen.)\n" +
+                        "\t\t\t\t\t|\t\t\t\t\t| \n" +
+                        "Mitwirkende\t\t\t| Credits \t\t\t| Zeigt die Mitwirkenden. \n" +
+                        "Beenden\t\t\t\t| Ende \t\t\t\t| Beendet das Spiel. \n" +
+                        "\nGroß-/Kleinschreibung wird ignoriert, außer beim Binden und Lernen. Copy-paste ist hilfreich. \n" +
+                        "============================================================================================================= \n"
         );
     }
 

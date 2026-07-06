@@ -23,16 +23,17 @@ public class WarlockQuest {
         //DEBUG: Alchemie-Kram
         Player.inv.add(WorldBuilder.alch11);
         Player.inv.add(WorldBuilder.alch12);
-        Player.inv.add(WorldBuilder.alch21);
-        Player.inv.add(WorldBuilder.alch22);
-        for (Item i : Player.inv)
-            if (i == WorldBuilder.alch11 || i == WorldBuilder.alch12 || i == WorldBuilder.alch21 || i == WorldBuilder.alch22)
-                i.num += 2;
+        Player.inv.add(WorldBuilder.alch11);
+        Player.inv.add(WorldBuilder.alch12);
+        Player.inv.add(WorldBuilder.alch11);
+        Player.inv.add(WorldBuilder.alch11);
+
+
         //ENDE DEBUG
 
 
         ASCII.title();
-        Story.intro();
+        /*Story.intro();
         Story.needHelp();
         input = sc.nextLine().toLowerCase().trim();
         if (input.contains("j")){
@@ -41,6 +42,8 @@ public class WarlockQuest {
         }
         System.out.println();
         Story.daimonIntro();
+
+         */
 
         gameLoop();
 
@@ -88,10 +91,14 @@ public class WarlockQuest {
                 Demon.bind();                                                                                           // Dämon binden
             } else if (input.equals("hilfe")){
                 Story.help();                                                                                           // Hilfe
+            } else if (input.equals("befehle")){
+                Story.help2();                                                                                          // weitere Befehle (Inventar aufräumen)
             } else if (input.equals("kampftut")){
                 Story.helpBattle();                                                                                     // Kampftutorial
             } else if (input.equals("alchetut")){
                 Story.helpAlchemy();                                                                                    // Alchemietutorial
+            } else if (input.equals("cleanup")){
+                Player.cleanUpInv();                                                                                    // Inventar aufräumen
             } else if (input.equals("credits")) {
                 credits();                                                                                              // Credits
             } else if (input.equals("ende")){
