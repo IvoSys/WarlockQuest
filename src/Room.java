@@ -2,10 +2,10 @@ public class Room {
 
     protected String name;
     protected String desc;
+    protected String solvedText;
     protected String descSolved;
     protected String daimon;
     protected String daimonSolved;
-    protected String solvedText;
     protected boolean solved = false;
     protected boolean north, east, south, west, up, down;   //In welche Richtungen der Raum verlassen werden kann
     protected Item loot;                                    //Offen einsammelbarer Gegenstand
@@ -14,7 +14,7 @@ public class Room {
     protected Item reward;                                  //Nach Lösung des Rätsels erhältlicher Gegenstand
     protected int puzzleID;                                 //ID zum Lösen des Rätsels eines Raums, muss mit Key-Item oder in Daimon-Methode übereinstimmen, von Raumkoordinate abgeleitet
     protected Encounter encounter;
-    protected boolean encounterBeaten;
+    protected boolean encounterBeaten = false;
 
     public Room(String name, String desc, String daimon, String solvedText, boolean north, boolean east, boolean south, boolean west, boolean up, boolean down, int puzzleID) {
         this.name = name;
@@ -87,7 +87,7 @@ public class Room {
     }
 
     public static void solveThisRoom(){                       //Zu nah an "Universalskript"?
-        if (Player.room.puzzleID == 0) {                      //Individuelle Ereignisse für gelöste Räume
+        if (Player.room.puzzleID == -1) {                     //Individuelle Ereignisse für gelöste Räume
             WorldBuilder.castle[0][0][0].east = true;         //Zellentür öffnet sich, Raum kann nach Osten verlassen werden
         }
     }

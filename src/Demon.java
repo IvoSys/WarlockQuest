@@ -4,19 +4,14 @@ public abstract class Demon {
     String trueName;
     String textWhenSummoned;
     String textWhenBound;
+
     int hp;
     int hpMax;
+    int power = 10;
+
     boolean ko = false;
 
     public Demon () {}
-
-    public Demon (String name, String trueName, int hp, String textWhenBound) {
-        this.name = name;
-        this.trueName = trueName;
-        this.hp = hp;
-        this.hpMax = hp;
-        this.textWhenBound = textWhenBound;
-    }
 
     //Setter
     public void applyDmg(int dmg){
@@ -53,9 +48,13 @@ public abstract class Demon {
         WarlockQuest.input = WarlockQuest.sc.nextLine();
         for (int i = 0; i < WorldBuilder.freeDem.size(); i++) {
             if (WorldBuilder.freeDem.get(i).trueName.equals(WarlockQuest.input)) {
+                if (!Player.team.contains(WorldBuilder.freeDem.get(i))) {
                 Player.team.add(WorldBuilder.freeDem.get(i));
                 System.out.println(WorldBuilder.freeDem.get(i).textWhenBound);
-                WorldBuilder.freeDem.remove(i);
+                //WorldBuilder.freeDem.remove(i);
+                } else {
+                    System.out.println("Diesen Dämon hast du bereits gebunden.");
+                }
                 success = true;
                 break;
             }

@@ -55,64 +55,80 @@ public class WorldBuilder {
 
         //OG, Reihe oben
         castle[2][2][0] = new Room("", Story.desc220, Story.daimon220, Story.solved220, false, false, false, false, false, false, 220);
-        castle[2][2][1] = new Room("", Story.desc221, Story.daimon221, Story.solved221, false, false, false, false, false, false, 221);
-        castle[2][2][2] = new Room("TESTRAUM", Story.desc222, Story.daimon222, Story.solved222, false, false, false, false, false, false, 222);
+        castle[2][2][1] = new Room("TESTRAUM A", Story.desc221, Story.daimon221, Story.solved221, false, true, false, false, false, false, 221);
+        castle[2][2][1].encounter = enc221TEST;
+        castle[2][2][2] = new Room("TESTRAUM B", Story.desc222, Story.daimon222, Story.solved222, false, false, false, true, false, false, 222);
     }
 
-    //GEGNER
 
-
-    //ENCOUNTER
-
+    //BESCHWÖRUNGSFORMELN
+    static ItemEvoc evoc00 = new ItemEvoc("Beschwörungsformel des Daimon", Story.riddleDem00);
+    static ItemEvoc evoc01 = new ItemEvoc("Beschwörungsformel des NAME", Story.riddleDem01);
+    static ItemEvoc evoc02 = new ItemEvoc("Beschwörungsformel des NAME", Story.riddleDem02);
+    static ItemEvoc evoc03 = new ItemEvoc("Beschwörungsformel des NAME", Story.riddleDem03);
 
     //DÄMONEN
-    static DemonKind1 dem01 = new DemonKind1();
-    static DemonKind2 dem02 = new DemonKind2();
-    static DemonKind3 dem03 = new DemonKind3();
+    static DemonKind1 dem01 = new DemonKind1("", Story.trueNameDem01, Story.whenSummonedDem01, Story.whenBoundDem01);
+    static DemonKind2 dem02 = new DemonKind2("", Story.trueNameDem02, Story.whenSummonedDem02, Story.whenBoundDem02);
+    static DemonKind3 dem03 = new DemonKind3("", Story.trueNameDem03, Story.whenSummonedDem03, Story.whenBoundDem03);
     static Demon[] allDem = {dem01, dem02, dem03};
     static List<Demon> freeDem = new ArrayList<>(Arrays.asList(allDem));
 
-    //BESCHWÖRUNGSFORMELN
-    static ItemEvoc evoc00 = new ItemEvoc("Beschwörungsformel des Daimon", "Diesen okkulten Text hast du vor einer Weile schon entschlüsselt. \nDer wahre Name des Daimon lautet: \n\033[3mAgathos Daímōn Týchē, Spritus benefactum\033[0m \n\nDAIMON: \"Nooohh, Malle, ich bin doch schon bei dir!\"\n\n… ob es so eine gute Idee war, diesen Plagegeist zu beschwören?", "Daimon");
-    static ItemEvoc evoc01 = new ItemEvoc("Beschwörungsformel des NAME", "Hinweistext auf wahren Namen des NAME", "NAME");
-    static ItemEvoc evoc02 = new ItemEvoc("Beschwörungsformel des NAME", "Hinweistext auf wahren Namen des NAME", "NAME");
-    static ItemEvoc evoc03 = new ItemEvoc("Beschwörungsformel des NAME", "Hinweistext auf wahren Namen des NAME", "NAME");
 
     //ALCHEMIEZUTATEN
+    /*
     static ItemIngred alch11 = new ItemIngred("Molchauge", "Molchaugen", "Feine Blutgefäße ziehen sich in unruhigen Fäden durch den Augapfel.", 1);
     static ItemIngred alch12 = new ItemIngred("Glutorchidee", "Glutorchideen", "Rein optisch wird diese empfindliche Blüte ihrem Namen gerecht.", 1);
     static ItemIngred alch21 = new ItemIngred("Mondbeere", "Mondbeeren", "Eisblaue Früchte, die den Geist erfrischen.", 2);
     static ItemIngred alch22 = new ItemIngred("Mitternachtskraut", "Bund Mitternachtskraut", "Fahlblaue Blätter, die sich lieber dem Mondlicht als der Sonne zuwenden.", 2);
+    */
 
     //TRÄNKE
     static Potion pot01 = new PotionHealth("Heiltrank", "Heiltränke", "Ein rot strahlender Trank, stellt 50 HP wiederher.", 50, 10);
     static Potion pot02 = new PotionMana("Manatrank", "Manatränke", "Ein blau schimmernder Trank, stellt 25 MP wiederher.", 25, 20);
 
+
     //SCHRIFTROLLEN
-    static ItemScroll scr01 = new ItemScroll("Fluch X", "XXX.");
-    static ItemScroll scr02 = new ItemScroll("Fluch X", "XXX.");
-    static ItemScroll scr03 = new ItemScroll("Fluch X", "XXX.");
+    static ItemScroll scrollAderlass = new ItemScroll("Zauberschriftrolle \"Aderlass\"", Story.riddleBloodletting);
+    static ItemScroll scrollLebenslinie = new ItemScroll("Zauberschriftrolle \"Lebenslinie\"", Story.riddleLifeline);
+    static ItemScroll scrollSeelendieb = new ItemScroll("Zauberschriftrolle \"Seelendieb\"", Story.riddleSoulreaper);
 
     //ZAUBER
-    static Spell spell01 = new SpellKind1("NAME1", "Beschreibung", "", "", 10, 10, false);
-    static Spell spell02 = new SpellKind2("NAME2", "Beschreibung", "", "", 10, 10, false);
-    static Spell spell03 = new SpellKind3("NAME3", "Beschreibung", "", "", 10, 10, false);
+    static Spell bloodletting = new SpellBloodletting("Aderlass", Story.descBloodletting, "123", "", 10, 10, false);
+    static Spell lifeline = new SpellLifeline("Lebenslinie", Story.descLifeline, "456", "Du lernst Lebenslinie.", 10, 10, false);
+    static Spell soulreaper = new SpellSoulreaper("Seelendieb", Story.descSoulreaper, "789", "Du lernst Seelendieb.", 10, 10, false);
 
-    static Spell[] allSpells = {spell01, spell02, spell03};
-    static ArrayList<Spell> freeSpells = new ArrayList<>();
+    static Spell[] allSpells = {bloodletting, lifeline, soulreaper};
+    static ArrayList<Spell> freeSpells = new ArrayList<>(Arrays.asList(allSpells));
 
     //KEY-ITEMS
-    static ItemKey bag = new ItemKey("Alchemiebeutel", "Ein samtener Beutel, in dem du all deine alchemistischen Zutaten aufbewahrst: \n", 99);
-    static ItemKey book = new ItemKey("Zauberbuch", "Ein ledergebundener Foliant, in dem all deine Zauber verzeichnet sind: \n", 99);
-    static ItemKey bookBlackArts = new ItemKey("\"Die schwarzen Künste\"", "Das Standardwerk über Hexerei, Alchemie und Dämonologie in drei Bänden, verfasst von Meister Maleficarius Liebwerk: \n[…] Zauber werden mittels Schriftrollen erlernt und können bis zur geistigen Erschöpfung gewirkt werden. \n[…] Tränke werden mit Verabreichung verbraucht und entfalten unvergleichliche Wirkungen, selbst bei Dämonen. \n[…] Spricht man den wahren Namen eines Dämonen deulich aus, zwingt man ihn in seinen Dienst. Doch Obacht, er wird dies nicht schätzen!", 99);
-    static ItemKey key000 = new ItemKey("Zellenschlüssel", "Ein rostiger Klumpen von Schlüssel.", 0);
+    //static ItemKey bag = new ItemKey("Alchemiebeutel", "Ein samtener Beutel, in dem du all deine alchemistischen Zutaten aufbewahrst: \n", 0, 0);
+    static ItemKey book = new ItemKey("Zauberbuch", "Ein ledergebundener Foliant, in dem all deine Zauber verzeichnet sind: \n", 0, 0);
+    static ItemKey bookBlackArts = new ItemKey("\"Die schwarzen Künste\"", "Das Standardwerk über Hexerei und Dämonologie, verfasst von Meister Maleficarius Liebwerk: \n[…] Zauber werden mittels Schriftrollen erlernt und können bis zur geistigen Erschöpfung gewirkt werden. \n[…] Tränke werden mit Verabreichung verbraucht und entfalten unvergleichliche Wirkungen, selbst bei Dämonen. \n[…] Spricht man den wahren Namen eines Dämonen deulich aus, zwingt man ihn in seinen Dienst. Doch Obacht, er wird dies nicht schätzen!", 0, 0);
+    static ItemKey key000 = new ItemKey("Zellenschlüssel", "Ein rostiger Klumpen von Schlüssel.", -1, 0);
+    static ItemKey key999 = new ItemKey("Goldklumpen", "Alechimistisch betrachtet wertlos.", 0, 0);
 
     //Startitems
-    public static void giveStartItems(){
+    public static void giveStartItems() {
         Player.inv.add(bookBlackArts);
         Player.inv.add(book);
-        Player.inv.add(bag);
+        //Player.inv.add(bag);
         Player.inv.add(evoc00);
     }
+
+
+
+    //GEGNER
+    static Enemy soldier01 = new EnemySoldier();
+    static Enemy soldier02 = new EnemySoldier();
+    static Enemy soldier03 = new EnemySoldier();
+
+    // ENCOUNTER
+    static Encounter enc221TEST = new Encounter(soldier01, soldier02, soldier03, "Achtung, Testüberfall!", "Achtung, Testüberfall beendet!", key999);
+
+
+
+
+
 
 }

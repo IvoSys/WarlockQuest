@@ -18,7 +18,7 @@ public class Battle {
         int pickTarget;
 
         //Encounter-Intro
-        System.out.println(encounter.intro);
+        System.out.println("\n" + encounter.intro + "\n");
 
         //Gegner-Team aus übergebenem Encounter ziehen
         ArrayList<Enemy> enemyTeam = encounter.enemyTeam;
@@ -26,7 +26,7 @@ public class Battle {
         //Gegner anzeigen
         System.out.println("Gegner greifen an:");
         for (Enemy e : enemyTeam)
-            System.out.printf("%s \t (%d/%d HP) \n", e.name, e.hp, e.hpMax);
+            System.out.printf("%s %s \t (%d/%d HP) \n", e.job, e.name, e.hp, e.hpMax);
 
         //Spieler wählt Dämon
         chooseDemon();
@@ -55,8 +55,8 @@ public class Battle {
                     System.out.println("[3] " /*+ /*Player.activeDemon.ability2().name*/);
                     System.out.println("------------------------------------");
                     System.out.println("[4] Zauber");
-                    System.out.println("[5] Trank");
-                    System.out.println("[6] Beschwören");
+                    //System.out.println("[X] Trank");
+                    System.out.println("[5] Beschwören");
                     System.out.println("\n> ");
                     pick = sc.nextInt();
                     switch (pick) {
@@ -118,7 +118,8 @@ public class Battle {
                             } else
                                 System.out.println("Maleficarius hat diese Runde schon gehandelt.");
                             break;
-                        case 5:
+                        /*
+                        case X:
                             if (!malActed) {
                                 boolean empty = true;
                                 int counter = 1;
@@ -143,8 +144,8 @@ public class Battle {
                                 malActed = true;
                             } else
                                 System.out.println("Maleficarius hat diese Runde schon gehandelt.");
-                            break;
-                        case 6:
+                            break; */ //Trank einsetzen
+                        case 5:
                             if (!malActed) {
                                 chooseDemon();
                                 isPlayerTurn = false;
@@ -178,20 +179,37 @@ public class Battle {
 
                 }
             } while (!Player.activeDemon.ko);
+
             //Prüfung auf Niederlage
             Player.counterKO = 0;
             for (Demon d : Player.team) {
                 if (d.ko)
                     Player.counterKO++;
             }
+            if (Player.counterKO >= Player.team.size()) {
+                System.out.println("\nMaleficarius hat keine kampffähigen Dämonen mehr.");
+                System.out.println("Dein Schicksal ist besiegelt.\n");
+                ASCII.BattleLost();
+                System.exit(0);
+            }
 
         } while (Player.counterKO < Player.team.size() && !encounter.beaten);
 
         //Kampf gewonnen
+        ASCII.BattleWon();
         Player.room.encounterBeaten = true;
+        System.out.println();
         System.out.println(Player.room.encounter.outro);
+        System.out.println();
         if (Player.room.encounter.rewardItem != null) {
             Item.obtainItem(Player.room.encounter.rewardItem);
+            Player.room.encounter.rewardItem = null;
+        }
+        for (Demon d : Player.team) {
+            d.ko = false;
+            if (d.hp == 0) {
+                d.hp = 1;
+            }
         }
     }
 

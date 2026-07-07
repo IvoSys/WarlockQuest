@@ -2,9 +2,9 @@ import java.util.ArrayList;
 
 public class Player {
 
-
     static int mp = 50;
     static int mpMax = 50;
+    static int spellpower = 10;
 
     static ArrayList<Item> inv = new ArrayList<>();
     static ArrayList<Spell> spellbook = new ArrayList<>();
@@ -82,7 +82,8 @@ public class Player {
             }
         }
         if (empty) {
-            System.out.println("Keine einzige Zutat.");
+            //System.out.println("Keine einzige Zutat.");
+            System.out.println("ALCHEMIESYSTEM VORERST ZURÜCKGESTELLT.");
         }
         System.out.println("===================================");
     }
@@ -113,7 +114,8 @@ public class Player {
             empty = false;
         }
         if (empty) {
-            System.out.println("Kein einziger Trank.");
+            //System.out.println("Kein einziger Trank.");
+            System.out.println("TRANKSYSTEM VORERST ZURÜCKGESTELLT.");
         }
         System.out.println("====================================");
     }
@@ -123,9 +125,9 @@ public class Player {
         for (Item i : inv) {
             if (input.contains(i.name.toLowerCase())) {
                 System.out.println(i.desc);
-                if (i == WorldBuilder.bag)
-                    showIngredients();
-                else if (i == WorldBuilder.book)
+                //if (i == WorldBuilder.bag)
+                //    showIngredients();
+                if (i == WorldBuilder.book)
                     showSpells();
                 found = true;
                 break;
@@ -141,8 +143,6 @@ public class Player {
         } else {
             Item item1 = null;
             Item item2 = null;
-            boolean successConsumeItem1 = false;
-            boolean successConsumeItem2 = false;
 
             for (Item i : inv) {                                // Inventar durchgeben,
                 if (input1.equals(i.name.toLowerCase())) {      // wenn input mit Namen eines Items genau übereinstimmt
@@ -167,21 +167,22 @@ public class Player {
                     System.out.println("Diese beiden Gegenstände lassen sich nicht kombinieren.");
 
                     // Items sind im Inventar vorhanden und können kombiniert werden.
-                    // Versuchen, die benötigte Anzahl abzuziehen:
                 } else {
-                    successConsumeItem1 = Item.consumeItem(item1);
-                    if (successConsumeItem1) {
-                        successConsumeItem2 = Item.consumeItem(item2);
-                    }
-                }
-                // Wenn Zutaten erfolgreich verbraucht, dann Item erzeugen:
-                if (successConsumeItem1 && successConsumeItem2) {
-                    if (item1.combiID == 1) {               // id = 1: Heiltrank
+
+                    // Items erzeugen und Zutaten verbrauchen
+                    if (item1.combiID == 1) {               // 2x id 1 -> Heiltrank
                         Potion.obtainPotion(WorldBuilder.pot01);
-                        System.out.printf("Du hast einen %s gebraut. \n", WorldBuilder.pot01.name);
-                    } else if (item1.combiID == 2) {        // id = 2: Manatrank
+                    } else if (item1.combiID == 2) {        // 2x id 2 -> Manatrank
                         Potion.obtainPotion(WorldBuilder.pot02);
-                        System.out.printf("Du hast einen %s gebraut. \n", WorldBuilder.pot02.name);
+
+                        boolean successConsumeItem1 = Item.consumeItem(item1);
+                        boolean successConsumeItem2 = Item.consumeItem(item2);
+
+                        // Meldung bei Fehler, sicherheitshalber
+                        if (!successConsumeItem1)
+                            System.out.println("DEBUG: Erstes Item konnte nicht verbraucht werden.");
+                        if (!successConsumeItem2)
+                            System.out.println("DEBUG: Zweites Item konnte nicht verbraucht werden.");
                     }
                 }
             }

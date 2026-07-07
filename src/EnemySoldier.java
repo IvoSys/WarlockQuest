@@ -12,4 +12,8 @@ public class EnemySoldier extends Enemy{
 
     }
 
+    public void utility() {
+
+    }
+
 }

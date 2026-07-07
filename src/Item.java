@@ -5,8 +5,8 @@ public abstract class Item {
     protected String desc;
     protected int num = 1;
     protected boolean isConsumed = true;
-    protected int puzzleID = 99;                   //ID zum Lösen des Rätsels in einem Raum, wird mit der ID des Raums abgeglichen, 99 für kein Schloss
-    protected int combiID = 0;                     //ID zum Kombinieren zweier Items. Zwei Items mit gleicher combiID können kombiniert werden, nur Items mit combiID = 0 können nicht kombiniert werden, daher Standardwert.
+    protected int puzzleID = 0;                    //ID zum Lösen des Rätsels in einem Raum, wird mit der ID des Raums abgeglichen, 0 für neutral, room000 stattdessen -1
+    protected int combiID = 0;                     //ID zum Kombinieren zweier Items. Zwei Items mit gleicher combiID können kombiniert werden, Items mit combiID = 0 können nicht kombiniert werden, daher Standardwert.
 
 
     public static boolean consumeItem(Item itemConsumed) {
@@ -73,7 +73,6 @@ public abstract class Item {
         }
         System.out.printf("%d %s erhalten \n", numObtained, itemObtained.namePlural);
     }
-
 
 }
 

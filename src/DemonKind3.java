@@ -1,8 +1,13 @@
 public class DemonKind3 extends Demon{
 
+    protected int dex = 10;
 
-
-
+    public DemonKind3(String name, String trueName, String textWhenSummoned, String textWhenBound) {
+        this.name = name;
+        this.trueName = trueName;
+        this.textWhenSummoned = textWhenSummoned;
+        this.textWhenBound = textWhenBound;
+    }
 
     public int attack() {
         int dmg = 10;

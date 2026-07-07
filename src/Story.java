@@ -11,7 +11,7 @@ public class Story {
     public static void intro() {
         System.out.println(
                 "Dieses Mal ist der König zu weit gegangen! \n" +
-                        "Du, Maleficarius Liebwerk, der größte Hexenmeister, Alchemist und Dämonologe im Diesseits, sollst \"ethisch nicht mehr tragbar\" sein?! Lächerlich! \n" +
+                        "Du, Maleficarius Liebwerk, der größte Hexenmeister und Dämonologe im Diesseits, sollst \"ethisch nicht mehr tragbar\" sein?! Lächerlich! \n" +
                         "Wo stünde dieses kümmerliche Reich schon ohne deine Forschung? \"Aber Meister Liebwerk, Ihr lÄsTeRt DeR ScHöPfUnG GoTtEs!\". Pahh!\n\n" +
                         "Und dann haben sie dich in den Kerker geworfen. Bauerntrampel ohne Ambition oder Vorstellungskraft! \n" +
                         "Es wird Zeit, den König über kleiner Flamme zu rösten! \n"
@@ -26,7 +26,7 @@ public class Story {
 
     public static void help() {
         System.out.println(
-                "\n=============================== \n" +
+                "\n============================================================================================================= \n" +
                         "DIE WICHTIGESTEN BEFEHLE \n" +
                         "Immer, wenn \"Zeit zu handeln!\" angezeigt wird, können folgende Befehle genutzt werden: \n\n" +
                         "Handlung\t\t\t| Eingabe\t\t\t| Effekt \n" +
@@ -53,22 +53,22 @@ public class Story {
 
     public static void help2() {
         System.out.println(
-                "\n=============================== \n" +
+                "\n============================================================================================================= \n" +
                         "WEITERE BEFEHLE \n" +
                         "Immer, wenn \"Zeit zu handeln!\" angezeigt wird, können folgende weitere Befehle genutzt werden: \n\n" +
                         "Handlung\t\t\t| Eingabe\t\t\t| Effekt \n" +
                         "------------------------------------------------------------------------------------------------------------- \n" +
                         "Status anzeigen\t\t| (S)tatus\t\t\t| Zeigt den Stand von Lebens- und Magiepunkten an.\n" +
                         "Zauberbuch\t\t\t| (Z)auber\t\t\t| Listet die von dir gelernten Zauber auf.\n" +
-                        "Tranktasche\t\t\t| (T)ränke\t\t\t| Zeigt deine Tränke an.\n" +
-                        "Alchemiezutaten\t\t| (A)lchemie\t\t| Zeigt deine alchemistischen Zutaten an. \n" +
+                        //"Tranktasche\t\t\t| (T)ränke\t\t\t| Zeigt deine Tränke an.\n" +
+                        //"Alchemiezutaten\t\t| (A)lchemie\t\t| Zeigt deine alchemistischen Zutaten an. \n" +
                         "Raum ansehen\t\t| (R)aum \t\t\t| Zeigt erneut Namen und Beschreibung des aktuellen Raums an. \n" +
                         "\t\t\t\t\t|\t\t\t\t\t| \n" +
                         "Zauber lernen\t\t| (L)ernen \t\t\t| Lernt einen neuen Zauber anhand einer Formel. \n" +
                         "Dämon binden\t\t| (B)inden \t\t\t| Zwingt einen neuen Dämon in deinen Dienst. \n" +
                         "\t\t\t\t\t|\t\t\t\t\t| \n" +
                         "Kampftutorial\t\t| KampfTut \t\t\t| Ruft die Anleitung zum Kampfsystem auf. \n" +
-                        "Alchemietutorial\t| AlcheTut \t\t\t| Ruft die Anleitung zum Alchemiesystem/Kombinierbefehl auf. \n" +
+                        //"Alchemietutorial\t| AlcheTut \t\t\t| Ruft die Anleitung zum Alchemiesystem/Kombinierbefehl auf. \n" +
                         "\t\t\t\t\t|\t\t\t\t\t| \n" +
                         //"Inventar aufräumen\t| Cleanup\t\t\t| Führt doppelte Einträge in Inventar/Alchemiebeutel zusammen.\n" +
                         //"\t\t\t\t\t|\t\t\t\t\t| (Falls dies je nötig ist, ist etwas schiefgelaufen.)\n" +
@@ -83,23 +83,23 @@ public class Story {
 
     public static void helpBattle() {
         System.out.println(
-                "\n=============================== \n" +
+                "============================================================================================================= \n" +
                         "KAMPF \n" +
-                        "Maleficarius lässt einen Dämonen für sich kämpfen und kann ihn mit Zaubern und Tränken unterstützen. \n" +
+                        "Maleficarius lässt einen Dämonen für sich kämpfen und unterstützt ihn mit Hexerei. \n" +
                         "Zu Beginn des Kampfes beschwörst du einen Dämon. Wenn du am Zug bist, wird eine Liste mit Optionen angezeigt. \n" +
                         "Oben stehen die Fähigkeiten des Dämons, unter der gestrichelten Linie die Möglichkeiten von Maleficarius. \n" +
                         "Nach deinem Dämon sind die Gegner an der Reihe. Soll Maleficarius handeln, kann er dies vor dem Dämon tun, \n" +
-                        "ohne dass dessen Zug verfällt. Tränke werden beim Einsatz verbraucht und Zauber kosten MP, \n" +
-                        "Maleficarius sollte sie also mit Bedacht einsetzen.\n\n" +
+                        "ohne dass dessen Zug verfällt. Zauber kosten MP, Maleficarius sollte sie also mit Bedacht einsetzen.\n\n" +
 
                         "Beispiel: \n\n" +
                         "100/100 HP \t\t50/50 MP \t(Dämon-Lebenspunkte und Maleficarius' Magiepunkte)\n" +
                         "[NAME DES AKTIVEN DÄMONS] \n" +
-                        "[1] Angriff 1\t\t\t\t(Dämon)\n" +
-                        "[2] Angriff 2\t\t\t\t(Dämon)\n" +
+                        "[1] Angriff\t\t\t\t\t(Dämon)\n" +
+                        "[2] Fähigkeit 1\t\t\t\t(Dämon)\n" +
+                        "[3] Fähigkeit 2\t\t\t\t(Dämon)\n" +
                         "------------------------\n" +
-                        "[3] Zauber\t\t\t\t(Maleficarius) \n" +
-                        "[4] Trank\t\t\t\t(Maleficarius) \n" +
+                        "[4] Hexerei\t\t\t\t(Maleficarius) \n" +
+                        //"[X] Trank\t\t\t\t(Maleficarius) \n" +
                         "[5] Beschwören\t\t\t(Maleficarius) \n\n" +
 
                         "Du kannst auch einen neuen Dämon beschwören, anschließend sind aber zuerst die Gegner an der Reihe. \n" +
@@ -108,6 +108,7 @@ public class Story {
                         "Verschiedene Dämonen sind möglicherweise unterschiedlich stark gegen bestimmte Arten von Gegnern. \n\n" +
 
                         "Fallen die HP eines Dämons auf 0, kannst du einen neuen beschwören. \n" +
+                        "Nach dem Kampf erhalten besiegte Dämonen 1 HP zurück. \n" +
                         "Wurden alle deine Dämonen besiegt, ist Maleficarius' Ende gekommen.\n" +
                         "============================================================================================================= \n"
         );
@@ -115,15 +116,20 @@ public class Story {
 
     public static void helpAlchemy() {
         System.out.println(
-                "\n=============================== \n" +
-                        "ALCHEMIE \n" +
+                "\n============================================================================================================= \n" +
+                        /*"ALCHEMIE \n" +
                         "Mit dem Befehl \"Kombinieren\" (k.[Item 1].[Item 2]) verwendest zu zwei Gegenstände miteinander. \n" +
                         "Dies könnte mit allen möglichen Gegenständen im Inventar funktionieren, insbesondere aber mit Alchemiezutaten. \n" +
                         "Heiltränke werden vorwiegend aus roten Zutaten gebraut, Manatränke aus blauen. \n" +
-                        "Probiere alles Mögliche aus! \n" +
+                        "Probiere alles Mögliche aus! \n" + */
+                        "\nALCHEMIESYSTEM VORERST ZURÜCKGESTELLT! \n" +
+                        "1) Langweiliges Konzept: Jede Zutat kann aktuell nur zu genau einem Zweck verwendet werden.\n" +
+                        "2) Umsetzung erfordert vergleichweise viel Arbeit.\n" +
+                        "3) Heilung und Manaregeneration durch schwarze Magie wirkt interessanter, als einfach nen Trank in den Kopp zu kippen." +
+                        "4) Tränke wirken neben diesem Zaubersystem redundant.\n" +
+                        "-> Bereits geschriebenen Code drinlassen und bei guten Ideen wieder aktivieren.\n"+
                         "============================================================================================================= \n"
-                // Schwäche des Systems: Jeder Trank könnte potenziell aus vielen verschiedenen Zutaten gebraut werden,
-                // doch jede Zutat kann nur zu genau einem Zweck verwendet werden. Lahm!
+
         );
     }
 
@@ -238,42 +244,42 @@ public class Story {
     static String descSolved001;
     static String daimon001 = "DAIMON: \"Sieh mal zu, dass du dein Zeug wiederbekommst. Die Königsgarde hat dir alles abgenommen, bevor man dich eingebuchtet hat.\"";
     static String daimonSolved001;
-    static String solved001 = "Platzhalter unten in Story-Klasse";
+    static String solved001 = "Platzhalter in Story-Klasse";
     static String desc002 = "Der Gang führt um die Ecke nach Norden, aus der Ferne hallen Geräusche.";
     static String descSolved002;
-    static String daimon002 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimon002 = "DAIMON: \"Platzhalter in Story-Klasse\"";
     static String daimonSolved002;
-    static String solved002 = "Platzhalter unten in Story-Klasse";
-    static String desc010 = "Platzhalter unten in Story-Klasse";
+    static String solved002 = "Platzhalter in Story-Klasse";
+    static String desc010 = "Platzhalter in Story-Klasse";
     static String descSolved010;
-    static String daimon010 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimon010 = "DAIMON: \"Platzhalter in Story-Klasse\"";
     static String daimonSolved010;
-    static String solved010 = "Platzhalter unten in Story-Klasse";
-    static String desc011 = "Platzhalter unten in Story-Klasse";
+    static String solved010 = "Platzhalter in Story-Klasse";
+    static String desc011 = "Platzhalter in Story-Klasse";
     static String descSolved011;
-    static String daimon011 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimon011 = "DAIMON: \"Platzhalter in Story-Klasse\"";
     static String daimonSolved011;
-    static String solved011 = "Platzhalter unten in Story-Klasse";
-    static String desc012 = "Platzhalter unten in Story-Klasse";
+    static String solved011 = "Platzhalter in Story-Klasse";
+    static String desc012 = "Platzhalter in Story-Klasse";
     static String descSolved012;
-    static String daimon012 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimon012 = "DAIMON: \"Platzhalter in Story-Klasse\"";
     static String daimonSolved012;
-    static String solved012 = "Platzhalter unten in Story-Klasse";
-    static String desc020 = "Platzhalter unten in Story-Klasse";
+    static String solved012 = "Platzhalter in Story-Klasse";
+    static String desc020 = "Platzhalter in Story-Klasse";
     static String descSolved020;
-    static String daimon020 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimon020 = "DAIMON: \"Platzhalter in Story-Klasse\"";
     static String daimonSolved020;
-    static String solved020 = "Platzhalter unten in Story-Klasse";
-    static String desc021 = "Platzhalter unten in Story-Klasse";
+    static String solved020 = "Platzhalter in Story-Klasse";
+    static String desc021 = "Platzhalter in Story-Klasse";
     static String descSolved021;
-    static String daimon021 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimon021 = "DAIMON: \"Platzhalter in Story-Klasse\"";
     static String daimonSolved021;
-    static String solved021 = "Platzhalter unten in Story-Klasse";
-    static String desc022 = "Platzhalter unten in Story-Klasse";
+    static String solved021 = "Platzhalter in Story-Klasse";
+    static String desc022 = "Platzhalter in Story-Klasse";
     static String descSolved022;
-    static String daimon022 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
+    static String daimon022 = "DAIMON: \"Platzhalter in Story-Klasse\"";
     static String daimonSolved022;
-    static String solved022 = "Platzhalter unten in Story-Klasse";
+    static String solved022 = "Platzhalter in Story-Klasse";
 
     static String desc100 = "Platzhalter unten in Story-Klasse";
     static String descSolved100;
@@ -356,16 +362,53 @@ public class Story {
     static String daimon220 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
     static String daimonSolved220;
     static String solved220 = "Platzhalter unten in Story-Klasse";
-    static String desc221 = "Platzhalter unten in Story-Klasse";
+    static String desc221 = "*** Hier werden Encounter getestet ***";
     static String descSolved221;
     static String daimon221 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
     static String daimonSolved221;
     static String solved221 = "Platzhalter unten in Story-Klasse";
-    static String desc222 = "*** Hier werden Encounter getestet ***";
+    static String desc222 = "*** Nebenan werden Encounter getestet ***";
     static String descSolved222;
     static String daimon222 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
     static String daimonSolved222;
     static String solved222 = "Platzhalter unten in Story-Klasse";
     //endregion
+
+    //Rätsel
+    static String riddleDem00 = "Diesen okkulten Text hast du vor einer Weile schon entschlüsselt. \nDer wahre Name des Daimon lautet: \n\033[3mAgathos Daímōn Týchē, Spritus benefactum\033[0m \n\nDAIMON: \"Nooohh, Malle, ich bin doch schon bei dir!\"\n\n… ob es so eine gute Idee war, diesen Plagegeist zu beschwören?";
+    static String riddleDem01 = "";
+    static String trueNameDem01 = "";
+    static String riddleDem02 = "";
+    static String trueNameDem02 = "";
+    static String riddleDem03 = "";
+    static String trueNameDem03 = "";
+    static String riddleBloodletting = "";
+    static String riddleLifeline = "";
+    static String riddleSoulreaper = "";
+
+    //Zauber
+    static String descBloodletting = "Opfert Lebenspunkte deines Dämon, um deine Manareserven aufzufüllen. ";
+    static String descLifeline = "Spannt ein magisches Band zwischen deinem Dämon und einem Gegner. \nIn den folgenden Runden fließt vor jeder Aktion dieses Gegners Lebenskraft von ihm zu deinem Dämon.";
+    static String descSoulreaper = "Stiehlt die Seele eines schwachen Feindes. \nAuf einen Gegner mit unter 20 % HP angewendet, stirbt dessen Körper sofort und seine Seele füllt deinen Manavorrat.";
+    static String whenCastBloodletting = "";
+    static String whenCastLifeline = "";
+    static String whenCastSoulreaper = "";
+    static String whenLearnedBloodletting = "";
+    static String whenLearnedLifeline = "";
+    static String whenLearnedSoulreaper = "";
+
+    //Dämonen
+    static String whenSummonedDem01 = "";
+    static String whenSummonedDem02 = "";
+    static String whenSummonedDem03 = "";
+    static String whenBoundDem01 = "";
+    static String whenBoundDem02 = "";
+    static String whenBoundDem03 = "";
+
+    //Fähigkeiten von Dämonen mit flavor
+
+    //Kills mit Flavor
+
+
 
 }

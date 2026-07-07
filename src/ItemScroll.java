@@ -11,9 +11,13 @@ public class ItemScroll extends Item {
         WarlockQuest.input = WarlockQuest.sc.nextLine();
         for (int i = 0; i < WorldBuilder.freeSpells.size(); i++) {
             if (WorldBuilder.freeSpells.get(i).formula.equals(WarlockQuest.input)) {
-                Player.spellbook.add(WorldBuilder.freeSpells.get(i));
-                System.out.println(WorldBuilder.freeSpells.get(i).textWhenLearned);
-                WorldBuilder.freeDem.remove(i);
+                if (!Player.spellbook.contains(WorldBuilder.freeSpells.get(i))) {
+                    Player.spellbook.add(WorldBuilder.freeSpells.get(i));
+                    System.out.println(WorldBuilder.freeSpells.get(i).textWhenLearned);
+                    //WorldBuilder.freeSpells.remove(i);
+                } else {
+                    System.out.println("Diesen Zauber beherrschst du bereits.");
+                }
                 success = true;
                 break;
             }

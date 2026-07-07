@@ -15,6 +15,10 @@ public class EnemyMage extends Enemy{
 
     }
 
+    public void utility() {
+
+    }
+
 
 }
 
