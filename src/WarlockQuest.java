@@ -16,7 +16,7 @@ public class WarlockQuest {
         WorldBuilder.giveStartItems();
 
         ASCII.title();
-        /*
+        /* TEST
         Story.intro();
         Story.needHelp();
         input = sc.nextLine().toLowerCase().trim();
@@ -28,6 +28,11 @@ public class WarlockQuest {
         Story.daimonIntro();
          */
 
+        //TEST:
+        Player.curX = 2;
+        Player.curY = 2;
+        Player.curZ = 2;
+
         gameLoop();
 
     }
@@ -38,6 +43,9 @@ public class WarlockQuest {
             Player.room = WorldBuilder.castle[Player.curZ][Player.curY][Player.curX];
             if (Player.moved) {
                 Room.describe();
+                if (Player.room.encounter != null && !Player.room.encounterBeaten) {
+                    Battle.fight(Player.room.encounter);
+                }
                 Player.moved = false;
             }
             Control.cta();
@@ -64,6 +72,8 @@ public class WarlockQuest {
                 Player.showStatus();                                                                                    // Status
             } else if (input.equals("z") || input.equals("zauber")){
                 Player.showSpells();                                                                                    // Zauberbuch
+            } else if (input.equals("t") || input.equals("tränke")){
+                Player.showPotions();                                                                                   // Tranktasche
             } else if (input.equals("a") || input.equals("zutaten") || input.equals("alchemie")){
                 Player.showIngredients();                                                                               // Alchemiezutaten
             } else if (input.equals("r") || input.equals("raum")){
@@ -96,5 +106,10 @@ public class WarlockQuest {
         System.out.println("WARLOCK QUEST " + version);
         System.out.println("Erdacht und umgesetzt von Ivo Haarmann");
         System.out.println("Handgetippt am Ammersee, 2026");
+        System.out.println();
+        System.out.println("Mit besonderem Dank an meine Trainer \nBilgin Sahin und Peter Schwertner");
+        System.out.println();
+        System.out.println("Herzlichen Dank an die Betatester \nfür die wertvollen Rückmeldungen:");
+        System.out.println("- Sebastian Bathiany");
     }
 }

@@ -10,11 +10,11 @@ public class Story {
 
     public static void intro() {
         System.out.println(
-            "Dieses Mal ist der König zu weit gegangen! \n" +
-            "Du, Maleficarius Liebwerk, der größte Hexenmeister, Alchemist und Dämonologe im Diesseits, sollst \"ethisch nicht mehr tragbar\" sein?! Lächerlich! \n" +
-            "Wo stünde dieses kümmerliche Reich schon ohne deine Forschung? \"Aber Meister Liebwerk, Ihr lÄsTeRt DeR ScHöPfUnG GoTtEs!\". Pahh!\n\n" +
-            "Und dann haben sie dich in den Kerker geworfen. Bauerntrampel ohne Ambition oder Vorstellungskraft! \n" +
-            "Es wird Zeit, den König über kleiner Flamme zu rösten! \n"
+                "Dieses Mal ist der König zu weit gegangen! \n" +
+                        "Du, Maleficarius Liebwerk, der größte Hexenmeister, Alchemist und Dämonologe im Diesseits, sollst \"ethisch nicht mehr tragbar\" sein?! Lächerlich! \n" +
+                        "Wo stünde dieses kümmerliche Reich schon ohne deine Forschung? \"Aber Meister Liebwerk, Ihr lÄsTeRt DeR ScHöPfUnG GoTtEs!\". Pahh!\n\n" +
+                        "Und dann haben sie dich in den Kerker geworfen. Bauerntrampel ohne Ambition oder Vorstellungskraft! \n" +
+                        "Es wird Zeit, den König über kleiner Flamme zu rösten! \n"
         );
     }
 
@@ -26,28 +26,28 @@ public class Story {
 
     public static void help() {
         System.out.println(
-            "\n=============================== \n" +
-                    "DIE WICHTIGESTEN BEFEHLE \n" +
-                    "Immer, wenn \"Zeit zu handeln!\" angezeigt wird, können folgende Befehle genutzt werden: \n\n" +
-                    "Handlung\t\t\t| Eingabe\t\t\t| Effekt \n" +
-                    "------------------------------------------------------------------------------------------------------------- \n" +
-                    "Daimon fragen\t\t| (D)aimon \t\t\t| Bittet das Teufelchen auf deiner Schulter um Hilfe. \n" +
-                    "\t\t\t\t\t|\t\t\t\t\t| \n" +
-                    "Inventar zeigen\t\t| (I)tems\t\t\t| Zeigt an, welche Gegenstände du besitzt (ohne alchemistische Zutaten). \n" +
-                    "Nimm Item\t\t\t| N.[Item]\t\t\t| Legt erreichbaren Gegenstand ins Inventar, z. B. \"n.Zellenschlüssel\". \n" +
-                    "Verwende Item \t\t| V.[Item]\t\t\t| Verwendet einen Gegenstand im Inventar, z. B. \"v.Zellenschlüssel\". \n" +
-                    "Untersuche Item\t\t| U.[Item]\t\t\t| Beschreibt einen Gegenstand aus dem Inventar genauer. \n" +
-                    "Kombiniere Items\t| K.[Item].[Item]\t| Kombiniert zwei deiner Gegenstände miteinander, \n" +
-                    "\t\t\t\t\t|\t\t\t\t\t| z. B. \"k.blaue Farbe.gelbe Farbe\" -> Maleficarius erhält grüne Farbe! \n" +
-                    "\t\t\t\t\t|\t\t\t\t\t| \n" +
-                    "Gehe in Richtung\t| G.[Richtung]\t\t| Versucht, den aktuellen Ort in gewählter Richtung zu verlassen. \n" +
-                    "(Raum wechseln)\t\t|\t\t\t\t\t| Richtungen: Nord (N), Ost (O), Süd (S), West (W), hoch (h), runter (r) \n" +
-                    "\t\t\t\t\t|\t\t\t\t\t| z. B. \"Gehe.Norden\" oder einfach \"g.n\" \n" +
-                    "\t\t\t\t\t|\t\t\t\t\t| \n" +
-                    "Spielanleitung\t\t| Hilfe \t\t\t| Ruft diese Anleitung auf. \n" +
-                    "Weitere Befehle\t\t| Befehle \t\t\t| Zeigt weitere Befehle an, die im Lauf des Spiels nützlich sein könnten. \n" +
-                    "\nGroß-/Kleinschreibung wird ignoriert. Copy-paste ist hilfreich. \n" +
-                    "============================================================================================================= \n"
+                "\n=============================== \n" +
+                        "DIE WICHTIGESTEN BEFEHLE \n" +
+                        "Immer, wenn \"Zeit zu handeln!\" angezeigt wird, können folgende Befehle genutzt werden: \n\n" +
+                        "Handlung\t\t\t| Eingabe\t\t\t| Effekt \n" +
+                        "------------------------------------------------------------------------------------------------------------- \n" +
+                        "Daimon fragen\t\t| (D)aimon \t\t\t| Bittet das Teufelchen auf deiner Schulter um Hilfe. \n" +
+                        "\t\t\t\t\t|\t\t\t\t\t| \n" +
+                        "Inventar zeigen\t\t| (I)tems\t\t\t| Zeigt an, welche Gegenstände du besitzt (ohne alchemistische Zutaten). \n" +
+                        "Nimm Item\t\t\t| N.[Item]\t\t\t| Legt erreichbaren Gegenstand ins Inventar, z. B. \"n.Zellenschlüssel\". \n" +
+                        "Verwende Item \t\t| V.[Item]\t\t\t| Verwendet einen Gegenstand im Inventar, z. B. \"v.Zellenschlüssel\". \n" +
+                        "Untersuche Item\t\t| U.[Item]\t\t\t| Beschreibt einen Gegenstand aus dem Inventar genauer. \n" +
+                        "Kombiniere Items\t| K.[Item].[Item]\t| Kombiniert zwei deiner Gegenstände miteinander, \n" +
+                        "\t\t\t\t\t|\t\t\t\t\t| z. B. \"k.blaue Farbe.gelbe Farbe\" -> Maleficarius erhält grüne Farbe! \n" +
+                        "\t\t\t\t\t|\t\t\t\t\t| \n" +
+                        "Gehe in Richtung\t| G.[Richtung]\t\t| Versucht, den aktuellen Ort in gewählter Richtung zu verlassen. \n" +
+                        "(Raum wechseln)\t\t|\t\t\t\t\t| Richtungen: Nord (N), Ost (O), Süd (S), West (W), hoch (h), runter (r) \n" +
+                        "\t\t\t\t\t|\t\t\t\t\t| z. B. \"Gehe.Norden\" oder einfach \"g.n\" \n" +
+                        "\t\t\t\t\t|\t\t\t\t\t| \n" +
+                        "Spielanleitung\t\t| Hilfe \t\t\t| Ruft diese Anleitung auf. \n" +
+                        "Weitere Befehle\t\t| Befehle \t\t\t| Zeigt weitere Befehle an, die im Lauf des Spiels nützlich sein könnten. \n" +
+                        "\nGroß-/Kleinschreibung wird ignoriert. Copy-paste ist hilfreich. \n" +
+                        "============================================================================================================= \n"
         );
     }
 
@@ -60,6 +60,7 @@ public class Story {
                         "------------------------------------------------------------------------------------------------------------- \n" +
                         "Status anzeigen\t\t| (S)tatus\t\t\t| Zeigt den Stand von Lebens- und Magiepunkten an.\n" +
                         "Zauberbuch\t\t\t| (Z)auber\t\t\t| Listet die von dir gelernten Zauber auf.\n" +
+                        "Tranktasche\t\t\t| (T)ränke\t\t\t| Zeigt deine Tränke an.\n" +
                         "Alchemiezutaten\t\t| (A)lchemie\t\t| Zeigt deine alchemistischen Zutaten an. \n" +
                         "Raum ansehen\t\t| (R)aum \t\t\t| Zeigt erneut Namen und Beschreibung des aktuellen Raums an. \n" +
                         "\t\t\t\t\t|\t\t\t\t\t| \n" +
@@ -83,44 +84,44 @@ public class Story {
     public static void helpBattle() {
         System.out.println(
                 "\n=============================== \n" +
-                "KAMPF \n" +
-                "Maleficarius lässt einen Dämonen für sich kämpfen und kann ihn mit Zaubern und Tränken unterstützen. \n" +
-                "Zu Beginn des Kampfes beschwörst du einen Dämon. Wenn du am Zug bist, wird eine Liste mit Optionen angezeigt. \n" +
-                "Oben stehen die Fähigkeiten des Dämons, unter der gestrichelten Linie die Möglichkeiten von Maleficarius. \n" +
-                "Nach deinem Dämon sind die Gegner an der Reihe. Soll Maleficarius handeln, kann er dies vor dem Dämon tun, \n" +
-                "ohne dass dessen Zug verfällt. Tränke werden beim Einsatz verbraucht und Zauber kosten MP, \n" +
-                "Maleficarius sollte sie also mit Bedacht einsetzen.\n\n" +
+                        "KAMPF \n" +
+                        "Maleficarius lässt einen Dämonen für sich kämpfen und kann ihn mit Zaubern und Tränken unterstützen. \n" +
+                        "Zu Beginn des Kampfes beschwörst du einen Dämon. Wenn du am Zug bist, wird eine Liste mit Optionen angezeigt. \n" +
+                        "Oben stehen die Fähigkeiten des Dämons, unter der gestrichelten Linie die Möglichkeiten von Maleficarius. \n" +
+                        "Nach deinem Dämon sind die Gegner an der Reihe. Soll Maleficarius handeln, kann er dies vor dem Dämon tun, \n" +
+                        "ohne dass dessen Zug verfällt. Tränke werden beim Einsatz verbraucht und Zauber kosten MP, \n" +
+                        "Maleficarius sollte sie also mit Bedacht einsetzen.\n\n" +
 
-                "Beispiel: \n\n" +
-                "100/100 HP \t\t50/50 MP \t(Dämon-Lebenspunkte und Maleficarius' Magiepunkte)\n" +
-                "[NAME DES AKTIVEN DÄMONS] \n" +
-                "[1] Angriff 1\t\t\t\t(Dämon)\n" +
-                "[2] Angriff 2\t\t\t\t(Dämon)\n" +
-                "------------------------\n" +
-                "[3] Zauber\t\t\t\t(Maleficarius) \n" +
-                "[4] Trank\t\t\t\t(Maleficarius) \n" +
-                "[5] Beschwören\t\t\t(Maleficarius) \n\n" +
+                        "Beispiel: \n\n" +
+                        "100/100 HP \t\t50/50 MP \t(Dämon-Lebenspunkte und Maleficarius' Magiepunkte)\n" +
+                        "[NAME DES AKTIVEN DÄMONS] \n" +
+                        "[1] Angriff 1\t\t\t\t(Dämon)\n" +
+                        "[2] Angriff 2\t\t\t\t(Dämon)\n" +
+                        "------------------------\n" +
+                        "[3] Zauber\t\t\t\t(Maleficarius) \n" +
+                        "[4] Trank\t\t\t\t(Maleficarius) \n" +
+                        "[5] Beschwören\t\t\t(Maleficarius) \n\n" +
 
-                "Du kannst auch einen neuen Dämon beschwören, anschließend sind aber zuerst die Gegner an der Reihe. \n" +
-                "Zu jedem Zeitpunkt kann nur ein Dämon im Kampf sein. \n\n" +
+                        "Du kannst auch einen neuen Dämon beschwören, anschließend sind aber zuerst die Gegner an der Reihe. \n" +
+                        "Zu jedem Zeitpunkt kann nur ein Dämon im Kampf sein. \n\n" +
 
-                "Verschiedene Dämonen sind möglicherweise unterschiedlich stark gegen bestimmte Arten von Gegnern. \n\n" +
+                        "Verschiedene Dämonen sind möglicherweise unterschiedlich stark gegen bestimmte Arten von Gegnern. \n\n" +
 
-                "Fallen die HP eines Dämons auf 0, kannst du einen neuen beschwören. \n" +
-                "Wurden alle deine Dämonen besiegt, ist Maleficarius' Ende gekommen.\n" +
-                "============================================================================================================= \n"
+                        "Fallen die HP eines Dämons auf 0, kannst du einen neuen beschwören. \n" +
+                        "Wurden alle deine Dämonen besiegt, ist Maleficarius' Ende gekommen.\n" +
+                        "============================================================================================================= \n"
         );
     }
 
     public static void helpAlchemy() {
         System.out.println(
                 "\n=============================== \n" +
-                "ALCHEMIE \n" +
-                "Mit dem Befehl \"Kombinieren\" (k.[Item 1].[Item 2]) verwendest zu zwei Gegenstände miteinander. \n" +
-                "Dies könnte mit allen möglichen Gegenständen im Inventar funktionieren, insbesondere aber mit Alchemiezutaten. \n" +
-                "Heiltränke werden vorwiegend aus roten Zutaten gebraut, Manatränke aus blauen. \n" +
-                "Probiere alles Mögliche aus! \n" +
-                "============================================================================================================= \n"
+                        "ALCHEMIE \n" +
+                        "Mit dem Befehl \"Kombinieren\" (k.[Item 1].[Item 2]) verwendest zu zwei Gegenstände miteinander. \n" +
+                        "Dies könnte mit allen möglichen Gegenständen im Inventar funktionieren, insbesondere aber mit Alchemiezutaten. \n" +
+                        "Heiltränke werden vorwiegend aus roten Zutaten gebraut, Manatränke aus blauen. \n" +
+                        "Probiere alles Mögliche aus! \n" +
+                        "============================================================================================================= \n"
                 // Schwäche des Systems: Jeder Trank könnte potenziell aus vielen verschiedenen Zutaten gebraut werden,
                 // doch jede Zutat kann nur zu genau einem Zweck verwendet werden. Lahm!
         );
@@ -128,23 +129,23 @@ public class Story {
 
     public static void daimonIntro() {
         System.out.println(
-            "\"Malefiz, alter Halunke, da hast du dir aber was eingebrockt! \n" +
-            "Kein Wunder, dass ein Griesgram wie du irgendwann im Kerker endet.\" \n\n" +
-            "Daimon, dein persönliches Teufelchen, erscheint auf deiner Schulter \n" +
-            "und spielt schelmisch mit seiner Schwanzspitze. \n"
+                "\"Malefiz, alter Halunke, da hast du dir aber was eingebrockt! \n" +
+                        "Kein Wunder, dass ein Griesgram wie du irgendwann im Kerker endet.\" \n\n" +
+                        "Daimon, dein persönliches Teufelchen, erscheint auf deiner Schulter \n" +
+                        "und spielt schelmisch mit seiner Schwanzspitze. \n"
         );
         do {
             System.out.println(
                     "Wähle eine Antwort: \n" +
-                    "[1]\t Ich kann diesen Spitznamen nicht leiden. \n" +
-                    "[2]\t Diese Zelle ist furchtbar. \n" +
-                    "[3]\t Ich kann dich nicht ausstehen. \n" +
-                    "[4]\t Ich hasse den König. \n" +
-                    "[0]\t (Schweigen)"
+                            "[1]\t Ich kann diesen Spitznamen nicht leiden. \n" +
+                            "[2]\t Diese Zelle ist furchtbar. \n" +
+                            "[3]\t Ich kann dich nicht ausstehen. \n" +
+                            "[4]\t Ich hasse den König. \n" +
+                            "[0]\t (Schweigen)"
             );
             System.out.print("> ");
             input = sc.nextLine().toLowerCase().trim();
-            switch (input){
+            switch (input) {
                 case "1":
                     System.out.println("Daimon: \"Und ich kann meinen vollen Namen nicht leiden. Hat dich aber auch nicht interessiert. \nIm Gegenteil, der Herr Liebwerk muss natürlich ein Riesending darum aufziehen, mit Beschwörungsformel und allem. \nTja.\n");
                     break;
@@ -166,15 +167,15 @@ public class Story {
         } while (!input.equals("0"));
     }
 
-    public static void getKey000(){
+    public static void getKey000() {
         System.out.println();
         System.out.println(
                 "Maleficarius liegt etwas auf der Zunge: \n" +
-                "[1]\t Sei einfach still. \n" +
-                "[2]\t Was … bist du eigentlich? \n" +
-                "[3]\t Kannst du dich durch die Gitterstäbe zwängen? \n" +
-                "[4]\t Kannst du den Wärter mit Dämonenmagie in Brand stecken? \n" +
-                "[0]\t (Lieber schweigen)"
+                        "[1]\t Sei einfach still. \n" +
+                        "[2]\t Was … bist du eigentlich? \n" +
+                        "[3]\t Kannst du dich durch die Gitterstäbe zwängen? \n" +
+                        "[4]\t Kannst du den Wärter mit Dämonenmagie in Brand stecken? \n" +
+                        "[0]\t (Lieber schweigen)"
         );
         System.out.print("> ");
         input = sc.nextLine().toLowerCase().trim();
@@ -360,7 +361,7 @@ public class Story {
     static String daimon221 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
     static String daimonSolved221;
     static String solved221 = "Platzhalter unten in Story-Klasse";
-    static String desc222 = "Platzhalter unten in Story-Klasse";
+    static String desc222 = "*** Hier werden Encounter getestet ***";
     static String descSolved222;
     static String daimon222 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
     static String daimonSolved222;

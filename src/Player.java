@@ -8,6 +8,7 @@ public class Player {
 
     static ArrayList<Item> inv = new ArrayList<>();
     static ArrayList<Spell> spellbook = new ArrayList<>();
+    static ArrayList<Potion> potions = new ArrayList<>();
     static ArrayList<Demon> team = new ArrayList<>();
     static int counterKO;
     static Demon activeDemon;
@@ -83,12 +84,12 @@ public class Player {
         if (empty) {
             System.out.println("Keine einzige Zutat.");
         }
-        System.out.println("====================================");
+        System.out.println("===================================");
     }
 
     public static void showSpells() {
         boolean empty = true;
-        System.out.println("=============ZAUBERBUCH=============");
+        System.out.println("=============ZAUBERBUCH============");
         for (Spell i : spellbook) {
             System.out.printf("· \t%s \n", i.name);
             System.out.printf("\tMana: %d, \tStärke: %d \t", i.mpCost, i.str);
@@ -99,6 +100,20 @@ public class Player {
         }
         if (empty) {
             System.out.println("Kein einziger Zauber.");
+        }
+        System.out.println("===================================");
+    }
+
+    public static void showPotions() {
+        boolean empty = true;
+        System.out.println("=============TRANKTASCHE============");
+        for (Potion i : potions) {
+            System.out.printf("· \t%s \n", i.name);
+            System.out.printf("\t%s \n", i.desc);
+            empty = false;
+        }
+        if (empty) {
+            System.out.println("Kein einziger Trank.");
         }
         System.out.println("====================================");
     }
@@ -152,20 +167,20 @@ public class Player {
                     System.out.println("Diese beiden Gegenstände lassen sich nicht kombinieren.");
 
                     // Items sind im Inventar vorhanden und können kombiniert werden.
-                    // Versuchen, die benötigte Anzahl anzuziehen:
+                    // Versuchen, die benötigte Anzahl abzuziehen:
                 } else {
-                    successConsumeItem1 = Item.consumeItemMult(item1, 1);
+                    successConsumeItem1 = Item.consumeItem(item1);
                     if (successConsumeItem1) {
-                        successConsumeItem2 = Item.consumeItemMult(item2, 1);
+                        successConsumeItem2 = Item.consumeItem(item2);
                     }
                 }
                 // Wenn Zutaten erfolgreich verbraucht, dann Item erzeugen:
                 if (successConsumeItem1 && successConsumeItem2) {
                     if (item1.combiID == 1) {               // id = 1: Heiltrank
-                        Item.obtainItemMult(WorldBuilder.pot01, 1);
+                        Potion.obtainPotion(WorldBuilder.pot01);
                         System.out.printf("Du hast einen %s gebraut. \n", WorldBuilder.pot01.name);
                     } else if (item1.combiID == 2) {        // id = 2: Manatrank
-                        Item.obtainItemMult(WorldBuilder.pot02, 1);
+                        Potion.obtainPotion(WorldBuilder.pot02);
                         System.out.printf("Du hast einen %s gebraut. \n", WorldBuilder.pot02.name);
                     }
                 }

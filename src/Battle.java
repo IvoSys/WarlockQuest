@@ -15,6 +15,7 @@ public class Battle {
         boolean malActed;
         int dmg;
         int pick;
+        int pickTarget;
 
         //Encounter-Intro
         System.out.println(encounter.intro);
@@ -75,10 +76,10 @@ public class Battle {
                             if (!malActed) {
                                 boolean empty = true;
                                 int counter = 1;
-                                for (Spell i : Player.spellbook) {
-                                    System.out.printf("[%d] %s \n", counter, i.name);
-                                    System.out.printf("     Mana: %d, \tStärke: %d \t", i.mpCost, i.str);
-                                    if (i.aoe)
+                                for (Spell s : Player.spellbook) {
+                                    System.out.printf("[%d] %s \n", counter, s.name);
+                                    System.out.printf("     Mana: %d, \tStärke: %d \t", s.mpCost, s.str);
+                                    if (s.aoe)
                                         System.out.print("Flächenwirkung");
                                     counter++;
                                     empty = false;
@@ -92,8 +93,27 @@ public class Battle {
                                 if (pick == -1) {
                                     break;
                                 }
-                                Player.spellbook.get(pick).cast();
                                 //Zielauswahl, Unterscheidung Flächenschaden.
+                                if (!Player.spellbook.get(pick).aoe) {
+                                    System.out.println("Wähle ein Ziel:");
+                                    counter = 1;
+                                    for (Enemy e : enemyTeam) {
+                                        System.out.printf("[%d] %s \t", counter, e.name);
+                                        counter++;
+                                        if (!e.ko)
+                                            System.out.printf(" (%d/%d HP) \n", e.hp, e.hpMax);
+                                        else
+                                            System.out.println(">> BESIEGT <<");
+                                    }
+                                    System.out.print("> ");
+                                    pickTarget = sc.nextInt();
+                                    Player.spellbook.get(pick).cast(pickTarget);
+                                } else {
+                                    Player.spellbook.get(pick).cast();
+                                }
+
+
+
                                 malActed = true;
                             } else
                                 System.out.println("Maleficarius hat diese Runde schon gehandelt.");
@@ -102,24 +122,25 @@ public class Battle {
                             if (!malActed) {
                                 boolean empty = true;
                                 int counter = 1;
-                                for (Item i : Player.inv) {
-                                    if (i instanceof ItemPotion) {
-                                        System.out.printf("[%d] %s [%d in Besitz] \n", counter, i.name, i.num);
-                                        counter++;
-                                        empty = false;
-                                    }
-                                    if (empty) {
-                                        System.out.println("Du besitzt keine Tränke.");
-                                    }
-                                    System.out.println("[0] Zurück");
-                                    System.out.println("\n> ");
-                                    pick = sc.nextInt() - 1;
-                                    if (pick == -1) {
-                                        break;
-                                    }
-                                    //Tränke so nicht auswählbar! :(
-                                    malActed = true;
+                                for (Potion p : Player.potions) {
+                                    System.out.printf("[%d] %s [%d in Besitz] \n", counter, p.name, p.num);
+                                    counter++;
+                                    empty = false;
                                 }
+                                if (empty) {
+                                    System.out.println("Du besitzt keine Tränke.");
+                                }
+                                System.out.println("[0] Zurück");
+                                System.out.println("\n> ");
+                                pick = sc.nextInt() - 1;
+                                if (pick == -1) {
+                                    break;
+                                }
+                                Player.potions.get(pick).drink();
+                                Player.potions.get(pick).num--;
+                                if (Player.potions.get(pick).num == 0)
+                                    Player.potions.remove(pick);
+                                malActed = true;
                             } else
                                 System.out.println("Maleficarius hat diese Runde schon gehandelt.");
                             break;
@@ -165,6 +186,13 @@ public class Battle {
             }
 
         } while (Player.counterKO < Player.team.size() && !encounter.beaten);
+
+        //Kampf gewonnen
+        Player.room.encounterBeaten = true;
+        System.out.println(Player.room.encounter.outro);
+        if (Player.room.encounter.rewardItem != null) {
+            Item.obtainItem(Player.room.encounter.rewardItem);
+        }
     }
 
     public static void chooseDemon() {

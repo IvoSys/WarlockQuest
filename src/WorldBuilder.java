@@ -56,7 +56,7 @@ public class WorldBuilder {
         //OG, Reihe oben
         castle[2][2][0] = new Room("", Story.desc220, Story.daimon220, Story.solved220, false, false, false, false, false, false, 220);
         castle[2][2][1] = new Room("", Story.desc221, Story.daimon221, Story.solved221, false, false, false, false, false, false, 221);
-        castle[2][2][2] = new Room("", Story.desc222, Story.daimon222, Story.solved222, false, false, false, false, false, false, 222);
+        castle[2][2][2] = new Room("TESTRAUM", Story.desc222, Story.daimon222, Story.solved222, false, false, false, false, false, false, 222);
     }
 
     //GEGNER
@@ -74,7 +74,9 @@ public class WorldBuilder {
 
     //BESCHWÖRUNGSFORMELN
     static ItemEvoc evoc00 = new ItemEvoc("Beschwörungsformel des Daimon", "Diesen okkulten Text hast du vor einer Weile schon entschlüsselt. \nDer wahre Name des Daimon lautet: \n\033[3mAgathos Daímōn Týchē, Spritus benefactum\033[0m \n\nDAIMON: \"Nooohh, Malle, ich bin doch schon bei dir!\"\n\n… ob es so eine gute Idee war, diesen Plagegeist zu beschwören?", "Daimon");
-    static ItemEvoc evoc01 = new ItemEvoc("Beschwörungsformel des Abbaddon", "Hinweistext auf wahren Namen des Abbadon", "Abbadon");
+    static ItemEvoc evoc01 = new ItemEvoc("Beschwörungsformel des NAME", "Hinweistext auf wahren Namen des NAME", "NAME");
+    static ItemEvoc evoc02 = new ItemEvoc("Beschwörungsformel des NAME", "Hinweistext auf wahren Namen des NAME", "NAME");
+    static ItemEvoc evoc03 = new ItemEvoc("Beschwörungsformel des NAME", "Hinweistext auf wahren Namen des NAME", "NAME");
 
     //ALCHEMIEZUTATEN
     static ItemIngred alch11 = new ItemIngred("Molchauge", "Molchaugen", "Feine Blutgefäße ziehen sich in unruhigen Fäden durch den Augapfel.", 1);
@@ -83,20 +85,26 @@ public class WorldBuilder {
     static ItemIngred alch22 = new ItemIngred("Mitternachtskraut", "Bund Mitternachtskraut", "Fahlblaue Blätter, die sich lieber dem Mondlicht als der Sonne zuwenden.", 2);
 
     //TRÄNKE
-    static ItemPotion pot01 = new ItemPotion("Heiltrank", "Heiltränke", "Ein rot strahlender Trank, stellt 50 HP wiederher.", 50, 10);
-    static ItemPotion pot02 = new ItemPotion("Manatrank", "Manatränke", "Ein blau schimmernder Trank, stellt 25 MP wiederher.", 25, 20);
+    static Potion pot01 = new PotionHealth("Heiltrank", "Heiltränke", "Ein rot strahlender Trank, stellt 50 HP wiederher.", 50, 10);
+    static Potion pot02 = new PotionMana("Manatrank", "Manatränke", "Ein blau schimmernder Trank, stellt 25 MP wiederher.", 25, 20);
 
     //SCHRIFTROLLEN
-    static ItemScroll scr01 = new ItemScroll("Fluch", "XXX.");
+    static ItemScroll scr01 = new ItemScroll("Fluch X", "XXX.");
+    static ItemScroll scr02 = new ItemScroll("Fluch X", "XXX.");
+    static ItemScroll scr03 = new ItemScroll("Fluch X", "XXX.");
 
     //ZAUBER
-    static Spell[] allSpells = {};
+    static Spell spell01 = new SpellKind1("NAME1", "Beschreibung", "", "", 10, 10, false);
+    static Spell spell02 = new SpellKind2("NAME2", "Beschreibung", "", "", 10, 10, false);
+    static Spell spell03 = new SpellKind3("NAME3", "Beschreibung", "", "", 10, 10, false);
+
+    static Spell[] allSpells = {spell01, spell02, spell03};
     static ArrayList<Spell> freeSpells = new ArrayList<>();
 
     //KEY-ITEMS
     static ItemKey bag = new ItemKey("Alchemiebeutel", "Ein samtener Beutel, in dem du all deine alchemistischen Zutaten aufbewahrst: \n", 99);
     static ItemKey book = new ItemKey("Zauberbuch", "Ein ledergebundener Foliant, in dem all deine Zauber verzeichnet sind: \n", 99);
-    static ItemKey bookBlackArts = new ItemKey("\"Die schwarzen Künste\"", "Das Standardwerk über Hexerei, Alchemie und Dämonologie verfasst von Meister Maleficarius Liebwerk. \n[…] Zauber werden mittels Schriftrollen erlernt und können bis zur geistigen Erschöpfung gewirkt werden. \n[…] Tränke werden mit Verabreichung verbraucht und entfalten unvergleichliche Heilkraft, selbst bei Dämonen. \n[…] Spricht man den wahren Namen eines Dämonen deulich aus, zwingt man ihn in seinen Dienst. Doch Obacht, er wird dies nicht schätzen!", 99);
+    static ItemKey bookBlackArts = new ItemKey("\"Die schwarzen Künste\"", "Das Standardwerk über Hexerei, Alchemie und Dämonologie in drei Bänden, verfasst von Meister Maleficarius Liebwerk: \n[…] Zauber werden mittels Schriftrollen erlernt und können bis zur geistigen Erschöpfung gewirkt werden. \n[…] Tränke werden mit Verabreichung verbraucht und entfalten unvergleichliche Wirkungen, selbst bei Dämonen. \n[…] Spricht man den wahren Namen eines Dämonen deulich aus, zwingt man ihn in seinen Dienst. Doch Obacht, er wird dies nicht schätzen!", 99);
     static ItemKey key000 = new ItemKey("Zellenschlüssel", "Ein rostiger Klumpen von Schlüssel.", 0);
 
     //Startitems
