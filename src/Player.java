@@ -92,10 +92,12 @@ public class Player {
         System.out.println("=============ZAUBERBUCH============");
         for (Spell i : spellbook) {
             System.out.printf("· \t%s \n", i.name);
-            System.out.printf("\tMana: %d, \tStärke: %d \t", i.mpCost, i.str);
+            System.out.printf("\tManakosten: %d, \tStärke: %d \n", i.mpCost, i.str);
+            if (i.dur != 0)
+                System.out.printf("Dauer: %d Runden \t", i.dur);
             if (i.aoe)
                 System.out.print("Flächenwirkung");
-            System.out.printf("\n\t%s \n", i.desc);
+            System.out.printf("\n%s \n", i.desc);
             empty = false;
         }
         if (empty) {
@@ -221,7 +223,7 @@ public class Player {
                 }
             }
         }
-        System.out.println("Inventar und Alchemiebeutel aufgeräumt.");
+        System.out.println("Gegenstände aufgeräumt.");
     }
 
 

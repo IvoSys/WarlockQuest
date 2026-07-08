@@ -91,6 +91,8 @@ public class WarlockQuest {
                 Player.showIngredients();                                                                               // Alchemiezutaten
             } else if (input.equals("r") || input.equals("raum")){
                 Room.describe();                                                                                        // Raum ansehen
+            } else if (input.equals("dämonen") || input.equals("dämon")){
+                Demon.showDemons();                                                                                     // Kompendium infernale
             //} else if (input.equals("l") || input.equals("lernen")){
             //    ItemScroll.learn();                                                                                   // Zauber lernen
             //} else if (input.equals("b") || input.equals("binden")){

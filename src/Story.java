@@ -54,6 +54,7 @@ public class Story {
                         "Zauberbuch\t\t\t| (Z)auber\t\t\t| Listet die von dir gelernten Zauber auf, nutze sie im Kampf.\n" +
                         "Alchemiezutaten\t\t| (A)lchemie\t\t| Zeigt deine alchemistischen Zutaten an, braue Tränke aus ihnen. \n" +
                         "Trankgurt\t\t\t| (T)ränke\t\t\t| Zeigt deine Tränke an, nutze sie AUSSERHALB des Kampfes per \"v.[Trank]\".\n" +
+                        "Dämonen-Kompendium\t| Dämonen\t\t\t| Zeigt nähere Informationen zu den von dir gebundenen Dämonen an.\n" +
                         "\t\t\t\t\t|\t\t\t\t\t| \n" +
                         "Spielanleitung\t\t| (H)ilfe \t\t\t| Ruft diese Anleitung auf. \n" +
                         "Kampftutorial\t\t| Kampf \t\t\t| Ruft die Anleitung zum Kampfsystem auf. \n" +
@@ -75,26 +76,9 @@ public class Story {
                         "Immer, wenn \"Zeit zu handeln!\" angezeigt wird, können folgende weitere Befehle genutzt werden: \n\n" +
                         "Handlung\t\t\t| Eingabe\t\t\t| Effekt \n" +
                         "------------------------------------------------------------------------------------------------------------- \n" +
-                        "Status anzeigen\t\t| (S)tatus\t\t\t| Zeigt den Stand von Lebens- und Magiepunkten an.\n" +
-                        "Raum ansehen\t\t| (R)aum \t\t\t| Zeigt erneut Namen und Beschreibung des aktuellen Raums an. \n" +
-                        "Zauberbuch\t\t\t| (Z)auber\t\t\t| Listet die von dir gelernten Zauber auf, nutze sie im Kampf.\n" +
-                        "Alchemiezutaten\t\t| (A)lchemie\t\t| Zeigt deine alchemistischen Zutaten an, braue Tränke aus ihnen. \n" +
-                        "Trankgurt\t\t\t| (T)ränke\t\t\t| Zeigt deine Tränke an, nutze sie AUSSERHALB des Kampfes.\n" +
-                        //"trinke Trank\n\n| t.[Trank]\t\t\t| Trinkt einen Trank bzw. flößt ihn einem deiner Dämonen ein." +
+
                         "\t\t\t\t\t|\t\t\t\t\t| \n" +
-                        //"Zauber lernen\t\t| (L)ernen \t\t\t| Lernt einen neuen Zauber anhand einer Formel. \n" +
-                        //"Dämon binden\t\t| (B)inden \t\t\t| Zwingt einen neuen Dämon in deinen Dienst. \n" +
-                        //"\t\t\t\t\t|\t\t\t\t\t| \n" +
-                        "Kampftutorial\t\t| KampfTut \t\t\t| Ruft die Anleitung zum Kampfsystem auf. \n" +
-                        //"Alchemietutorial\t| AlcheTut \t\t\t| Ruft die Anleitung zum Alchemiesystem/Kombinierbefehl auf. \n" +
-                        //"\t\t\t\t\t|\t\t\t\t\t| \n" +
-                        //"Inventar aufräumen\t| Cleanup\t\t\t| Führt doppelte Einträge in Inventar/Alchemiebeutel zusammen.\n" +
-                        //"\t\t\t\t\t|\t\t\t\t\t| (Falls dies je nötig ist, ist etwas schiefgelaufen.)\n" +
-                        //"\t\t\t\t\t|\t\t\t\t\t| NOCH FEHLERHAFT!\n" +
-                        //"\t\t\t\t\t|\t\t\t\t\t| \n" +
-                        "Mitwirkende\t\t\t| Credits \t\t\t| Zeigt die Mitwirkenden. \n" +
-                        "Beenden\t\t\t\t| Ende \t\t\t\t| Beendet das Spiel. \n" +
-                        "\nGroß-/Kleinschreibung wird ignoriert, außer bei Zauber- und Beschwörungsformeln. Copy-paste ist hilfreich. \n" +
+
                         "============================================================================================================= \n"
         );
     }
@@ -112,6 +96,12 @@ public class Story {
                         "ohne dass dessen Zug verfällt. Einen Zauber zu wirken, kostet MP.\n\n" +
 
                         "Beispiel: \n\n" +
+
+                        "Gegner: \n" +
+                        "Soldat Max\t(53/80 HP) \tLebenslinie (2)\t\t\t (Name und Status der Gegner)\n" +
+                        "Soldat Jörg\t(63/80 HP) \tÜble Saat (2)\t\t\t(\"(2)\" = verbleibende Runden des Zaubers)\n" +
+                        "Soldatin Franziska\t(80/80 HP)\t \n\n\n" +
+
                         "100/100 HP \t\t50/50 MP \t(Dämon-Lebenspunkte und Maleficarius' Magiepunkte)\n" +
                         "[NAME DES AKTIVEN DÄMONS] \n" +
                         "[1] Angriff\t\t\t\t\t(Dämon)\n" +
@@ -395,40 +385,50 @@ public class Story {
     static String solved222 = "Platzhalter unten in Story-Klasse";
     //endregion
 
-    //Rätsel
+    //Items mit langen Beschreibungen
+    static String bookBlackArtsDesc =
+            "Das Standardwerk über Hexerei, Alchemie und Dämonologie in drei Bänden, verfasst von Meister Maleficarius Liebwerk: \n" +
+            "[…] Zauber werden mittels Schriftrollen erlernt und können bis zur geistigen Erschöpfung gewirkt werden. \n" +
+            "[…] Tränke werden mit Verabreichung verbraucht und entfalten unvergleichliche Wirkungen, selbst bei Dämonen. \n" +
+            "[…] Spricht man den wahren Namen eines Dämonen deulich aus, zwingt man ihn in seinen Dienst. Doch Obacht, er wird dies nicht schätzen!";
+
+    //Rätsel Dämonen
     static String riddleDem00 = "Diesen okkulten Text hast du vor einer Weile schon entschlüsselt. \nDer wahre Name des Daimon lautet: \n\033[3mAgathos Daímōn Týchē, Spritus benefactum\033[0m \n\nDAIMON: \"Nooohh, Malle, ich bin doch schon bei dir!\"\n\n… ob es so eine gute Idee war, diesen Plagegeist zu beschwören?";
+
     static String riddleDem01 = "";
     static String trueNameDem01 = "";
+
     static String riddleDem02 = "";
     static String trueNameDem02 = "";
+
     static String riddleDem03 = "";
     static String trueNameDem03 = "";
+
+    //Rätsel Zauber
     static String riddleBloodletting = "";
+    static String formulaBloodletting = "";
+
+    static String riddleDoom = "";
+    static String formulaDoom = "";
+
+    static String riddleIronMaiden = "";
+    static String formulaIronMaiden = "";
+
     static String riddleLifeline = "";
+    static String formulaLifeline = "";
+
     static String riddleSoulreaper = "";
+    static String formulaSoulreaper = "Avada Kedavra";
 
-    //Zauber
-    static String descBloodletting = "Opfert Lebenspunkte deines Dämon, um deine Manareserven aufzufüllen. ";
-    static String descLifeline = "Spannt ein magisches Band zwischen deinem Dämon und einem Gegner. \nIn den folgenden Runden fließt vor jeder Aktion dieses Gegners Lebenskraft von ihm zu deinem Dämon.";
-    static String descSoulreaper = "Stiehlt die Seele eines schwachen Feindes. \nAuf einen Gegner mit unter 20 % HP angewendet, stirbt dessen Körper sofort und seine Seele füllt deinen Manavorrat.";
-    static String whenCastBloodletting = "";
-    static String whenCastLifeline = "";
-    static String whenCastSoulreaper = "";
-    static String whenLearnedBloodletting = "";
-    static String whenLearnedLifeline = "";
-    static String whenLearnedSoulreaper = "";
+    static String riddleViciousSeed = "";
+    static String formulaViciousSeed = "";
 
-    //Dämonen
-    static String whenSummonedDem01 = "";
-    static String whenSummonedDem02 = "";
-    static String whenSummonedDem03 = "";
-    static String whenBoundDem01 = "";
-    static String whenBoundDem02 = "";
-    static String whenBoundDem03 = "";
 
     //Fähigkeiten von Dämonen mit flavor
 
     //Kills mit Flavor
+
+
 
 
 

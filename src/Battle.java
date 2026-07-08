@@ -22,17 +22,30 @@ public class Battle {
 
         //Gegner-Team aus übergebenem Encounter ziehen
         ArrayList<Enemy> enemyTeam = encounter.enemyTeam;
+        Enemy enemy1 = enemyTeam.get(0);
+        Enemy enemy2 = enemyTeam.get(1);
+        Enemy enemy3 = enemyTeam.get(2);
+        Enemy activeEnemy;
 
         //Gegner anzeigen
         System.out.println("Gegner greifen an:");
         for (Enemy e : enemyTeam)
             System.out.printf("%s %s \t (%d/%d HP) \n", e.job, e.name, e.hp, e.hpMax);
+        System.out.println();
+
+        //Spieler beseitzt keine Dämonen
+        if (Player.team.isEmpty()){
+            System.out.println("Maleficarius besitzt keine Dämonen.");
+            System.out.println("Dies ist dein Ende.\n");
+            ASCII.BattleLost();
+            System.exit(0);
+        }
 
         //Spieler wählt Dämon
         chooseDemon();
 
         //Äußerer Battle Loop
-        do {
+        do {            // wiederholt nach Gewinn/Verlust-Prüfung, wenn Kampf weitergeht
             //Klären, welche Partei beginnt, oder immer Dämon anfangen lassen
             if (true) {
                 isPlayerTurn = true;
@@ -43,16 +56,27 @@ public class Battle {
             }
 
             //Innerer Battle Loop
-            do {
+            do {        // wiederholt nach Gegner-Zug, solange Dämon nicht K.O.
+                malActed = false;
                 while (isPlayerTurn) {
-                    malActed = false;
-                    System.out.println("Du bist dran.");
+                    System.out.println("Du bist dran.\n");
+
+                    System.out.println("GEGNER");
+                    for (Enemy e : enemyTeam) {
+                        System.out.printf("%s %s\t (%d/%d HP)", e.job, e.name, e.hp, e.hpMax);
+                        if (e.lifelined)
+                            System.out.printf("\tLebenslinie (%d)", e.counterlifeline);
+                        if (e.carriesVSeed)
+                            System.out.printf("\tÜble Saat (%d)", e.counterVSeed);
+                        System.out.println();
+                    }
+                    System.out.println("\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n");
 
                     System.out.printf("%d/%d HP \t\t%d/%d MP \n", Player.activeDemon.hp, Player.activeDemon.hpMax, Player.mp, Player.mpMax);
                     System.out.println(Player.activeDemon.name.toUpperCase());
-                    System.out.println("[1] " /*+ /*Player.activeDemon.attack().name*/);
-                    System.out.println("[2] " /*+ /*Player.activeDemon.ability1().name*/);
-                    System.out.println("[3] " /*+ /*Player.activeDemon.ability2().name*/);
+                    System.out.println("[1] " + Player.activeDemon.attackName);
+                    System.out.println("[2] " + Player.activeDemon.ability1Name);
+                    System.out.println("[3] " + Player.activeDemon.ability2Name);
                     System.out.println("------------------------------------");
                     System.out.println("[4] Zauber");
                     //System.out.println("[X] Trank");
@@ -78,9 +102,11 @@ public class Battle {
                                 int counter = 1;
                                 for (Spell s : Player.spellbook) {
                                     System.out.printf("[%d] %s \n", counter, s.name);
-                                    System.out.printf("     Mana: %d, \tStärke: %d \t", s.mpCost, s.str);
+                                    System.out.printf("     Mana: %d, \tStärke: %d ", s.mpCost, s.str);
                                     if (s.aoe)
-                                        System.out.print("Flächenwirkung");
+                                        System.out.print("\tFlächenwirkung");
+                                    if (s.dur != 0)
+                                        System.out.printf("\tDauer: %d Runden", s.dur);
                                     counter++;
                                     empty = false;
                                 }
@@ -111,40 +137,10 @@ public class Battle {
                                 } else {
                                     Player.spellbook.get(pick).cast();
                                 }
-
-
-
                                 malActed = true;
                             } else
                                 System.out.println("Maleficarius hat diese Runde schon gehandelt.");
                             break;
-                        /*
-                        case X:
-                            if (!malActed) {
-                                boolean empty = true;
-                                int counter = 1;
-                                for (Potion p : Player.potions) {
-                                    System.out.printf("[%d] %s [%d in Besitz] \n", counter, p.name, p.num);
-                                    counter++;
-                                    empty = false;
-                                }
-                                if (empty) {
-                                    System.out.println("Du besitzt keine Tränke.");
-                                }
-                                System.out.println("[0] Zurück");
-                                System.out.println("\n> ");
-                                pick = sc.nextInt() - 1;
-                                if (pick == -1) {
-                                    break;
-                                }
-                                Player.potions.get(pick).drink();
-                                Player.potions.get(pick).num--;
-                                if (Player.potions.get(pick).num == 0)
-                                    Player.potions.remove(pick);
-                                malActed = true;
-                            } else
-                                System.out.println("Maleficarius hat diese Runde schon gehandelt.");
-                            break; */ //Trank einsetzen
                         case 5:
                             if (!malActed) {
                                 chooseDemon();
@@ -156,8 +152,9 @@ public class Battle {
                         default:
                             System.out.println("Ungültige Eingabe");
                             break;
-                    }
+                    } //Ende Switch-Case mit Spieleraktionen
 
+                    //Spieler hat Aktion ausgeführt
                     //Prüfung auf Sieg
                     encounter.counterKO = 0;
                     for (Enemy e : enemyTeam) {
@@ -166,21 +163,47 @@ public class Battle {
                     }
                     if (encounter.counterKO >= enemyTeam.size())
                         encounter.beaten = true;
-                }
 
+                } //Ende while(isPlayerTurn)
+
+                //Gegner am Zug
                 while (!isPlayerTurn && !encounter.beaten) {
                     for (Enemy e : enemyTeam) {
-                        if (!e.ko) {
-                            //e greift an, sagt Dinge
+                        e.checkLifelined();                         // Vor Aktion Zaubereffekte abhandeln, könnten dmg verursachen
+                        //if (e.lifelined) {                        // e.checkLifelined() eleganter als IF-Verzweigung?
+                        //    WorldBuilder.lifeline.tick(e);
+                        //}
+                        if (e.carriesVSeed) {
+                            WorldBuilder.viciousSeed.tick(e);
                         }
+                        if (!e.ko) {                                // Aktion, erst prüfen, ob K.O.
+                            if ((e.hp <= e.hpMax * 0.3f) && (e.hasPotion)) {    // Wenn schwer verletzt und Potion vorhanden, dann Potion statt Angriff
+                                e.applyHeal(e.potionStr);
+                                e.hasPotion = false;
+                                System.out.printf("%s %s trinkt eine Potion und heilt sich um %d HP. \n", e.job, e.name, e.potionStr);
+                            } else {
+                                pick = rnd.nextInt(e.numOptions);          // Zufallszahlenbereich entspricht Anzahl seiner Optionen
+                                if (pick == 0) {
+                                    Player.activeDemon.applyDmg(e.attack());                            // Flavor dazu: Kampfschreie, Schadensbeschreibungen etc.
+                                } else if (pick == 1) {
+                                    e.ability1();
+                                } else if (pick == 2) {
+                                    e.ability2();
+                                } else if (pick == 3) {
+                                    e.ability3();
+                                } else
+                                    System.out.println("DEBUG: Fehler beim Auswürfeln der Gegneraktion.");
 
-                    }
+                            }
+                        } // Ende Aktion einzelner Gegner
+                    } // Ende Aktion Gegnerteam
+                    isPlayerTurn = true;
+                } // Ende while(!isPlayerTurn && !encounter.beaten)
 
+            } while (!Player.activeDemon.ko);       //Dämon wieder am Zug, sofern nicht besiegt
 
-                }
-            } while (!Player.activeDemon.ko);
-
-            //Prüfung auf Niederlage
+            // Dämon besiegt,
+            // Prüfung auf Niederlage
             Player.counterKO = 0;
             for (Demon d : Player.team) {
                 if (d.ko)
@@ -188,12 +211,18 @@ public class Battle {
             }
             if (Player.counterKO >= Player.team.size()) {
                 System.out.println("\nMaleficarius hat keine kampffähigen Dämonen mehr.");
-                System.out.println("Dein Schicksal ist besiegelt.\n");
+                System.out.println("Dies ist dein Ende.\n");
                 ASCII.BattleLost();
                 System.exit(0);
             }
 
-        } while (Player.counterKO < Player.team.size() && !encounter.beaten);
+            // Spieler nicht besiegt, neuen Dämon beschwören
+            chooseDemon();
+
+        // Solange Kampf nicht gewonnen, wieder nach oben
+        // Wenn Kampf gewonnen, wird Schleife durchbrochen
+        } while (!encounter.beaten);
+
 
         //Kampf gewonnen
         ASCII.BattleWon();

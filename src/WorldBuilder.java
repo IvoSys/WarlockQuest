@@ -27,6 +27,7 @@ public class WorldBuilder {
         castle[0][2][0] = new Room("Waschraum", Story.desc020, Story.daimon020, Story.solved020, false, true, true, false, false, false, 20);
         castle[0][2][1] = new Room("Schlafsaal", Story.desc021, Story.daimon021, Story.solved021, false, true, false, true, false, false, 21);
         castle[0][2][2] = new Room("Wachkantine", Story.desc022, Story.daimon022, Story.solved022, false, false, true, true, false, false, 22);
+        castle[0][2][2].encounter = enc022;
 
         //EG, Reihe unten
         castle[1][0][0] = new Room("", Story.desc100, Story.daimon100, Story.solved100, false, false, false, false, false, false, 100);
@@ -68,9 +69,9 @@ public class WorldBuilder {
     static ItemEvoc evoc03 = new ItemEvoc("Beschwörungsformel des NAME", Story.riddleDem03, "");
 
     //DÄMONEN
-    static DemonKind1 dem01 = new DemonKind1("", Story.trueNameDem01, Story.whenSummonedDem01, Story.whenBoundDem01);
-    static DemonKind2 dem02 = new DemonKind2("", Story.trueNameDem02, Story.whenSummonedDem02, Story.whenBoundDem02);
-    static DemonKind3 dem03 = new DemonKind3("", Story.trueNameDem03, Story.whenSummonedDem03, Story.whenBoundDem03);
+    static DemonKind1 dem01 = new DemonKind1();
+    static DemonKind2 dem02 = new DemonKind2();
+    static DemonKind3 dem03 = new DemonKind3();
     static Demon[] allDem = {dem01, dem02, dem03};
     static List<Demon> freeDem = new ArrayList<>(Arrays.asList(allDem));
 
@@ -88,14 +89,20 @@ public class WorldBuilder {
 
 
     //SCHRIFTROLLEN
-    static ItemScroll scrollAderlass = new ItemScroll("Zauberschriftrolle \"Aderlass\"", Story.riddleBloodletting, "Aderlass");
-    static ItemScroll scrollLebenslinie = new ItemScroll("Zauberschriftrolle \"Lebenslinie\"", Story.riddleLifeline, "Lebenslinie");
-    static ItemScroll scrollSeelendieb = new ItemScroll("Zauberschriftrolle \"Seelendieb\"", Story.riddleSoulreaper, "Seelendieb");
+    static ItemScroll scrollBloodletting = new ItemScroll("Zauberschriftrolle \"Aderlass\"", Story.riddleBloodletting, "Aderlass");
+    static ItemScroll scrollDoom = new ItemScroll("Zauberschriftrolle \"Untergang\"", Story.riddleDoom, "Untergang");
+    static ItemScroll scrollIronMaiden = new ItemScroll("Zauberschriftrolle \"Eiserne Jungfrau\"", Story.riddleIronMaiden, "Eiserne Jungfrau");
+    static ItemScroll scrollLifeline = new ItemScroll("Zauberschriftrolle \"Lebenslinie\"", Story.riddleLifeline, "Lebenslinie");
+    static ItemScroll scrollSoulreaper = new ItemScroll("Zauberschriftrolle \"Seelendieb\"", Story.riddleSoulreaper, "Seelendieb");
+    static ItemScroll scrollViciousSeed = new ItemScroll("Zauberschriftrolle \"Üble Saat\"", Story.riddleViciousSeed, "Üble Saat");
 
     //ZAUBER
-    static Spell bloodletting = new SpellBloodletting("Aderlass", Story.descBloodletting, "123", "", 10, 10, false);
-    static Spell lifeline = new SpellLifeline("Lebenslinie", Story.descLifeline, "456", "Du lernst Lebenslinie.", 10, 10, false);
-    static Spell soulreaper = new SpellSoulreaper("Seelendieb", Story.descSoulreaper, "789", "Du lernst Seelendieb.", 10, 10, false);
+    static Spell bloodletting = new SpellBloodletting();
+    static Spell doom = new SpellDoom();
+    static Spell ironMaiden = new SpellIronMaiden();
+    static Spell lifeline = new SpellLifeline();
+    static Spell soulreaper = new SpellSoulreaper();
+    static Spell viciousSeed = new SpellViciousSeed();
 
     static Spell[] allSpells = {bloodletting, lifeline, soulreaper};
     static ArrayList<Spell> freeSpells = new ArrayList<>(Arrays.asList(allSpells));
@@ -104,7 +111,7 @@ public class WorldBuilder {
     static ItemKey bagAlche = new ItemKey("Alchemiebeutel", "Ein samtener Beutel, in dem du all deine alchemistischen Zutaten aufbewahrst: \n", 0, 0);
     static ItemKey bagPotions = new ItemKey("Trankgurt", "Ein System aus Lederriemen, mit denen du Trankfläschchen am Gürtel befestigen kannst. \n", 0, 0);
     static ItemKey bookSpells = new ItemKey("Zauberbuch", "Ein ledergebundener Foliant, in dem all deine Zauber verzeichnet sind: \n", 0, 0);
-    static ItemKey bookBlackArts = new ItemKey("\"Die schwarzen Künste\"", "Das Standardwerk über Hexerei, Alchemie und Dämonologie in drei Bänden, verfasst von Meister Maleficarius Liebwerk: \n[…] Zauber werden mittels Schriftrollen erlernt und können bis zur geistigen Erschöpfung gewirkt werden. \n[…] Tränke werden mit Verabreichung verbraucht und entfalten unvergleichliche Wirkungen, selbst bei Dämonen. \n[…] Spricht man den wahren Namen eines Dämonen deulich aus, zwingt man ihn in seinen Dienst. Doch Obacht, er wird dies nicht schätzen!", 0, 0);
+    static ItemKey bookBlackArts = new ItemKey("\"Die schwarzen Künste\"", Story.bookBlackArtsDesc, 0, 0);
     static ItemKey key000 = new ItemKey("Zellenschlüssel", "Ein rostiger Klumpen von Schlüssel.", -1, 0);
     static ItemKey key999 = new ItemKey("Goldklumpen", "Alechimistisch betrachtet wertlos.", 0, 0);
 
@@ -126,6 +133,7 @@ public class WorldBuilder {
 
     // ENCOUNTER
     static Encounter enc221TEST = new Encounter(soldier01, soldier02, soldier03, "Achtung, Testüberfall!", "Achtung, Testüberfall beendet!", key999);
+    static Encounter enc022 = new Encounter(soldier01, soldier02, soldier03, "Achtung, Testüberfall!", "Achtung, Testüberfall beendet!", null);
 
 
 
