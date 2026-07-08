@@ -11,7 +11,7 @@ public class Story {
     public static void intro() {
         System.out.println(
                 "Dieses Mal ist der König zu weit gegangen! \n" +
-                        "Du, Maleficarius Liebwerk, der größte Hexenmeister und Dämonologe im Diesseits, sollst \"ethisch nicht mehr tragbar\" sein?! Lächerlich! \n" +
+                        "Du, Maleficarius Liebwerk, der größte Hexenmeister, Alchemist und Dämonologe im Diesseits, sollst \"ethisch nicht mehr tragbar\" sein?! Lächerlich! \n" +
                         "Wo stünde dieses kümmerliche Reich schon ohne deine Forschung? \"Aber Meister Liebwerk, Ihr lÄsTeRt DeR ScHöPfUnG GoTtEs!\". Pahh!\n\n" +
                         "Und dann haben sie dich in den Kerker geworfen. Bauerntrampel ohne Ambition oder Vorstellungskraft! \n" +
                         "Es wird Zeit, den König über kleiner Flamme zu rösten! \n"
@@ -27,7 +27,7 @@ public class Story {
     public static void help() {
         System.out.println(
                 "\n============================================================================================================= \n" +
-                        "DIE WICHTIGESTEN BEFEHLE \n" +
+                        "BEFEHLE \n" +
                         "Immer, wenn \"Zeit zu handeln!\" angezeigt wird, können folgende Befehle genutzt werden: \n\n" +
                         "Handlung\t\t\t| Eingabe\t\t\t| Effekt \n" +
                         "------------------------------------------------------------------------------------------------------------- \n" +
@@ -35,22 +35,39 @@ public class Story {
                         "\t\t\t\t\t|\t\t\t\t\t| \n" +
                         "Inventar zeigen\t\t| (I)tems\t\t\t| Zeigt an, welche Gegenstände du besitzt (ohne alchemistische Zutaten). \n" +
                         "Nimm Item\t\t\t| N.[Item]\t\t\t| Legt erreichbaren Gegenstand ins Inventar, z. B. \"n.Zellenschlüssel\". \n" +
-                        "Verwende Item \t\t| V.[Item]\t\t\t| Verwendet einen Gegenstand im Inventar, z. B. \"v.Zellenschlüssel\". \n" +
                         "Untersuche Item\t\t| U.[Item]\t\t\t| Beschreibt einen Gegenstand aus dem Inventar genauer. \n" +
-                        "Kombiniere Items\t| K.[Item].[Item]\t| Kombiniert zwei deiner Gegenstände miteinander, \n" +
-                        "\t\t\t\t\t|\t\t\t\t\t| z. B. \"k.blaue Farbe.gelbe Farbe\" -> Maleficarius erhält grüne Farbe! \n" +
+                        "Verwende Item \t\t| V.[Item]\t\t\t| Verwendet einen Gegenstand im Inventar, z. B. \"v.Zellenschlüssel\". \n" +
+                        "\t\t\t\t\t|\t\t\t\t\t| \tVerwende Zauberschriftrollen, um einen neuen Zauber zu lernen.\n" +
+                        "\t\t\t\t\t|\t\t\t\t\t| \tVerwende Beschwörungsformeln, um einen Dämon in deinen Dienst zu zwingen.\n" +
+                        "\t\t\t\t\t|\t\t\t\t\t| \tVerwende sonstige Items (Schlüssel usw.), um sie im aktuellen Raum anzuwenden.\n" +
+                        "Kombiniere Items\t| K.[Item].[Item]\t| Kombiniert zwei Items aus dem Inventar miteinander. \n" +
+                        "\t\t\t\t\t|\t\t\t\t\t| \tZ. B. \"k.blaue Farbe.gelbe Farbe\" -> Maleficarius erhält grüne Farbe. \n" +
+                        "\t\t\t\t\t|\t\t\t\t\t| \tAuf gleiche Weise kannst du aus Alchemiezutaten Tränke brauen: \n" +
+                        "\t\t\t\t\t|\t\t\t\t\t| \tKombiniere rote Zutaten für Heiltränke, blaue für Manatränke.\n" +
                         "\t\t\t\t\t|\t\t\t\t\t| \n" +
                         "Gehe in Richtung\t| G.[Richtung]\t\t| Versucht, den aktuellen Ort in gewählter Richtung zu verlassen. \n" +
-                        "(Raum wechseln)\t\t|\t\t\t\t\t| Richtungen: Nord (N), Ost (O), Süd (S), West (W), hoch (h), runter (r) \n" +
-                        "\t\t\t\t\t|\t\t\t\t\t| z. B. \"Gehe.Norden\" oder einfach \"g.n\" \n" +
+                        "(Raum wechseln)\t\t|\t\t\t\t\t| \tRichtungen: Nord (N), Ost (O), Süd (S), West (W), hoch (h), runter (r) \n" +
+                        "\t\t\t\t\t|\t\t\t\t\t| \tz. B. \"Gehe.Norden\" oder einfach \"g.n\" \n" +
                         "\t\t\t\t\t|\t\t\t\t\t| \n" +
-                        "Spielanleitung\t\t| Hilfe \t\t\t| Ruft diese Anleitung auf. \n" +
-                        "Weitere Befehle\t\t| Befehle \t\t\t| Zeigt weitere Befehle an, die im Lauf des Spiels nützlich sein könnten. \n" +
-                        "\nGroß-/Kleinschreibung wird ignoriert. Copy-paste ist hilfreich. \n" +
+                        "Status anzeigen\t\t| (S)tatus\t\t\t| Zeigt den Stand von Lebens- und Magiepunkten an.\n" +
+                        "Raum ansehen\t\t| (R)aum \t\t\t| Zeigt erneut Namen und Beschreibung des aktuellen Raums an. \n" +
+                        "Zauberbuch\t\t\t| (Z)auber\t\t\t| Listet die von dir gelernten Zauber auf, nutze sie im Kampf.\n" +
+                        "Alchemiezutaten\t\t| (A)lchemie\t\t| Zeigt deine alchemistischen Zutaten an, braue Tränke aus ihnen. \n" +
+                        "Trankgurt\t\t\t| (T)ränke\t\t\t| Zeigt deine Tränke an, nutze sie AUSSERHALB des Kampfes per \"v.[Trank]\".\n" +
+                        "\t\t\t\t\t|\t\t\t\t\t| \n" +
+                        "Spielanleitung\t\t| (H)ilfe \t\t\t| Ruft diese Anleitung auf. \n" +
+                        "Kampftutorial\t\t| Kampf \t\t\t| Ruft die Anleitung zum Kampfsystem auf. \n" +
+                        //"Alchemietutorial\t| AlcheTut \t\t\t| Ruft die Anleitung zum Alchemiesystem auf. \n" +
+                        //"Weitere Befehle\t\t| Befehle \t\t\t| Zeigt weitere Befehle an, die im Lauf des Spiels nützlich sein könnten. \n" +
+                        "\t\t\t\t\t|\t\t\t\t\t| \n" +
+                        "Mitwirkende\t\t\t| Credits \t\t\t| Zeigt die Mitwirkenden. \n" +
+                        "Beenden\t\t\t\t| Ende \t\t\t\t| Beendet das Spiel. \n" +
+                        "\nGroß-/Kleinschreibung wird ignoriert, außer bei Zauber- und Beschwörungsformeln. Copy-paste ist hilfreich. \n" +
                         "============================================================================================================= \n"
         );
     }
 
+    /*
     public static void help2() {
         System.out.println(
                 "\n============================================================================================================= \n" +
@@ -59,27 +76,30 @@ public class Story {
                         "Handlung\t\t\t| Eingabe\t\t\t| Effekt \n" +
                         "------------------------------------------------------------------------------------------------------------- \n" +
                         "Status anzeigen\t\t| (S)tatus\t\t\t| Zeigt den Stand von Lebens- und Magiepunkten an.\n" +
-                        "Zauberbuch\t\t\t| (Z)auber\t\t\t| Listet die von dir gelernten Zauber auf.\n" +
-                        //"Tranktasche\t\t\t| (T)ränke\t\t\t| Zeigt deine Tränke an.\n" +
-                        //"Alchemiezutaten\t\t| (A)lchemie\t\t| Zeigt deine alchemistischen Zutaten an. \n" +
                         "Raum ansehen\t\t| (R)aum \t\t\t| Zeigt erneut Namen und Beschreibung des aktuellen Raums an. \n" +
+                        "Zauberbuch\t\t\t| (Z)auber\t\t\t| Listet die von dir gelernten Zauber auf, nutze sie im Kampf.\n" +
+                        "Alchemiezutaten\t\t| (A)lchemie\t\t| Zeigt deine alchemistischen Zutaten an, braue Tränke aus ihnen. \n" +
+                        "Trankgurt\t\t\t| (T)ränke\t\t\t| Zeigt deine Tränke an, nutze sie AUSSERHALB des Kampfes.\n" +
+                        //"trinke Trank\n\n| t.[Trank]\t\t\t| Trinkt einen Trank bzw. flößt ihn einem deiner Dämonen ein." +
                         "\t\t\t\t\t|\t\t\t\t\t| \n" +
-                        "Zauber lernen\t\t| (L)ernen \t\t\t| Lernt einen neuen Zauber anhand einer Formel. \n" +
-                        "Dämon binden\t\t| (B)inden \t\t\t| Zwingt einen neuen Dämon in deinen Dienst. \n" +
-                        "\t\t\t\t\t|\t\t\t\t\t| \n" +
+                        //"Zauber lernen\t\t| (L)ernen \t\t\t| Lernt einen neuen Zauber anhand einer Formel. \n" +
+                        //"Dämon binden\t\t| (B)inden \t\t\t| Zwingt einen neuen Dämon in deinen Dienst. \n" +
+                        //"\t\t\t\t\t|\t\t\t\t\t| \n" +
                         "Kampftutorial\t\t| KampfTut \t\t\t| Ruft die Anleitung zum Kampfsystem auf. \n" +
                         //"Alchemietutorial\t| AlcheTut \t\t\t| Ruft die Anleitung zum Alchemiesystem/Kombinierbefehl auf. \n" +
-                        "\t\t\t\t\t|\t\t\t\t\t| \n" +
+                        //"\t\t\t\t\t|\t\t\t\t\t| \n" +
                         //"Inventar aufräumen\t| Cleanup\t\t\t| Führt doppelte Einträge in Inventar/Alchemiebeutel zusammen.\n" +
                         //"\t\t\t\t\t|\t\t\t\t\t| (Falls dies je nötig ist, ist etwas schiefgelaufen.)\n" +
                         //"\t\t\t\t\t|\t\t\t\t\t| NOCH FEHLERHAFT!\n" +
                         //"\t\t\t\t\t|\t\t\t\t\t| \n" +
                         "Mitwirkende\t\t\t| Credits \t\t\t| Zeigt die Mitwirkenden. \n" +
                         "Beenden\t\t\t\t| Ende \t\t\t\t| Beendet das Spiel. \n" +
-                        "\nGroß-/Kleinschreibung wird ignoriert, außer beim Binden und Lernen. Copy-paste ist hilfreich. \n" +
+                        "\nGroß-/Kleinschreibung wird ignoriert, außer bei Zauber- und Beschwörungsformeln. Copy-paste ist hilfreich. \n" +
                         "============================================================================================================= \n"
         );
     }
+
+     */ //Methode für weitere Befehle
 
     public static void helpBattle() {
         System.out.println(
@@ -89,7 +109,7 @@ public class Story {
                         "Zu Beginn des Kampfes beschwörst du einen Dämon. Wenn du am Zug bist, wird eine Liste mit Optionen angezeigt. \n" +
                         "Oben stehen die Fähigkeiten des Dämons, unter der gestrichelten Linie die Möglichkeiten von Maleficarius. \n" +
                         "Nach deinem Dämon sind die Gegner an der Reihe. Soll Maleficarius handeln, kann er dies vor dem Dämon tun, \n" +
-                        "ohne dass dessen Zug verfällt. Zauber kosten MP, Maleficarius sollte sie also mit Bedacht einsetzen.\n\n" +
+                        "ohne dass dessen Zug verfällt. Einen Zauber zu wirken, kostet MP.\n\n" +
 
                         "Beispiel: \n\n" +
                         "100/100 HP \t\t50/50 MP \t(Dämon-Lebenspunkte und Maleficarius' Magiepunkte)\n" +
@@ -99,7 +119,7 @@ public class Story {
                         "[3] Fähigkeit 2\t\t\t\t(Dämon)\n" +
                         "------------------------\n" +
                         "[4] Hexerei\t\t\t\t(Maleficarius) \n" +
-                        //"[X] Trank\t\t\t\t(Maleficarius) \n" +
+                        //"[X] Trank\t\t\t\t(Maleficarius) \n" +        //Tränke nur außerhalb von Kämpfen nutzen!
                         "[5] Beschwören\t\t\t(Maleficarius) \n\n" +
 
                         "Du kannst auch einen neuen Dämon beschwören, anschließend sind aber zuerst die Gegner an der Reihe. \n" +
@@ -117,17 +137,18 @@ public class Story {
     public static void helpAlchemy() {
         System.out.println(
                 "\n============================================================================================================= \n" +
-                        /*"ALCHEMIE \n" +
+                        "ALCHEMIE \n" +
                         "Mit dem Befehl \"Kombinieren\" (k.[Item 1].[Item 2]) verwendest zu zwei Gegenstände miteinander. \n" +
                         "Dies könnte mit allen möglichen Gegenständen im Inventar funktionieren, insbesondere aber mit Alchemiezutaten. \n" +
-                        "Heiltränke werden vorwiegend aus roten Zutaten gebraut, Manatränke aus blauen. \n" +
-                        "Probiere alles Mögliche aus! \n" + */
-                        "\nALCHEMIESYSTEM VORERST ZURÜCKGESTELLT! \n" +
+                        "Kombiniere rote Zutaten für Heiltränke, blaue für Manatränke. \n" +
+                        "Probiere alles Mögliche aus! \n\n" +
+                        "Tränke kannst du AUSSERHALB VON KÄMPFEN einsetzen. \n" +
+                        /*"\nALCHEMIESYSTEM VORERST ZURÜCKGESTELLT! \n" +
                         "1) Langweiliges Konzept: Jede Zutat kann aktuell nur zu genau einem Zweck verwendet werden.\n" +
                         "2) Umsetzung erfordert vergleichweise viel Arbeit.\n" +
                         "3) Heilung und Manaregeneration durch schwarze Magie wirkt interessanter, als einfach nen Trank in den Kopp zu kippen." +
                         "4) Tränke wirken neben diesem Zaubersystem redundant.\n" +
-                        "-> Bereits geschriebenen Code drinlassen und bei guten Ideen wieder aktivieren.\n"+
+                        "-> Bereits geschriebenen Code drinlassen und bei guten Ideen wieder aktivieren.\n"+ */
                         "============================================================================================================= \n"
 
         );

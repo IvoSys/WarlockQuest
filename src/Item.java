@@ -76,8 +76,6 @@ public abstract class Item {
 
 }
 
-
-
 /*
 Je zwei unterschiedliche Items mit gleicher combiID =! 0 ergeben
 

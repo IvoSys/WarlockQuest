@@ -62,10 +62,10 @@ public class WorldBuilder {
 
 
     //BESCHWÖRUNGSFORMELN
-    static ItemEvoc evoc00 = new ItemEvoc("Beschwörungsformel des Daimon", Story.riddleDem00);
-    static ItemEvoc evoc01 = new ItemEvoc("Beschwörungsformel des NAME", Story.riddleDem01);
-    static ItemEvoc evoc02 = new ItemEvoc("Beschwörungsformel des NAME", Story.riddleDem02);
-    static ItemEvoc evoc03 = new ItemEvoc("Beschwörungsformel des NAME", Story.riddleDem03);
+    static ItemEvoc evoc00 = new ItemEvoc("Beschwörungsformel des Daimon", Story.riddleDem00, "Daimon");
+    static ItemEvoc evoc01 = new ItemEvoc("Beschwörungsformel des NAME", Story.riddleDem01, "");
+    static ItemEvoc evoc02 = new ItemEvoc("Beschwörungsformel des NAME", Story.riddleDem02, "");
+    static ItemEvoc evoc03 = new ItemEvoc("Beschwörungsformel des NAME", Story.riddleDem03, "");
 
     //DÄMONEN
     static DemonKind1 dem01 = new DemonKind1("", Story.trueNameDem01, Story.whenSummonedDem01, Story.whenBoundDem01);
@@ -76,22 +76,21 @@ public class WorldBuilder {
 
 
     //ALCHEMIEZUTATEN
-    /*
     static ItemIngred alch11 = new ItemIngred("Molchauge", "Molchaugen", "Feine Blutgefäße ziehen sich in unruhigen Fäden durch den Augapfel.", 1);
     static ItemIngred alch12 = new ItemIngred("Glutorchidee", "Glutorchideen", "Rein optisch wird diese empfindliche Blüte ihrem Namen gerecht.", 1);
     static ItemIngred alch21 = new ItemIngred("Mondbeere", "Mondbeeren", "Eisblaue Früchte, die den Geist erfrischen.", 2);
     static ItemIngred alch22 = new ItemIngred("Mitternachtskraut", "Bund Mitternachtskraut", "Fahlblaue Blätter, die sich lieber dem Mondlicht als der Sonne zuwenden.", 2);
-    */
+
 
     //TRÄNKE
-    static Potion pot01 = new PotionHealth("Heiltrank", "Heiltränke", "Ein rot strahlender Trank, stellt 50 HP wiederher.", 50, 10);
-    static Potion pot02 = new PotionMana("Manatrank", "Manatränke", "Ein blau schimmernder Trank, stellt 25 MP wiederher.", 25, 20);
+    static ItemPotion potHealth01 = new ItemPotionHealth("Heiltrank", "Ein rot strahlender Trank, stellt 60 HP wiederher.", 60, 11);
+    static ItemPotion potMana01 = new ItemPotionMana("Manatrank", "Ein blau schimmernder Trank, stellt 30 MP wiederher.", 30, 22);
 
 
     //SCHRIFTROLLEN
-    static ItemScroll scrollAderlass = new ItemScroll("Zauberschriftrolle \"Aderlass\"", Story.riddleBloodletting);
-    static ItemScroll scrollLebenslinie = new ItemScroll("Zauberschriftrolle \"Lebenslinie\"", Story.riddleLifeline);
-    static ItemScroll scrollSeelendieb = new ItemScroll("Zauberschriftrolle \"Seelendieb\"", Story.riddleSoulreaper);
+    static ItemScroll scrollAderlass = new ItemScroll("Zauberschriftrolle \"Aderlass\"", Story.riddleBloodletting, "Aderlass");
+    static ItemScroll scrollLebenslinie = new ItemScroll("Zauberschriftrolle \"Lebenslinie\"", Story.riddleLifeline, "Lebenslinie");
+    static ItemScroll scrollSeelendieb = new ItemScroll("Zauberschriftrolle \"Seelendieb\"", Story.riddleSoulreaper, "Seelendieb");
 
     //ZAUBER
     static Spell bloodletting = new SpellBloodletting("Aderlass", Story.descBloodletting, "123", "", 10, 10, false);
@@ -102,17 +101,19 @@ public class WorldBuilder {
     static ArrayList<Spell> freeSpells = new ArrayList<>(Arrays.asList(allSpells));
 
     //KEY-ITEMS
-    //static ItemKey bag = new ItemKey("Alchemiebeutel", "Ein samtener Beutel, in dem du all deine alchemistischen Zutaten aufbewahrst: \n", 0, 0);
-    static ItemKey book = new ItemKey("Zauberbuch", "Ein ledergebundener Foliant, in dem all deine Zauber verzeichnet sind: \n", 0, 0);
-    static ItemKey bookBlackArts = new ItemKey("\"Die schwarzen Künste\"", "Das Standardwerk über Hexerei und Dämonologie, verfasst von Meister Maleficarius Liebwerk: \n[…] Zauber werden mittels Schriftrollen erlernt und können bis zur geistigen Erschöpfung gewirkt werden. \n[…] Tränke werden mit Verabreichung verbraucht und entfalten unvergleichliche Wirkungen, selbst bei Dämonen. \n[…] Spricht man den wahren Namen eines Dämonen deulich aus, zwingt man ihn in seinen Dienst. Doch Obacht, er wird dies nicht schätzen!", 0, 0);
+    static ItemKey bagAlche = new ItemKey("Alchemiebeutel", "Ein samtener Beutel, in dem du all deine alchemistischen Zutaten aufbewahrst: \n", 0, 0);
+    static ItemKey bagPotions = new ItemKey("Trankgurt", "Ein System aus Lederriemen, mit denen du Trankfläschchen am Gürtel befestigen kannst. \n", 0, 0);
+    static ItemKey bookSpells = new ItemKey("Zauberbuch", "Ein ledergebundener Foliant, in dem all deine Zauber verzeichnet sind: \n", 0, 0);
+    static ItemKey bookBlackArts = new ItemKey("\"Die schwarzen Künste\"", "Das Standardwerk über Hexerei, Alchemie und Dämonologie in drei Bänden, verfasst von Meister Maleficarius Liebwerk: \n[…] Zauber werden mittels Schriftrollen erlernt und können bis zur geistigen Erschöpfung gewirkt werden. \n[…] Tränke werden mit Verabreichung verbraucht und entfalten unvergleichliche Wirkungen, selbst bei Dämonen. \n[…] Spricht man den wahren Namen eines Dämonen deulich aus, zwingt man ihn in seinen Dienst. Doch Obacht, er wird dies nicht schätzen!", 0, 0);
     static ItemKey key000 = new ItemKey("Zellenschlüssel", "Ein rostiger Klumpen von Schlüssel.", -1, 0);
     static ItemKey key999 = new ItemKey("Goldklumpen", "Alechimistisch betrachtet wertlos.", 0, 0);
 
     //Startitems
     public static void giveStartItems() {
         Player.inv.add(bookBlackArts);
-        Player.inv.add(book);
-        //Player.inv.add(bag);
+        Player.inv.add(bookSpells);
+        Player.inv.add(bagAlche);
+        Player.inv.add(bagPotions);
         Player.inv.add(evoc00);
     }
 

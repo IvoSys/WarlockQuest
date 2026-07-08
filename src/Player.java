@@ -8,7 +8,7 @@ public class Player {
 
     static ArrayList<Item> inv = new ArrayList<>();
     static ArrayList<Spell> spellbook = new ArrayList<>();
-    static ArrayList<Potion> potions = new ArrayList<>();
+    static ArrayList<ItemPotion> potions = new ArrayList<>();
     static ArrayList<Demon> team = new ArrayList<>();
     static int counterKO;
     static Demon activeDemon;
@@ -61,7 +61,7 @@ public class Player {
     public static void showInv() {
         System.out.println("=============INVENTAR==============");
         for (Item i : inv) {
-            if (i instanceof ItemIngred)
+            if ((i instanceof ItemIngred) || (i instanceof ItemPotion))
                 continue;
             System.out.printf("· %s ", i.name);
             if (i.num > 1)
@@ -82,8 +82,7 @@ public class Player {
             }
         }
         if (empty) {
-            //System.out.println("Keine einzige Zutat.");
-            System.out.println("ALCHEMIESYSTEM VORERST ZURÜCKGESTELLT.");
+            System.out.println("Keine einzige Zutat.");
         }
         System.out.println("===================================");
     }
@@ -107,15 +106,16 @@ public class Player {
 
     public static void showPotions() {
         boolean empty = true;
-        System.out.println("=============TRANKTASCHE============");
-        for (Potion i : potions) {
-            System.out.printf("· \t%s \n", i.name);
-            System.out.printf("\t%s \n", i.desc);
-            empty = false;
+        System.out.println("===============TRÄNKE===============");
+        for (Item i : inv) {
+            if (i instanceof ItemPotion) {
+                System.out.printf("· \t%s \n", i.name);
+                System.out.printf("\t%s \n", i.desc);
+                empty = false;
+            }
         }
         if (empty) {
-            //System.out.println("Kein einziger Trank.");
-            System.out.println("TRANKSYSTEM VORERST ZURÜCKGESTELLT.");
+            System.out.println("Kein einziger Trank.");
         }
         System.out.println("====================================");
     }
@@ -125,9 +125,11 @@ public class Player {
         for (Item i : inv) {
             if (input.contains(i.name.toLowerCase())) {
                 System.out.println(i.desc);
-                //if (i == WorldBuilder.bag)
-                //    showIngredients();
-                if (i == WorldBuilder.book)
+                if (i == WorldBuilder.bagAlche)
+                    showIngredients();
+                if (i == WorldBuilder.bagPotions)
+                    showPotions();
+                if (i == WorldBuilder.bookSpells)
                     showSpells();
                 found = true;
                 break;
@@ -170,10 +172,10 @@ public class Player {
                 } else {
 
                     // Items erzeugen und Zutaten verbrauchen
-                    if (item1.combiID == 1) {               // 2x id 1 -> Heiltrank
-                        Potion.obtainPotion(WorldBuilder.pot01);
-                    } else if (item1.combiID == 2) {        // 2x id 2 -> Manatrank
-                        Potion.obtainPotion(WorldBuilder.pot02);
+                    if (item1.combiID == 1) {               // 2x id 1 -> Heiltrank (id 11)
+                        Item.obtainItem(WorldBuilder.potHealth01);
+                    } else if (item1.combiID == 2) {        // 2x id 2 -> Manatrank (id 22)
+                        Item.obtainItem(WorldBuilder.potMana01);
 
                         boolean successConsumeItem1 = Item.consumeItem(item1);
                         boolean successConsumeItem2 = Item.consumeItem(item2);

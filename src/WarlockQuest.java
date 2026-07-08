@@ -58,11 +58,24 @@ public class WarlockQuest {
                 if (inputSplit[0].equals("n") || inputSplit[0].equals("nimm") || inputSplit[0].contains("nehm")){
                     Player.room.loot(inputSplit[1]);                                                                    // Nimm Item
                 } else if (inputSplit[0].equals("v") || inputSplit[0].equals("verwende") || inputSplit[0].contains("nutze")) {
-                    Room.solve(inputSplit[1]);                                                                          // Verwende Item
+                    if (inputSplit[1].contains("trank")) {
+                        ItemPotion.drink(inputSplit[1]);                                                                // Trinke Trank
+                        System.out.println("Coming Soon: Trank trinken");
+                    } else if (inputSplit[1].contains("zauberschriftrolle")) {
+                        ItemScroll.learn();                                                                             // Lerne Zauber
+                        System.out.println("Coming Soon: Zauber lernen");
+                    } else if (inputSplit[1].contains("beschwörungsformel")) {
+                        ItemEvoc.bind();                                                                                // Binde Dämon
+                        System.out.println("Coming Soon: Dämon binden");
+                    } else {
+                        Room.solve(inputSplit[1]);                                                                      // Verwende Item
+                    }
                 } else if (inputSplit[0].equals("u") || inputSplit[0].contains("such") || inputSplit[0].equals("prüf")) {
                     Player.checkItem(inputSplit[1]);                                                                    // Untersuche Item
                 } else if (inputSplit[0].equals("k") || inputSplit[0].contains("kombi")) {
                     Player.combineItems(inputSplit[1], inputSplit[2]);                                                  // Kombiniere Items
+                //} else if (inputSplit[0].contains("trink")) {
+                    //ItemPotion.drink(inputSplit[1]);                                                                  // (Trank trinken)
                 } else if (inputSplit[0].equals("g") || inputSplit[0].contains("geh")){
                     Player.move(inputSplit[1]);                                                                         // Bewegen
                 } else {
@@ -78,20 +91,20 @@ public class WarlockQuest {
                 Player.showIngredients();                                                                               // Alchemiezutaten
             } else if (input.equals("r") || input.equals("raum")){
                 Room.describe();                                                                                        // Raum ansehen
-            } else if (input.equals("l") || input.equals("lernen")){
-                ItemScroll.learn();                                                                                     // Zauber lernen
-            } else if (input.equals("b") || input.equals("binden")){
-                Demon.bind();                                                                                           // Dämon binden
-            } else if (input.equals("hilfe")){
+            //} else if (input.equals("l") || input.equals("lernen")){
+            //    ItemScroll.learn();                                                                                   // Zauber lernen
+            //} else if (input.equals("b") || input.equals("binden")){
+            //    Demon.bind();                                                                                         // Dämon binden
+            } else if (input.equals("h") || input.equals("hilfe")){
                 Story.help();                                                                                           // Hilfe
-            } else if (input.equals("befehle")){
-                Story.help2();                                                                                          // weitere Befehle (Inventar aufräumen)
-            } else if (input.equals("kampftut")){
+            //} else if (input.equals("befehle")){
+            //    Story.help2();                                                                                        // weitere Befehle
+            } else if (input.equals("kampf")){
                 Story.helpBattle();                                                                                     // Kampftutorial
-            } else if (input.equals("alchetut")){
-                Story.helpAlchemy();                                                                                    // Alchemietutorial
-            } else if (input.equals("cleanup")){
-                Player.cleanUpInv();                                                                                    // Inventar aufräumen
+            //} else if (input.equals("alchetut")){
+            //    Story.helpAlchemy();                                                                                  // Alchemietutorial
+            //} else if (input.equals("cleanup")){
+            //    Player.cleanUpInv();                                                                                  // Inventar aufräumen
             } else if (input.equals("credits")) {
                 credits();                                                                                              // Credits
             } else if (input.equals("ende")){
