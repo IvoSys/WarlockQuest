@@ -26,11 +26,11 @@ public class Story {
 
     public static void help() {
         System.out.println(
-                "\n============================================================================================================= \n" +
+                "\n=================================================== BEFEHLE ================================================================ \n" +
                         "BEFEHLE \n" +
                         "Immer, wenn \"Zeit zu handeln!\" angezeigt wird, können folgende Befehle genutzt werden: \n\n" +
                         "Handlung\t\t\t| Eingabe\t\t\t| Effekt \n" +
-                        "------------------------------------------------------------------------------------------------------------- \n" +
+                        "---------------------------------------------------------------------------------------------------------------------------- \n" +
                         "Daimon fragen\t\t| (D)aimon \t\t\t| Bittet das Teufelchen auf deiner Schulter um Hilfe. \n" +
                         "\t\t\t\t\t|\t\t\t\t\t| \n" +
                         "Inventar zeigen\t\t| (I)tems\t\t\t| Zeigt an, welche Gegenstände du besitzt (ohne alchemistische Zutaten). \n" +
@@ -40,13 +40,13 @@ public class Story {
                         "\t\t\t\t\t|\t\t\t\t\t| \tVerwende Zauberschriftrollen, um einen neuen Zauber zu lernen.\n" +
                         "\t\t\t\t\t|\t\t\t\t\t| \tVerwende Beschwörungsformeln, um einen Dämon in deinen Dienst zu zwingen.\n" +
                         "\t\t\t\t\t|\t\t\t\t\t| \tVerwende sonstige Items (Schlüssel usw.), um sie im aktuellen Raum anzuwenden.\n" +
-                        "Kombiniere Items\t| K.[Item].[Item]\t| Kombiniert zwei Items aus dem Inventar miteinander. \n" +
-                        "\t\t\t\t\t|\t\t\t\t\t| \tZ. B. \"k.blaue Farbe.gelbe Farbe\" -> Maleficarius erhält grüne Farbe. \n" +
+                        "Kombiniere Items\t| K.[Item].[Item]\t| Kombiniert zwei Items aus dem Inventar miteinander, \n" +
+                        "\t\t\t\t\t|\t\t\t\t\t| \tz. B. \"k.blaue Farbe.gelbe Farbe\" -> Maleficarius erhält grüne Farbe. \n" +
                         "\t\t\t\t\t|\t\t\t\t\t| \tAuf gleiche Weise kannst du aus Alchemiezutaten Tränke brauen: \n" +
                         "\t\t\t\t\t|\t\t\t\t\t| \tKombiniere rote Zutaten für Heiltränke, blaue für Manatränke.\n" +
                         "\t\t\t\t\t|\t\t\t\t\t| \n" +
                         "Gehe in Richtung\t| G.[Richtung]\t\t| Versucht, den aktuellen Ort in gewählter Richtung zu verlassen. \n" +
-                        "(Raum wechseln)\t\t|\t\t\t\t\t| \tRichtungen: Nord (N), Ost (O), Süd (S), West (W), hoch (h), runter (r) \n" +
+                        "(Raum wechseln)\t\t|\t\t\t\t\t| \tRichtungen: Nord (N), Ost (O), Süd (S), West (W), hoch (h), runter (r), \n" +
                         "\t\t\t\t\t|\t\t\t\t\t| \tz. B. \"Gehe.Norden\" oder einfach \"g.n\" \n" +
                         "\t\t\t\t\t|\t\t\t\t\t| \n" +
                         "Status anzeigen\t\t| (S)tatus\t\t\t| Zeigt den Stand von Lebens- und Magiepunkten an.\n" +
@@ -58,14 +58,47 @@ public class Story {
                         "\t\t\t\t\t|\t\t\t\t\t| \n" +
                         "Spielanleitung\t\t| (H)ilfe \t\t\t| Ruft diese Anleitung auf. \n" +
                         "Kampftutorial\t\t| Kampf \t\t\t| Ruft die Anleitung zum Kampfsystem auf. \n" +
-                        //"Alchemietutorial\t| AlcheTut \t\t\t| Ruft die Anleitung zum Alchemiesystem auf. \n" +
-                        //"Weitere Befehle\t\t| Befehle \t\t\t| Zeigt weitere Befehle an, die im Lauf des Spiels nützlich sein könnten. \n" +
+                        "Rätselhilfe\t\t\t| Rätsel \t\t\t| Wenn du beim Lernen von Zaubern oder Binden von Dämonen nicht weiterkommst. \n" +
                         "\t\t\t\t\t|\t\t\t\t\t| \n" +
                         "Mitwirkende\t\t\t| Credits \t\t\t| Zeigt die Mitwirkenden. \n" +
                         "Beenden\t\t\t\t| Ende \t\t\t\t| Beendet das Spiel. \n" +
                         "\nGroß-/Kleinschreibung wird ignoriert, außer bei Zauber- und Beschwörungsformeln. Copy-paste ist hilfreich. \n" +
-                        "============================================================================================================= \n"
+                        "========================================================================================================================= \n"
         );
+    }
+
+    public static void hints() {
+        System.out.println(
+                "\n============================================ HINWEISE ZU RÄTSELN ============================================\n" +
+
+                "==============================================================================================================="
+        );
+    }
+
+    public static void answers() {
+        System.out.println("\n======================================= LÖSUNGEN DER RÄTSEL =======================================\n");
+        System.out.print("Dämonen\n");
+        System.out.print("Dämon 1: \t");
+        System.out.println(trueNameDem01);
+        System.out.print("Dämon 2: \t");
+        System.out.println(trueNameDem02);
+        System.out.print("Dämon 3: \t");
+        System.out.println(trueNameDem03);
+        System.out.println();
+        System.out.print("Zauber");
+        System.out.print("Aderlass: \t\t");
+        System.out.println(formulaBloodletting);
+        System.out.print("Eiserne Jungfrau: \t\t");
+        System.out.println(formulaIronMaiden);
+        System.out.print("Lebenslinie: \t\t");
+        System.out.println(formulaLifeline);
+        System.out.print("Seelendieb: \t\t");
+        System.out.println(formulaSoulreaper);
+        System.out.print("Üble Saat: \t\t");
+        System.out.println(formulaViciousSeed);
+        System.out.print("Untergang: \t\t");
+        System.out.println(formulaDoom);
+        System.out.println("\n=================================================================================================== \n");
     }
 
     /*
@@ -87,8 +120,7 @@ public class Story {
 
     public static void helpBattle() {
         System.out.println(
-                "============================================================================================================= \n" +
-                        "KAMPF \n" +
+                "================================================= KAMPFTUTORIAL ================================================= \n" +
                         "Maleficarius lässt einen Dämonen für sich kämpfen und unterstützt ihn mit Hexerei. \n" +
                         "Zu Beginn des Kampfes beschwörst du einen Dämon. Wenn du am Zug bist, wird eine Liste mit Optionen angezeigt. \n" +
                         "Oben stehen die Fähigkeiten des Dämons, unter der gestrichelten Linie die Möglichkeiten von Maleficarius. \n" +
@@ -109,7 +141,6 @@ public class Story {
                         "[3] Fähigkeit 2\t\t\t\t(Dämon)\n" +
                         "------------------------\n" +
                         "[4] Hexerei\t\t\t\t(Maleficarius) \n" +
-                        //"[X] Trank\t\t\t\t(Maleficarius) \n" +        //Tränke nur außerhalb von Kämpfen nutzen!
                         "[5] Beschwören\t\t\t(Maleficarius) \n\n" +
 
                         "Du kannst auch einen neuen Dämon beschwören, anschließend sind aber zuerst die Gegner an der Reihe. \n" +
@@ -120,27 +151,7 @@ public class Story {
                         "Fallen die HP eines Dämons auf 0, kannst du einen neuen beschwören. \n" +
                         "Nach dem Kampf erhalten besiegte Dämonen 1 HP zurück. \n" +
                         "Wurden alle deine Dämonen besiegt, ist Maleficarius' Ende gekommen.\n" +
-                        "============================================================================================================= \n"
-        );
-    }
-
-    public static void helpAlchemy() {
-        System.out.println(
-                "\n============================================================================================================= \n" +
-                        "ALCHEMIE \n" +
-                        "Mit dem Befehl \"Kombinieren\" (k.[Item 1].[Item 2]) verwendest zu zwei Gegenstände miteinander. \n" +
-                        "Dies könnte mit allen möglichen Gegenständen im Inventar funktionieren, insbesondere aber mit Alchemiezutaten. \n" +
-                        "Kombiniere rote Zutaten für Heiltränke, blaue für Manatränke. \n" +
-                        "Probiere alles Mögliche aus! \n\n" +
-                        "Tränke kannst du AUSSERHALB VON KÄMPFEN einsetzen. \n" +
-                        /*"\nALCHEMIESYSTEM VORERST ZURÜCKGESTELLT! \n" +
-                        "1) Langweiliges Konzept: Jede Zutat kann aktuell nur zu genau einem Zweck verwendet werden.\n" +
-                        "2) Umsetzung erfordert vergleichweise viel Arbeit.\n" +
-                        "3) Heilung und Manaregeneration durch schwarze Magie wirkt interessanter, als einfach nen Trank in den Kopp zu kippen." +
-                        "4) Tränke wirken neben diesem Zaubersystem redundant.\n" +
-                        "-> Bereits geschriebenen Code drinlassen und bei guten Ideen wieder aktivieren.\n"+ */
-                        "============================================================================================================= \n"
-
+                        "======================================================================================================= \n"
         );
     }
 
@@ -148,7 +159,7 @@ public class Story {
         System.out.println(
                 "\"Malefiz, alter Halunke, da hast du dir aber was eingebrockt! \n" +
                         "Kein Wunder, dass ein Griesgram wie du irgendwann im Kerker endet.\" \n\n" +
-                        "Daimon, dein persönliches Teufelchen, erscheint auf deiner Schulter \n" +
+                        "Daimon, dein persönliches Teufelchen, hockt betont lässig auf deiner Schulter  \n" +
                         "und spielt schelmisch mit seiner Schwanzspitze. \n"
         );
         do {
@@ -204,29 +215,10 @@ public class Story {
                 System.out.println("DAIMON: \"Ein Teil von jener Kraft, die stets das Böse will und stets das Gute schafft.\"");
                 break;
             case "3":
-                System.out.println("DAIMON: \"Ach, auf einmal hast du's eilig und willst meine Hilfe, was? \nNa gut, bin ja nicht so ein Sauertopf wie du …\" \n\nDaimon schlüpft durch die Gitterstäbe und fingert den Schlüssel aus dem Gürtelring \ndes Wärters, der dies mit verschlafenem Grunzen quittiert. Dann kehrt das Teufelchen \nzu dir zurück, dreht noch einmal um, verknotet dem Wärter die Schnürsenkel, \nschlüpft zurück in die Zelle und hält dir den Schlüssel unter die Nase. \nDAIMON: \"Da!\"\n");
-                Player.inv.add(Player.room.reward);
-                System.out.printf("Du erhältst den %s. \n\n", Player.room.reward.name);
+                System.out.println("DAIMON: \"Ach, auf einmal hast du's eilig und willst meine Hilfe, was? \nNa gut, bin ja nicht so ein Sauertopf wie du …\" \n\nDaimon schlüpft durch die Gitterstäbe und fingert den Schlüssel aus dem Gürtelring \ndes Wärters, der dies mit verschlafenem Grunzen quittiert. Dann kehrt das Teufelchen \nzu dir zurück, dreht noch einmal um, verknotet dem Wärter die Schnürsenkel, \nhuscht zurück in die Zelle und hält dir den ZELLENSCHLÜSSEL unter die Nase. \nDAIMON: \"Da, nimm!\"\n");
+                Player.room.loot.add(Player.room.reward);
                 Player.room.reward = null;
-                WorldBuilder.castle[0][0][0].dummyLoot = null;
-                System.out.println("DAIMON: \"Und jetzt lächle und sag brav danke.\"");
-                System.out.println(
-                        "Wähle eine Antwort: \n" +
-                                "[1]\t … \n" +
-                                "[2]\t … danke. "
-                );
-                System.out.print("> ");
-                input = sc.nextLine().toLowerCase().trim();
-                switch (input) {
-                    case "1":
-                        System.out.println("DAIMON: \"Meh, was hab ich erwartet.\"\n");
-                        break;
-                    case "2":
-                        System.out.println("DAIMON: \"Na, das hat doch gar nicht weh getan!\"\n");
-                        break;
-                    default:
-                        System.out.println(daimonDidNotUnderstand);
-                }
+                WorldBuilder.castle[0][0][0].notLoot.remove("zellenschlüssel");
                 break;
             case "4":
                 if (refuseViolence == 0) {
@@ -244,13 +236,36 @@ public class Story {
         }
     }
 
+    public static void solved000Comment(){
+        System.out.println("DAIMON: \"Und jetzt lächle und sag brav danke.\"");
+        System.out.println(
+                "Wähle eine Antwort: \n" +
+                        "[1]\t … \n" +
+                        "[2]\t … danke. "
+        );
+        System.out.print("> ");
+        input = sc.nextLine().toLowerCase().trim();
+        switch (input) {
+            case "1":
+                System.out.println("DAIMON: \"Meh, was hab ich erwartet.\"\n");
+                break;
+            case "2":
+                System.out.println("DAIMON: \"Na, das hat doch gar nicht weh getan!\"\n");
+                break;
+            default:
+                System.out.println(daimonDidNotUnderstand);
+        }
+    }
+
+
+
     //RAUM-BESCHREIBUNGEN UND DAIMON-KOMMENTARE
     //region
     static String desc000 = "Eine klamme Nische hinter Eisenstangen, gegenüber ein schnarchender Wärter mit einem Schlüssel am Gürtel. Klassiker. \nDie Tür nach Osten steht offen, aber erstmal musst du dich aus der Zelle befreien.";
     static String descSolved000 = "Eine klamme Nische hinter Eisenstangen, gegenüber ein schnarchender Wärter mit einem Schlüssel am Gürtel. Klassiker \nDie Zellentür nach Osten steht nun offen.";
     static String daimon000 = "DAIMON: \"Bei dem Schnarchen ist's nur eine Frage der Zeit, bis der Wärter die Gitterstäbe selbst durchgesägt hat …\"";
     static String daimonSolved000 = "DAIMON: \"Der Wärter ratzt einfach weiter …\"";
-    static String solved000 = "Mit rostigem Knarzen schwingt die Zellentür auf, \ndu kannst nach Osten aus der Zelle heraustreten.";
+    static String solved000 = "Mit rostigem Knarzen schwingt die Zellentür auf, \ndu kannst nach Osten aus der Zelle heraustreten.\n";
     static String desc001 = "Der Wachraum liefert guten Blick auf die westliche Zelle – wenn man wach bleibt. Durch die offene Tür im Osten kriecht ein kalter Zug.";
     static String descSolved001;
     static String daimon001 = "DAIMON: \"Sieh mal zu, dass du dein Zeug wiederbekommst. Die Königsgarde hat dir alles abgenommen, bevor man dich eingebuchtet hat.\"";
@@ -378,7 +393,7 @@ public class Story {
     static String daimon221 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
     static String daimonSolved221;
     static String solved221 = "Platzhalter unten in Story-Klasse";
-    static String desc222 = "*** Nebenan werden Encounter getestet ***";
+    static String desc222 = "*** Im Raum westlich werden Encounter getestet ***";
     static String descSolved222;
     static String daimon222 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
     static String daimonSolved222;
@@ -393,10 +408,10 @@ public class Story {
             "[…] Spricht man den wahren Namen eines Dämonen deulich aus, zwingt man ihn in seinen Dienst. Doch Obacht, er wird dies nicht schätzen!";
 
     //Rätsel Dämonen
-    static String riddleDem00 = "Diesen okkulten Text hast du vor einer Weile schon entschlüsselt. \nDer wahre Name des Daimon lautet: \n\033[3mAgathos Daímōn Týchē, Spritus benefactum\033[0m \n\nDAIMON: \"Nooohh, Malle, ich bin doch schon bei dir!\"\n\n… ob es so eine gute Idee war, diesen Plagegeist zu beschwören?";
+    static String riddleDem00 = "Diesen okkulten Text hast du vor einer Weile schon entschlüsselt. \nDer wahre Name des Daimon lautet: \n\033[3mGenius Daimonion, Spritus familiaris\033[0m \n\nDAIMON: \"Nooohh, Malle, ich bin doch schon bei dir!\"\n\n… ob es so eine gute Idee war, diesen Plagegeist zu beschwören?";
 
-    static String riddleDem01 = "";
-    static String trueNameDem01 = "";
+    static String riddleDem01 = "Hörst du es hallen, das schreckliche Gebrüll aus den Gängen? Wenn das Ungeheuer dich in die Irre führt, dann folge dem Geschenk deiner Geliebten: Soruatonim";
+    static String trueNameDem01 = "Minotauros";
 
     static String riddleDem02 = "";
     static String trueNameDem02 = "";

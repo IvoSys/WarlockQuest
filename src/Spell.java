@@ -16,7 +16,7 @@ public abstract class Spell {
         int counter = 1;
         int enemyIndex;
         for (Enemy e : Player.room.encounter.enemyTeam) {
-            System.out.printf("[%d] %s %s \t (%d/%d HP) \n", counter, e.job, e.name, e.hp, e.hpMax);
+            System.out.printf("[%d] %s %s \t (%d/%d HP) \n", counter, e.name, e.hp, e.hpMax);
             counter++;
         }
         enemyIndex = Battle.sc.nextInt() - 1;

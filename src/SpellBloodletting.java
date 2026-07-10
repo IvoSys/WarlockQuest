@@ -14,7 +14,7 @@ public class SpellBloodletting extends Spell{
     @Override
     public void cast() {
         int mpRestored = str;
-        Player.activeDemon.hp =- str;
+        Player.activeDemon.hp =-str;
         if (Player.activeDemon.hp < 0) {
             mpRestored =+ Player.activeDemon.hp;
             Player.activeDemon.hp = 0;

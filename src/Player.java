@@ -5,6 +5,7 @@ public class Player {
     static int mp = 50;
     static int mpMax = 50;
     static int spellpower = 10;
+    static int level = 1;
 
     static ArrayList<Item> inv = new ArrayList<>();
     static ArrayList<Spell> spellbook = new ArrayList<>();
@@ -51,9 +52,9 @@ public class Player {
         }
     }
 
-    public static void daimon() {                                //Zu nah an "Universalskript"?
+    public static void daimon() {                               //Zu nah an "Universalskript"?
         System.out.println(room.daimon);                        //Daimon-Kommentar für diesen Raum
-        if ((room.puzzleID == 0) && (room.reward != null)) {    //In bestimmten Räumen führt Daimon spezielle Methoden aus
+        if ((room.puzzleID == -1) && (room.reward != null)) {   //In bestimmten Räumen führt Daimon spezielle Methoden aus
             Story.getKey000();
         }
     }
@@ -89,15 +90,17 @@ public class Player {
 
     public static void showSpells() {
         boolean empty = true;
-        System.out.println("=============ZAUBERBUCH============");
+        System.out.println("=============ZAUBERBUCH============\n");
         for (Spell i : spellbook) {
-            System.out.printf("· \t%s \n", i.name);
-            System.out.printf("\tManakosten: %d, \tStärke: %d \n", i.mpCost, i.str);
+            System.out.printf("%s \n", i.name.toUpperCase());
+            System.out.printf("Manakosten: %d \tStärke: %d\n", i.mpCost, i.str);
             if (i.dur != 0)
-                System.out.printf("Dauer: %d Runden \t", i.dur);
+                System.out.printf("Dauer: %d Runden\t\t", i.dur);
             if (i.aoe)
-                System.out.print("Flächenwirkung");
-            System.out.printf("\n%s \n", i.desc);
+                System.out.print("Flächenwirkung ");
+            else
+                System.out.println();
+            System.out.printf("%s \n\n", i.desc);
             empty = false;
         }
         if (empty) {
@@ -175,9 +178,9 @@ public class Player {
 
                     // Items erzeugen und Zutaten verbrauchen
                     if (item1.combiID == 1) {               // 2x id 1 -> Heiltrank (id 11)
-                        Item.obtainItem(WorldBuilder.potHealth01);
+                        Item.obtainItem(WorldBuilder.potHealth1);
                     } else if (item1.combiID == 2) {        // 2x id 2 -> Manatrank (id 22)
-                        Item.obtainItem(WorldBuilder.potMana01);
+                        Item.obtainItem(WorldBuilder.potMana1);
 
                         boolean successConsumeItem1 = Item.consumeItem(item1);
                         boolean successConsumeItem2 = Item.consumeItem(item2);
@@ -209,6 +212,33 @@ public class Player {
 
     }
 
+    public static boolean levelUp() {
+        level++;
+        boolean alreadyMax = false;
+
+        switch (level) {
+            case 1: mpMax = 50; spellpower = 10; break;
+            case 2: mpMax = 65; mp = mpMax; spellpower = 13; break;
+            case 3: mpMax = 80; mp = mpMax; spellpower = 16; break;
+            case 4: mpMax = 100; mp = mpMax; spellpower = 20; break;
+            case 5: mpMax = 125; mp = mpMax; spellpower = 25; break;
+            default: level = 5; mpMax = 125; spellpower = 25; alreadyMax = true; break;
+        }
+
+        for (Demon d : team) {
+            d.toPlayerLevel();
+        }
+
+        if (alreadyMax) {
+            System.out.println("Maleficarius kann nicht mehr stärker werden.");
+        } else {
+            System.out.println("Maleficarius und seine Dämonen steigen auf Stufe " + level + " auf.");
+        }
+
+        return !alreadyMax;
+
+    }
+
     //Funktioniert noch nicht richtig!!!
     public static void cleanUpInv() {
         boolean merge;
@@ -224,6 +254,16 @@ public class Player {
             }
         }
         System.out.println("Gegenstände aufgeräumt.");
+    }
+
+    public static void cheatAllDemsAndSpells() {
+        for (Demon d : WorldBuilder.freeDem)
+            if (!Player.team.contains(d))
+                Player.team.add(d);
+        for (Spell s : WorldBuilder.freeSpells)
+            if (!Player.spellbook.contains(s))
+                Player.spellbook.add(s);
+        System.out.println("Und das mit Recht; denn alles was entsteht, \nIst wert, dass es zugrunde geht.");
     }
 
 

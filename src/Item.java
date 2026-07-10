@@ -83,15 +83,18 @@ Je zwei unterschiedliche Items mit gleicher combiID =! 0 ergeben
 
 
 ID      ZUTATEN                             PRODUKT         ID
-1       (rote Zutaten)                      Heiltrank       10
-2       (blaue Zutaten)                     Manatrank       20
-3
-4
-5
+1       rote Zutaten                        Heiltrank       11
+2       blaue Zutaten                       Manatrank       22
+3       gelbe
+4       blaue
+5       schwarze                            Level-up-Trank  55
 6
 7
-10
-11
+8
+9
+10      weiße (Verstärker)                  starker Heil-/Manatrank 110/220
+        1x weiß + Trank                     mächtiger Heil-/Manatrank 1100/2200
+
 12
 13
 14

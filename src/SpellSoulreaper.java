@@ -6,7 +6,7 @@ public class SpellSoulreaper extends Spell {
         formula = Story.formulaSoulreaper;
         textWhenCast = "";
         textWhenLearned = "";
-        str = 10;
+        str = Player.spellpower;
         mpCost = 10;
         aoe = false;
     }

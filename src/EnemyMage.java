@@ -2,12 +2,13 @@ public class EnemyMage extends Enemy{
 
 
 
+
     public EnemyMage() {
     }
 
 
     public int attack(){
-        int dmg = str;
+        int dmg = power;
         return dmg;
     }
 
@@ -15,7 +16,7 @@ public class EnemyMage extends Enemy{
     }
 
     public void ability2() {
-        int dmg = str;
+        int dmg = power;
 
     }
 

@@ -11,11 +11,12 @@ public class WorldBuilder {
     public static void buildCastle() {
 
         //UG, Reihe unten
-        castle[0][0][0] = new Room("Gefängniszelle", Story.desc000, Story.daimon000, Story.solved000, false, false, false, false, false, false, 0);
-        castle[0][0][0].reward = key000; castle[0][0][0].dummyLoot = "Zellenschlüssel, Waffe, Ausrüstung"; castle[0][0][0].dummyFeedback = "Ich komme nicht dran"; castle[0][0][0].descSolved = Story.descSolved000; castle[0][0][0].daimonSolved = Story.daimonSolved000;
+        castle[0][0][0] = new Room("Gefängniszelle", Story.desc000, Story.daimon000, Story.solved000, false, false, false, false, false, false, -1);
+        castle[0][0][0].reward = key000; castle[0][0][0].notLoot.put("schlüssel", "Ich komme nicht dran"); castle[0][0][0].descSolved = Story.descSolved000; castle[0][0][0].daimonSolved = Story.daimonSolved000;
+        //.notLoot.put(): Key darf nur Kleinbuchstaben verwenden, sonst scheitert Abgleich!
         castle[0][0][1] = new Room("Kerker", Story.desc001, Story.daimon001, Story.solved001, false, true, false, true, false, false, 1);
-        castle[0][0][1].dummyLoot = "Zeug, Ausrüstung, Sachen"; castle[0][0][1].dummyFeedback = "Das ist leider nicht hier.";
-        castle[0][0][2] = new Room("zugiger Kellergang", Story.desc002, Story.daimon002, Story.solved002, true, false, false, true, false, false, 2);
+        castle[0][0][1].notLoot.put("zeug", "Das ist leider nicht hier");
+        castle[0][0][2] = new Room("Zugiger Kellergang", Story.desc002, Story.daimon002, Story.solved002, true, false, false, true, false, false, 2);
         //    [z][y][x]
 
         //UG, Reihe Mitte
@@ -77,15 +78,30 @@ public class WorldBuilder {
 
 
     //ALCHEMIEZUTATEN
+    //weiß, Katalysator static ItemIngred alch01 = new ItemIngred("", "", "", 10);
+    //weiß, Katalysator static ItemIngred alch02 = new ItemIngred("", "", "", 10);
     static ItemIngred alch11 = new ItemIngred("Molchauge", "Molchaugen", "Feine Blutgefäße ziehen sich in unruhigen Fäden durch den Augapfel.", 1);
     static ItemIngred alch12 = new ItemIngred("Glutorchidee", "Glutorchideen", "Rein optisch wird diese empfindliche Blüte ihrem Namen gerecht.", 1);
     static ItemIngred alch21 = new ItemIngred("Mondbeere", "Mondbeeren", "Eisblaue Früchte, die den Geist erfrischen.", 2);
     static ItemIngred alch22 = new ItemIngred("Mitternachtskraut", "Bund Mitternachtskraut", "Fahlblaue Blätter, die sich lieber dem Mondlicht als der Sonne zuwenden.", 2);
+    //gelb static ItemIngred alch31 = new ItemIngred("", "", "", 3);
+    //gelb static ItemIngred alch32 = new ItemIngred("", "", "", 3);
+    //grün static ItemIngred alch41 = new ItemIngred("", "", "", 4);
+    //grün static ItemIngred alch42 = new ItemIngred("", "", "", 4);
+    //schwarz, Levelup static ItemIngred alch51 = new ItemIngred("", "", "", 5);
+    //schwarz, Levelup static ItemIngred alch52 = new ItemIngred("", "", "", 5);
 
 
     //TRÄNKE
-    static ItemPotion potHealth01 = new ItemPotionHealth("Heiltrank", "Ein rot strahlender Trank, stellt 60 HP wiederher.", 60, 11);
-    static ItemPotion potMana01 = new ItemPotionMana("Manatrank", "Ein blau schimmernder Trank, stellt 30 MP wiederher.", 30, 22);
+    static ItemPotion potHealth1 = new ItemPotionHealth("Heiltrank", "Ein rot strahlender Trank, stellt 60 HP wiederher.", 60, 11);
+    static ItemPotion potHealth2 = new ItemPotionHealth("Starker Heiltrank", "Ein rot strahlender Trank, der sich lauwarm anfühlt. Stellt 120 HP wiederher.", 120, 110);
+    static ItemPotion potHealth3 = new ItemPotionHealth("Mächtiger Heiltrank", "Ein rot strahlender Trank, in dem goldene Partikel umherwirbeln. stellt 250 HP wiederher.", 250, 1100);
+    static ItemPotion potMana1 = new ItemPotionMana("Manatrank", "Ein blau schimmernder Trank, stellt 30 MP wiederher.", 30, 22);
+    static ItemPotion potMana2 = new ItemPotionMana("Starker Manatrank", "Ein blau schimmernder Trank, der sich angenehm kühl anfühlt. Stellt 60 MP wiederher.", 60, 220);
+    static ItemPotion potMana3 = new ItemPotionMana("Mächtiger Manatrank", "Ein blau schimmernder Trank, in dem silberne Partikel umherwirbeln. Stellt 125 MP wiederher.", 125, 2200);
+    //static ItemPotion potYellow1 = new ItemPotion("Gelber Trank", "", 30, 33);
+    //static ItemPotion potGreen1 = new ItemPotion("Grüner Trank", "", 30, 44);
+    static ItemPotion potLevelUp = new ItemPotionLevelup("Trank des Abgrunds", "Ein tiefschwarzer Trank. \nDas Elixir ist so perfekt schwarz, dass die kugelrunde Flasche unnatürlich formlos erscheint, wie ein blinder Fleck in deinem Sichtfeld. \nSie nimmt den Blick gefangen, und nach einer Weile verfestigt sich das Gefühl, dass irgendetwas zurückstarrt. ", 55);
 
 
     //SCHRIFTROLLEN
@@ -104,7 +120,7 @@ public class WorldBuilder {
     static Spell soulreaper = new SpellSoulreaper();
     static Spell viciousSeed = new SpellViciousSeed();
 
-    static Spell[] allSpells = {bloodletting, lifeline, soulreaper};
+    static Spell[] allSpells = {bloodletting, lifeline, soulreaper, viciousSeed};
     static ArrayList<Spell> freeSpells = new ArrayList<>(Arrays.asList(allSpells));
 
     //KEY-ITEMS
@@ -127,9 +143,9 @@ public class WorldBuilder {
 
 
     //GEGNER
-    static Enemy soldier01 = new EnemySoldier();
-    static Enemy soldier02 = new EnemySoldier();
-    static Enemy soldier03 = new EnemySoldier();
+    static Enemy soldier01 = new EnemySoldier("Soldat Karl", "Schwert", 80, 10, false);
+    static Enemy soldier02 = new EnemySoldier("Soldatin Franziska", "Bogen", 80, 10, true);
+    static Enemy soldier03 = new EnemySoldier("Soldat Max", "Dolch", 80, 10, false);
 
     // ENCOUNTER
     static Encounter enc221TEST = new Encounter(soldier01, soldier02, soldier03, "Achtung, Testüberfall!", "Achtung, Testüberfall beendet!", key999);

@@ -6,17 +6,19 @@ public class DemonKind2 extends Demon{
         desc = "";
         textWhenSummoned = "";
         textWhenBound = "";
-        hp = 100;
-        hpMax = hp;
-        power = 10;
+        hpBase = 100;
+        hpMax = hpBase;
+        hp = hpMax;
+        powerBase = 10;
+        power = powerBase;
         dex = 10;
 
         attackName = "Angriff";
         attackDesc = "";
-        ability1Name = "Fähigkeit 1";
-        ability1Desc = "";
-        ability2Name = "Fähigkeit 2";
-        ability2Desc = "";
+        aoeAttackName = "Fähigkeit 1";
+        aoeAttackDesc = "";
+        selfBuffName = "Fähigkeit 2";
+        selfBuffDesc = "";
     }
 
     public int attack() {
@@ -24,13 +26,11 @@ public class DemonKind2 extends Demon{
         return dmg;
     }
 
-    public int ability1() {
+    public int aoeAttack() {
         int dmg = power;
         return dmg;
     }
 
-    public int ability2() {
-        int dmg = power;
-        return dmg;
+    public void selfBuff() {
     }
 }

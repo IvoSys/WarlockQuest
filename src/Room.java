@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Room {
 
     protected String name;
@@ -8,10 +12,10 @@ public class Room {
     protected String daimonSolved;
     protected boolean solved = false;
     protected boolean north, east, south, west, up, down;   //In welche Richtungen der Raum verlassen werden kann
-    protected Item loot;                                    //Offen einsammelbarer Gegenstand
+    protected ArrayList<Item> loot = new ArrayList<>();
+    protected Map<String,String> notLoot = new HashMap<>();
     protected String dummyLoot;                             //Erwähnte, aber nicht erhältliche Items, gibt passendes Feedback, mehrere Einträge möglich
-    protected String dummyFeedback = "Das lasse ich lieber hier.";
-    protected Item reward;                                  //Nach Lösung des Rätsels erhältlicher Gegenstand
+    protected Item reward;                                  //Nach Lösung des Rätsels erhältlicher Gegenstand, wird in Loot-Array verschoben.
     protected int puzzleID;                                 //ID zum Lösen des Rätsels eines Raums, muss mit Key-Item oder in Daimon-Methode übereinstimmen, von Raumkoordinate abgeleitet
     protected Encounter encounter;
     protected boolean encounterBeaten = false;
@@ -36,32 +40,42 @@ public class Room {
         System.out.println(Player.room.desc);
     }
 
-    public void loot(String input) {
-        if (loot != null){                                                  // Spieler gibt ein "nimm.[Item]"
-            if(input.contains(loot.name.toLowerCase())){                    // Wenn Item offen als Loot verfügbar -> Erfolg
-                Player.inv.add(loot);
-                System.out.printf("Du nimmst an dich: %s \n", loot.name);
-                loot = null;
-            } else if (dummyLoot.toLowerCase().contains(input) && input.length() > 2) {         //Wenn es einen oder mehrere Gegenstände gibt, die für Loot gehalten werden könnten, aber nicht sind,
-                System.out.println(dummyFeedback);                                              //Erhält Spieler entsprechendes Feedback. Spieler muss mindestens drei Buchstaben eingeben,
-            } else {                                                                            //damit Spieler nicht durch eingabe einzelner Buchstaben mogeln kann
-                System.out.println("Leider nicht.");
+    public void loot(String input){
+        boolean found = false;
+
+        if (!loot.isEmpty()){
+            for (Item i : loot){
+                if (input.contains(i.name.toLowerCase())){
+                    Player.inv.add(i);
+                    System.out.printf("Du nimmst an dich: %s \n", i.name);
+                    loot.remove(i);
+                    found = true;
+                    break;
+                }
             }
-        } else if (dummyLoot.toLowerCase().contains(input) && input.length() > 2) {
-            System.out.println(dummyFeedback);
-        } else {
+            if (!found)
+                if (notLoot.get(input) != null) {
+                    System.out.println(notLoot.get(input));
+                    found = true;
+                }
+            if (!found)
+                System.out.println("Leider nicht.");
+
+        } else if (notLoot.get(input) != null) {
+            System.out.println(notLoot.get(input));
+            found = true;
+        } else
             System.out.println("Hier ist nichts zu holen.");
-        }
     }
 
-    public static void solve(String input){
+    public void solve(String input){
         boolean found = false;
         for (Item i : Player.inv){
             if (input.contains(i.name.toLowerCase())){              // Wenn Eingabe den Namen eines Key-Items im Inventar enthält und
                 if(i.puzzleID == Player.room.puzzleID){             // wenn die puzzleID dieses Key-Items zu der des aktuellen Raums passt, dann
                     System.out.println(Player.room.solvedText);     // Raum gelöst! Entsprechender Text wird ausgegeben.
-                    if (Player.room.reward != null){                // Wenn es eine Belohnung gibt, wird sie ins Inventar verschoben
-                        Player.inv.add(Player.room.reward);
+                    if (Player.room.reward != null){                // Wenn es eine Belohnung gibt,
+                        loot.add(Player.room.reward);               // wird sie ins Loot-Array verschoben und kann mit n. eingesammelt werden
                         Player.room.reward = null;
                     }
                     if (Player.room.descSolved != null){            // Raumbeschreibung und Daimon-Kommentar werden ggf. aktualisiert
@@ -89,6 +103,7 @@ public class Room {
     public static void solveThisRoom(){                       //Zu nah an "Universalskript"?
         if (Player.room.puzzleID == -1) {                     //Individuelle Ereignisse für gelöste Räume
             WorldBuilder.castle[0][0][0].east = true;         //Zellentür öffnet sich, Raum kann nach Osten verlassen werden
+            Story.solved000Comment();
         }
     }
 

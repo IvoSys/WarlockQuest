@@ -1,8 +1,14 @@
 public class EnemySoldier extends Enemy{
 
-
-    public EnemySoldier() {
+    public EnemySoldier(String name, String weapon, int hp, int power, boolean hasPotion) {
         numOptions = 1;
+        this.name = name;
+        this.weapon = weapon;
+        this.hp = hp;
+        hpMax = hp;
+        this.power = power;
+        this.hasPotion = hasPotion;
+        potionStr = 50;
     }
 
 
@@ -11,9 +17,6 @@ public class EnemySoldier extends Enemy{
     }
 
     public void ability1() {
-        int dmg = str;
-
-
     }
 
     public void ability2() {

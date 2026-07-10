@@ -25,7 +25,8 @@ public class ItemEvoc extends Item {
                         if (((ItemEvoc) j).demonShortName.equals(toBind.name)) {    // ob Beschwörungsformel für diesen Dämon in Besitz ist
                             Player.inv.remove(j);                                   // Wenn ja, kann Formel vernichtet und Dämon gebunden werden.
                             System.out.println("Die Beschwörungsformel verbrennt unter deinen Fingern.");
-                            Player.team.add(toBind);
+                            toBind.toPlayerLevel();                                 // Dämon-Stufe anpassen und …
+                            Player.team.add(toBind);                                // endlich ins Team aufnehmen!
                             System.out.println(toBind.textWhenBound);
                             //WorldBuilder.freeDem.remove(j);                       // Eintrag nicht löschen, damit später noch abgeglichen werden kann für "bereits gebunden".
                             success = true;                                         // Den Prozess als erfolgreich kennzeichnen und Schleife abbrechen.

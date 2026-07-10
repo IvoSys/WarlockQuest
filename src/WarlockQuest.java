@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class WarlockQuest {
 
-    static String version = "v0.1.0";
+    static String version = "v0.2.0";
     static boolean running = true;
 
     static Scanner sc = new Scanner(System.in);
@@ -16,7 +16,8 @@ public class WarlockQuest {
         WorldBuilder.giveStartItems();
 
         ASCII.title();
-        /* TEST
+
+        /*
         Story.intro();
         Story.needHelp();
         input = sc.nextLine().toLowerCase().trim();
@@ -26,12 +27,16 @@ public class WarlockQuest {
         }
         System.out.println();
         Story.daimonIntro();
+        
          */
+
 
         //TEST:
         Player.curX = 2;
         Player.curY = 2;
         Player.curZ = 2;
+
+
 
         gameLoop();
 
@@ -68,14 +73,12 @@ public class WarlockQuest {
                         ItemEvoc.bind();                                                                                // Binde Dämon
                         System.out.println("Coming Soon: Dämon binden");
                     } else {
-                        Room.solve(inputSplit[1]);                                                                      // Verwende Item
+                        Player.room.solve(inputSplit[1]);                                                               // Verwende Item
                     }
                 } else if (inputSplit[0].equals("u") || inputSplit[0].contains("such") || inputSplit[0].equals("prüf")) {
                     Player.checkItem(inputSplit[1]);                                                                    // Untersuche Item
                 } else if (inputSplit[0].equals("k") || inputSplit[0].contains("kombi")) {
                     Player.combineItems(inputSplit[1], inputSplit[2]);                                                  // Kombiniere Items
-                //} else if (inputSplit[0].contains("trink")) {
-                    //ItemPotion.drink(inputSplit[1]);                                                                  // (Trank trinken)
                 } else if (inputSplit[0].equals("g") || inputSplit[0].contains("geh")){
                     Player.move(inputSplit[1]);                                                                         // Bewegen
                 } else {
@@ -93,24 +96,20 @@ public class WarlockQuest {
                 Room.describe();                                                                                        // Raum ansehen
             } else if (input.equals("dämonen") || input.equals("dämon")){
                 Demon.showDemons();                                                                                     // Kompendium infernale
-            //} else if (input.equals("l") || input.equals("lernen")){
-            //    ItemScroll.learn();                                                                                   // Zauber lernen
-            //} else if (input.equals("b") || input.equals("binden")){
-            //    Demon.bind();                                                                                         // Dämon binden
             } else if (input.equals("h") || input.equals("hilfe")){
                 Story.help();                                                                                           // Hilfe
-            //} else if (input.equals("befehle")){
-            //    Story.help2();                                                                                        // weitere Befehle
             } else if (input.equals("kampf")){
                 Story.helpBattle();                                                                                     // Kampftutorial
-            //} else if (input.equals("alchetut")){
-            //    Story.helpAlchemy();                                                                                  // Alchemietutorial
-            //} else if (input.equals("cleanup")){
-            //    Player.cleanUpInv();                                                                                  // Inventar aufräumen
+                //} else if (input.equals("cleanup")){
+                //    Player.cleanUpInv();                                                                                // Inventar aufräumen
             } else if (input.equals("credits")) {
                 credits();                                                                                              // Credits
             } else if (input.equals("ende")){
                 Control.quit();                                                                                         // Beenden
+            } else if (input.equals("gib mir einfach die lösungen")) {
+                Story.answers();
+            } else if (input.equals("ich bin der geist, der stets verneint!")) {
+                Player.cheatAllDemsAndSpells();
             } else {
                 System.out.println("Sprich deutlich!");
             }

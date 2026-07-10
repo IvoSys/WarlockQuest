@@ -6,7 +6,7 @@ public class SpellViciousSeed extends Spell {
         formula = Story.formulaViciousSeed;
         textWhenCast = "";
         textWhenLearned = "";
-        str = 10;
+        str = Player.spellpower;
         dur = 3;
         mpCost = 10;
         aoe = false;

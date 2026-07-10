@@ -1,15 +1,19 @@
+import java.util.Random;
+
 public abstract class Enemy {
 
-    String job;
+    Random rnd = new Random();
+
     String name;
+    String weapon;
     int hp;
     int hpMax;
-    int str;
-    boolean ko = false;
+    int power;
     boolean hasPotion;
-    int potionStr = 50;
+    int potionStr;
+    boolean ko = false;
 
-    int numOptions = 2;
+    int numOptions;
 
     boolean lifelined = false;
     int counterlifeline;
@@ -25,7 +29,15 @@ public abstract class Enemy {
         hp -= dmg;
         if (hp < 0) {
             hp = 0;
+            ko = true;
+            lifelined = false;
+            carriesVSeed = false;
         }
+        System.out.printf("%s erhält %d Schaden", name, dmg);
+        if (ko)
+            System.out.println(" und stirbt.");
+        else
+            System.out.println(".");
     }
 
     public void applyHeal(int heal){
@@ -33,14 +45,20 @@ public abstract class Enemy {
         if (hp > hpMax) {
             hp = hpMax;
         }
+        System.out.printf("%s wird um %d HP geheilt", name, heal);
+        if (hp == hpMax)
+            System.out.println(" und strotzt vor Energie.");
+        else
+            System.out.println(".");
     }
 
     public int applyLifelineDmgReturnHeal(int dmg){
         int heal = dmg;
         hp -= dmg;
         if (hp <= 0) {
-            heal =+ hp;
+            heal += hp;
             hp = 0;
+            ko = true;
         }
         System.out.println("Während die Haut des Gegners welk wird und bricht, \n wird dein Dämon immer kräftiger.");
         return heal;
@@ -56,9 +74,21 @@ public abstract class Enemy {
         }
     }
 
+    public void checkVSeed(){
+        if (carriesVSeed) {
+            counterVSeed--;
+            if (counterVSeed == 0) {
+
+            }
+
+        }
+    }
+
+
+
     public int attack(){
-        int dmg = str;
-        System.out.printf("%s %s greift an und verursacht %d Schaden. \n", job, name, dmg);
+        int dmg = rnd.nextInt(11) + power;
+        System.out.printf("%s greift mit dem %s an. \n", name, weapon);
         return dmg;
     }
 

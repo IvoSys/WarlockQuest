@@ -1,18 +1,20 @@
 public class EnemyKnight extends Enemy{
 
 
+
+
     public EnemyKnight() {
     }
 
 
     public int attack(){
-        int dmg = str;
+        int dmg = power;
         return dmg;
 
     }
 
     public void ability1() {
-        int dmg = str;
+        int dmg = power;
 
 
     }

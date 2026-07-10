@@ -1,27 +1,22 @@
-public class EnemyRogue extends Enemy{
+public class EnemyCleric extends Enemy {
 
 
-
-    public EnemyRogue() {
+    public EnemyCleric() {
     }
-
 
 
     public int attack(){
         int dmg = power;
         return dmg;
-
     }
 
     public void ability1() {
-        int dmg = power;
-
-
     }
 
     public void ability2() {
         int dmg = power;
 
     }
+
 
 }
