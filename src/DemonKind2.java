@@ -1,7 +1,7 @@
 public class DemonKind2 extends Demon{
 
     public DemonKind2 () {
-        name = "";
+        name = "Feuerdämon";
         trueName = Story.trueNameDem02;
         desc = "";
         textWhenSummoned = "";
@@ -19,6 +19,7 @@ public class DemonKind2 extends Demon{
         aoeAttackDesc = "";
         selfBuffName = "Fähigkeit 2";
         selfBuffDesc = "";
+        obliterated = "";
     }
 
     public int attack() {

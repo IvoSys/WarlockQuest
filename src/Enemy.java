@@ -26,7 +26,11 @@ public abstract class Enemy {
 
     //Setter
     public void applyDmg(int dmg){
+        boolean obliterated = false;
+
         hp -= dmg;
+        //if (hp <= -10)
+        //    obliterated = true;
         if (hp < 0) {
             hp = 0;
             ko = true;
@@ -34,6 +38,9 @@ public abstract class Enemy {
             carriesVSeed = false;
         }
         System.out.printf("%s erhält %d Schaden", name, dmg);
+        //if (obliterated) {
+        //    System.out.println(" und " + Player.activeDemon.obliterated);
+        //} else if
         if (ko)
             System.out.println(" und stirbt.");
         else
@@ -52,38 +59,20 @@ public abstract class Enemy {
             System.out.println(".");
     }
 
-    public int applyLifelineDmgReturnHeal(int dmg){
-        int heal = dmg;
-        hp -= dmg;
-        if (hp <= 0) {
-            heal += hp;
-            hp = 0;
-            ko = true;
-        }
-        System.out.println("Während die Haut des Gegners welk wird und bricht, \n wird dein Dämon immer kräftiger.");
-        return heal;
-    }
-
-    public void checkLifelined(){
-        if (lifelined) {
-            Player.activeDemon.applyHeal(applyLifelineDmgReturnHeal(Player.spellpower));
-            counterlifeline--;
-            if (counterlifeline == 0) {
-                lifelined = false;
-            }
+    public void drinkPotion(){
+        if (hasPotion) {
+            hp += potionStr;
+            hasPotion = false;
+            System.out.printf("%s trinkt einen Heiltrank und", name);
+            if (hp > hpMax) {
+                hp = hpMax;
+                System.out.println(" ist wieder kerngesund.");
+            } else
+                System.out.printf(" heilt sich um %d HP. \n", potionStr);
+        } else {
+            System.out.printf("%s hat keinen Heiltrank mehr.", name);
         }
     }
-
-    public void checkVSeed(){
-        if (carriesVSeed) {
-            counterVSeed--;
-            if (counterVSeed == 0) {
-
-            }
-
-        }
-    }
-
 
 
     public int attack(){

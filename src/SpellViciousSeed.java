@@ -4,7 +4,6 @@ public class SpellViciousSeed extends Spell {
         name = "Üble Saat";
         desc = "Pflanzt einen Keim in einem Gegner ein, der nach " + dur + " Runden \noder mit Tod des Gegners aufplatzt und bei allen Gegnern Schaden verursacht.";
         formula = Story.formulaViciousSeed;
-        textWhenCast = "";
         textWhenLearned = "";
         str = Player.spellpower;
         dur = 3;
@@ -17,23 +16,24 @@ public class SpellViciousSeed extends Spell {
 
         target.carriesVSeed = true;
         target.counterVSeed = dur;
-        System.out.println(textWhenCast);
+        System.out.printf("Maleficarius pflanzt einen Keim des Übels in %s, der in %d Runden aufspringen wird. \n", target.name, dur);
     }
 
     @Override
     public void tick(Enemy e) {
         e.counterVSeed--;
         if (e.counterVSeed <= 0) {
-            explode();
+            explode(e);
         } else
-            System.out.println("Die üble Saat keimt weiter …");
+            System.out.println("Die üble Saat in " + e.name + " keimt …");
     }
 
     @Override
-    public void explode() {
-        System.out.println("Ein Keim des Übels platzt auf.");
-        for (Enemy e : Player.room.encounter.enemyTeam) {
-            e.applyDmg(str);
+    public void explode(Enemy e) {
+        e.carriesVSeed = false;
+        System.out.println("Der Keim des Übels in " + e.name + " platzt auf.");
+        for (Enemy f : Player.room.encounter.enemyTeam) {
+            f.applyDmg(str);
         }
     }
 

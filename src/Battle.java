@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 
 public class Battle {
@@ -16,7 +17,8 @@ public class Battle {
         boolean malActed;
         int counter;
         int pick;
-        int pickTarget;
+        int pickedTarget;
+        boolean inputValid = false;
 
         //Encounter-Intro
         System.out.println("\n" + encounter.intro + "\n");
@@ -25,7 +27,7 @@ public class Battle {
         ArrayList<Enemy> enemyTeam = encounter.enemyTeam;
 
         //Gegner anzeigen
-        System.out.println("Gegner greifen an:");
+        System.out.println(encounter.name + " greifen an:");
         for (Enemy e : enemyTeam)
             System.out.printf("%s \t (%d/%d HP) \n", e.name, e.hp, e.hpMax);
         System.out.println();
@@ -51,171 +53,243 @@ public class Battle {
                 System.out.println(Player.activeDemon.name + " beginnt.");
             } else {
                 isPlayerTurn = false;
-                System.out.println(encounter.enemyTeamName + " beginnen.");
+                System.out.println(encounter.name + " beginnen.");
             }
             Control.enterToContinue();
 
     //Innerer Battle Loop – wiederholt nach Gegner-Zug, solange Dämon nicht K.O.
             do {
+                System.out.println("Maleficarius ist am Zug: \n");
                 malActed = false;
                 while (isPlayerTurn) {
-                    System.out.println("Du bist dran.\n");
-
-                    System.out.println("GEGNER");
+                    System.out.println(encounter.name.toUpperCase());
                     counter = 1;
                     for (Enemy e : enemyTeam) {
-                        System.out.printf("[%d] %s\t (%d/%d HP)", counter, e.name, e.hp, e.hpMax);
+                        if (!e.ko) {
+                            System.out.printf("%s\t (%d/%d HP)", e.name, e.hp, e.hpMax);
+                        } else {
+                            System.out.printf("%s\t>> BESIEGT <<", e.name);
+                        }
                         if (e.lifelined)
                             System.out.printf("\t, Lebenslinie (%d)", e.counterlifeline);
                         if (e.carriesVSeed)
                             System.out.printf("\t, Üble Saat (%d)", e.counterVSeed);
                         System.out.println();
-                        counter++;
                     }
-                    System.out.println("\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n");
+                    System.out.println("\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+                    System.out.printf("%s \t(%d/%d HP)\n", Player.activeDemon.name.toUpperCase(), Player.activeDemon.hp, Player.activeDemon.hpMax);
+                    System.out.print("[1] " + Player.activeDemon.attackName);
+                    if (Player.activeDemon == WorldBuilder.dem01 && WorldBuilder.dem01.roar > 0)
+                        System.out.printf(" (+%d)\n", WorldBuilder.dem01.roar);
+                    else
+                        System.out.println();
+                    System.out.println("[2] " + Player.activeDemon.aoeAttackName);
+                    System.out.println("[3] " + Player.activeDemon.selfBuffName);
+                    if (!malActed) {
+                        System.out.println("----------------------------------------------");
+                        System.out.printf("[4] Zauber \t(%d/%d MP)\n", Player.mp, Player.mpMax);
+                        System.out.println("[5] Beschwören");
+                    }
 
-                    System.out.printf("%d/%d HP \t\t%d/%d MP \n", Player.activeDemon.hp, Player.activeDemon.hpMax, Player.mp, Player.mpMax);
-                    System.out.println(Player.activeDemon.name.toUpperCase());
-                    System.out.println("[1] " + Player.activeDemon.attackName + "\t(trifft einen Gegner)");
-                    System.out.println("[2] " + Player.activeDemon.aoeAttackName + "\t(trifft alle Gegner)");
-                    System.out.println("[3] " + Player.activeDemon.selfBuffName + "\t(wirkt auf Dämon)");
-                    System.out.println("------------------------------------");
-                    System.out.println("[4] Zauber");
-                    System.out.println("[5] Beschwören");
-                    System.out.print("> ");
-                    pick = sc.nextInt();
-                    switch (pick) {
-                        case 1:                             // Immer Single Target
-                            counter = 1;
-                            for (Enemy e : enemyTeam) {
-                                System.out.printf("[%d] %s\t (%d/%d HP)", counter, e.name, e.hp, e.hpMax);
-                                if (e.lifelined)
-                                    System.out.printf("\tLebenslinie (%d)", e.counterlifeline);
-                                if (e.carriesVSeed)
-                                    System.out.printf("\tÜble Saat (%d)", e.counterVSeed);
-                                System.out.println();
-                                counter++;
-                            }
-                            System.out.print("Wähle ein Ziel.\n> ");
-                            pickTarget = sc.nextInt();
-                            enemyTeam.get(pickTarget).applyDmg(Player.activeDemon.attack()); // Ziel 3 gewählt und Index out of Bounds erhalten
-                            isPlayerTurn = false;
-                            Control.enterToContinue();
-                            break;
-                        case 2:
-                            System.out.println(Player.activeDemon.aoeAttackBattleDesc);
-                            for (Enemy e : enemyTeam)
-                                e.applyDmg(Player.activeDemon.aoeAttack());
-                            isPlayerTurn = false;
-                            Control.enterToContinue();
-                            break;
-                        case 3:
-                            Player.activeDemon.selfBuff();
-                            isPlayerTurn = false;
-                            Control.enterToContinue();
-                            break;
-                        case 4:
-                            if (!malActed) {
-                                boolean empty = true;
+                    try {
+                        System.out.print("> ");
+                        pick = sc.nextInt();
+                        switch (pick) {
+                            case 1:                             // Immer Single Target
                                 counter = 1;
-                                for (Spell s : Player.spellbook) {
-                                    System.out.printf("[%d] %s \n", counter, s.name);
-                                    System.out.printf("    Mana: %d, \tStärke: %d \n", s.mpCost, s.str);
-                                    if (s.aoe)
-                                        System.out.print("\tFlächenwirkung \n");
-                                    if (s.dur != 0)
-                                        System.out.printf("\tDauer: %d Runden \n", s.dur);
-                                    counter++;
-                                    empty = false;
-                                }
-                                if (empty) {
-                                    System.out.println("Du beherrschst noch keinen Zauber.");
-                                }
-                                System.out.println("[0] Zurück");
-                                System.out.print("> ");
-                                pick = sc.nextInt() - 1;
-                                if (pick == -1) {
-                                    break;
-                                }
-                                //Zielauswahl, Unterscheidung Flächenschaden.
-                                if (!Player.spellbook.get(pick).aoe) {
-                                    System.out.println("Wähle ein Ziel:");
-                                    counter = 1;
-                                    for (Enemy e : enemyTeam) {
-                                        System.out.printf("[%d] %s \t", counter, e.name);
-                                        counter++;
-                                        if (!e.ko)
-                                            System.out.printf(" (%d/%d HP) \n", e.hp, e.hpMax);
-                                        else
-                                            System.out.println(">> BESIEGT <<");
-                                        if (e.lifelined)
-                                            System.out.printf("\t, Lebenslinie (%d)", e.counterlifeline);
-                                        if (e.carriesVSeed)
-                                            System.out.printf("\t, Üble Saat (%d)", e.counterVSeed);
-                                    }
-                                    System.out.print("> ");
-                                    pickTarget = sc.nextInt() - 1;
-                                    Player.spellbook.get(pick).cast(pickTarget);
-                                } else {
-                                    Player.spellbook.get(pick).cast();
-                                }
-                                malActed = true;
-                            } else
-                                System.out.println("Maleficarius hat diese Runde schon gehandelt.");
-                            Control.enterToContinue();
-                            break;
-                        case 5:
-                            if (!malActed) {
-                                counter = 1;
-                                System.out.println("Wähle einen Dämon zum Beschwören:");
-                                for (Demon d : Player.team) {
-                                    System.out.printf("[%d] %s \t", counter, d.name);
-                                    if (d.ko) {
-                                        System.out.println(">> BESIEGT <<");
-                                    }
-                                    else {
-                                        System.out.printf(" (%d/%d HP) \n", d.hp, d.hpMax);
-                                    }
+                                for (Enemy e : enemyTeam) {
+                                    System.out.printf("[%d] %s\t (%d/%d HP)", counter, e.name, e.hp, e.hpMax);
+                                    if (e.lifelined)
+                                        System.out.printf("\t\tLebenslinie (%d)", e.counterlifeline);
+                                    if (e.carriesVSeed)
+                                        System.out.printf("\t\tÜble Saat (%d)", e.counterVSeed);
+                                    System.out.println();
                                     counter++;
                                 }
-                                System.out.println("[0] Zurück");
-                                do {
-                                    System.out.print("> ");
-                                    pick = sc.nextInt();
-                                    if (pick == -1) {
-                                        break;
-                                    } else if (!Player.team.get(pick - 1).ko) {
-                                        Demon.summon(pick - 1);
-                                    } else {
-                                        System.out.printf("%s ist besiegt, beschwöre einen anderen Dämon.", Player.team.get(pick - 1).name);
+
+                                inputValid = false;
+                                while (!inputValid) {
+                                    try {
+                                        System.out.print("Wähle ein Ziel.\n> ");
+                                        pickedTarget = sc.nextInt();
+                                        enemyTeam.get(pickedTarget - 1).applyDmg(Player.activeDemon.attack());
+                                        inputValid = true;
+                                        isPlayerTurn = false;
+                                    } catch (InputMismatchException e) {
+                                        System.out.println("Ungültige Eingabe. Gib eine Ziffer ein.");
+                                        sc.next();
+                                    } catch (IndexOutOfBoundsException e) {
+                                        System.out.printf("Ungültige Eingabe. Gib eine Ziffer zwischen 1 und %d ein. \n", enemyTeam.size());
+                                        sc.next();
                                     }
-                                } while (Player.team.get(pick - 1).ko);
+                                }
+                                Control.enterToContinue();
+                                break;
+                            case 2:
+                                System.out.println(Player.activeDemon.aoeAttackBattleDesc);
+                                for (Enemy e : enemyTeam)
+                                    e.applyDmg(Player.activeDemon.aoeAttack());
                                 isPlayerTurn = false;
-                            } else {
-                                System.out.println("Maleficarius hat diese Runde schon gehandelt.");
-                            }
-                            Control.enterToContinue();
-                            break;
-                        default:
-                            System.out.println("Ungültige Eingabe");
-                            Control.enterToContinue();
-                            break;
-                    } //Ende Switch-Case mit Spieleraktionen
+                                Control.enterToContinue();
+                                break;
+                            case 3:
+                                Player.activeDemon.selfBuff();
+                                isPlayerTurn = false;
+                                Control.enterToContinue();
+                                break;
+                            case 4:
+                                if (!malActed) {
+                                    boolean empty = true;
+                                    counter = 1;
+                                    System.out.println("=============ZAUBERBUCH============\n");
+                                    for (Spell s : Player.spellbook) {
+                                        System.out.printf("[%d] %s \t(%d Mana", counter, s.name, s.mpCost);
+                                        if (s.aoe)
+                                            System.out.print(", Flächenwirkung");
+                                        if (s.dur != 0)
+                                            System.out.printf(", %d Runden", s.dur);
+                                        System.out.println(")");
+                                        counter++;
+                                        empty = false;
+                                    }
+                                    if (empty) {
+                                        System.out.println("Du beherrschst noch keinen Zauber.");
+                                    }
+                                    System.out.println("[0] Zurück");
+                                    try {
+                                        System.out.print("> ");
+                                        pick = sc.nextInt() - 1;
+                                        if (pick == -1) {
+                                            break;
+                                        }
+                                    } catch (InputMismatchException e) {
+                                        System.out.println("Ungültige Eingabe. Gib eine Ziffer ein.");
+                                        sc.next();
+                                    }
+                                    //Zielauswahl, Unterscheidung Flächenschaden.
+                                    Spell pickedSpell = Player.spellbook.get(pick);
+                                    if (!pickedSpell.aoe && !pickedSpell.onDemon) {
+                                        inputValid = false;
+                                        while (!inputValid) {
+                                            System.out.println("Wähle ein Ziel:");
+                                            counter = 1;
+                                            for (Enemy e : enemyTeam) {
+                                                System.out.printf("[%d] %s \t", counter, e.name);
+                                                counter++;
+                                                if (!e.ko)
+                                                    System.out.printf(" (%d/%d HP)", e.hp, e.hpMax);
+                                                else
+                                                    System.out.print(">> BESIEGT <<");
+                                                if (e.lifelined)
+                                                    System.out.printf("\t, Lebenslinie (%d)", e.counterlifeline);
+                                                if (e.carriesVSeed)
+                                                    System.out.printf("\t, Üble Saat (%d)", e.counterVSeed);
+                                                System.out.println();
+                                            }
+                                            try {
+                                                System.out.print("> ");
+                                                pickedTarget = sc.nextInt() - 1;
+                                                pickedSpell.cast(pickedTarget);
+                                                inputValid = true;
+                                            } catch (InputMismatchException e) {
+                                                System.out.println("Ungültige Eingabe. Gib eine Ziffer ein.");
+                                                sc.next();
+                                            }
+                                        }
+                                    } else {
+                                        pickedSpell.cast();
+                                    }
+                                    malActed = true;
+                                } else
+                                    System.out.println("Maleficarius hat diese Runde schon gehandelt.");
+                                Control.enterToContinue();
+                                break;
+                            case 5:
+                                if (!malActed) {
+                                    counter = 1;
+                                    System.out.println("Wähle einen Dämon zum Beschwören:");
+                                    for (Demon d : Player.team) {
+                                        System.out.printf("[%d] %s \t", counter, d.name);
+                                        if (d.ko) {
+                                            System.out.println(">> BESIEGT <<");
+                                        } else {
+                                            System.out.printf(" (%d/%d HP) \n", d.hp, d.hpMax);
+                                        }
+                                        counter++;
+                                    }
+                                    System.out.println("[0] Zurück");
+
+                                    while (!inputValid) {
+                                        try {
+                                            System.out.print("> ");
+                                            pick = sc.nextInt();
+
+                                            if (pick == 0) {
+                                                break;
+                                            } else if (pick < 0 || pick > Player.team.size()) {
+                                                System.out.printf("Ungültige Eingabe. Wähle eine Zahl zwischen 1 und %d. \n", Player.team.size());
+                                            } else if (Player.team.get(pick - 1).ko) {
+                                                System.out.printf("%s wurde bereits besiegt, beschwöre einen anderen Dämon. \n", Player.team.get(pick - 1).name);
+                                            } else {
+                                                Demon.summon(pick - 1);
+                                                inputValid = true;
+                                                isPlayerTurn = false;
+                                            }
+                                        } catch (InputMismatchException e) {
+                                            System.out.println("Ungültige Eingabe. Gib eine Ziffer ein.");
+                                            sc.next();
+                                        }
+                                    }
+                                } else {
+                                    System.out.println("Maleficarius hat diese Runde schon gehandelt.");
+                                }
+                                Control.enterToContinue();
+                                break;
+                            default:
+                                System.out.println("Ungültige Eingabe. Wähle eine Zahl zwischen 1 und 5. \n");
+                                Control.enterToContinue();
+                                break;
+                        } //Ende Switch-Case mit Spieleraktionen
+                    } catch (InputMismatchException e) {
+                        System.out.println("Ungültige Eingabe. Gib eine Ziffer ein. \n");
+                        sc.next();
+                        Control.enterToContinue();
+                    }
 
                     //Spieler hat Aktion ausgeführt
-                    //Prüfung auf Sieg
+                    //wenn Gegner gestorben sind, Lifeline auflösen oder ViciousSeed triggern
+                    //und Prüfung auf Sieg
                     encounter.counterKO = 0;
                     for (Enemy e : enemyTeam) {
-                        if (e.ko)
+                        if (e.ko) {
                             encounter.counterKO++;
+                            if (e.lifelined) {
+                                e.lifelined = false;
+                                System.out.printf("Die Lebenslinie zwischen %s und %s reißt.", e.name, Player.activeDemon.name);
+                            }
+                            if (e.carriesVSeed) {
+                                WorldBuilder.viciousSeed.explode(e);
+                            }
+                        }
+
                     }
                     if (encounter.counterKO >= enemyTeam.size())
                         encounter.beaten = true;
+
+                    //Dämon könnte durch Zauber wie Aderlass sterben,
+                    //ggf. Lifeline auflösen und Prüfung auf Niederlage:
+                    if (Player.activeDemon.ko) {
+                        for (Enemy e : enemyTeam)
+                            e.lifelined = false;
+                        if (!encounter.beaten)
+                            checkDefeat();
+                    }
 
                 } //Ende while(isPlayerTurn)
 
     //GEGNER AM ZUG
                 while (!isPlayerTurn && !encounter.beaten) {
+                    System.out.println(encounter.name + " sind am Zug.");
                     for (Enemy e : enemyTeam) {
                         if (e.lifelined)                         // Vor Aktion Zaubereffekte abhandeln, könnten dmg verursachen
                             WorldBuilder.lifeline.tick(e);
@@ -225,9 +299,7 @@ public class Battle {
                         if (!e.ko) {                                // Aktion, erst prüfen, ob K.O.
                                                                     //weitere If-Verzweigung je nach Enemy-Subklasse?
                             if ((e.hp <= e.hpMax * 0.3f) && (e.hasPotion)) {    // Wenn schwer verletzt und Potion vorhanden, dann Potion statt Angriff
-                                e.applyHeal(e.potionStr);
-                                e.hasPotion = false;
-                                System.out.printf("%s trinkt eine Potion und heilt sich um %d HP. \n", e.name, e.potionStr);
+                                e.drinkPotion();
                             } else {
                                 pick = rnd.nextInt(e.numOptions);          // Zufallszahlenbereich entspricht Anzahl seiner Optionen
                                 if (pick == 0) {
@@ -243,7 +315,16 @@ public class Battle {
 
                             }
                         } // Ende Aktion einzelner Gegner
-                        Control.enterToContinue();
+                        if (Player.activeDemon.ko)
+                            for (Enemy f : enemyTeam) {
+                                if (f.lifelined) {
+                                    f.lifelined = false;
+                                    System.out.printf("Die Lebenslinie zwischen %s und %s reißt.", f.name, Player.activeDemon.name);
+                                }
+                            }
+                        if (!e.ko)
+                            Control.enterToContinue();      // mit If-Bedingung, sonst müsste man nach ausgefallener Handlung eines besiegten Gegners trotzdem Eingabetaste drücken.
+
                     } // Ende Aktion Gegnerteam
                     isPlayerTurn = true;
                 } // Ende while(!isPlayerTurn && !encounter.beaten)
@@ -251,17 +332,7 @@ public class Battle {
             } while (!Player.activeDemon.ko);  // Ende innerer Battle-Loop. Wiederholt, solange Dämon am Leben
 
             // Dämon besiegt, Prüfung auf Niederlage
-            Player.counterKO = 0;
-            for (Demon d : Player.team) {
-                if (d.ko)
-                    Player.counterKO++;
-            }
-            if (Player.counterKO >= Player.team.size()) {
-                System.out.println("\nMaleficarius hat keine kampffähigen Dämonen mehr.");
-                System.out.println("Dies ist dein Ende.\n");
-                ASCII.BattleLost();
-                System.exit(0);
-            }
+            checkDefeat();
 
             // Spieler nicht besiegt, neuen Dämon beschwören
             chooseDemon();
@@ -291,6 +362,7 @@ public class Battle {
     public static void chooseDemon(){
         int counter = 1;
         int pick;
+        boolean inputValid = false;
 
         System.out.println("Wähle einen Dämon zum Beschwören:");
         for (Demon d : Player.team) {
@@ -303,16 +375,41 @@ public class Battle {
             }
             counter++;
         }
-        do {
-            System.out.print("> ");
-            pick = sc.nextInt();
-            if (!Player.team.get(pick - 1).ko) {
-                Demon.summon(pick - 1);
-            } else {
-                System.out.printf("%s wurde bereits besiegt, beschwöre einen anderen Dämon.", Player.team.get(pick - 1).name);
+
+        while (!inputValid) {
+            try {
+                System.out.print("> ");
+                pick = sc.nextInt();
+
+                if (pick < 1 || pick > Player.team.size()) {
+                    System.out.printf("Ungültige Eingabe. Wähle eine Zahl zwischen 1 und %d. \n", Player.team.size());
+                } else if (Player.team.get(pick - 1).ko) {
+                    System.out.printf("%s wurde bereits besiegt, beschwöre einen anderen Dämon. \n", Player.team.get(pick - 1).name);
+                } else {
+                    Demon.summon(pick - 1);
+                    inputValid = true;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Ungültige Eingabe. Gib eine Ziffer ein.");
+                sc.next();              // Puffer leeren
             }
-        } while (Player.team.get(pick - 1).ko);
+        }
     }
+
+    public static void checkDefeat(){
+        Player.counterKO = 0;
+        for (Demon d : Player.team) {
+            if (d.ko)
+                Player.counterKO++;
+        }
+        if (Player.counterKO >= Player.team.size()) {
+            System.out.println("\nMaleficarius hat keine kampffähigen Dämonen mehr.");
+            System.out.println("Dies ist dein Ende.\n");
+            ASCII.BattleLost();
+            System.exit(0);
+        }
+    }
+
 
 }
 

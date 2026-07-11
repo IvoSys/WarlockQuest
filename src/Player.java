@@ -59,6 +59,17 @@ public class Player {
         }
     }
 
+    public static boolean applyMpCost(int mpCost){
+
+        if (mp - mpCost >= 0) {
+            mp -= mpCost;
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
     public static void showInv() {
         System.out.println("=============INVENTAR==============");
         for (Item i : inv) {

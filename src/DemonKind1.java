@@ -27,6 +27,7 @@ public class DemonKind1 extends Demon{
         aoeAttackBattleDesc = "In Raserei schlägt Minotauros wild um sich.";
         selfBuffName = "Schreckliches Gebrüll";
         selfBuffDesc = "Minotauros brüllt fürchterlich. Bis zum nächsten Zug erhält er nur halben Schaden \nund sein nächster Angriff mit der Streitaxt wird um den erlittenen Schaden erhöht. ";
+        obliterated = "wird gespalten.";  // wenn Gegner mit besonders starken Schlag besiegt wird: "Gegner erhält 27 Schaden und …"
     }
 
     @Override
@@ -53,11 +54,14 @@ public class DemonKind1 extends Demon{
     public int attack() {
         Random rnd = new Random();
 
+        if (roar > 0)
+            System.out.println("Von seinen Wunden in Rage versetzt, lässt Minotauros die schwere Streitaxt hinabfahren.");
+        else
+            System.out.println("Mit dampfendem Atem attackiert Minotauros mit seiner Streitaxt.");
+
         int dmg = rnd.nextInt(11) + power + roar;
         roar = 0;
         isRoar = false;
-
-        System.out.println("Mit dampfendem Atem attackiert Minotauros mit seiner Streitaxt.");
 
         return dmg;
     }
@@ -69,7 +73,7 @@ public class DemonKind1 extends Demon{
 
     public void selfBuff() {
         isRoar = true;
-        System.out.println("Minotauros brüllt markerschütternd, Geifer tropft dampfend zu Boden.");
+        System.out.println("Minotauros brüllt markerschütternd, eine unmissverständliche Drohung.");
     }
 
 }

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Encounter {
 
     ArrayList<Enemy> enemyTeam = new ArrayList<>();
-    String enemyTeamName;
+    String name;
     int counterKO;
     boolean beaten = false;
 
@@ -12,7 +12,8 @@ public class Encounter {
 
     Item rewardItem;
 
-    public Encounter(Enemy enemy1, Enemy enemy2, Enemy enemy3, String intro, String outro, Item rewardItem) {
+    public Encounter(String teamName, Enemy enemy1, Enemy enemy2, Enemy enemy3, String intro, String outro, Item rewardItem) {
+        name = teamName;
         enemyTeam.add(enemy1);
         enemyTeam.add(enemy2);
         enemyTeam.add(enemy3);

@@ -4,9 +4,8 @@ public class SpellLifeline extends Spell {
         name = "Lebenslinie";
         desc = "Spannt ein magisches Band zwischen deinem Dämon und einem Gegner. \nIn den folgenden Runden geht vor jeder Aktion dieses Gegners \nLebenskraft von ihm auf deinen Dämon über.";
         formula = Story.formulaLifeline;
-        textWhenCast = "";
         textWhenLearned = "";
-        str = 10;
+        str = Player.spellpower;
         dur = 3;
         mpCost = 10;
         aoe = false;
@@ -14,12 +13,15 @@ public class SpellLifeline extends Spell {
 
     @Override
     public void cast(int enemyIndex) {
-        Enemy target = Player.room.encounter.enemyTeam.get(enemyIndex);
+        if (Player.applyMpCost(mpCost)) {
 
-        target.lifelined = true;
-        target.counterlifeline = dur;
+            Enemy target = Player.room.encounter.enemyTeam.get(enemyIndex);
 
-        System.out.println(textWhenCast);
+            target.lifelined = true;
+            target.counterlifeline = dur;
+
+            System.out.printf("Maleficarius knüpft ein magisches Band zwischen %s und %s. \n", target.name, Player.activeDemon.name);
+        }
     }
 
     @Override
@@ -38,6 +40,15 @@ public class SpellLifeline extends Spell {
         }
         Player.activeDemon.applyHeal(hpRestored);
 
+        System.out.printf("Über die Lebenslinie fließen %d HP von %s zu %s. \n", hpRestored, e.name, Player.activeDemon.name);
+        if (!e.lifelined)
+            System.out.println("Die Lebenslinie erlischt.");
+        if (e.ko) {
+            System.out.println(e.name + " überlebt den Lebensentzug nicht.");
+            if (e.carriesVSeed) {
+                WorldBuilder.viciousSeed.explode(e);
+            }
+        }
     }
 
 }

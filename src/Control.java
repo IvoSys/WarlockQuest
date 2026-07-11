@@ -10,7 +10,9 @@ public class Control {
         try {
             System.in.read();
         }
-        catch(Exception e){}
+        catch(Exception e){
+            System.out.println("ERROR: " + e.getMessage());
+        }
     }
 
     public static void quit(){

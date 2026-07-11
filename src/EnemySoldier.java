@@ -8,7 +8,7 @@ public class EnemySoldier extends Enemy{
         hpMax = hp;
         this.power = power;
         this.hasPotion = hasPotion;
-        potionStr = 50;
+        potionStr = 40;
     }
 
 

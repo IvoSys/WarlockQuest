@@ -4,9 +4,8 @@ public class SpellDoom extends Spell {
         name = "Untergang";
         desc = "Verflucht einen Gegner, sodass er über mehrere Runden hinweg stetig ansteigenden Schaden erleidet.";
         formula = Story.formulaDoom;
-        textWhenCast = "";
         textWhenLearned = "";
-        str = 10;
+        str = Player.spellpower;
         dur = 3;
         mpCost = 10;
         aoe = false;

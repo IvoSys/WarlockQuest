@@ -5,6 +5,7 @@ public abstract class Demon {
     String desc;
     String textWhenSummoned;
     String textWhenBound;
+    String obliterated;
 
     int hp;
     int hpMax;
@@ -72,8 +73,9 @@ public abstract class Demon {
         hp -= dmg;
         if (hp < 0)
             hp = 0;
-        if (hp == 0)
+        if (hp == 0) {
             ko = true;
+        }
     }
 
     public void applyHeal(int heal){
