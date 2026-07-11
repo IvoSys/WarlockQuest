@@ -45,7 +45,7 @@ public class Room {
 
         if (!loot.isEmpty()){
             for (Item i : loot){
-                if (input.contains(i.name.toLowerCase())){
+                if (input.contains(i.name.toLowerCase()) || input.contains(i.nameVague.toLowerCase())){
                     Player.inv.add(i);
                     System.out.printf("Du nimmst an dich: %s \n", i.name);
                     loot.remove(i);

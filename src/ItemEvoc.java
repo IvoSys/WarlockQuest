@@ -2,8 +2,9 @@ public class ItemEvoc extends Item {
 
     String demonShortName;
 
-    public ItemEvoc(String scrollTitle, String desc, String demonShortName) {
+    public ItemEvoc(String scrollTitle, String nameVague, String desc, String demonShortName) {
         name = scrollTitle;                     //Name der Beschwörungsformel
+        this.nameVague = nameVague;
         this.desc = desc;                       //Text mit Rätsel zum trueName des Dämonen
         this.demonShortName = demonShortName;   //Kann mit name-Variablen des Dämonen abgeglichen werden
     }

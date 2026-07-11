@@ -2,8 +2,9 @@ public class ItemScroll extends Item {
 
     String nameSpell;
 
-    public ItemScroll(String name, String desc, String nameSpell) {
+    public ItemScroll(String name, String nameVague, String desc, String nameSpell) {
         this.name = name;
+        this.nameVague = nameVague;
         this.desc = desc;
         this.nameSpell = nameSpell;
     }

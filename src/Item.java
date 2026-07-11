@@ -1,6 +1,7 @@
 public abstract class Item {
 
     protected String name;
+    protected String nameVague;
     protected String namePlural;
     protected String desc;
     protected int num = 1;

@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+
 public class Battle {
 
     static Scanner sc = new Scanner(System.in);
@@ -308,7 +309,7 @@ public class Battle {
             if (!Player.team.get(pick - 1).ko) {
                 Demon.summon(pick - 1);
             } else {
-                System.out.printf("%s ist besiegt, beschwöre einen anderen Dämon.", Player.team.get(pick - 1).name);
+                System.out.printf("%s wurde bereits besiegt, beschwöre einen anderen Dämon.", Player.team.get(pick - 1).name);
             }
         } while (Player.team.get(pick - 1).ko);
     }

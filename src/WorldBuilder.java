@@ -64,10 +64,10 @@ public class WorldBuilder {
 
 
     //BESCHWÖRUNGSFORMELN
-    static ItemEvoc evoc00 = new ItemEvoc("Beschwörungsformel des Daimon", Story.riddleDem00, "Daimon");
-    static ItemEvoc evoc01 = new ItemEvoc("Beschwörungsformel des NAME", Story.riddleDem01, "");
-    static ItemEvoc evoc02 = new ItemEvoc("Beschwörungsformel des NAME", Story.riddleDem02, "");
-    static ItemEvoc evoc03 = new ItemEvoc("Beschwörungsformel des NAME", Story.riddleDem03, "");
+    static ItemEvoc evoc00 = new ItemEvoc("Beschwörungsformel des Daimon", "", Story.riddleDem00, "Daimon");
+    static ItemEvoc evoc01 = new ItemEvoc("Beschwörungsformel des NAME", "", Story.riddleDem01, "");
+    static ItemEvoc evoc02 = new ItemEvoc("Beschwörungsformel des NAME", "", Story.riddleDem02, "");
+    static ItemEvoc evoc03 = new ItemEvoc("Beschwörungsformel des NAME", "", Story.riddleDem03, "");
 
     //DÄMONEN
     static DemonKind1 dem01 = new DemonKind1();
@@ -78,39 +78,39 @@ public class WorldBuilder {
 
 
     //ALCHEMIEZUTATEN
-    //weiß, Katalysator static ItemIngred alch01 = new ItemIngred("", "", "", 10);
-    //weiß, Katalysator static ItemIngred alch02 = new ItemIngred("", "", "", 10);
-    static ItemIngred alch11 = new ItemIngred("Molchauge", "Molchaugen", "Feine Blutgefäße ziehen sich in unruhigen Fäden durch den Augapfel.", 1);
-    static ItemIngred alch12 = new ItemIngred("Glutorchidee", "Glutorchideen", "Rein optisch wird diese empfindliche Blüte ihrem Namen gerecht.", 1);
-    static ItemIngred alch21 = new ItemIngred("Mondbeere", "Mondbeeren", "Eisblaue Früchte, die den Geist erfrischen.", 2);
-    static ItemIngred alch22 = new ItemIngred("Mitternachtskraut", "Bund Mitternachtskraut", "Fahlblaue Blätter, die sich lieber dem Mondlicht als der Sonne zuwenden.", 2);
-    //gelb static ItemIngred alch31 = new ItemIngred("", "", "", 3);
-    //gelb static ItemIngred alch32 = new ItemIngred("", "", "", 3);
-    //grün static ItemIngred alch41 = new ItemIngred("", "", "", 4);
-    //grün static ItemIngred alch42 = new ItemIngred("", "", "", 4);
-    //schwarz, Levelup static ItemIngred alch51 = new ItemIngred("", "", "", 5);
-    //schwarz, Levelup static ItemIngred alch52 = new ItemIngred("", "", "", 5);
+    //weiß, Katalysator static ItemIngred alch01 = new ItemIngred("", "", "", "", 10);
+    //weiß, Katalysator static ItemIngred alch02 = new ItemIngred("", "", "", "", 10);
+    static ItemIngred alch11 = new ItemIngred("Molchauge", "", "Molchaugen", "Feine Blutgefäße ziehen sich in unruhigen Fäden durch den Augapfel.", 1);
+    static ItemIngred alch12 = new ItemIngred("Glutorchidee", "", "Glutorchideen", "Rein optisch wird diese empfindliche Blüte ihrem Namen gerecht.", 1);
+    static ItemIngred alch21 = new ItemIngred("Mondbeere", "", "Mondbeeren", "Eisblaue Früchte, die den Geist erfrischen.", 2);
+    static ItemIngred alch22 = new ItemIngred("Mitternachtskraut", "", "Bund Mitternachtskraut", "Fahlblaue Blätter, die sich lieber dem Mondlicht als der Sonne zuwenden.", 2);
+    //gelb static ItemIngred alch31 = new ItemIngred("", "", "", "", 3);
+    //gelb static ItemIngred alch32 = new ItemIngred("", "", "", "", 3);
+    //grün static ItemIngred alch41 = new ItemIngred("", "", "", "", 4);
+    //grün static ItemIngred alch42 = new ItemIngred("", "", "", "", 4);
+    //schwarz, Levelup static ItemIngred alch51 = new ItemIngred("", "", "", "", 5);
+    //schwarz, Levelup static ItemIngred alch52 = new ItemIngred("", "", "", "", 5);
 
 
     //TRÄNKE
-    static ItemPotion potHealth1 = new ItemPotionHealth("Heiltrank", "Ein rot strahlender Trank, stellt 60 HP wiederher.", 60, 11);
-    static ItemPotion potHealth2 = new ItemPotionHealth("Starker Heiltrank", "Ein rot strahlender Trank, der sich lauwarm anfühlt. Stellt 120 HP wiederher.", 120, 110);
-    static ItemPotion potHealth3 = new ItemPotionHealth("Mächtiger Heiltrank", "Ein rot strahlender Trank, in dem goldene Partikel umherwirbeln. stellt 250 HP wiederher.", 250, 1100);
-    static ItemPotion potMana1 = new ItemPotionMana("Manatrank", "Ein blau schimmernder Trank, stellt 30 MP wiederher.", 30, 22);
-    static ItemPotion potMana2 = new ItemPotionMana("Starker Manatrank", "Ein blau schimmernder Trank, der sich angenehm kühl anfühlt. Stellt 60 MP wiederher.", 60, 220);
-    static ItemPotion potMana3 = new ItemPotionMana("Mächtiger Manatrank", "Ein blau schimmernder Trank, in dem silberne Partikel umherwirbeln. Stellt 125 MP wiederher.", 125, 2200);
-    //static ItemPotion potYellow1 = new ItemPotion("Gelber Trank", "", 30, 33);
-    //static ItemPotion potGreen1 = new ItemPotion("Grüner Trank", "", 30, 44);
-    static ItemPotion potLevelUp = new ItemPotionLevelup("Trank des Abgrunds", "Ein tiefschwarzer Trank. \nDas Elixir ist so perfekt schwarz, dass die kugelrunde Flasche unnatürlich formlos erscheint, wie ein blinder Fleck in deinem Sichtfeld. \nSie nimmt den Blick gefangen, und nach einer Weile verfestigt sich das Gefühl, dass irgendetwas zurückstarrt. ", 55);
+    static ItemPotion potHealth1 = new ItemPotionHealth("Heiltrank", "", "Ein rot strahlender Trank, stellt 60 HP wiederher.", 60, 11);
+    static ItemPotion potHealth2 = new ItemPotionHealth("Starker Heiltrank", "", "Ein rot strahlender Trank, der sich lauwarm anfühlt. Stellt 120 HP wiederher.", 120, 110);
+    static ItemPotion potHealth3 = new ItemPotionHealth("Mächtiger Heiltrank", "", "Ein rot strahlender Trank, in dem goldene Partikel umherwirbeln. stellt 250 HP wiederher.", 250, 1100);
+    static ItemPotion potMana1 = new ItemPotionMana("Manatrank", "", "Ein blau schimmernder Trank, stellt 30 MP wiederher.", 30, 22);
+    static ItemPotion potMana2 = new ItemPotionMana("Starker Manatrank", "", "Ein blau schimmernder Trank, der sich angenehm kühl anfühlt. Stellt 60 MP wiederher.", 60, 220);
+    static ItemPotion potMana3 = new ItemPotionMana("Mächtiger Manatrank", "", "Ein blau schimmernder Trank, in dem silberne Partikel umherwirbeln. Stellt 125 MP wiederher.", 125, 2200);
+    //static ItemPotion potYellow1 = new ItemPotion("Gelber Trank", "", "", 30, 33);
+    //static ItemPotion potGreen1 = new ItemPotion("Grüner Trank", "", "", 30, 44);
+    static ItemPotion potLevelUp = new ItemPotionLevelup("Trank des Abgrunds", "", "Ein tiefschwarzer Trank. \nDas Elixir ist so perfekt schwarz, dass die kugelrunde Flasche unnatürlich formlos erscheint, wie ein blinder Fleck in deinem Sichtfeld. \nSie nimmt den Blick gefangen, und nach einer Weile verfestigt sich das Gefühl, dass irgendetwas zurückstarrt. ", 55);
 
 
     //SCHRIFTROLLEN
-    static ItemScroll scrollBloodletting = new ItemScroll("Zauberschriftrolle \"Aderlass\"", Story.riddleBloodletting, "Aderlass");
-    static ItemScroll scrollDoom = new ItemScroll("Zauberschriftrolle \"Untergang\"", Story.riddleDoom, "Untergang");
-    static ItemScroll scrollIronMaiden = new ItemScroll("Zauberschriftrolle \"Eiserne Jungfrau\"", Story.riddleIronMaiden, "Eiserne Jungfrau");
-    static ItemScroll scrollLifeline = new ItemScroll("Zauberschriftrolle \"Lebenslinie\"", Story.riddleLifeline, "Lebenslinie");
-    static ItemScroll scrollSoulreaper = new ItemScroll("Zauberschriftrolle \"Seelendieb\"", Story.riddleSoulreaper, "Seelendieb");
-    static ItemScroll scrollViciousSeed = new ItemScroll("Zauberschriftrolle \"Üble Saat\"", Story.riddleViciousSeed, "Üble Saat");
+    static ItemScroll scrollBloodletting = new ItemScroll("Zauberschriftrolle \"Aderlass\"", "", Story.riddleBloodletting, "Aderlass");
+    static ItemScroll scrollDoom = new ItemScroll("Zauberschriftrolle \"Untergang\"", "", Story.riddleDoom, "Untergang");
+    static ItemScroll scrollIronMaiden = new ItemScroll("Zauberschriftrolle \"Eiserne Jungfrau\"", "", Story.riddleIronMaiden, "Eiserne Jungfrau");
+    static ItemScroll scrollLifeline = new ItemScroll("Zauberschriftrolle \"Lebenslinie\"", "", Story.riddleLifeline, "Lebenslinie");
+    static ItemScroll scrollSoulreaper = new ItemScroll("Zauberschriftrolle \"Seelendieb\"", "", Story.riddleSoulreaper, "Seelendieb");
+    static ItemScroll scrollViciousSeed = new ItemScroll("Zauberschriftrolle \"Üble Saat\"", "", Story.riddleViciousSeed, "Üble Saat");
 
     //ZAUBER
     static Spell bloodletting = new SpellBloodletting();
@@ -124,12 +124,12 @@ public class WorldBuilder {
     static ArrayList<Spell> freeSpells = new ArrayList<>(Arrays.asList(allSpells));
 
     //KEY-ITEMS
-    static ItemKey bagAlche = new ItemKey("Alchemiebeutel", "Ein samtener Beutel, in dem du all deine alchemistischen Zutaten aufbewahrst: \n", 0, 0);
-    static ItemKey bagPotions = new ItemKey("Trankgurt", "Ein System aus Lederriemen, mit denen du Trankfläschchen am Gürtel befestigen kannst. \n", 0, 0);
-    static ItemKey bookSpells = new ItemKey("Zauberbuch", "Ein ledergebundener Foliant, in dem all deine Zauber verzeichnet sind: \n", 0, 0);
-    static ItemKey bookBlackArts = new ItemKey("\"Die schwarzen Künste\"", Story.bookBlackArtsDesc, 0, 0);
-    static ItemKey key000 = new ItemKey("Zellenschlüssel", "Ein rostiger Klumpen von Schlüssel.", -1, 0);
-    static ItemKey key999 = new ItemKey("Goldklumpen", "Alechimistisch betrachtet wertlos.", 0, 0);
+    static ItemKey bagAlche = new ItemKey("Alchemiebeutel", "", "Ein samtener Beutel, in dem du all deine alchemistischen Zutaten aufbewahrst: \n", 0, 0);
+    static ItemKey bagPotions = new ItemKey("Trankgurt", "", "Ein System aus Lederriemen, mit denen du Trankfläschchen am Gürtel befestigen kannst. \n", 0, 0);
+    static ItemKey bookSpells = new ItemKey("Zauberbuch", "", "Ein ledergebundener Foliant, in dem all deine Zauber verzeichnet sind: \n", 0, 0);
+    static ItemKey bookBlackArts = new ItemKey("\"Die schwarzen Künste\"", "", Story.bookBlackArtsDesc, 0, 0);
+    static ItemKey key000 = new ItemKey("Zellenschlüssel", "Schlüssel", "Ein rostiger Klumpen von Schlüssel.", -1, 0);
+    static ItemKey key999 = new ItemKey("Goldklumpen", "", "Alechimistisch betrachtet wertlos.", 0, 0);
 
     //Startitems
     public static void giveStartItems() {

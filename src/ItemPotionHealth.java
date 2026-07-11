@@ -1,7 +1,8 @@
 public class ItemPotionHealth extends ItemPotion{
 
-    public ItemPotionHealth (String name, String desc, int str, int combiID) {
+    public ItemPotionHealth (String name, String nameVague, String desc, int str, int combiID) {
         this.name = name;
+        this.nameVague = nameVague;
         this.desc = desc;
         this.str = str;
         this.combiID = combiID;
