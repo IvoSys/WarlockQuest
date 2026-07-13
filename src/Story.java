@@ -146,6 +146,9 @@ public class Story {
 
                         "Neben \">\" gibst du die Zahl der gewünschten Aktion ein.\n\n" +
 
+                        "Physischen Angriffen und Zaubern, die Projektile verschießen, kann kann mit gewisser Chance ausgewichen werden. \n" +
+                        "Die Flüche eines Hexenmeisters binden sich an die Seele eines Lebewesens und verfehlen niemals. \n\n" +
+
                         "Du kannst einen neuen Dämon beschwören, anschließend sind aber zuerst die Gegner an der Reihe. \n" +
                         "Zu jedem Zeitpunkt kann nur ein Dämon im Kampf sein. \n\n" +
 

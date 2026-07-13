@@ -1,17 +1,17 @@
 public class DemonKind2 extends Demon{
 
     public DemonKind2 () {
-        name = "Feuerdämon";
+        name = "Efreet";
         trueName = Story.trueNameDem02;
         desc = "";
         textWhenSummoned = "";
         textWhenBound = "";
-        hpBase = 100;
+        hpBase = 120;
         hpMax = hpBase;
         hp = hpMax;
-        powerBase = 10;
+        powerBase = 20;
         power = powerBase;
-        dex = 10;
+        dex = 30;
 
         attackName = "Angriff";
         attackDesc = "";

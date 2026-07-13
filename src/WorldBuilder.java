@@ -143,13 +143,13 @@ public class WorldBuilder {
 
 
     //GEGNER
-    static Enemy soldier01 = new EnemySoldier("Soldat Karl", "Schwert", 80, 10, false);
-    static Enemy soldier02 = new EnemySoldier("Soldatin Franziska", "Bogen", 80, 10, true);
-    static Enemy soldier03 = new EnemySoldier("Soldat Max", "Dolch", 80, 10, false);
+    static Enemy soldier01 = new EnemySoldier("Soldat Karl", "Schwert", 80, 10, 5, false);
+    static Enemy soldier02 = new EnemySoldier("Soldatin Franziska", "Bogen", 80, 10, 5, true);
+    static Enemy soldier03 = new EnemySoldier("Soldat Max", "Dolch", 80, 10, 5, false);
 
     // ENCOUNTER
-    static Encounter enc221TEST = new Encounter("Testsoldaten", soldier01, soldier02, soldier03, "Achtung, Testüberfall!", "Achtung, Testüberfall beendet!", key999, 5);
-    static Encounter enc022 = new Encounter("Angeheiterte Wachen", soldier01, soldier02, soldier03, "Achtung, Testüberfall!", "Achtung, Testüberfall beendet!", null, 5);
+    static Encounter enc221TEST = new Encounter("Testsoldaten", soldier01, soldier02, soldier03, "Achtung, Testüberfall!", "Achtung, Testüberfall beendet!", key999);
+    static Encounter enc022 = new Encounter("Angeheiterte Wachen", soldier01, soldier02, soldier03, "Achtung, Testüberfall!", "Achtung, Testüberfall beendet!", null);
 
 
 

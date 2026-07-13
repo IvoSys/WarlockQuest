@@ -9,6 +9,7 @@ public abstract class Enemy {
     int hp;
     int hpMax;
     int power;
+    int dex;
     boolean hasPotion;
     int potionStr;
     boolean ko = false;
@@ -33,6 +34,22 @@ public abstract class Enemy {
     public Enemy() {}
 
     //Setter
+    public void applyDmgEvade(int dmg){
+        if (Battle.rnd.nextInt(100) < dex)
+            System.out.println(name + " weicht aus!");
+        else {
+            hp -= dmg;
+            System.out.printf("%s erhält %d Schaden", name, dmg);
+            if (hp > 0) {
+                System.out.println(".");
+            } else {
+                hp = 0;
+                System.out.println(" und stirbt.");
+                die();
+            }
+        }
+    }
+
     public void applyDmg(int dmg){
         hp -= dmg;
         System.out.printf("%s erhält %d Schaden", name, dmg);
@@ -90,7 +107,7 @@ public abstract class Enemy {
 
     public int attack(){
         int dmg = rnd.nextInt(11) + power;
-        System.out.printf("%s greift mit dem %s an. \n", name, weapon);
+        System.out.printf("%s greift mit dem %s an – ", name, weapon);
         if (inIronMaiden)
             applyMaiden(dmg);
         return dmg;

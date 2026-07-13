@@ -37,7 +37,8 @@ public class SpellViciousSeed extends Spell {
         e.carriesVSeed = false;
         System.out.println("Der Keim des Übels in " + e.name + " platzt auf.");
         for (Enemy f : Player.room.encounter.enemyTeam) {
-            f.applyDmg(str);
+            if (!f.ko)
+                f.applyDmg(str);
         }
     }
 

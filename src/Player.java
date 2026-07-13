@@ -9,10 +9,8 @@ public class Player {
 
     static ArrayList<Item> inv = new ArrayList<>();
     static ArrayList<Spell> spellbook = new ArrayList<>();
-    static ArrayList<ItemPotion> potions = new ArrayList<>();
     static ArrayList<Demon> team = new ArrayList<>();
     static int counterKO;
-    //static Demon activeDemon;
 
     //Position
     static int curX = 0;
@@ -276,6 +274,5 @@ public class Player {
                 Player.spellbook.add(s);
         System.out.println("Und das mit Recht; denn alles was entsteht, \nIst wert, dass es zugrunde geht.");
     }
-
 
 }

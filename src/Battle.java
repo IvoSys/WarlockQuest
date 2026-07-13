@@ -26,7 +26,6 @@ public class Battle {
         encounterIntro();
         ifNoDemons();
         forcePickDemon();
-
         do {                                                        //Äußerer Battle Loop – wiederholt nach Prüfung auf Niederlage
             initiative();
             do {                                                    //Innerer Battle Loop – wiederholt nach Gegner-Zug, solange Dämon nicht K.O.
@@ -45,7 +44,7 @@ public class Battle {
                             case 2:                                 // AOE Attack
                                 System.out.println(demon.aoeAttackBattleDesc);
                                 for (Enemy e : enemyTeam)
-                                    e.applyDmg(demon.aoeAttack());
+                                    e.applyDmgEvade(demon.aoeAttack());
                                 isPlayerTurn = false;
                                 Control.enterToContinue();
                                 break;
@@ -57,24 +56,27 @@ public class Battle {
                             case 4:                                 // Spell
                                 if (!malActed) {
                                     printSpellbook();
-                                    try {
-                                        System.out.print("> ");
-                                        pick = sc.nextInt();
-                                        if (pick == 0) {
-                                            break;
+                                    inputValid = false;
+                                    while (!inputValid) {
+                                        try {
+                                            System.out.print("> ");
+                                            pick = sc.nextInt();
+                                            if (pick == 0) {
+                                                break;
+                                            }
+                                        } catch (InputMismatchException e) {
+                                            System.out.println("Ungültige Eingabe. Gib eine Ziffer ein.");
+                                            sc.next();
                                         }
-                                    } catch (InputMismatchException e) {
-                                        System.out.println("Ungültige Eingabe. Gib eine Ziffer ein.");
-                                        sc.next();
-                                    }                               // Zielauswahl Zauber
-                                    Spell pickedSpell = Player.spellbook.get(pick - 1);
-                                    if (!pickedSpell.aoe && !pickedSpell.onDemon) {
-                                        printEnemies();
-                                        pickTargetSpell(pickedSpell);
-                                    } else {
-                                        pickedSpell.cast();
-                                        malActed = true;
-                                        Control.enterToContinue();
+                                        Spell pickedSpell = Player.spellbook.get(pick - 1); // Zielauswahl Zauber
+                                        if (!pickedSpell.aoe && !pickedSpell.onDemon) {
+                                            printEnemies();
+                                            pickSpellTarget(pickedSpell);
+                                        } else {
+                                            pickedSpell.cast();
+                                            malActed = true;
+                                            Control.enterToContinue();
+                                        }
                                     }
                                 } else {
                                     System.out.println("Maleficarius hat diese Runde schon gehandelt.");
@@ -98,36 +100,22 @@ public class Battle {
                         System.out.println("Ungültige Eingabe. Gib eine Ziffer ein. \n");
                         sc.next();
                     }
-
                     checkVictory();                                 // Spieler hat Aktion ausgeführt, Prüfung auf Sieg, Flüche bei toten Gegnern aufösen
-
                     if (demon.ko) {                                 // Dämon könnte durch Zauber wie Aderlass sterben, ggf. Lifeline auflösen und Prüfung auf Niederlage:
                         for (Enemy e : enemyTeam)
                             e.lifelined = false;
                         if (!encounter.beaten)
                             checkDefeat();
                     }
-
                 }                                                   // Ende while(isPlayerTurn)
-
-    //GEGNER AM ZUG
                 while (!isPlayerTurn && !encounter.beaten) {
-                    enemyTurn();
-                } // Ende while(!isPlayerTurn && !encounter.beaten)
-
-            } while (!demon.ko);  // Ende innerer Battle-Loop. Wiederholt, solange Dämon am Leben
-
-            // Dämon besiegt, Prüfung auf Niederlage
-            checkDefeat();
-
-            // Spieler nicht besiegt, neuen Dämon beschwören
-            forcePickDemon();
-
-        // Solange Kampf nicht gewonnen, wieder nach oben
-        } while (!encounter.beaten);
-
-        //Kampf gewonnen
-        battleWon();
+                    enemyTurn();                                    // GEGNER AM ZUG
+                }
+            } while (!demon.ko);                                    // Ende innerer Battle-Loop. Wiederholt, solange Dämon am Leben
+            checkDefeat();                                          // Dämon besiegt, Prüfung auf Niederlage
+            forcePickDemon();                                       // Spieler nicht besiegt, neuen Dämon beschwören
+        } while (!encounter.beaten);                                // Solange Kampf nicht gewonnen, wieder nach oben
+        battleWon();                                                //Kampf gewonnen
     }
 
     public static void encounterIntro(){
@@ -187,7 +175,14 @@ public class Battle {
     }
 
     public static void initiative(){
-        if (true) {
+        int sumDex = 0;
+        for (Enemy e : Battle.enemyTeam)
+            sumDex += e.dex;
+        int enemyTeamDex = sumDex / enemyTeam.size();
+        int initEnemies = rnd.nextInt(20) + enemyTeamDex;
+        int initDemon = rnd.nextInt(20) + demon.dex;
+
+        if (initDemon >= initEnemies) {
             isPlayerTurn = true;
             System.out.println(demon.name + " beginnt.");
         } else {
@@ -223,7 +218,7 @@ public class Battle {
             encounter.beaten = true;
     }
 
-    public static void battleMenu(){                 // gibt int für switch (pick) aus
+    public static void battleMenu(){
         System.out.println(encounter.name.toUpperCase());
         for (Enemy e : enemyTeam) {
             if (!e.ko) {
@@ -237,8 +232,8 @@ public class Battle {
                 System.out.printf(" – Üble Saat (%d)", e.counterVSeed);
             System.out.println();
         }
-        System.out.println("\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n");
-        System.out.printf("%s \t(%d/%d HP)\n", demon.name.toUpperCase(), demon.hp, demon.hpMax);
+        System.out.println("\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n");
+        System.out.printf("%s \t\t\t(%d/%d HP)\n", demon.name.toUpperCase(), demon.hp, demon.hpMax);
         System.out.print("[1] " + demon.attackName);
         if (demon == WorldBuilder.dem01 && WorldBuilder.dem01.roar > 0)
             System.out.printf(" (+%d)\n", WorldBuilder.dem01.roar);
@@ -247,8 +242,8 @@ public class Battle {
         System.out.println("[2] " + demon.aoeAttackName);
         System.out.println("[3] " + demon.selfBuffName);
         if (!malActed) {
-            System.out.println("----------------------------------------------");
-            System.out.printf("[4] Zauber \t(%d/%d MP)\n", Player.mp, Player.mpMax);
+            System.out.println("-----------------------------------");
+            System.out.printf("[4] Zauber \t\t\t(%d/%d MP)\n", Player.mp, Player.mpMax);
             System.out.println("[5] Beschwören");
         }
 
@@ -318,7 +313,7 @@ public class Battle {
                 } else if (pickedTarget == 0) {
                     break;
                 } else {
-                    enemyTeam.get(pickedTarget - 1).applyDmg(demon.attack());
+                    enemyTeam.get(pickedTarget - 1).applyDmgEvade(demon.attack());
                     inputValid = true;
                     isPlayerTurn = false;
                     Control.enterToContinue();
@@ -330,7 +325,7 @@ public class Battle {
         }
     }
 
-    public static void pickTargetSpell(Spell pickedSpell){
+    public static void pickSpellTarget(Spell pickedSpell){
         inputValid = false;
         while (!inputValid) {
             System.out.println("Wähle ein Ziel. (Zurück: 0)");
@@ -362,7 +357,7 @@ public class Battle {
                 if (pick == 0) {
                     break;
                 } else if (pick < 0 || pick > Player.team.size()) {
-                    System.out.printf("Ungültige Eingabe. Wähle eine Zahl zwischen 1 und %d. \n", Player.team.size());
+                    System.out.printf("Ungültige Eingabe. Wähle eine Zahl zwischen 1 und %d oder die 0. \n", Player.team.size());
                 } else if (Player.team.get(pick - 1).ko) {
                     System.out.printf("%s wurde bereits besiegt, beschwöre einen anderen Dämon. \n", Player.team.get(pick - 1).name);
                 } else {
@@ -381,8 +376,7 @@ public class Battle {
     public static void enemyTurn() {
         System.out.println(encounter.name + " sind am Zug:\n");
         for (Enemy e : enemyTeam) {
-
-            if (e.lifelined)                         // Vor Aktion Zaubereffekte abhandeln, könnten dmg verursachen
+            if (e.lifelined)                                        // Vor Aktion Zaubereffekte abhandeln, könnten dmg verursachen
                 WorldBuilder.lifeline.tick(e);
             if (e.doomed)
                 WorldBuilder.doom.tick(e);
@@ -391,14 +385,14 @@ public class Battle {
             if (e.inIronMaiden)
                 WorldBuilder.ironMaiden.tick(e);
 
-            if (!e.ko) {                                // Aktion, erst prüfen, ob K.O.
+            if (!e.ko) {                                            // Aktion, erst prüfen, ob K.O.
                 //weitere If-Verzweigung je nach Enemy-Subklasse?
                 if ((e.hp <= e.hpMax * 0.3f) && (e.hasPotion)) {    // Wenn schwer verletzt und Potion vorhanden, dann Potion statt Angriff
                     e.drinkPotion();
-                } else {
-                    pick = rnd.nextInt(e.numOptions);          // Zufallszahlenbereich entspricht Anzahl seiner Optionen
+                } else if (!demon.ko){
+                    pick = rnd.nextInt(e.numOptions);               // Zufallszahlenbereich entspricht Anzahl seiner Optionen
                     if (pick == 0) {
-                        demon.applyDmg(e.attack());                            // Flavor dazu: Kampfschreie, Schadensbeschreibungen etc.
+                        demon.applyDmgEvade(e.attack());                 // Flavor dazu: Kampfschreie, Schadensbeschreibungen etc.
                     } else if (pick == 1) {
                         e.ability1();
                     } else if (pick == 2) {
@@ -407,7 +401,6 @@ public class Battle {
                         e.ability3();
                     } else
                         System.out.println("DEBUG: Fehler beim Auswürfeln der Gegneraktion.");
-
                 }
             } // Ende Aktion einzelner Gegner
             if (demon.ko)                           //Wenn Dämon besiegt wurde, sollte eventuelle Lifeline auf Gegnern beendet werden.

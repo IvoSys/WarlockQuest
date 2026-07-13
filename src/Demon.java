@@ -69,6 +69,24 @@ public abstract class Demon {
 
 
     //Setter
+    public void applyDmgEvade(int dmg){
+        if (Battle.rnd.nextInt(100) < Battle.demon.dex)
+            System.out.println(Battle.demon.name + " weicht aus!");
+        else {
+            hp -= dmg;
+            if (hp < 0)
+                hp = 0;
+            if (hp == 0) {
+                ko = true;
+            }
+            System.out.printf("%s erleidet %d Schaden", Battle.demon.name, dmg);
+            if (ko)
+                System.out.println(" und ist besiegt.");
+            else
+                System.out.println(".");
+        }
+    }
+
     public void applyDmg(int dmg){
         hp -= dmg;
         if (hp < 0)
@@ -76,7 +94,13 @@ public abstract class Demon {
         if (hp == 0) {
             ko = true;
         }
+        System.out.printf("%s erleidet %d Schaden", Battle.demon.name, dmg);
+        if (ko)
+            System.out.println(" und ist besiegt.");
+        else
+            System.out.println(".");
     }
+
 
     public void applyHeal(int heal){
         hp += heal;

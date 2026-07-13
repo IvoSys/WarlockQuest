@@ -6,14 +6,13 @@ public class Encounter {
     String name;
     int counterKO;
     boolean beaten = false;
-    int dex;
 
     String intro = "";
     String outro = "";
 
     Item rewardItem;
 
-    public Encounter(String teamName, Enemy enemy1, Enemy enemy2, Enemy enemy3, String intro, String outro, Item rewardItem, int dex) {
+    public Encounter(String teamName, Enemy enemy1, Enemy enemy2, Enemy enemy3, String intro, String outro, Item rewardItem) {
         name = teamName;
         enemyTeam.add(enemy1);
         enemyTeam.add(enemy2);
@@ -21,7 +20,6 @@ public class Encounter {
         this.intro = intro;
         this.outro = outro;
         this.rewardItem = rewardItem;
-        this.dex = dex;
     }
 
 

@@ -5,7 +5,7 @@ public class SpellBloodletting extends Spell{
         desc = "Opfert Lebenspunkte deines Dämon, um deine Manareserven aufzufüllen.";
         formula = Story.formulaBloodletting;
         textWhenLearned = "";
-        str = Player.spellpower;
+        str = Player.spellpower * 2;
         mpCost = 0;
         aoe = false;
         onDemon = true;

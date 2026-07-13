@@ -16,7 +16,7 @@ public class DemonKind1 extends Demon{
         hpBase = 100;
         hpMax = hpBase;
         hp = hpMax;
-        powerBase = 10;
+        powerBase = 15;
         power = powerBase;
         dex = 10;
 
@@ -26,14 +26,14 @@ public class DemonKind1 extends Demon{
         aoeAttackDesc = "Minotauros verfällt in blinde Wut und verursacht bei \nallen Gegnern Schaden in unvorhersehbarer Höhe.";
         aoeAttackBattleDesc = "In Raserei schlägt Minotauros wild um sich.";
         selfBuffName = "Schreckliches Gebrüll";
-        selfBuffDesc = "Minotauros brüllt fürchterlich. Bis zum nächsten Zug erhält er nur halben Schaden \nund sein nächster Angriff mit der Streitaxt wird um den erlittenen Schaden erhöht. ";
+        selfBuffDesc = "Minotauros brüllt fürchterlich. Bis zum nächsten Zug weicht Minotaurus keinen Angriffen aus, erhält nur halben Schaden \nund sein nächster Angriff mit der Streitaxt wird um den erlittenen Schaden erhöht. ";
         obliterated = "wird gespalten.";  // wenn Gegner mit besonders starken Schlag besiegt wird: "Gegner erhält 27 Schaden und …"
     }
 
     @Override
-    public void applyDmg(int dmg){
+    public void applyDmgEvade(int dmg){
         if (!isRoar) {
-            super.applyDmg(dmg);
+            super.applyDmgEvade(dmg);
         }
         else {
             dmg = (int) (dmg * 0.5f);
@@ -43,12 +43,35 @@ public class DemonKind1 extends Demon{
                 hp = 0;
             if (hp == 0)
                 ko = true;
+
+            System.out.printf("Minotauros erleidet %d Schaden", dmg);
+            if (ko)
+                System.out.println(" und ist besiegt.");
+            else
+                System.out.println(".");
         }
-        System.out.printf("Minotauros erleidet %d Schaden", dmg);
-        if (ko)
-            System.out.println(" und ist besiegt.");
-        else
-            System.out.println(".");
+    }
+
+    @Override
+    public void applyDmg(int dmg){
+        if (!isRoar) {
+            super.applyDmgEvade(dmg);
+        }
+        else {
+            dmg = (int) (dmg * 0.5f);
+            hp -= dmg;
+            roar += dmg;
+            if (hp < 0)
+                hp = 0;
+            if (hp == 0)
+                ko = true;
+
+            System.out.printf("Minotauros erleidet %d Schaden", dmg);
+            if (ko)
+                System.out.println(" und ist besiegt.");
+            else
+                System.out.println(".");
+        }
     }
 
     public int attack() {

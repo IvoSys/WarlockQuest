@@ -1,17 +1,17 @@
 public class DemonKind3 extends Demon{
 
     public DemonKind3() {
-        name = "Dunkeldämon";
+        name = "Abaddon";
         trueName = Story.trueNameDem03;
         desc = "";
         textWhenSummoned = "";
         textWhenBound = "";
-        hpBase = 100;
+        hpBase = 150;
         hpMax = hpBase;
         hp = hpMax;
-        powerBase = 10;
+        powerBase = 30;
         power = powerBase;
-        dex = 10;
+        dex = 20;
 
         attackName = "Angriff";
         attackDesc = "";
