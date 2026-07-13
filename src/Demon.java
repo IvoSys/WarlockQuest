@@ -63,8 +63,8 @@ public abstract class Demon {
     }
 
     public static void summon(int index){
-        Player.activeDemon = Player.team.get(index);
-        System.out.println(Player.activeDemon.textWhenSummoned);
+        Battle.demon = Player.team.get(index);
+        System.out.println(Battle.demon.textWhenSummoned);
     }
 
 

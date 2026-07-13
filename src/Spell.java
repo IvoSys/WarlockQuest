@@ -29,11 +29,11 @@ public abstract class Spell {
     public void cast() {                    // AOE
     }
 
-    public void tick(Enemy e) {             // Verzögerte Wirkung setzt bei betroffenem Gegner ein
-    }
+    public void tick(Enemy e) {}             // Verzögerte Wirkung setzt bei betroffenem Gegner ein
 
-    public void explode(Enemy e) {
 
-    }
+    public void ironMaiden(Enemy e) {}
+
+    public void explode(Enemy e) {}
 
 }

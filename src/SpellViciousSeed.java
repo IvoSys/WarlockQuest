@@ -14,9 +14,13 @@ public class SpellViciousSeed extends Spell {
     public void cast(int enemyIndex) {
         Enemy target = Player.room.encounter.enemyTeam.get(enemyIndex);
 
-        target.carriesVSeed = true;
-        target.counterVSeed = dur;
-        System.out.printf("Maleficarius pflanzt einen Keim des Übels in %s, der in %d Runden aufspringen wird. \n", target.name, dur);
+        if (Player.applyMpCost(mpCost)) {
+            target.carriesVSeed = true;
+            target.counterVSeed = dur;
+            System.out.printf("Maleficarius pflanzt einen Keim des Übels in %s, der in %d Runden aufspringen wird. \n", target.name, dur);
+        } else {
+            System.out.println("Der Zauber schlägt fehl – Maleficarius verfügt nicht über ausreichend Mana.");
+        }
     }
 
     @Override

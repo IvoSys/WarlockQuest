@@ -15,36 +15,49 @@ public abstract class Enemy {
 
     int numOptions;
 
+    boolean doomed = false;
+    int counterDoom;
+
     boolean lifelined = false;
     int counterlifeline;
 
+    boolean inIronMaiden = false;
+    int counterIronMaiden;
+
     boolean carriesVSeed = false;
     int counterVSeed;
+
+
 
     // Konstruktor
     public Enemy() {}
 
     //Setter
     public void applyDmg(int dmg){
-        boolean obliterated = false;
-
         hp -= dmg;
-        //if (hp <= -10)
-        //    obliterated = true;
-        if (hp < 0) {
-            hp = 0;
-            ko = true;
-            lifelined = false;
-            carriesVSeed = false;
-        }
         System.out.printf("%s erhält %d Schaden", name, dmg);
-        //if (obliterated) {
-        //    System.out.println(" und " + Player.activeDemon.obliterated);
-        //} else if
-        if (ko)
-            System.out.println(" und stirbt.");
-        else
+        if (hp > 0) {
             System.out.println(".");
+        } else {
+            hp = 0;
+            System.out.println(" und stirbt.");
+            die();
+        }
+    }
+
+    public void die(){
+        hp = 0;
+        ko = true;
+        doomed = false;
+        lifelined = false;
+        inIronMaiden = false;
+        if (carriesVSeed)
+            WorldBuilder.viciousSeed.explode(this);
+    }
+
+    public void applyMaiden(int dmg){
+        System.out.printf("%s verletzt sich durch den Fluch \"%s\" selbst: ", name, WorldBuilder.ironMaiden.name);
+        applyDmg(dmg);
     }
 
     public void applyHeal(int heal){
@@ -78,6 +91,8 @@ public abstract class Enemy {
     public int attack(){
         int dmg = rnd.nextInt(11) + power;
         System.out.printf("%s greift mit dem %s an. \n", name, weapon);
+        if (inIronMaiden)
+            applyMaiden(dmg);
         return dmg;
     }
 

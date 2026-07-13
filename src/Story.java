@@ -48,6 +48,7 @@ public class Story {
                         "Gehe in Richtung\t| G.[Richtung]\t\t| Versucht, den aktuellen Ort in gewählter Richtung zu verlassen. \n" +
                         "(Raum wechseln)\t\t|\t\t\t\t\t| \tRichtungen: Nord (N), Ost (O), Süd (S), West (W), hoch (h), runter (r), \n" +
                         "\t\t\t\t\t|\t\t\t\t\t| \tz. B. \"Gehe.Norden\" oder einfach \"g.n\" \n" +
+                        "\t\t\t\t\t|\t\t\t\t\t| \tJedes Stockwerk des Schlosses besteht aus 3x3 Räumen.\n" +
                         "\t\t\t\t\t|\t\t\t\t\t| \n" +
                         "Status anzeigen\t\t| (S)tatus\t\t\t| Zeigt den Stand von Lebens- und Magiepunkten an.\n" +
                         "Raum ansehen\t\t| (R)aum \t\t\t| Zeigt erneut Namen und Beschreibung des aktuellen Raums an. \n" +
@@ -127,23 +128,25 @@ public class Story {
                         "Nach deinem Dämon sind die Gegner an der Reihe. Soll Maleficarius handeln, kann er dies vor dem Dämon tun, \n" +
                         "ohne dass dessen Zug verfällt. Einen Zauber zu wirken, kostet MP.\n\n" +
 
-                        "Beispiel: \n\n" +
+                        "Beispiel für eine Kampfsituation: \n\n" +
 
-                        "Gegner: \n" +
-                        "Soldat Max\t(53/80 HP) \tLebenslinie (2)\t\t\t (Name und Status der Gegner)\n" +
-                        "Soldat Jörg\t(63/80 HP) \tÜble Saat (2)\t\t\t(\"(2)\" = verbleibende Runden des Zaubers)\n" +
-                        "Soldatin Franziska\t(80/80 HP)\t \n\n\n" +
+                        "[NAME GEGNERTEAM] \n" +
+                        "Soldat Max\t(53/80 HP) \t\t\t\t\t<--- Name und HP der Gegner\n" +
+                        "Soldat Jörg\t(63/80 HP) – Üble Saat (2)\t<--- Auf Gegner wirkende Zauber und verbleibende Dauer\n" +
+                        "Soldatin Franziska\t(80/80 HP)\t \n\n" +
+                        "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n" +
+                        "[NAME DÄMON] \t(67/100 HP)\t\t<--- Name und Lebenspunkte des aktiven Dämons\n" +
+                        "[1] [Einzelangriff]\t\t\t\t<--- Dämon-Angriff gegen einzelnen Gegner\n" +
+                        "[2] [Flächenangriff]\t\t\t<--- Dämon-Angriff gegen alle Gegner\n" +
+                        "[3] [Selfbuff]\t\t\t\t\t<--- Dämon wirkt eine Fähigkeit auf sich selbst\n" +
+                        "------------------------------------------------------------------------\n" +
+                        "[4] Hexerei\t\t\t\t\t\t<--- Maleficarius wirkt einen Zauber \n" +
+                        "[5] Beschwören\t\t\t\t\t<--- Maleficarius beschwört einen anderen Dämon \n" +
+                        "> \n\n" +
 
-                        "100/100 HP \t\t50/50 MP \t(Dämon-Lebenspunkte und Maleficarius' Magiepunkte)\n" +
-                        "[NAME DES AKTIVEN DÄMONS] \n" +
-                        "[1] Angriff\t\t\t\t\t(Dämon)\n" +
-                        "[2] Fähigkeit 1\t\t\t\t(Dämon)\n" +
-                        "[3] Fähigkeit 2\t\t\t\t(Dämon)\n" +
-                        "------------------------\n" +
-                        "[4] Hexerei\t\t\t\t(Maleficarius) \n" +
-                        "[5] Beschwören\t\t\t(Maleficarius) \n\n" +
+                        "Neben \">\" gibst du die Zahl der gewünschten Aktion ein.\n\n" +
 
-                        "Du kannst auch einen neuen Dämon beschwören, anschließend sind aber zuerst die Gegner an der Reihe. \n" +
+                        "Du kannst einen neuen Dämon beschwören, anschließend sind aber zuerst die Gegner an der Reihe. \n" +
                         "Zu jedem Zeitpunkt kann nur ein Dämon im Kampf sein. \n\n" +
 
                         "Verschiedene Dämonen sind möglicherweise unterschiedlich stark gegen bestimmte Arten von Gegnern. \n\n" +

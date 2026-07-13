@@ -12,7 +12,7 @@ public class Player {
     static ArrayList<ItemPotion> potions = new ArrayList<>();
     static ArrayList<Demon> team = new ArrayList<>();
     static int counterKO;
-    static Demon activeDemon;
+    //static Demon activeDemon;
 
     //Position
     static int curX = 0;

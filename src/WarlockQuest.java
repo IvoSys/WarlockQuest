@@ -49,7 +49,8 @@ public class WarlockQuest {
             if (Player.moved) {
                 Room.describe();
                 if (Player.room.encounter != null && !Player.room.encounterBeaten) {
-                    Battle.fight(Player.room.encounter);
+                    Battle.encounter = Player.room.encounter;
+                    Battle.fight();
                 }
                 Player.moved = false;
             }
@@ -108,7 +109,8 @@ public class WarlockQuest {
                 Control.quit();                                                                                         // Beenden
             } else if (input.equals("gib mir einfach die lösungen")) {
                 Story.answers();
-            } else if (input.equals("ich bin der geist, der stets verneint!")) {
+            //} else if (input.equals("ich bin der geist, der stets verneint!")) {
+            } else if (input.equals("cheat")) {
                 Player.cheatAllDemsAndSpells();
             } else {
                 System.out.println("Sprich deutlich!");

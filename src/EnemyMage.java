@@ -8,8 +8,7 @@ public class EnemyMage extends Enemy{
 
 
     public int attack(){
-        int dmg = power;
-        return dmg;
+        return (super.attack());
     }
 
     public void ability1() {

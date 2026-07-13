@@ -120,7 +120,7 @@ public class WorldBuilder {
     static Spell soulreaper = new SpellSoulreaper();
     static Spell viciousSeed = new SpellViciousSeed();
 
-    static Spell[] allSpells = {bloodletting, lifeline, soulreaper, viciousSeed};
+    static Spell[] allSpells = {bloodletting, doom, ironMaiden, lifeline, soulreaper, viciousSeed};
     static ArrayList<Spell> freeSpells = new ArrayList<>(Arrays.asList(allSpells));
 
     //KEY-ITEMS
@@ -148,8 +148,8 @@ public class WorldBuilder {
     static Enemy soldier03 = new EnemySoldier("Soldat Max", "Dolch", 80, 10, false);
 
     // ENCOUNTER
-    static Encounter enc221TEST = new Encounter("Testsoldaten", soldier01, soldier02, soldier03, "Achtung, Testüberfall!", "Achtung, Testüberfall beendet!", key999);
-    static Encounter enc022 = new Encounter("Angeheiterte Wachen", soldier01, soldier02, soldier03, "Achtung, Testüberfall!", "Achtung, Testüberfall beendet!", null);
+    static Encounter enc221TEST = new Encounter("Testsoldaten", soldier01, soldier02, soldier03, "Achtung, Testüberfall!", "Achtung, Testüberfall beendet!", key999, 5);
+    static Encounter enc022 = new Encounter("Angeheiterte Wachen", soldier01, soldier02, soldier03, "Achtung, Testüberfall!", "Achtung, Testüberfall beendet!", null, 5);
 
 
 
