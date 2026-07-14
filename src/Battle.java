@@ -242,7 +242,10 @@ public class Battle {
             System.out.printf(" (+%d)\n", WorldBuilder.dem01.roar);
         else
             System.out.println();
-        System.out.println("[2] " + demon.aoeAttackName);
+        if (demon == WorldBuilder.dem02 && WorldBuilder.dem02.isBlazing)
+            System.out.println("[2] " + WorldBuilder.dem02.aoeAttackNameBlazing);
+        else
+            System.out.println("[2] " + demon.aoeAttackName);
         System.out.println("[3] " + demon.selfBuffName);
         if (!malActed) {
             System.out.println("-----------------------------------");

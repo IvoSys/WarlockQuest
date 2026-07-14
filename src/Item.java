@@ -138,7 +138,6 @@ class Evocation extends Item {
                         if (j.name.contains("Beschwörungsformel")) {
                             if (((Evocation) j).demonShortName.equals(toBind.name)) { // ob Beschwörungsformel für diesen Dämon in Besitz ist
                                 Player.inv.remove(j);                                   // Wenn ja, kann Formel vernichtet und Dämon gebunden werden.
-                                System.out.println("Die Beschwörungsformel verbrennt unter deinen Fingern.");
                                 toBind.toPlayerLevel();                                 // Dämon-Stufe anpassen und …
                                 Player.team.add(toBind);                                // endlich ins Team aufnehmen!
                                 System.out.println(toBind.textWhenBound);

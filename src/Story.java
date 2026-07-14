@@ -161,10 +161,11 @@ public class Story {
                         Physischen Angriffen und Zaubern, die Projektile verschießen, kann kann mit gewisser Chance ausgewichen werden.
                         Die Flüche eines Hexenmeisters binden sich an die Seele eines Lebewesens und verfehlen niemals.
                         
+                        Jeder Dämon verfügt über drei Fähigkeiten: Einen Angriff gegen einen Gegner,
+                        einen Angriff gegen alle Gegner und eine Fähigkeit, die den Dämon selbst verstärkt.
+                        
                         Du kannst einen neuen Dämon beschwören, anschließend sind aber zuerst die Gegner an der Reihe.
                         Zu jedem Zeitpunkt kann nur ein Dämon im Kampf sein.
-                        
-                        Verschiedene Dämonen sind möglicherweise unterschiedlich stark gegen bestimmte Arten von Gegnern.
                         
                         Fallen die HP eines Dämons auf 0, kannst du einen neuen beschwören.
                         Nach dem Kampf erhalten besiegte Dämonen 1 HP zurück.

@@ -37,17 +37,17 @@ public abstract class Demon {
             System.out.println("Du hast noch keine Dämonen gebunden.");
         else
             for (Demon d : Player.team) {
-                System.out.print(d.name.toUpperCase());
-                System.out.printf("\t\t\t(%d HP)", d.hpMax);
+                System.out.println(d.name.toUpperCase());
+                System.out.printf("Leben: %d \t\tMacht: %d \t\tGewandheit: %d\n", d.hpMax, d.power, d.dex);
                 System.out.println(d.desc);
-                System.out.println("-----------------------------------");
-                System.out.println("Angriff: " + d.attackName);
-                System.out.println(d.attackDesc);
-                System.out.println("Fähigkeit 1: " + d.aoeAttackName);
-                System.out.println(d.aoeAttackDesc);
-                System.out.println("Fähigkeit 2: " + d.selfBuffName);
-                System.out.println(d.selfBuffDesc);
                 System.out.println();
+                System.out.println("1. " + d.attackName);
+                System.out.println(d.attackDesc);
+                System.out.println("2. " + d.aoeAttackName);
+                System.out.println(d.aoeAttackDesc);
+                System.out.println("3. " + d.selfBuffName);
+                System.out.println(d.selfBuffDesc);
+                System.out.println("----------------------------------\n");
             }
         System.out.println("==================================");
     }
@@ -93,8 +93,7 @@ public abstract class Demon {
         System.out.println(Battle.demon.textWhenSummoned);
     }
 
-
-    //Setter
+    //HP-Setter
     public void applyDmgEvade(int dmg) {
         if (Battle.rnd.nextInt(100) < Battle.demon.dex)
             System.out.println(Battle.demon.name + " weicht aus!");
@@ -127,7 +126,6 @@ public abstract class Demon {
             System.out.println(".");
     }
 
-
     public void applyHeal(int heal) {
         hp += heal;
         if (hp > hpMax)
@@ -158,7 +156,7 @@ class Minotauros extends Demon{
         trueName = Story.trueNameDem01;
         desc = "Ein aufrecht gehender Stier, bewaffnet mit einer mächtigen Streitaxt. ";
         textWhenSummoned = "Aus Fleisch, Knochen und kochendem Blut formt sich der Körper eines gehörnten Untiers. Wut lodert in seinen Augen.";
-        textWhenBound = "Du sprichst den wahren Namen des Minotauros aus. \nAus den Tiefen der Unterwelt hebt sich ein Gebrüll der reinen Wut.";
+        textWhenBound = "Du sprichst den wahren Namen des Minotauros aus und die Beschwörungsformel zerreißt unter deinen Fingern. \nAus den Tiefen der Unterwelt hebt sich ein Gebrüll der reinen Wut.\n\n(Über den Befehl \"Dämonen\" erfährst du mehr über deine Dämonen.)";
         hpBase = 100;
         hpMax = hpBase;
         hp = hpMax;
@@ -170,7 +168,7 @@ class Minotauros extends Demon{
         attackDesc = "Minotauros schlägt mit seiner Streitaxt zu und verursacht bei einem Gegner massiven Schaden.";
         aoeAttackName = "Wüten\t\t\t";
         aoeAttackDesc = "Minotauros verfällt in blinde Wut und verursacht bei \nallen Gegnern Schaden in unvorhersehbarer Höhe.";
-        aoeAttackBattleDesc = "In Raserei schlägt Minotauros wild um sich.";
+        aoeAttackBattleDesc = "In Raserei schlägt Minotauros wild um sich:";
         selfBuffName = "Schreckliches Gebrüll";
         selfBuffDesc = "Minotauros brüllt fürchterlich. Bis zum nächsten Zug weicht Minotaurus keinen Angriffen aus, erhält nur halben Schaden \nund sein nächster Angriff mit der Streitaxt wird um den erlittenen Schaden erhöht. ";
         //obliterated = "wird gespalten.";  // wenn Gegner mit besonders starken Schlag besiegt wird: "Gegner erhält 27 Schaden und …"
@@ -201,7 +199,7 @@ class Minotauros extends Demon{
     @Override
     public void applyDmg(int dmg){
         if (!isRoar) {
-            super.applyDmgEvade(dmg);
+            super.applyDmg(dmg);
         }
         else {
             dmg = (int) (dmg * 0.5f);
@@ -220,27 +218,29 @@ class Minotauros extends Demon{
         }
     }
 
+    @Override
     public int attack() {
         Random rnd = new Random();
 
         if (roar > 0)
-            System.out.println("Von seinen Wunden in Rage versetzt, lässt Minotauros die schwere Streitaxt hinabfahren.");
+            System.out.print("Von seinen Wunden in Rage versetzt, lässt Minotauros die schwere Streitaxt hinabfahren – ");
         else
-            System.out.println("Mit dampfendem Atem attackiert Minotauros mit seiner Streitaxt.");
+            System.out.print("Mit dampfendem Atem attackiert Minotauros mit seiner Streitaxt – ");
 
-        int dmg = rnd.nextInt(11) + power + roar;
         roar = 0;
         isRoar = false;
-
-        return dmg;
+        return rnd.nextInt(11) + power + roar;
     }
 
+    @Override
     public int aoeAttack() {
         isRoar = false;
-        return rnd.nextInt(power*2);
+        return rnd.nextInt((power+1)*2);
     }
 
+    @Override
     public void selfBuff() {
+        roar = 0;
         isRoar = true;
         System.out.println("Minotauros brüllt markerschütternd, eine unmissverständliche Drohung.");
     }
@@ -251,12 +251,18 @@ class Minotauros extends Demon{
 
 class Efreet extends Demon{
 
+    Random rnd = new Random();
+
+    protected boolean isBlazing = false;
+    protected String aoeAttackNameBlazing;
+    protected String aoeAttackBattleDescBlazing;
+
     public Efreet() {
         name = "Efreet";
         trueName = Story.trueNameDem02;
         desc = "";
         textWhenSummoned = "";
-        textWhenBound = "Du sprichst den wahren Namen der Efreet aus. \nEinen kurzen Moment glaubst du, in Flammen zu stehen.";
+        textWhenBound = "Du sprichst den wahren Namen der Efreet aus und die Beschwörungsformel verbrennt unter deinen Fingern. \nEinen kurzen Moment lang glaubst du, in Flammen zu stehen.\n\n(Über den Befehl \"Dämonen\" erfährst du mehr über deine Dämonen.)";
         hpBase = 120;
         hpMax = hpBase;
         hp = hpMax;
@@ -264,26 +270,37 @@ class Efreet extends Demon{
         power = powerBase;
         dex = 30;
 
-        attackName = "Angriff";
-        attackDesc = "";
-        aoeAttackName = "Fähigkeit 1";
-        aoeAttackDesc = "";
-        selfBuffName = "Fähigkeit 2";
-        selfBuffDesc = "";
+        attackName = "Flammenschlag";
+        attackDesc = "Ein glühender Schlag trifft einen Gegner und verursacht massiven Schaden.";
+        aoeAttackName = "Feuersbrunst";
+        aoeAttackNameBlazing = "Inferno";
+        aoeAttackDesc = "Brüllende Flammen verusachen bei allen Gegnern Schaden in unvorhersehbarer Höhe.";
+        aoeAttackBattleDesc = "Eine Walze aus Feuer überrollt Efreets Feinde:";
+        aoeAttackBattleDescBlazing = "Der Raum verwandelt sich in ein Flammenmeer:";
+        selfBuffName = "Innere Glut";
+        selfBuffDesc = "Eine Runde lang lodern Flammen wild um Efreet. \nIm Nahkampf angreifende Gegner verbrennen sich und der Angriff \"Feuersbrunst\" wird verstärkt.";
         //obliterated = "";
     }
 
+    @Override
     public int attack() {
-        int dmg = power;
-        return dmg;
+        isBlazing = false;
+        return rnd.nextInt(11) + power;
     }
 
+    @Override
     public int aoeAttack() {
-        int dmg = power;
-        return dmg;
+        if (isBlazing) {
+            isBlazing = false;
+            return rnd.nextInt((power + 1) * 3);
+        }
+        else
+            return rnd.nextInt((power+1)*2);
     }
 
+    @Override
     public void selfBuff() {
+        isBlazing = true;
     }
 }
 
@@ -291,38 +308,42 @@ class Efreet extends Demon{
 
 class Abaddon extends Demon{
 
+    Random rnd = new Random();
+
     public Abaddon() {
         name = "Abaddon";
         trueName = Story.trueNameDem03;
         desc = "";
-        textWhenSummoned = "";
-        textWhenBound = "Du sprichst den wahren Namen des Abaddon aus. \nDie Schatten rücken näher. Sie greifen nach dir.";
+        textWhenSummoned = "Aus den Schatten tritt eine verhüllte Gestalt. Eine schwarze Pfütze \nwandert an ihren Füßen mit ihr, dünne Tentakel züngeln daraus hevor.";
+        textWhenBound = "Du sprichst den wahren Namen des Abaddon aus und die Beschwörungsformel verwelkt unter deinen Fingern. \nDie Schatten rücken näher, knurren und greifen nach dir.\n\n(Über den Befehl \"Dämonen\" erfährst du mehr über deine Dämonen.)";
         hpBase = 150;
         hpMax = hpBase;
         hp = hpMax;
-        powerBase = 30;
+        powerBase = 25;
         power = powerBase;
         dex = 20;
 
-        attackName = "Angriff";
-        attackDesc = "";
-        aoeAttackName = "Fähigkeit 1";
-        aoeAttackDesc = "";
-        selfBuffName = "Fähigkeit 2";
+        attackName = "Schattenblitz";
+        attackDesc = "Ein schwarzer Blitz zuckt durch einen Gegner und verursacht massiven Schaden.";
+        aoeAttackName = "Dunkelheit";
+        aoeAttackDesc = "Zähne und Klauen aus der Dunkelheit verusachen bei allen Gegnern Schaden in unvorhersehbarer Höhe.";
+        aoeAttackBattleDesc = "Die Gegner werden verschlungen von Dunkelheit und allem, was darin lauert:";
+        selfBuffName = "Finsteres Herz";
         selfBuffDesc = "";
-        obliterated = "";
+        //obliterated = "";
     }
 
+    @Override
     public int attack() {
-        int dmg = power;
-        return dmg;
+        return rnd.nextInt(11) + power;
     }
 
+    @Override
     public int aoeAttack() {
-        int dmg = power;
-        return dmg;
+        return rnd.nextInt((power+1)*2);
     }
 
+    @Override
     public void selfBuff() {
     }
 }

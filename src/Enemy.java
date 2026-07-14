@@ -10,6 +10,7 @@ public abstract class Enemy {
     int hpMax;
     int power;
     int dex;
+    boolean meele = true;
     boolean hasPotion;
     int potionStr;
     boolean ko = false;
@@ -27,7 +28,6 @@ public abstract class Enemy {
 
     boolean carriesVSeed = false;
     int counterVSeed;
-
 
 
     // Konstruktor
@@ -110,6 +110,10 @@ public abstract class Enemy {
         System.out.printf("%s greift mit dem %s an – ", name, weapon);
         if (inIronMaiden)
             applyMaiden(dmg);
+        if (Battle.demon == WorldBuilder.dem02 && WorldBuilder.dem02.isBlazing && meele) {
+            applyDmg(WorldBuilder.dem02.power / 2);
+            System.out.printf("%s verbrennt sich und erleidet %d Schaden. \n", name, WorldBuilder.dem02.power / 2);
+        }
         return dmg;
     }
 
