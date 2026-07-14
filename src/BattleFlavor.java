@@ -1,4 +1,4 @@
-public class Names {
+public class BattleFlavor {
 
     /*
     MÄNNLCH:
@@ -31,7 +31,7 @@ public class Names {
     Maximilian
     Alexander
     Marcus
-    LAurenz
+    Laurenz
     Vinzenz
 
     WEIBLICH:

@@ -44,7 +44,8 @@ public class Battle {
                             case 2:                                 // AOE Attack
                                 System.out.println(demon.aoeAttackBattleDesc);
                                 for (Enemy e : enemyTeam)
-                                    e.applyDmgEvade(demon.aoeAttack());
+                                    if (!e.ko)
+                                        e.applyDmgEvade(demon.aoeAttack());
                                 isPlayerTurn = false;
                                 Control.enterToContinue();
                                 break;
@@ -214,8 +215,10 @@ public class Battle {
                 e.die();
                 }
             }
-        if (encounter.counterKO >= enemyTeam.size())
+        if (encounter.counterKO >= enemyTeam.size()) {
             encounter.beaten = true;
+            battleWon();
+        }
     }
 
     public static void battleMenu(){
@@ -312,6 +315,8 @@ public class Battle {
                     System.out.printf("Ungültige Eingabe. Wähle eine Zahl zwischen 1 und %d oder die 0. \n", enemyTeam.size());
                 } else if (pickedTarget == 0) {
                     break;
+                } else if (enemyTeam.get(pickedTarget - 1).ko) {
+                    System.out.printf("%s wurde bereits besiegt, wähle einen anderen Gegner. \n", enemyTeam.get(pickedTarget - 1).name);
                 } else {
                     enemyTeam.get(pickedTarget - 1).applyDmgEvade(demon.attack());
                     inputValid = true;
@@ -434,6 +439,7 @@ public class Battle {
                 d.hp = 1;
             }
         }
+        WarlockQuest.gameLoop();
     }
 
 

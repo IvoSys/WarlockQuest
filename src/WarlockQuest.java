@@ -36,7 +36,9 @@ public class WarlockQuest {
         Player.curY = 2;
         Player.curZ = 2;
 
-
+        Item.obtainItem(WorldBuilder.evoc01);
+        Item.obtainItem(WorldBuilder.evoc02);
+        Item.obtainItem(WorldBuilder.evoc03);
 
         gameLoop();
 
@@ -65,14 +67,11 @@ public class WarlockQuest {
                     Player.room.loot(inputSplit[1]);                                                                    // Nimm Item
                 } else if (inputSplit[0].equals("v") || inputSplit[0].equals("verwende") || inputSplit[0].contains("nutze")) {
                     if (inputSplit[1].contains("trank")) {
-                        ItemPotion.drink(inputSplit[1]);                                                                // Trinke Trank
-                        System.out.println("Coming Soon: Trank trinken");
+                        Potion.drink(inputSplit[1]);                                                                // Trinke Trank
                     } else if (inputSplit[1].contains("zauberschriftrolle")) {
-                        ItemScroll.learn();                                                                             // Lerne Zauber
-                        System.out.println("Coming Soon: Zauber lernen");
+                        Spellscroll.learn();                                                                             // Lerne Zauber
                     } else if (inputSplit[1].contains("beschwörungsformel")) {
-                        ItemEvoc.bind();                                                                                // Binde Dämon
-                        System.out.println("Coming Soon: Dämon binden");
+                        Evocation.bind();                                                                                // Binde Dämon
                     } else {
                         Player.room.solve(inputSplit[1]);                                                               // Verwende Item
                     }

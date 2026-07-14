@@ -10,11 +10,14 @@ public class Story {
 
     public static void intro() {
         System.out.println(
-                "Dieses Mal ist der König zu weit gegangen! \n" +
-                        "Du, Maleficarius Liebwerk, der größte Hexenmeister, Alchemist und Dämonologe im Diesseits, sollst \"ethisch nicht mehr tragbar\" sein?! Lächerlich! \n" +
-                        "Wo stünde dieses kümmerliche Reich schon ohne deine Forschung? \"Aber Meister Liebwerk, Ihr lÄsTeRt DeR ScHöPfUnG GoTtEs!\". Pahh!\n\n" +
-                        "Und dann haben sie dich in den Kerker geworfen. Bauerntrampel ohne Ambition oder Vorstellungskraft! \n" +
-                        "Es wird Zeit, den König über kleiner Flamme zu rösten! \n"
+                """
+                        Dieses Mal ist der König zu weit gegangen!
+                        Du, Maleficarius Liebwerk, der größte Hexenmeister, Alchemist und Dämonologe im Diesseits, sollst "ethisch nicht mehr tragbar" sein?! Lächerlich!
+                        Wo stünde dieses kümmerliche Reich schon ohne deine Forschung? "Aber Meister Liebwerk, Ihr lÄsTeRt DeR ScHöPfUnG GoTtEs!". Pahh!
+                        
+                        Und dann haben sie dich in den Kerker geworfen. Bauerntrampel ohne Ambition oder Vorstellungskraft!
+                        Es wird Zeit, den König über kleiner Flamme zu rösten!
+                        """
         );
     }
 
@@ -26,53 +29,59 @@ public class Story {
 
     public static void help() {
         System.out.println(
-                "\n=================================================== BEFEHLE ================================================================ \n" +
-                        "BEFEHLE \n" +
-                        "Immer, wenn \"Zeit zu handeln!\" angezeigt wird, können folgende Befehle genutzt werden: \n\n" +
-                        "Handlung\t\t\t| Eingabe\t\t\t| Effekt \n" +
-                        "---------------------------------------------------------------------------------------------------------------------------- \n" +
-                        "Daimon fragen\t\t| (D)aimon \t\t\t| Bittet das Teufelchen auf deiner Schulter um Hilfe. \n" +
-                        "\t\t\t\t\t|\t\t\t\t\t| \n" +
-                        "Inventar zeigen\t\t| (I)tems\t\t\t| Zeigt an, welche Gegenstände du besitzt (ohne alchemistische Zutaten). \n" +
-                        "Nimm Item\t\t\t| N.[Item]\t\t\t| Legt erreichbaren Gegenstand ins Inventar, z. B. \"n.Zellenschlüssel\". \n" +
-                        "Untersuche Item\t\t| U.[Item]\t\t\t| Beschreibt einen Gegenstand aus dem Inventar genauer. \n" +
-                        "Verwende Item \t\t| V.[Item]\t\t\t| Verwendet einen Gegenstand im Inventar, z. B. \"v.Zellenschlüssel\". \n" +
-                        "\t\t\t\t\t|\t\t\t\t\t| \tVerwende Zauberschriftrollen, um einen neuen Zauber zu lernen.\n" +
-                        "\t\t\t\t\t|\t\t\t\t\t| \tVerwende Beschwörungsformeln, um einen Dämon in deinen Dienst zu zwingen.\n" +
-                        "\t\t\t\t\t|\t\t\t\t\t| \tVerwende sonstige Items (Schlüssel usw.), um sie im aktuellen Raum anzuwenden.\n" +
-                        "Kombiniere Items\t| K.[Item].[Item]\t| Kombiniert zwei Items aus dem Inventar miteinander, \n" +
-                        "\t\t\t\t\t|\t\t\t\t\t| \tz. B. \"k.blaue Farbe.gelbe Farbe\" -> Maleficarius erhält grüne Farbe. \n" +
-                        "\t\t\t\t\t|\t\t\t\t\t| \tAuf gleiche Weise kannst du aus Alchemiezutaten Tränke brauen: \n" +
-                        "\t\t\t\t\t|\t\t\t\t\t| \tKombiniere rote Zutaten für Heiltränke, blaue für Manatränke.\n" +
-                        "\t\t\t\t\t|\t\t\t\t\t| \n" +
-                        "Gehe in Richtung\t| G.[Richtung]\t\t| Versucht, den aktuellen Ort in gewählter Richtung zu verlassen. \n" +
-                        "(Raum wechseln)\t\t|\t\t\t\t\t| \tRichtungen: Nord (N), Ost (O), Süd (S), West (W), hoch (h), runter (r), \n" +
-                        "\t\t\t\t\t|\t\t\t\t\t| \tz. B. \"Gehe.Norden\" oder einfach \"g.n\" \n" +
-                        "\t\t\t\t\t|\t\t\t\t\t| \tJedes Stockwerk des Schlosses besteht aus 3x3 Räumen.\n" +
-                        "\t\t\t\t\t|\t\t\t\t\t| \n" +
-                        "Status anzeigen\t\t| (S)tatus\t\t\t| Zeigt den Stand von Lebens- und Magiepunkten an.\n" +
-                        "Raum ansehen\t\t| (R)aum \t\t\t| Zeigt erneut Namen und Beschreibung des aktuellen Raums an. \n" +
-                        "Zauberbuch\t\t\t| (Z)auber\t\t\t| Listet die von dir gelernten Zauber auf, nutze sie im Kampf.\n" +
-                        "Alchemiezutaten\t\t| (A)lchemie\t\t| Zeigt deine alchemistischen Zutaten an, braue Tränke aus ihnen. \n" +
-                        "Trankgurt\t\t\t| (T)ränke\t\t\t| Zeigt deine Tränke an, nutze sie AUSSERHALB des Kampfes per \"v.[Trank]\".\n" +
-                        "Dämonen-Kompendium\t| Dämonen\t\t\t| Zeigt nähere Informationen zu den von dir gebundenen Dämonen an.\n" +
-                        "\t\t\t\t\t|\t\t\t\t\t| \n" +
-                        "Spielanleitung\t\t| (H)ilfe \t\t\t| Ruft diese Anleitung auf. \n" +
-                        "Kampftutorial\t\t| Kampf \t\t\t| Ruft die Anleitung zum Kampfsystem auf. \n" +
-                        "Rätselhilfe\t\t\t| Rätsel \t\t\t| Wenn du beim Lernen von Zaubern oder Binden von Dämonen nicht weiterkommst. \n" +
-                        "\t\t\t\t\t|\t\t\t\t\t| \n" +
-                        "Mitwirkende\t\t\t| Credits \t\t\t| Zeigt die Mitwirkenden. \n" +
-                        "Beenden\t\t\t\t| Ende \t\t\t\t| Beendet das Spiel. \n" +
-                        "\nGroß-/Kleinschreibung wird ignoriert, außer bei Zauber- und Beschwörungsformeln. Copy-paste ist hilfreich. \n" +
-                        "========================================================================================================================= \n"
+                """
+                        
+                        =================================================== BEFEHLE ================================================================
+                        BEFEHLE
+                        Immer, wenn "Zeit zu handeln!" angezeigt wird, können folgende Befehle genutzt werden:
+                        
+                        Handlung\t\t\t| Eingabe\t\t\t| Effekt
+                        ----------------------------------------------------------------------------------------------------------------------------
+                        Daimon fragen\t\t| (D)aimon \t\t\t| Bittet das Teufelchen auf deiner Schulter um Hilfe.
+                        \t\t\t\t\t|\t\t\t\t\t|
+                        Inventar zeigen\t\t| (I)tems\t\t\t| Zeigt an, welche Gegenstände du besitzt (ohne alchemistische Zutaten).
+                        Nimm Item\t\t\t| N.[Item]\t\t\t| Legt erreichbaren Gegenstand ins Inventar, z. B. "n.Zellenschlüssel".
+                        Untersuche Item\t\t| U.[Item]\t\t\t| Beschreibt einen Gegenstand aus dem Inventar genauer.
+                        Verwende Item \t\t| V.[Item]\t\t\t| Verwendet einen Gegenstand im Inventar, z. B. "v.Zellenschlüssel".
+                        \t\t\t\t\t|\t\t\t\t\t| \tVerwende Zauberschriftrollen, um einen neuen Zauber zu lernen.
+                        \t\t\t\t\t|\t\t\t\t\t| \tVerwende Beschwörungsformeln, um einen Dämon in deinen Dienst zu zwingen.
+                        \t\t\t\t\t|\t\t\t\t\t| \tVerwende sonstige Items (Schlüssel usw.), um sie im aktuellen Raum anzuwenden.
+                        Kombiniere Items\t| K.[Item].[Item]\t| Kombiniert zwei Items aus dem Inventar miteinander,
+                        \t\t\t\t\t|\t\t\t\t\t| \tz. B. "k.blaue Farbe.gelbe Farbe" -> Maleficarius erhält grüne Farbe.
+                        \t\t\t\t\t|\t\t\t\t\t| \tAuf gleiche Weise kannst du aus Alchemiezutaten Tränke brauen:
+                        \t\t\t\t\t|\t\t\t\t\t| \tKombiniere rote Zutaten für Heiltränke, blaue für Manatränke.
+                        \t\t\t\t\t|\t\t\t\t\t|\s
+                        Gehe in Richtung\t| G.[Richtung]\t\t| Versucht, den aktuellen Ort in gewählter Richtung zu verlassen.
+                        (Raum wechseln)\t\t|\t\t\t\t\t| \tRichtungen: Nord (N), Ost (O), Süd (S), West (W), hoch (h), runter (r),
+                        \t\t\t\t\t|\t\t\t\t\t| \tz. B. "Gehe.Norden" oder einfach "g.n"
+                        \t\t\t\t\t|\t\t\t\t\t| \tJedes Stockwerk des Schlosses besteht aus 3x3 Räumen.
+                        \t\t\t\t\t|\t\t\t\t\t|\s
+                        Status anzeigen\t\t| (S)tatus\t\t\t| Zeigt den Stand von Lebens- und Magiepunkten an.
+                        Raum ansehen\t\t| (R)aum \t\t\t| Zeigt erneut Namen und Beschreibung des aktuellen Raums an.
+                        Zauberbuch\t\t\t| (Z)auber\t\t\t| Listet die von dir gelernten Zauber auf, nutze sie im Kampf.
+                        Alchemiezutaten\t\t| (A)lchemie\t\t| Zeigt deine alchemistischen Zutaten an, braue Tränke aus ihnen.
+                        Trankgurt\t\t\t| (T)ränke\t\t\t| Zeigt deine Tränke an, nutze sie AUSSERHALB des Kampfes per "v.[Trank]".
+                        Dämonen-Kompendium\t| Dämonen\t\t\t| Zeigt nähere Informationen zu den von dir gebundenen Dämonen an.
+                        \t\t\t\t\t|\t\t\t\t\t|\s
+                        Spielanleitung\t\t| (H)ilfe \t\t\t| Ruft diese Anleitung auf.
+                        Kampftutorial\t\t| Kampf \t\t\t| Ruft die Anleitung zum Kampfsystem auf.
+                        Rätselhilfe\t\t\t| Rätsel \t\t\t| Wenn du beim Lernen von Zaubern oder Binden von Dämonen nicht weiterkommst.
+                        \t\t\t\t\t|\t\t\t\t\t|\s
+                        Mitwirkende\t\t\t| Credits \t\t\t| Zeigt die Mitwirkenden.
+                        Beenden\t\t\t\t| Ende \t\t\t\t| Beendet das Spiel.
+                        
+                        Groß-/Kleinschreibung wird ignoriert, außer bei Zauber- und Beschwörungsformeln. Copy-paste ist hilfreich.
+                        =========================================================================================================================
+                        """
         );
     }
 
     public static void hints() {
         System.out.println(
-                "\n============================================ HINWEISE ZU RÄTSELN ============================================\n" +
-
-                "==============================================================================================================="
+                """
+                        
+                        ============================================ HINWEISE ZU RÄTSELN ==============================================
+                        ==============================================================================================================="""
         );
     }
 
@@ -121,61 +130,69 @@ public class Story {
 
     public static void helpBattle() {
         System.out.println(
-                "================================================= KAMPFTUTORIAL ================================================= \n" +
-                        "Maleficarius lässt einen Dämonen für sich kämpfen und unterstützt ihn mit Hexerei. \n" +
-                        "Zu Beginn des Kampfes beschwörst du einen Dämon. Wenn du am Zug bist, wird eine Liste mit Optionen angezeigt. \n" +
-                        "Oben stehen die Fähigkeiten des Dämons, unter der gestrichelten Linie die Möglichkeiten von Maleficarius. \n" +
-                        "Nach deinem Dämon sind die Gegner an der Reihe. Soll Maleficarius handeln, kann er dies vor dem Dämon tun, \n" +
-                        "ohne dass dessen Zug verfällt. Einen Zauber zu wirken, kostet MP.\n\n" +
-
-                        "Beispiel für eine Kampfsituation: \n\n" +
-
-                        "[NAME GEGNERTEAM] \n" +
-                        "Soldat Max\t(53/80 HP) \t\t\t\t\t<--- Name und HP der Gegner\n" +
-                        "Soldat Jörg\t(63/80 HP) – Üble Saat (2)\t<--- Auf Gegner wirkende Zauber und verbleibende Dauer\n" +
-                        "Soldatin Franziska\t(80/80 HP)\t \n\n" +
-                        "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n" +
-                        "[NAME DÄMON] \t(67/100 HP)\t\t<--- Name und Lebenspunkte des aktiven Dämons\n" +
-                        "[1] [Einzelangriff]\t\t\t\t<--- Dämon-Angriff gegen einzelnen Gegner\n" +
-                        "[2] [Flächenangriff]\t\t\t<--- Dämon-Angriff gegen alle Gegner\n" +
-                        "[3] [Selfbuff]\t\t\t\t\t<--- Dämon wirkt eine Fähigkeit auf sich selbst\n" +
-                        "------------------------------------------------------------------------\n" +
-                        "[4] Hexerei\t\t\t\t\t\t<--- Maleficarius wirkt einen Zauber \n" +
-                        "[5] Beschwören\t\t\t\t\t<--- Maleficarius beschwört einen anderen Dämon \n" +
-                        "> \n\n" +
-
-                        "Neben \">\" gibst du die Zahl der gewünschten Aktion ein.\n\n" +
-
-                        "Physischen Angriffen und Zaubern, die Projektile verschießen, kann kann mit gewisser Chance ausgewichen werden. \n" +
-                        "Die Flüche eines Hexenmeisters binden sich an die Seele eines Lebewesens und verfehlen niemals. \n\n" +
-
-                        "Du kannst einen neuen Dämon beschwören, anschließend sind aber zuerst die Gegner an der Reihe. \n" +
-                        "Zu jedem Zeitpunkt kann nur ein Dämon im Kampf sein. \n\n" +
-
-                        "Verschiedene Dämonen sind möglicherweise unterschiedlich stark gegen bestimmte Arten von Gegnern. \n\n" +
-
-                        "Fallen die HP eines Dämons auf 0, kannst du einen neuen beschwören. \n" +
-                        "Nach dem Kampf erhalten besiegte Dämonen 1 HP zurück. \n" +
-                        "Wurden alle deine Dämonen besiegt, ist Maleficarius' Ende gekommen.\n" +
-                        "======================================================================================================= \n"
+                """
+                        ================================================= KAMPFTUTORIAL =================================================
+                        Maleficarius lässt einen Dämonen für sich kämpfen und unterstützt ihn mit Hexerei.
+                        Zu Beginn des Kampfes beschwörst du einen Dämon. Wenn du am Zug bist, wird eine Liste mit Optionen angezeigt.
+                        Oben stehen die Fähigkeiten des Dämons, unter der gestrichelten Linie die Möglichkeiten von Maleficarius.
+                        Nach deinem Dämon sind die Gegner an der Reihe. Soll Maleficarius handeln, kann er dies vor dem Dämon tun,
+                        ohne dass dessen Zug verfällt. Einen Zauber zu wirken, kostet MP.
+                        
+                        Beispiel für eine Kampfsituation:
+                        
+                        [NAME GEGNERTEAM]
+                        Soldat Max\t(53/80 HP) \t\t\t\t\t<--- Name und HP der Gegner
+                        Soldat Jörg\t(63/80 HP) – Üble Saat (2)\t<--- Auf Gegner wirkende Zauber und verbleibende Dauer
+                        Soldatin Franziska\t(80/80 HP)\t\s
+                        
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        
+                        [NAME DÄMON] \t(67/100 HP)\t\t<--- Name und Lebenspunkte des aktiven Dämons
+                        [1] [Einzelangriff]\t\t\t\t<--- Dämon-Angriff gegen einzelnen Gegner
+                        [2] [Flächenangriff]\t\t\t<--- Dämon-Angriff gegen alle Gegner
+                        [3] [Selfbuff]\t\t\t\t\t<--- Dämon wirkt eine Fähigkeit auf sich selbst
+                        ------------------------------------------------------------------------
+                        [4] Hexerei\t\t\t\t\t\t<--- Maleficarius wirkt einen Zauber
+                        [5] Beschwören\t\t\t\t\t<--- Maleficarius beschwört einen anderen Dämon
+                        >\s
+                        
+                        Neben ">" gibst du die Zahl der gewünschten Aktion ein.
+                        
+                        Physischen Angriffen und Zaubern, die Projektile verschießen, kann kann mit gewisser Chance ausgewichen werden.
+                        Die Flüche eines Hexenmeisters binden sich an die Seele eines Lebewesens und verfehlen niemals.
+                        
+                        Du kannst einen neuen Dämon beschwören, anschließend sind aber zuerst die Gegner an der Reihe.
+                        Zu jedem Zeitpunkt kann nur ein Dämon im Kampf sein.
+                        
+                        Verschiedene Dämonen sind möglicherweise unterschiedlich stark gegen bestimmte Arten von Gegnern.
+                        
+                        Fallen die HP eines Dämons auf 0, kannst du einen neuen beschwören.
+                        Nach dem Kampf erhalten besiegte Dämonen 1 HP zurück.
+                        Wurden alle deine Dämonen besiegt, ist Maleficarius' Ende gekommen.
+                        =======================================================================================================
+                        """
         );
     }
 
     public static void daimonIntro() {
         System.out.println(
-                "\"Malefiz, alter Halunke, da hast du dir aber was eingebrockt! \n" +
-                        "Kein Wunder, dass ein Griesgram wie du irgendwann im Kerker endet.\" \n\n" +
-                        "Daimon, dein persönliches Teufelchen, hockt betont lässig auf deiner Schulter  \n" +
-                        "und spielt schelmisch mit seiner Schwanzspitze. \n"
+                """
+                        "Malefiz, alter Halunke, da hast du dir aber was eingebrockt!
+                        Kein Wunder, dass ein Griesgram wie du irgendwann im Kerker endet."
+                        
+                        Daimon, dein persönliches Teufelchen, hockt betont lässig auf deiner Schulter 
+                        und spielt schelmisch mit seiner Schwanzspitze.
+                        """
         );
         do {
             System.out.println(
-                    "Wähle eine Antwort: \n" +
-                            "[1]\t Ich kann diesen Spitznamen nicht leiden. \n" +
-                            "[2]\t Diese Zelle ist furchtbar. \n" +
-                            "[3]\t Ich kann dich nicht ausstehen. \n" +
-                            "[4]\t Ich hasse den König. \n" +
-                            "[0]\t (Schweigen)"
+                    """
+                            Wähle eine Antwort:
+                            [1]\t Ich kann diesen Spitznamen nicht leiden.
+                            [2]\t Diese Zelle ist furchtbar.
+                            [3]\t Ich kann dich nicht ausstehen.
+                            [4]\t Ich hasse den König.
+                            [0]\t (Schweigen)"""
             );
             System.out.print("> ");
             input = sc.nextLine().toLowerCase().trim();
@@ -204,12 +221,13 @@ public class Story {
     public static void getKey000() {
         System.out.println();
         System.out.println(
-                "Maleficarius liegt etwas auf der Zunge: \n" +
-                        "[1]\t Sei einfach still. \n" +
-                        "[2]\t Was … bist du eigentlich? \n" +
-                        "[3]\t Kannst du dich durch die Gitterstäbe zwängen? \n" +
-                        "[4]\t Kannst du den Wärter mit Dämonenmagie in Brand stecken? \n" +
-                        "[0]\t (Lieber schweigen)"
+                """
+                        Maleficarius liegt etwas auf der Zunge:
+                        [1]\t Sei einfach still.
+                        [2]\t Was … bist du eigentlich?
+                        [3]\t Kannst du dich durch die Gitterstäbe zwängen?
+                        [4]\t Kannst du den Wärter mit Dämonenmagie in Brand stecken?
+                        [0]\t (Lieber schweigen)"""
         );
         System.out.print("> ");
         input = sc.nextLine().toLowerCase().trim();
@@ -242,7 +260,7 @@ public class Story {
         }
     }
 
-    public static void solved000Comment(){
+    public static void solved000Comment() {
         System.out.println("DAIMON: \"Und jetzt lächle und sag brav danke.\"");
         System.out.println(
                 "Wähle eine Antwort: \n" +
@@ -262,7 +280,6 @@ public class Story {
                 System.out.println(daimonDidNotUnderstand);
         }
     }
-
 
 
     //RAUM-BESCHREIBUNGEN UND DAIMON-KOMMENTARE
@@ -408,22 +425,39 @@ public class Story {
 
     //Items mit langen Beschreibungen
     static String bookBlackArtsDesc =
-            "Das Standardwerk über Hexerei, Alchemie und Dämonologie in drei Bänden, verfasst von Meister Maleficarius Liebwerk: \n" +
-            "[…] Zauber werden mittels Schriftrollen erlernt und können bis zur geistigen Erschöpfung gewirkt werden. \n" +
-            "[…] Tränke werden mit Verabreichung verbraucht und entfalten unvergleichliche Wirkungen, selbst bei Dämonen. \n" +
-            "[…] Spricht man den wahren Namen eines Dämonen deulich aus, zwingt man ihn in seinen Dienst. Doch Obacht, er wird dies nicht schätzen!";
+            """
+                    Das Standardwerk über Hexerei, Alchemie und Dämonologie in drei Bänden, verfasst von Meister Maleficarius Liebwerk:
+                    […] Zauber werden mittels Schriftrollen erlernt und können bis zur geistigen Erschöpfung gewirkt werden.
+                    […] Tränke werden mit Verabreichung verbraucht und entfalten unvergleichliche Wirkungen, selbst bei Dämonen.
+                    […] Spricht man den wahren Namen eines Dämonen deulich aus, zwingt man ihn in seinen Dienst. Doch Obacht, er wird dies nicht schätzen!""";
 
     //Rätsel Dämonen
     static String riddleDem00 = "Diesen okkulten Text hast du vor einer Weile schon entschlüsselt. \nDer wahre Name des Daimon lautet: \n\033[3mGenius Daimonion, Spritus familiaris\033[0m \n\nDAIMON: \"Nooohh, Malle, ich bin doch schon bei dir!\"\n\n… ob es so eine gute Idee war, diesen Plagegeist zu beschwören?";
 
-    static String riddleDem01 = "Hörst du es hallen, das schreckliche Gebrüll aus den Gängen? Wenn das Ungeheuer dich in die Irre führt, dann folge dem Geschenk deiner Geliebten: Soruatonim";
-    static String trueNameDem01 = "Minotauros";
+    static String riddleDem01 = "Hörst du es hallen, das schreckliche Gebrüll aus den Gängen? Wenn das Ungeheuer dich in die Irre führt, dann folge dem Geschenk deiner Geliebten: \nRethcäw rednetüw, Soruatonim";
+    static String trueNameDem01 = "Minotauros, wütender Wächter";
 
     static String riddleDem02 = "";
-    static String trueNameDem02 = "";
+    static String trueNameDem02 = "Efreet";
 
-    static String riddleDem03 = "";
-    static String trueNameDem03 = "";
+    static String riddleDem03 = """
+            Die Formel enthält nichts als einen tiefschwarzen Tintenklecks.
+            
+            ⠀⠀⠀⠀⠀⠀⠀         ⠀⠀⠀\u001B[30m\u001B[40m⢀⣀⣤⣤⣤⣤⣴⣤⣤⣄⡀\u001B[0m⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                    ⠀⠀⠀⠀⠀⠀⠀\u001B[30m\u001B[40m⣀⣴⣾⠿⠛⠋⠉⠁⠀⠀⠀⠈⠙⠻⢷⣦⡀\u001B[0m⠀⠀⠀⠀⠀⠀
+                    ⠀⠀⠀⠀⠀\u001B[30m\u001B[40m⣤⣾⡿⠋⠁⠀⣠⣶⣿⡿⢿⣷⣦⡀⠀⠀⠀⠙⠿⣦⣀\u001B[0m⠀⠀⠀⠀
+                    ⠀⠀\u001B[30m\u001B[40m⢀⣴⣿⡿⠋⠀⠀⢀⣼Abaddon,⣿⡆⠀⠀⠀⠀⢻⣿⣷⣶⣄\u001B[0m⠀
+                    ⠀\u001B[30m\u001B[40m⣴⣿⣿⠋⠀⠀⠀⠀⠸ Engel des ⣿⠀⠀⠀⠐⡄⡌⢻⣿⣿⡷\u001B[0m
+                    \u001B[30m\u001B[40m⢸⣿⣿⠃⢂⡋⠄⠀⠀⠀⢿ Abgrunds⠏⠀⠀⠀⠀⢦⣷⣿⠿⠛⠁\u001B[0m
+                    ⠀\u001B[30m\u001B[40m⠙⠿⢾⣤⡈⠙⠂⢤⢀⠀⠙⠿⢿⣿⣿⡿⠟⠁⠀⣀⣀⣤⣶⠟⠋⠁\u001B[0m⠀⠀⠀
+                    ⠀⠀⠀⠀\u001B[30m\u001B[40m⠈⠙⠿⣾⣠⣆⣅⣀⣠⣄⣤⣴⣶⣾⣽⢿⠿⠟⠋\u001B[0m⠀⠀⠀⠀⠀⠀⠀
+                    ⠀⠀⠀⠀⠀⠀⠀⠀⠀\u001B[30m\u001B[40m⠉⠙⠛⠛⠙⠋⠉⠉\u001B[0m⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+            
+            Du fühlst dich beobachtet.
+            
+            """;
+
+    static String trueNameDem03 = "Abaddon, Engel des Abgrunds";
 
     //Rätsel Zauber
     static String riddleBloodletting = "";
@@ -448,9 +482,4 @@ public class Story {
     //Fähigkeiten von Dämonen mit flavor
 
     //Kills mit Flavor
-
-
-
-
-
 }

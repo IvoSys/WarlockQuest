@@ -71,7 +71,7 @@ public class Player {
     public static void showInv() {
         System.out.println("=============INVENTAR==============");
         for (Item i : inv) {
-            if ((i instanceof ItemIngred) || (i instanceof ItemPotion))
+            if ((i instanceof Ingredience) || (i instanceof Potion))
                 continue;
             System.out.printf("· %s ", i.name);
             if (i.num > 1)
@@ -86,7 +86,7 @@ public class Player {
         boolean empty = true;
         System.out.println("==========ALCHEMIEZUTATEN==========");
         for (Item i : inv) {
-            if (i instanceof ItemIngred) {
+            if (i instanceof Ingredience) {
                 System.out.printf("· %s [%d] \n", i.name, i.num);
                 empty = false;
             }
@@ -122,7 +122,7 @@ public class Player {
         boolean empty = true;
         System.out.println("===============TRÄNKE===============");
         for (Item i : inv) {
-            if (i instanceof ItemPotion) {
+            if (i instanceof Potion) {
                 System.out.printf("· \t%s \n", i.name);
                 System.out.printf("\t%s \n", i.desc);
                 empty = false;
@@ -141,10 +141,11 @@ public class Player {
                 System.out.println(i.desc);
                 if (i == WorldBuilder.bagAlche)
                     showIngredients();
-                if (i == WorldBuilder.bagPotions)
+                else if (i == WorldBuilder.bagPotions)
                     showPotions();
-                if (i == WorldBuilder.bookSpells)
+                else if (i == WorldBuilder.bookSpells)
                     showSpells();
+
                 found = true;
                 break;
             }

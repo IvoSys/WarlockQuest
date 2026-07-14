@@ -119,5 +119,118 @@ public abstract class Enemy {
 
     public void ability3(){}
 
+}
+
+class Soldier extends Enemy{
+
+    public Soldier(String name, String weapon, int hp, int power, int dex, boolean hasPotion) {
+        numOptions = 1;
+        this.name = name;
+        this.weapon = weapon;
+        this.hp = hp;
+        hpMax = hp;
+        this.power = power;
+        this.dex = dex;
+        this.hasPotion = hasPotion;
+        potionStr = 40;
+    }
+
+
+    public int attack(){
+        return (super.attack());
+    }
+
+    public void ability1() {
+    }
+
+    public void ability2() {
+
+    }
 
 }
+
+class Knight extends Enemy{
+
+    public Knight() {
+    }
+
+    public int attack(){
+        return (super.attack());
+    }
+
+    public void ability1() {
+        int dmg = power;
+
+    }
+
+    public void ability2() {
+
+    }
+
+}
+
+class Rogue extends Enemy{
+
+    public Rogue() {
+    }
+
+    public int attack(){
+        return (super.attack());
+    }
+
+    public void ability1() {
+        int dmg = power;
+
+    }
+
+    public void ability2() {
+        int dmg = power;
+
+    }
+
+}
+
+class Mage extends Enemy{
+
+    public Mage() {
+    }
+
+    public int attack(){
+        return (super.attack());
+    }
+
+    public void ability1() {
+    }
+
+    public void ability2() {
+        int dmg = power;
+
+    }
+
+}
+
+
+class Cleric extends Enemy {
+
+    public Cleric() {
+    }
+
+    public int attack(){
+        return (super.attack());
+    }
+
+    public void ability1() {
+    }
+
+    public void ability2() {
+        int dmg = power;
+
+    }
+
+}
+
+
+
+
+
+
