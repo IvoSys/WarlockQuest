@@ -20,6 +20,8 @@ public class Battle {
     static int pickedTarget;
     static boolean inputValid = false;
 
+    static boolean hit;
+
 
     public static void fight() {
 
@@ -109,14 +111,54 @@ public class Battle {
                             checkDefeat();
                     }
                 }                                                   // Ende while(isPlayerTurn)
-                while (!isPlayerTurn && !encounter.beaten) {
-                    enemyTurn();                                    // GEGNER AM ZUG
+                while (!isPlayerTurn && !encounter.beaten) {        // GEGNERZUG
+                    System.out.println(encounter.name + " sind am Zug:\n");
+                    for (Enemy e : enemyTeam) {
+                        if (e.lifelined)                                        // Vor Aktion Zaubereffekte abhandeln, könnten dmg verursachen
+                            WorldBuilder.lifeline.tick(e);
+                        if (e.doomed)
+                            WorldBuilder.doom.tick(e);
+                        if (e.carriesVSeed)
+                            WorldBuilder.viciousSeed.tick(e);
+                        if (e.inIronMaiden)
+                            WorldBuilder.ironMaiden.tick(e);
+                        hit = false;
+                        if (!e.ko) {                                            // Aktion
+                            switch (e) {
+                                case Guard guard -> guardTurn(e);
+                                case Watchdog watchdog -> watchdogTurn(e);
+                                case Soldier soldier -> soldierTurn(e);
+                                case Archer archer -> archerTurn(e);
+                                case Apprentice apprentice -> apprenticeTurn(e);
+                                case Novice novice -> noviceTurn(e);
+                                case Knight knight -> knightTurn(e);
+                                case Ranger ranger -> rangerTurn(e);
+                                case Mage mage -> mageTurn(e);
+                                case Cleric cleric -> clericTurn(e);
+                                case Boss01 boss01 -> boss01Turn(e);
+                                case Boss02 boss02 -> boss02Turn(e);
+                                case Boss03 boss03 -> boss03Turn(e);
+                                default -> defaultTurn(e);
+                            }
+                        }                                                        // Ende Aktion einzelner Gegner
+                        if (demon.ko)                                            // Wenn Dämon besiegt wurde, sollte eventuelle Lifeline auf Gegnern beendet werden.
+                            for (Enemy f : enemyTeam) {
+                                if (f.lifelined) {
+                                    f.lifelined = false;
+                                    System.out.printf("Die Lebenslinie zwischen %s und %s reißt.", f.name, demon.name);
+                                }
+                            }
+                        if (!e.ko)
+                            Control.enterToContinue();                          // mit If-Bedingung, sonst müsste man nach ausgefallener Handlung eines besiegten Gegners trotzdem Eingabetaste drücken.
+
+                    } // Ende Aktion Gegnerteam
+                    isPlayerTurn = true;
                 }
             } while (!demon.ko);                                    // Ende innerer Battle-Loop. Wiederholt, solange Dämon am Leben
             checkDefeat();                                          // Dämon besiegt, Prüfung auf Niederlage
             forcePickDemon();                                       // Spieler nicht besiegt, neuen Dämon beschwören
         } while (!encounter.beaten);                                // Solange Kampf nicht gewonnen, wieder nach oben
-        battleWon();                                                //Kampf gewonnen
+        battleWon();                                                // Kampf gewonnen
     }
 
     public static void encounterIntro(){
@@ -193,34 +235,6 @@ public class Battle {
         Control.enterToContinue();
     }
 
-    public static void checkDefeat(){
-        Player.counterKO = 0;
-        for (Demon d : Player.team) {
-            if (d.ko)
-                Player.counterKO++;
-        }
-        if (Player.counterKO >= Player.team.size()) {
-            System.out.println("\nMaleficarius hat keine kampffähigen Dämonen mehr.");
-            System.out.println("Dies ist dein Ende.\n");
-            ASCII.BattleLost();
-            System.exit(0);
-        }
-    }
-
-    public static void checkVictory(){
-        encounter.counterKO = 0;
-        for (Enemy e : enemyTeam) {
-            if (e.ko) {
-                encounter.counterKO++;
-                e.die();
-                }
-            }
-        if (encounter.counterKO >= enemyTeam.size()) {
-            encounter.beaten = true;
-            battleWon();
-        }
-    }
-
     public static void battleMenu(){
         System.out.println(encounter.name.toUpperCase());
         for (Enemy e : enemyTeam) {
@@ -235,7 +249,7 @@ public class Battle {
                 System.out.printf(" – Üble Saat (%d)", e.counterVSeed);
             System.out.println();
         }
-        System.out.println("\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n");
+        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
         System.out.printf("%s \t\t\t(%d/%d HP)\n", demon.name.toUpperCase(), demon.hp, demon.hpMax);
         System.out.print("[1] " + demon.attackName);
         if (demon == WorldBuilder.dem01 && WorldBuilder.dem01.roar > 0)
@@ -381,48 +395,32 @@ public class Battle {
         }
     }
 
-    public static void enemyTurn() {
-        System.out.println(encounter.name + " sind am Zug:\n");
+    public static void checkDefeat(){
+        Player.counterKO = 0;
+        for (Demon d : Player.team) {
+            if (d.ko)
+                Player.counterKO++;
+        }
+        if (Player.counterKO >= Player.team.size()) {
+            System.out.println("\nMaleficarius hat keine kampffähigen Dämonen mehr.");
+            System.out.println("Dies ist dein Ende.\n");
+            ASCII.BattleLost();
+            System.exit(0);
+        }
+    }
+
+    public static void checkVictory(){
+        encounter.counterKO = 0;
         for (Enemy e : enemyTeam) {
-            if (e.lifelined)                                        // Vor Aktion Zaubereffekte abhandeln, könnten dmg verursachen
-                WorldBuilder.lifeline.tick(e);
-            if (e.doomed)
-                WorldBuilder.doom.tick(e);
-            if (e.carriesVSeed)
-                WorldBuilder.viciousSeed.tick(e);
-            if (e.inIronMaiden)
-                WorldBuilder.ironMaiden.tick(e);
-
-            if (!e.ko) {                                            // Aktion, erst prüfen, ob K.O.
-                //weitere If-Verzweigung je nach Enemy-Subklasse?
-                if ((e.hp <= e.hpMax * 0.3f) && (e.hasPotion)) {    // Wenn schwer verletzt und Potion vorhanden, dann Potion statt Angriff
-                    e.drinkPotion();
-                } else if (!demon.ko){
-                    pick = rnd.nextInt(e.numOptions);               // Zufallszahlenbereich entspricht Anzahl seiner Optionen
-                    if (pick == 0) {
-                        demon.applyDmgEvade(e.attack());                 // Flavor dazu: Kampfschreie, Schadensbeschreibungen etc.
-                    } else if (pick == 1) {
-                        e.ability1();
-                    } else if (pick == 2) {
-                        e.ability2();
-                    } else if (pick == 3) {
-                        e.ability3();
-                    } else
-                        System.out.println("DEBUG: Fehler beim Auswürfeln der Gegneraktion.");
-                }
-            } // Ende Aktion einzelner Gegner
-            if (demon.ko)                           //Wenn Dämon besiegt wurde, sollte eventuelle Lifeline auf Gegnern beendet werden.
-                for (Enemy f : enemyTeam) {
-                    if (f.lifelined) {
-                        f.lifelined = false;
-                        System.out.printf("Die Lebenslinie zwischen %s und %s reißt.", f.name, demon.name);
-                    }
-                }
-            if (!e.ko)
-                Control.enterToContinue();      // mit If-Bedingung, sonst müsste man nach ausgefallener Handlung eines besiegten Gegners trotzdem Eingabetaste drücken.
-
-        } // Ende Aktion Gegnerteam
-        isPlayerTurn = true;
+            if (e.ko) {
+                encounter.counterKO++;
+                e.die();
+            }
+        }
+        if (encounter.counterKO >= enemyTeam.size()) {
+            encounter.beaten = true;
+            battleWon();
+        }
     }
 
     public static void battleWon(){
@@ -443,6 +441,90 @@ public class Battle {
             }
         }
         WarlockQuest.gameLoop();
+    }
+
+
+    //Turn-Methoden für Klassen
+    public static void guardTurn(Enemy e) {
+        if (!demon.ko)
+            demon.applyDmgEvade(e.attack());
+    }
+
+    public static void watchdogTurn(Enemy e) {
+            if (!Battle.demon.ko) {
+                if (!e.bitesOn) {
+                    hit = demon.applyDmgEvade(e.attack());
+                    if (hit) {
+                        e.bitesOn = true;
+                        System.out.println(e.name + " beißt sich fest.");
+                    }
+                } else {
+                    System.out.printf("%s hat sich in %s festgebissen und trifft automatisch. \n", e.name, demon.name);
+                    demon.applyDmg(e.attack());
+                }
+            }
+    }
+
+    public static void soldierTurn(Enemy e) {
+
+    }
+
+    public static void archerTurn(Enemy e) {
+
+    }
+
+    public static void apprenticeTurn(Enemy e) {
+
+    }
+
+    public static void noviceTurn(Enemy e) {
+
+    }
+
+    public static void knightTurn(Enemy e) {
+
+    }
+
+    public static void rangerTurn(Enemy e) {
+
+    }
+
+    public static void mageTurn(Enemy e) {
+
+    }
+
+    public static void clericTurn(Enemy e) {
+
+    }
+
+    public static void boss01Turn(Enemy e) {
+
+    }
+
+    public static void boss02Turn(Enemy e) {
+
+    }
+
+    public static void boss03Turn(Enemy e) {
+
+    }
+
+    public static void defaultTurn(Enemy e) {
+        if ((e.hp <= e.hpMax * 0.3f) && (e.hasPotion)) {             // Wenn schwer verletzt und Potion vorhanden, dann Potion statt Angriff
+            e.drinkPotion();
+        } else if (!demon.ko){
+            pick = rnd.nextInt(e.numOptions);                        // Zufallszahlenbereich entspricht Anzahl seiner Optionen
+            if (pick == 0) {
+                hit = demon.applyDmgEvade(e.attack());
+            } else if (pick == 1) {
+                e.ability1();
+            } else if (pick == 2) {
+                e.ability2();
+            } else if (pick == 3) {
+                e.ability3();
+            } else
+                System.out.println("DEBUG: Fehler beim Auswürfeln der Gegneraktion.");
+        }
     }
 
 

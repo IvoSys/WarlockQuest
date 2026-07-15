@@ -94,14 +94,16 @@ public abstract class Demon {
     }
 
     //HP-Setter
-    public void applyDmgEvade(int dmg) {
+    public boolean applyDmgEvade(int dmg) {
+        boolean hit = false;
+
         if (Battle.rnd.nextInt(100) < Battle.demon.dex)
             System.out.println(Battle.demon.name + " weicht aus!");
         else {
+            hit = true;
             hp -= dmg;
-            if (hp < 0)
+            if (hp <= 0) {
                 hp = 0;
-            if (hp == 0) {
                 ko = true;
             }
             System.out.printf("%s erleidet %d Schaden", Battle.demon.name, dmg);
@@ -110,6 +112,7 @@ public abstract class Demon {
             else
                 System.out.println(".");
         }
+        return hit;
     }
 
     public void applyDmg(int dmg) {
@@ -165,7 +168,7 @@ class Minotauros extends Demon{
         dex = 10;
 
         attackName = "Streitaxt\t\t";
-        attackDesc = "Minotauros schlägt mit seiner Streitaxt zu und verursacht bei einem Gegner massiven Schaden.";
+        attackDesc = "Minotauros schlägt mit seiner Streitaxt zu und verursacht bei einem Gegner hohen Schaden.";
         aoeAttackName = "Wüten\t\t\t";
         aoeAttackDesc = "Minotauros verfällt in blinde Wut und verursacht bei \nallen Gegnern Schaden in unvorhersehbarer Höhe.";
         aoeAttackBattleDesc = "In Raserei schlägt Minotauros wild um sich:";
@@ -175,7 +178,10 @@ class Minotauros extends Demon{
     }
 
     @Override
-    public void applyDmgEvade(int dmg){
+    public boolean applyDmgEvade(int dmg){
+
+        boolean hit = false;
+
         if (!isRoar) {
             super.applyDmgEvade(dmg);
         }
@@ -183,10 +189,11 @@ class Minotauros extends Demon{
             dmg = (int) (dmg * 0.5f);
             hp -= dmg;
             roar += dmg;
-            if (hp < 0)
+            hit = true;
+            if (hp <= 0) {
                 hp = 0;
-            if (hp == 0)
                 ko = true;
+            }
 
             System.out.printf("Minotauros erleidet %d Schaden", dmg);
             if (ko)
@@ -194,6 +201,7 @@ class Minotauros extends Demon{
             else
                 System.out.println(".");
         }
+        return hit;
     }
 
     @Override
@@ -227,9 +235,10 @@ class Minotauros extends Demon{
         else
             System.out.print("Mit dampfendem Atem attackiert Minotauros mit seiner Streitaxt – ");
 
+        int dmg = rnd.nextInt(11) + power + roar;
         roar = 0;
         isRoar = false;
-        return rnd.nextInt(11) + power + roar;
+        return dmg;
     }
 
     @Override
@@ -260,8 +269,8 @@ class Efreet extends Demon{
     public Efreet() {
         name = "Efreet";
         trueName = Story.trueNameDem02;
-        desc = "";
-        textWhenSummoned = "";
+        desc = "Ein Geistwesen, geschaffen aus rauchlosem Feuer.";
+        textWhenSummoned = "Flammen ziehen sich in einem Strudel zusammen und bilden eine Frau in roten Seidengewändern. Ihre goldenen Armreife glühen heiß.";
         textWhenBound = "Du sprichst den wahren Namen der Efreet aus und die Beschwörungsformel verbrennt unter deinen Fingern. \nEinen kurzen Moment lang glaubst du, in Flammen zu stehen.\n\n(Über den Befehl \"Dämonen\" erfährst du mehr über deine Dämonen.)";
         hpBase = 120;
         hpMax = hpBase;
@@ -271,12 +280,12 @@ class Efreet extends Demon{
         dex = 30;
 
         attackName = "Flammenschlag";
-        attackDesc = "Ein glühender Schlag trifft einen Gegner und verursacht massiven Schaden.";
+        attackDesc = "Ein glühender Schlag trifft einen Gegner und verursacht hohen Schaden.";
         aoeAttackName = "Feuersbrunst";
         aoeAttackNameBlazing = "Inferno";
         aoeAttackDesc = "Brüllende Flammen verusachen bei allen Gegnern Schaden in unvorhersehbarer Höhe.";
         aoeAttackBattleDesc = "Eine Walze aus Feuer überrollt Efreets Feinde:";
-        aoeAttackBattleDescBlazing = "Der Raum verwandelt sich in ein Flammenmeer:";
+        aoeAttackBattleDescBlazing = "Der Raum explodiert in einem Flammenmeer:";
         selfBuffName = "Innere Glut";
         selfBuffDesc = "Eine Runde lang lodern Flammen wild um Efreet. \nIm Nahkampf angreifende Gegner verbrennen sich und der Angriff \"Feuersbrunst\" wird verstärkt.";
         //obliterated = "";
@@ -324,12 +333,12 @@ class Abaddon extends Demon{
         dex = 20;
 
         attackName = "Schattenblitz";
-        attackDesc = "Ein schwarzer Blitz zuckt durch einen Gegner und verursacht massiven Schaden.";
+        attackDesc = "Ein schwarzer Blitz zuckt durch einen Gegner und verursacht hohen Schaden.";
         aoeAttackName = "Dunkelheit";
         aoeAttackDesc = "Zähne und Klauen aus der Dunkelheit verusachen bei allen Gegnern Schaden in unvorhersehbarer Höhe.";
         aoeAttackBattleDesc = "Die Gegner werden verschlungen von Dunkelheit und allem, was darin lauert:";
         selfBuffName = "Finsteres Herz";
-        selfBuffDesc = "";
+        selfBuffDesc = "[Funktionsweise Selfbuff Abaddon] Angreifende Gegner erhalten eine Zustandsveränderung?";
         //obliterated = "";
     }
 

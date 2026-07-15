@@ -86,29 +86,29 @@ public class Story {
     }
 
     public static void answers() {
-        System.out.println("\n======================================= LÖSUNGEN DER RÄTSEL =======================================\n");
-        System.out.print("Dämonen\n");
-        System.out.print("Dämon 1: \t");
+        System.out.println("\n======================================= LÖSUNGEN DER RÄTSEL =======================================");
+        System.out.print("DÄMONEN\n");
+        System.out.print(WorldBuilder.dem01.name + ": \t");
         System.out.println(trueNameDem01);
-        System.out.print("Dämon 2: \t");
+        System.out.print(WorldBuilder.dem02.name + ": \t");
         System.out.println(trueNameDem02);
-        System.out.print("Dämon 3: \t");
+        System.out.print(WorldBuilder.dem03.name + ": \t");
         System.out.println(trueNameDem03);
         System.out.println();
-        System.out.print("Zauber");
-        System.out.print("Aderlass: \t\t");
+        System.out.print("ZAUBER");
+        System.out.print(WorldBuilder.bloodletting.name + ": \t");
         System.out.println(formulaBloodletting);
-        System.out.print("Eiserne Jungfrau: \t\t");
+        System.out.print(WorldBuilder.ironMaiden.name + ": \t");
         System.out.println(formulaIronMaiden);
-        System.out.print("Lebenslinie: \t\t");
+        System.out.print(WorldBuilder.lifeline.name + ": \t");
         System.out.println(formulaLifeline);
-        System.out.print("Seelendieb: \t\t");
+        System.out.print(WorldBuilder.soulreaper.name + ": \t");
         System.out.println(formulaSoulreaper);
-        System.out.print("Üble Saat: \t\t");
+        System.out.print(WorldBuilder.viciousSeed.name + ": \t");
         System.out.println(formulaViciousSeed);
-        System.out.print("Untergang: \t\t");
+        System.out.print(WorldBuilder.doom.name + ": \t");
         System.out.println(formulaDoom);
-        System.out.println("\n=================================================================================================== \n");
+        System.out.println("\n===================================================================================================");
     }
 
     /*
@@ -158,7 +158,7 @@ public class Story {
                         
                         Neben ">" gibst du die Zahl der gewünschten Aktion ein.
                         
-                        Physischen Angriffen und Zaubern, die Projektile verschießen, kann kann mit gewisser Chance ausgewichen werden.
+                        Den meisten Angriffen (Schwertern, Pfeilen, magischen Projektilen) kann mit gewisser Chance ausgewichen werden.
                         Die Flüche eines Hexenmeisters binden sich an die Seele eines Lebewesens und verfehlen niemals.
                         
                         Jeder Dämon verfügt über drei Fähigkeiten: Einen Angriff gegen einen Gegner,

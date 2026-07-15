@@ -10,12 +10,14 @@ public abstract class Enemy {
     int hpMax;
     int power;
     int dex;
-    boolean meele = true;
+    boolean meele;
     boolean hasPotion;
     int potionStr;
     boolean ko = false;
 
     int numOptions;
+
+    boolean bitesOn = false;
 
     boolean doomed = false;
     int counterDoom;
@@ -65,6 +67,7 @@ public abstract class Enemy {
     public void die(){
         hp = 0;
         ko = true;
+        bitesOn = false;
         doomed = false;
         lifelined = false;
         inIronMaiden = false;
@@ -106,13 +109,15 @@ public abstract class Enemy {
 
 
     public int attack(){
-        int dmg = rnd.nextInt(11) + power;
-        System.out.printf("%s greift mit dem %s an – ", name, weapon);
-        if (inIronMaiden)
+        int dmg = rnd.nextInt(6) + power;
+        System.out.printf("%s greift mit %s an – ", name, weapon);
+        if (inIronMaiden) {
+            System.out.printf("\"%s\" wirkt: ", WorldBuilder.ironMaiden.name);
             applyMaiden(dmg);
+        }
         if (Battle.demon == WorldBuilder.dem02 && WorldBuilder.dem02.isBlazing && meele) {
+            System.out.printf("%s ist in Flammen gehüllt: ", WorldBuilder.dem02.name);
             applyDmg(WorldBuilder.dem02.power / 2);
-            System.out.printf("%s verbrennt sich und erleidet %d Schaden. \n", name, WorldBuilder.dem02.power / 2);
         }
         return dmg;
     }
@@ -125,6 +130,52 @@ public abstract class Enemy {
 
 }
 
+
+
+
+// ========== EBENE 0: nur attack() ==========
+
+// ========== Wache ==========
+class Guard extends Enemy{
+
+    public Guard(String name, String weapon) {
+        this.name = name;
+        this.weapon = weapon;
+        meele = true;
+        numOptions = 1;
+        hp = 60;
+        hpMax = hp;
+        power = 5;
+        dex = 5;
+    }
+
+    public int attack(){
+        return (super.attack());
+    }
+}
+
+// ========== Wachhund ==========
+class Watchdog extends Enemy{
+
+    public Watchdog(String name) {
+        numOptions = 1;
+        this.name = name;
+        weapon = "seinen Zähnen";
+        hp = 40;
+        hpMax = hp;
+        power = 5;
+        dex = 10;
+    }
+
+    public int attack(){
+        return (super.attack());
+    }
+}
+
+
+// ========== EBENE 1: +1 Fähigkeit ==========
+
+// ========== Soldat ==========
 class Soldier extends Enemy{
 
     public Soldier(String name, String weapon, int hp, int power, int dex, boolean hasPotion) {
@@ -153,6 +204,73 @@ class Soldier extends Enemy{
 
 }
 
+// ========== Schütze ==========
+class Archer extends Enemy{
+
+    public Archer() {
+    }
+
+    public int attack(){
+        return (super.attack());
+    }
+
+    public void ability1() {
+        int dmg = power;
+
+    }
+
+    public void ability2() {
+        int dmg = power;
+
+    }
+
+}
+
+// ========== Zauberlehrling ==========
+class Apprentice extends Enemy{
+
+    public Apprentice() {
+    }
+
+    public int attack(){
+        return (super.attack());
+    }
+
+    public void ability1() {
+    }
+
+    public void ability2() {
+        int dmg = power;
+
+    }
+
+}
+
+// ========== Priester ==========
+class Novice extends Enemy {
+
+    public Novice() {
+    }
+
+    public int attack(){
+        return (super.attack());
+    }
+
+    public void ability1() {
+    }
+
+    public void ability2() {
+        int dmg = power;
+
+    }
+
+}
+
+
+
+// ========== EBENE 2: +2 Fähigkeiten ==========
+
+// ========== Ritter ==========
 class Knight extends Enemy{
 
     public Knight() {
@@ -173,47 +291,43 @@ class Knight extends Enemy{
 
 }
 
-class Rogue extends Enemy{
+// ========== Waldläufer ==========
+class Ranger extends Enemy{
 
-    public Rogue() {
+    public Ranger(String name, String weapon) {
+        numOptions = 1;
+        this.name = name;
+        this.weapon = weapon;
+        hp = 60;
+        hpMax = hp;
+        power = 5;
+        dex = 5;
     }
 
     public int attack(){
         return (super.attack());
     }
-
-    public void ability1() {
-        int dmg = power;
-
-    }
-
-    public void ability2() {
-        int dmg = power;
-
-    }
-
 }
 
+// ========== Magier ==========
 class Mage extends Enemy{
 
-    public Mage() {
+    public Mage(String name, String weapon) {
+        numOptions = 1;
+        this.name = name;
+        this.weapon = weapon;
+        hp = 60;
+        hpMax = hp;
+        power = 5;
+        dex = 5;
     }
 
     public int attack(){
         return (super.attack());
     }
-
-    public void ability1() {
-    }
-
-    public void ability2() {
-        int dmg = power;
-
-    }
-
 }
 
-
+// ========== Kleriker ==========
 class Cleric extends Enemy {
 
     public Cleric() {
@@ -234,7 +348,57 @@ class Cleric extends Enemy {
 }
 
 
+// ========== EBENE 3: BOSS ==========
+class Boss01 extends Enemy{
 
+    public Boss01(String name, String weapon) {
+        numOptions = 1;
+        this.name = name;
+        this.weapon = weapon;
+        hp = 60;
+        hpMax = hp;
+        power = 5;
+        dex = 5;
+    }
+
+    public int attack(){
+        return (super.attack());
+    }
+}
+
+class Boss02 extends Enemy{
+
+    public Boss02(String name, String weapon) {
+        numOptions = 1;
+        this.name = name;
+        this.weapon = weapon;
+        hp = 60;
+        hpMax = hp;
+        power = 5;
+        dex = 5;
+    }
+
+    public int attack(){
+        return (super.attack());
+    }
+}
+
+class Boss03 extends Enemy{
+
+    public Boss03(String name, String weapon) {
+        numOptions = 1;
+        this.name = name;
+        this.weapon = weapon;
+        hp = 60;
+        hpMax = hp;
+        power = 5;
+        dex = 5;
+    }
+
+    public int attack(){
+        return (super.attack());
+    }
+}
 
 
 

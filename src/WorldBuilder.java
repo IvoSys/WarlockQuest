@@ -143,9 +143,9 @@ public class WorldBuilder {
 
 
     //GEGNER
-    static Enemy soldier01 = new Soldier("Soldat Karl", "Schwert", 5, 10, 5, false);
-    static Enemy soldier02 = new Soldier("Soldatin Franziska", "Bogen", 5, 10, 5, true);
-    static Enemy soldier03 = new Soldier("Soldat Max", "Dolch", 5, 10, 5, false);
+    static Enemy soldier01 = new Guard("Wache Karl", "ihrem Knüppel");
+    static Enemy soldier02 = new Watchdog("Hasso");
+    static Enemy soldier03 = new Guard("Wache Max", "ihrem Knüppel");
 
     // ENCOUNTER
     static Encounter enc221TEST = new Encounter("Testsoldaten", soldier01, soldier02, soldier03, "Achtung, Testüberfall!", "Achtung, Testüberfall beendet!", key999);
