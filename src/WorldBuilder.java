@@ -64,10 +64,10 @@ public class WorldBuilder {
 
 
     //BESCHWÖRUNGSFORMELN
-    static Evocation evoc00 = new Evocation("Beschwörungsformel des Daimon", "Schriftrolle", Story.riddleDem00, "Daimon");
-    static Evocation evoc01 = new Evocation("Beschwörungsformel des Minotauros", "Schriftrolle", Story.riddleDem01, "Minotauros");
-    static Evocation evoc02 = new Evocation("Beschwörungsformel der Efreet", "Schriftrolle", Story.riddleDem02, "Efreet");
-    static Evocation evoc03 = new Evocation("Beschwörungsformel des Abaddon", "Schriftrolle", Story.riddleDem03, "Abaddon");
+    static Evocation evoc00 = new Evocation("Beschwörungsformel des vertrauten Geistes", "Schriftrolle", Story.riddleDem00, "Daimon");
+    static Evocation evoc01 = new Evocation("Beschwörungsformel des gehörnten Königs", "Schriftrolle", Story.riddleDem01, "Minotauros");
+    static Evocation evoc02 = new Evocation("Beschwörungsformel der entflammten Dame", "Schriftrolle", Story.riddleDem02, "Efreet");
+    static Evocation evoc03 = new Evocation("Beschwörungsformel des Abgründigen", "Schriftrolle", Story.riddleDem03, "Abaddon");
 
     //DÄMONEN
     static Minotauros dem01 = new Minotauros();

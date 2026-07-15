@@ -433,9 +433,22 @@ public class Story {
                     […] Spricht man den wahren Namen eines Dämonen deulich aus, zwingt man ihn in seinen Dienst. Doch Obacht, er wird dies nicht schätzen!""";
 
     //Rätsel Dämonen
-    static String riddleDem00 = "Diesen okkulten Text hast du vor einer Weile schon entschlüsselt. \nDer wahre Name des Daimon lautet: \n\033[3mGenius Daimonion, Spritus familiaris\033[0m \n\nDAIMON: \"Nooohh, Malle, ich bin doch schon bei dir!\"\n\n… ob es so eine gute Idee war, diesen Plagegeist zu beschwören?";
+    static String riddleDem00 = """
+            Diesen okkulten Text hast du vor einer Weile schon entschlüsselt.
+            Der wahre Name des Daimon lautet:
+            \033[3mGenius Daimonion, Spritus familiaris\033[0m
+            
+            DAIMON: "Nooohh, Malle, ich bin doch schon bei dir!"
+            
+            … ob es so eine gute Idee war, diesen Plagegeist zu beschwören?
+            """;
 
-    static String riddleDem01 = "Hörst du es hallen, das schreckliche Gebrüll aus den Gängen? Wenn das Ungeheuer dich in die Irre führt, dann folge dem Geschenk deiner Geliebten: \nRethcäw rednetüw, Soruatonim";
+    static String riddleDem01 = """
+                                Du hörst es hallen, das schreckliche Gebrüll aus den Gängen.
+                                Wenn das Ungeheuer dich in die Irre führt, findest du dann noch den Weg zurück?
+                                Schau hinab und suche den Pflasterstein, der vorher kam, immer ein Schritt nach dem anderen:
+                                ;ompzsitpd. e+zrmfrt E#vjzrt;
+                                """;
     static String trueNameDem01 = "Minotauros, wütender Wächter";
 
     static String riddleDem02 = "";
