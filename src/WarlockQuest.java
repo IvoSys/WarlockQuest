@@ -36,10 +36,6 @@ public class WarlockQuest {
         Player.curY = 2;
         Player.curZ = 2;
 
-        Item.obtainItem(WorldBuilder.evoc01);
-        Item.obtainItem(WorldBuilder.evoc02);
-        Item.obtainItem(WorldBuilder.evoc03);
-
         gameLoop();
 
     }

@@ -77,39 +77,6 @@ public abstract class Item {
 
 }
 
-/*
-Je zwei unterschiedliche Items mit gleicher combiID =! 0 ergeben
-
-404 reserviert für Kombinieren-Methode
-
-
-ID      ZUTATEN                             PRODUKT         ID
-1       rote Zutaten                        Heiltrank       11
-2       blaue Zutaten                       Manatrank       22
-3       gelbe
-4       blaue
-5       schwarze                            Level-up-Trank  55
-6
-7
-8
-9
-10      weiße (Verstärker)                  starker Heil-/Manatrank 110/220
-        1x weiß + Trank                     mächtiger Heil-/Manatrank 1100/2200
-
-12
-13
-14
-15
-16
-17
-18
-19
-20
-
- */
-
-
-
 class Evocation extends Item {
 
     String demonShortName;
@@ -120,7 +87,6 @@ class Evocation extends Item {
         this.desc = desc;                       //Text mit Rätsel zum trueName des Dämonen
         this.demonShortName = demonShortName;   //Kann mit name-Variablen des Dämonen abgeglichen werden
     }
-
 
     public static void bind() {
         boolean success = false;
@@ -187,7 +153,7 @@ abstract class Potion extends Item{
 
     public static void drink(String trank) {
         for (Item i : Player.inv) {
-            if (i instanceof Potion && i.name.equals(trank)) {
+            if (i instanceof Potion && i.name.contains(trank)) {
                 if (((Potion) i).effect())
                     Item.consumeItem(i);
                 break;

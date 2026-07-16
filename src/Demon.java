@@ -16,6 +16,7 @@ public abstract class Demon {
     int powerBase;
     int dex;
     int level;
+    boolean melee;
 
     boolean ko = false;
 
@@ -166,6 +167,7 @@ class Minotauros extends Demon{
         powerBase = 15;
         power = powerBase;
         dex = 10;
+        melee = true;
 
         attackName = "Streitaxt\t\t";
         attackDesc = "Minotauros schlägt mit seiner Streitaxt zu und verursacht bei einem Gegner hohen Schaden.";
@@ -278,6 +280,7 @@ class Efreet extends Demon{
         powerBase = 20;
         power = powerBase;
         dex = 30;
+        melee = true;
 
         attackName = "Flammenschlag";
         attackDesc = "Ein glühender Schlag trifft einen Gegner und verursacht hohen Schaden.";
@@ -331,6 +334,7 @@ class Abaddon extends Demon{
         powerBase = 25;
         power = powerBase;
         dex = 20;
+        melee = false;
 
         attackName = "Schattenblitz";
         attackDesc = "Ein schwarzer Blitz zuckt durch einen Gegner und verursacht hohen Schaden.";

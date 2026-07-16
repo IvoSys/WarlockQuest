@@ -11,11 +11,10 @@ public abstract class Enemy {
     int power;
     int dex;
     boolean meele;
-    boolean hasPotion;
+    int potions;
     int potionStr;
-    boolean ko = false;
 
-    int numOptions;
+    boolean ko = false;
 
     boolean bitesOn = false;
 
@@ -32,10 +31,13 @@ public abstract class Enemy {
     int counterVSeed;
 
 
+    // Setter und Klassen-Methoden
+    //region
+
     // Konstruktor
     public Enemy() {}
 
-    //Setter
+    //Dmg-Setter
     public void applyDmgEvade(int dmg){
         if (Battle.rnd.nextInt(100) < dex)
             System.out.println(name + " weicht aus!");
@@ -64,6 +66,50 @@ public abstract class Enemy {
         }
     }
 
+    public void applyMaidenDmg(int dmg){
+        System.out.printf("%s verletzt sich durch den Fluch \"%s\" selbst: ", name, WorldBuilder.ironMaiden.name);
+        applyDmg(dmg);
+    }
+
+    //Heilung
+    public void drinkPotion(){
+        if (potions > 0) {
+            hp += potionStr;
+            potions -= 1;
+            System.out.printf("%s trinkt einen Heiltrank und", name);
+            if (hp >= hpMax) {
+                hp = hpMax;
+                System.out.println(" ist wieder kerngesund.");
+            } else
+                System.out.printf(" heilt sich um %d HP. \n", potionStr);
+        } else {
+            System.out.printf("%s hat keinen Heiltrank mehr.", name);
+        }
+    }
+
+    public void applyHeal(int heal){
+        hp += heal;
+        if (hp > hpMax) {
+            hp = hpMax;
+        }
+        System.out.printf("%s wird um %d HP geheilt", name, heal);
+        if (hp == hpMax)
+            System.out.println(" und ist wieder kerngesund.");
+        else
+            System.out.println(".");
+    }
+
+    public void applyRevive(int heal){
+        if (ko) {
+            ko = false;
+            hp = heal;
+        } else {
+            System.out.println(name + " ist am Leben und kann nicht wiederbelebt werden.");
+        }
+
+    }
+
+    //Tod
     public void die(){
         hp = 0;
         ko = true;
@@ -75,45 +121,12 @@ public abstract class Enemy {
             WorldBuilder.viciousSeed.explode(this);
     }
 
-    public void applyMaiden(int dmg){
-        System.out.printf("%s verletzt sich durch den Fluch \"%s\" selbst: ", name, WorldBuilder.ironMaiden.name);
-        applyDmg(dmg);
-    }
-
-    public void applyHeal(int heal){
-        hp += heal;
-        if (hp > hpMax) {
-            hp = hpMax;
-        }
-        System.out.printf("%s wird um %d HP geheilt", name, heal);
-        if (hp == hpMax)
-            System.out.println(" und strotzt vor Energie.");
-        else
-            System.out.println(".");
-    }
-
-    public void drinkPotion(){
-        if (hasPotion) {
-            hp += potionStr;
-            hasPotion = false;
-            System.out.printf("%s trinkt einen Heiltrank und", name);
-            if (hp > hpMax) {
-                hp = hpMax;
-                System.out.println(" ist wieder kerngesund.");
-            } else
-                System.out.printf(" heilt sich um %d HP. \n", potionStr);
-        } else {
-            System.out.printf("%s hat keinen Heiltrank mehr.", name);
-        }
-    }
-
-
+    //Standard-Angriff
     public int attack(){
         int dmg = rnd.nextInt(6) + power;
-        System.out.printf("%s greift mit %s an – ", name, weapon);
         if (inIronMaiden) {
             System.out.printf("\"%s\" wirkt: ", WorldBuilder.ironMaiden.name);
-            applyMaiden(dmg);
+            applyMaidenDmg(dmg);
         }
         if (Battle.demon == WorldBuilder.dem02 && WorldBuilder.dem02.isBlazing && meele) {
             System.out.printf("%s ist in Flammen gehüllt: ", WorldBuilder.dem02.name);
@@ -122,171 +135,204 @@ public abstract class Enemy {
         return dmg;
     }
 
-    public void ability1(){}
+    public int heal() {
+        return rnd.nextInt(6) + power * 2;
+    }
 
-    public void ability2(){}
+    public int revive() {
+        return rnd.nextInt(6) + power;
+    }
 
-    public void ability3(){}
-
+//endregion
 }
 
 
-
-
-// ========== EBENE 0: nur attack() ==========
-
-// ========== Wache ==========
 class Guard extends Enemy{
 
-    public Guard(String name, String weapon) {
+    public Guard(String name, String weapon, int hp, int power, int dex, int potions) {
         this.name = name;
         this.weapon = weapon;
         meele = true;
-        numOptions = 1;
-        hp = 60;
-        hpMax = hp;
-        power = 5;
-        dex = 5;
-    }
-
-    public int attack(){
-        return (super.attack());
-    }
-}
-
-// ========== Wachhund ==========
-class Watchdog extends Enemy{
-
-    public Watchdog(String name) {
-        numOptions = 1;
-        this.name = name;
-        weapon = "seinen Zähnen";
-        hp = 40;
-        hpMax = hp;
-        power = 5;
-        dex = 10;
-    }
-
-    public int attack(){
-        return (super.attack());
-    }
-}
-
-
-// ========== EBENE 1: +1 Fähigkeit ==========
-
-// ========== Soldat ==========
-class Soldier extends Enemy{
-
-    public Soldier(String name, String weapon, int hp, int power, int dex, boolean hasPotion) {
-        numOptions = 1;
-        this.name = name;
-        this.weapon = weapon;
         this.hp = hp;
         hpMax = hp;
         this.power = power;
         this.dex = dex;
-        this.hasPotion = hasPotion;
-        potionStr = 40;
+        this.potions = potions;
+        potionStr = hpMax / 2;
     }
 
-
+    @Override
     public int attack(){
+        System.out.printf("%s greift mit %s an – ", name, weapon);
         return (super.attack());
     }
+}
 
-    public void ability1() {
+
+class Watchdog extends Enemy{
+
+    public Watchdog(String name, int hp, int power, int dex) {
+        this.name = name;
+        weapon = "einem Biss";
+        meele = true;
+        this.hp = hp;
+        hpMax = hp;
+        this.power = power;
+        this.dex = dex;
+        potions = 0;
+        potionStr = hpMax / 2;
     }
 
-    public void ability2() {
+    @Override
+    public int attack(){
+        System.out.printf("%s greift mit %s an – ", name, weapon);
+        return (super.attack());
+    }
+}
 
+
+class Soldier extends Enemy{
+
+    public Soldier(String name, String weapon, int hp, int power, int dex, int potions) {
+        this.name = name;
+        this.weapon = weapon;
+        meele = true;
+        this.hp = hp;
+        hpMax = hp;
+        this.power = power;
+        this.dex = dex;
+        this.potions = potions;
+        potionStr = hpMax / 2;
+    }
+
+    @Override
+    public int attack(){
+        System.out.printf("%s greift mit %s an – ", name, weapon);
+        return (super.attack());
     }
 
 }
 
-// ========== Schütze ==========
+
 class Archer extends Enemy{
 
-    public Archer() {
+    public Archer(String name, String weapon, int hp, int power, int dex, int potions) {
+        this.name = name;
+        this.weapon = weapon;
+        meele = false;
+        this.hp = hp;
+        hpMax = hp;
+        this.power = power;
+        this.dex = dex;
+        this.potions = potions;
+        potionStr = hpMax / 2;
     }
 
+    @Override
     public int attack(){
+        System.out.printf("%s greift mit %s an – ", name, weapon);
         return (super.attack());
-    }
-
-    public void ability1() {
-        int dmg = power;
-
-    }
-
-    public void ability2() {
-        int dmg = power;
-
     }
 
 }
 
-// ========== Zauberlehrling ==========
+
 class Apprentice extends Enemy{
 
-    public Apprentice() {
+    public Apprentice(String name, String weapon, int hp, int power, int dex, int potions) {
+        this.name = name;
+        this.weapon = weapon;
+        meele = false;
+        this.hp = hp;
+        hpMax = hp;
+        this.power = power;
+        this.dex = dex;
+        this.potions = potions;
+        potionStr = hpMax / 2;
     }
 
+    @Override
     public int attack(){
+        System.out.printf("%s greift mit %s an – ", name, weapon);
         return (super.attack());
-    }
-
-    public void ability1() {
-    }
-
-    public void ability2() {
-        int dmg = power;
-
     }
 
 }
 
-// ========== Priester ==========
+
 class Novice extends Enemy {
 
-    public Novice() {
+    public Novice(String name, String weapon, int hp, int power, int dex, int potions) {
+        this.name = name;
+        this.weapon = weapon;
+        meele = true;
+        this.hp = hp;
+        hpMax = hp;
+        this.power = power;
+        this.dex = dex;
+        this.potions = potions;
+        potionStr = hpMax / 2;
     }
 
+    @Override
     public int attack(){
-        return (super.attack());
+        System.out.printf("%s greift mit %s an – ", name, weapon);
+        return super.attack();
     }
 
-    public void ability1() {
-    }
-
-    public void ability2() {
-        int dmg = power;
-
+    @Override
+    public int heal() {
+        System.out.printf("%s wirkt einen Heilzauber – ", name);
+        return super.heal();
     }
 
 }
 
 
-
-// ========== EBENE 2: +2 Fähigkeiten ==========
-
-// ========== Ritter ==========
 class Knight extends Enemy{
 
-    public Knight() {
+    int block;
+
+    public Knight(String name, String weapon, int hp, int power, int dex, int block, int potions) {
+        this.name = name;
+        this.weapon = weapon;
+        meele = true;
+        this.hp = hp;
+        hpMax = hp;
+        this.power = power;
+        this.dex = dex;
+        this.block = block;
+        this.potions = potions;
+        potionStr = hpMax / 2;
     }
 
+    //applyDmgEvade-Setter: Ausweichen wird zu Parieren und Kontern.
+    @Override
+    public void applyDmgEvade(int dmg){
+        if (Battle.rnd.nextInt(100) < (dex + block)) {     // Ritter ist nicht schnell, hat aber eine solide Chance zum Blocken und Parieren.
+            if (Battle.demon.melee) {
+                System.out.println(name + " pariert den Schlag und kontert!");
+                Battle.counterAtk = true;
+            } else
+                System.out.println(name + " blockt den Angriff mit dem Schild.");
+        }
+        else {
+            hp -= dmg;
+            System.out.printf("%s erhält %d Schaden", name, dmg);
+            if (hp > 0) {
+                System.out.println(".");
+            } else {
+                hp = 0;
+                System.out.println(" und stirbt.");
+                die();
+            }
+        }
+    }
+
+    @Override
     public int attack(){
+        System.out.printf("%s greift mit %s an – ", name, weapon);
         return (super.attack());
-    }
-
-    public void ability1() {
-        int dmg = power;
-
-    }
-
-    public void ability2() {
-
     }
 
 }
@@ -294,17 +340,21 @@ class Knight extends Enemy{
 // ========== Waldläufer ==========
 class Ranger extends Enemy{
 
-    public Ranger(String name, String weapon) {
-        numOptions = 1;
+    public Ranger(String name, String weapon, int hp, int power, int dex, int potions) {
         this.name = name;
         this.weapon = weapon;
-        hp = 60;
+        meele = false;
+        this.hp = hp;
         hpMax = hp;
-        power = 5;
-        dex = 5;
+        this.power = power;
+        this.dex = dex;
+        this.potions = potions;
+        potionStr = hpMax / 2;
     }
 
+    @Override
     public int attack(){
+        System.out.printf("%s greift mit %s an – ", name, weapon);
         return (super.attack());
     }
 }
@@ -312,17 +362,21 @@ class Ranger extends Enemy{
 // ========== Magier ==========
 class Mage extends Enemy{
 
-    public Mage(String name, String weapon) {
-        numOptions = 1;
+    public Mage(String name, String weapon, int hp, int power, int dex, int potions) {
         this.name = name;
         this.weapon = weapon;
-        hp = 60;
+        meele = false;
+        this.hp = hp;
         hpMax = hp;
-        power = 5;
-        dex = 5;
+        this.power = power;
+        this.dex = dex;
+        this.potions = potions;
+        potionStr = hpMax / 2;
     }
 
+    @Override
     public int attack(){
+        System.out.printf("%s greift mit %s an – ", name, weapon);
         return (super.attack());
     }
 }
@@ -330,19 +384,35 @@ class Mage extends Enemy{
 // ========== Kleriker ==========
 class Cleric extends Enemy {
 
-    public Cleric() {
+    public Cleric(String name, String weapon, int hp, int power, int dex, int potions) {
+        this.name = name;
+        this.weapon = weapon;
+        meele = true;
+        this.hp = hp;
+        hpMax = hp;
+        this.power = power;
+        this.dex = dex;
+        this.potions = potions;
+        potionStr = hpMax / 2;
     }
 
+    @Override
     public int attack(){
+        System.out.printf("%s greift mit %s an – ", name, weapon);
         return (super.attack());
     }
 
-    public void ability1() {
+    @Override
+    public int heal() {
+        return super.heal();
     }
 
-    public void ability2() {
-        int dmg = power;
+    @Override
+    public int revive() {
+        return super.revive();
+    }
 
+    public void breakCurse() {
     }
 
 }
@@ -351,51 +421,63 @@ class Cleric extends Enemy {
 // ========== EBENE 3: BOSS ==========
 class Boss01 extends Enemy{
 
-    public Boss01(String name, String weapon) {
-        numOptions = 1;
+    public Boss01(String name, String weapon, int hp, int power, int dex, int potions) {
         this.name = name;
         this.weapon = weapon;
-        hp = 60;
+        meele = true;
+        this.hp = hp;
         hpMax = hp;
-        power = 5;
-        dex = 5;
+        this.power = power;
+        this.dex = dex;
+        this.potions = potions;
+        potionStr = hpMax / 2;
     }
 
+    @Override
     public int attack(){
+        System.out.printf("%s greift mit %s an – ", name, weapon);
         return (super.attack());
     }
 }
 
 class Boss02 extends Enemy{
 
-    public Boss02(String name, String weapon) {
-        numOptions = 1;
+    public Boss02(String name, String weapon, int hp, int power, int dex, int potions) {
         this.name = name;
         this.weapon = weapon;
-        hp = 60;
+        meele = true;
+        this.hp = hp;
         hpMax = hp;
-        power = 5;
-        dex = 5;
+        this.power = power;
+        this.dex = dex;
+        this.potions = potions;
+        potionStr = hpMax / 2;
     }
 
+    @Override
     public int attack(){
+        System.out.printf("%s greift mit %s an – ", name, weapon);
         return (super.attack());
     }
 }
 
 class Boss03 extends Enemy{
 
-    public Boss03(String name, String weapon) {
-        numOptions = 1;
+    public Boss03(String name, String weapon, int hp, int power, int dex, int potions) {
         this.name = name;
         this.weapon = weapon;
-        hp = 60;
+        meele = true;
+        this.hp = hp;
         hpMax = hp;
-        power = 5;
-        dex = 5;
+        this.power = power;
+        this.dex = dex;
+        this.potions = potions;
+        potionStr = hpMax / 2;
     }
 
+    @Override
     public int attack(){
+        System.out.printf("%s greift mit %s an – ", name, weapon);
         return (super.attack());
     }
 }

@@ -58,14 +58,12 @@ public class Player {
     }
 
     public static boolean applyMpCost(int mpCost){
-
         if (mp - mpCost >= 0) {
             mp -= mpCost;
             return true;
         } else {
             return false;
         }
-
     }
 
     public static void showInv() {
@@ -160,6 +158,8 @@ public class Player {
         } else {
             Item item1 = null;
             Item item2 = null;
+            boolean successConsumeItem1 = false;
+            boolean successConsumeItem2 = false;
 
             for (Item i : inv) {                                // Inventar durchgeben,
                 if (input1.equals(i.name.toLowerCase())) {      // wenn input mit Namen eines Items genau übereinstimmt
@@ -171,7 +171,7 @@ public class Player {
             }
             // Abbruch, wenn eine oder beide Variablen nicht befüllt wurden, d.h. die angegebenen Items nicht im Inventar sind
             if (item1 == null && item2 == null)
-                System.out.println("Ich habe nichts davon.");
+                System.out.println("Du hast nichts davon.");
             else if (item1 == null)
                 System.out.println("Den ersten Gegenstand hast du nicht.");
             else if (item2 == null)
@@ -179,11 +179,27 @@ public class Player {
             else {
 
                 // Items sind im Inventar
+                // Wenn eine ID = 10, könnte eine Verstärkung durchgeführt werden
+                if ((item1.combiID == 10) || item2.combiID == 10) {                 // Ein Item ist Katalysator …
+                    if ((item1.combiID == 11) || item2.combiID == 11)               // … ein Item ist Heiltrank1
+                        Item.obtainItem(WorldBuilder.potHealth2);                   //  -> Heiltrank2
+                    else if ((item1.combiID == 110) || item2.combiID == 110)        // … ein Item ist Heiltrank2
+                        Item.obtainItem(WorldBuilder.potHealth3);                   //  -> Heiltrank3
+                    else if ((item1.combiID == 22) || item2.combiID == 22)          // … ein Item ist Manatrank1
+                        Item.obtainItem(WorldBuilder.potMana2);                     //  -> Manatrank2
+                    else if ((item1.combiID == 220) || item2.combiID == 220)        // … ein Item ist Manatrank2
+                        Item.obtainItem(WorldBuilder.potMana3);                     //  -> Manatrank3
+                    else
+                        System.out.println("Dieser Gegenstand kann nicht mit einem Katalysator verstärkt werden.");
+
+                    successConsumeItem1 = Item.consumeItem(item1);
+                    successConsumeItem2 = Item.consumeItem(item2);
+
                 // Abbruch, wenn IDs unterschiedlich oder 0 sind – diese Items können nicht kombiniert werden können
-                if ((item1.combiID != item2.combiID) || item1.combiID == 0) {
+                } else if ((item1.combiID != item2.combiID) || item1.combiID == 0) {
                     System.out.println("Diese beiden Gegenstände lassen sich nicht kombinieren.");
 
-                    // Items sind im Inventar vorhanden und können kombiniert werden.
+                // Items sind im Inventar vorhanden und können kombiniert werden.
                 } else {
 
                     // Items erzeugen und Zutaten verbrauchen
@@ -191,18 +207,41 @@ public class Player {
                         Item.obtainItem(WorldBuilder.potHealth1);
                     } else if (item1.combiID == 2) {        // 2x id 2 -> Manatrank (id 22)
                         Item.obtainItem(WorldBuilder.potMana1);
-
-                        boolean successConsumeItem1 = Item.consumeItem(item1);
-                        boolean successConsumeItem2 = Item.consumeItem(item2);
-
-                        // Meldung bei Fehler, sicherheitshalber
-                        if (!successConsumeItem1)
-                            System.out.println("DEBUG: Erstes Item konnte nicht verbraucht werden.");
-                        if (!successConsumeItem2)
-                            System.out.println("DEBUG: Zweites Item konnte nicht verbraucht werden.");
+                    } else if (item1.combiID == 3) {        // 2x id 3 -> Manatrank (id 33)
+                        //Item.obtainItem(WorldBuilder.);
+                        System.out.println("PLATZHALTER: Dies erzeugt Trank mit Combi-ID 33");
+                    } else if (item1.combiID == 4) {        // 2x id 4 -> Manatrank (id 44)
+                        //Item.obtainItem(WorldBuilder.);
+                        System.out.println("PLATZHALTER: Dies erzeugt Trank mit Combi-ID 44");
+                    } else if (item1.combiID == 5) {        // 2x id 5 -> Manatrank (id 55)
+                        Item.obtainItem(WorldBuilder.potLevelUp);
+                    } else if (item1.combiID == 11) {        // 2x id 11 -> Manatrank (id 1111)
+                        //Item.obtainItem(WorldBuilder.);
+                        System.out.println("PLATZHALTER: Dies erzeugt Item mit Combi-ID 1111");
+                    } else if (item1.combiID == 12) {        // 2x id 12 -> Manatrank (id 1212)
+                        //Item.obtainItem(WorldBuilder.);
+                        System.out.println("PLATZHALTER: Dies erzeugt Item mit Combi-ID 1212");
+                    } else if (item1.combiID == 13) {        // 2x id 13 -> Manatrank (id 1313)
+                        //Item.obtainItem(WorldBuilder.);
+                        System.out.println("PLATZHALTER: Dies erzeugt Item mit Combi-ID 1313");
+                    } else if (item1.combiID == 14) {        // 2x id 14 -> Manatrank (id 1414)
+                        //Item.obtainItem(WorldBuilder.);
+                        System.out.println("PLATZHALTER: Dies erzeugt Item mit Combi-ID 1414");
+                    } else if (item1.combiID == 15) {        // 2x id 15 -> Manatrank (id 1515)
+                        //Item.obtainItem(WorldBuilder.);
+                        System.out.println("PLATZHALTER: Dies erzeugt Item mit Combi-ID 1515");
                     }
+
+                    successConsumeItem1 = Item.consumeItem(item1);
+                    successConsumeItem2 = Item.consumeItem(item2);
+
                 }
             }
+            // Meldung bei Fehler, sicherheitshalber
+            if (!successConsumeItem1)
+                System.out.println("DEBUG: Erstes Item konnte nicht verbraucht werden.");
+            if (!successConsumeItem2)
+                System.out.println("DEBUG: Zweites Item konnte nicht verbraucht werden.");
         }
     }
 
@@ -249,7 +288,7 @@ public class Player {
 
     }
 
-    //Funktioniert noch nicht richtig!!!
+    //Funktioniert nicht richtig!!!
     public static void cleanUpInv() {
         boolean merge;
         // Schleife von hinten nach vorne durchlaufen, damit keine Fehler entstehen,

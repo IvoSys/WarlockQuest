@@ -66,7 +66,6 @@ class Bloodletting extends Spell{
             System.out.println(Battle.demon.name + " übelebt den Lebensentzug nicht.");
         }
     }
-
 }
 
 
@@ -107,9 +106,6 @@ class Doom extends Spell {
                 System.out.printf("%s hat den Zauber \"%s\" überlebt. \n", e.name, name);
         }
     }
-
-
-
 }
 
 
@@ -148,9 +144,6 @@ class IronMaiden extends Spell {
                 System.out.printf("Der Fluch \"%s\" auf %s klingt ab. \n", name, e.name);
         }
     }
-
-
-
 }
 
 

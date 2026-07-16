@@ -21,6 +21,7 @@ public class Battle {
     static boolean inputValid = false;
 
     static boolean hit;
+    static boolean counterAtk;
 
 
     public static void fight() {
@@ -38,6 +39,7 @@ public class Battle {
                     try {
                         System.out.print("> ");
                         pick = sc.nextInt();
+                        sc.next();
                         switch (pick) {
                             case 1:                                 // Single-Target Attack
                                 printEnemies();
@@ -338,6 +340,10 @@ public class Battle {
                     enemyTeam.get(pickedTarget - 1).applyDmgEvade(demon.attack());
                     inputValid = true;
                     isPlayerTurn = false;
+                    if (counterAtk) {
+                        demon.applyDmg(enemyTeam.get(pickedTarget - 1).attack());
+                        counterAtk = false;
+                    }
                     Control.enterToContinue();
                 }
             } catch (InputMismatchException e) {
@@ -446,8 +452,11 @@ public class Battle {
 
     //Turn-Methoden für Klassen
     public static void guardTurn(Enemy e) {
-        if (!demon.ko)
+        if ((e.hp <= e.hpMax * 0.5f) && (e.potions > 0)) {
+            e.drinkPotion();
+        } else if (!demon.ko) {
             demon.applyDmgEvade(e.attack());
+        }
     }
 
     public static void watchdogTurn(Enemy e) {
@@ -466,11 +475,19 @@ public class Battle {
     }
 
     public static void soldierTurn(Enemy e) {
-
+        if ((e.hp <= e.hpMax * 0.5f) && (e.potions > 0)) {
+            e.drinkPotion();
+        } else if (!demon.ko){
+            demon.applyDmgEvade(e.attack());
+        }
     }
 
     public static void archerTurn(Enemy e) {
-
+        if ((e.hp <= e.hpMax * 0.5f) && (e.potions > 0)) {
+            e.drinkPotion();
+        } else if (!demon.ko){
+            demon.applyDmgEvade(e.attack());
+        }
     }
 
     public static void apprenticeTurn(Enemy e) {
@@ -478,6 +495,20 @@ public class Battle {
     }
 
     public static void noviceTurn(Enemy e) {
+        Enemy toHeal = null;
+        for (Enemy f : enemyTeam) {
+            if (toHeal == null) {
+                if (f.hp <= f.hpMax * 0.6f)
+                    toHeal = f;
+            } else if (f.hp < toHeal.hp) {
+                toHeal = f;
+            }
+        }
+        if (toHeal != null) {
+            toHeal.applyHeal(e.heal());
+        } else if (!demon.ko){
+            demon.applyDmgEvade(e.attack());
+        }
 
     }
 
@@ -510,23 +541,18 @@ public class Battle {
     }
 
     public static void defaultTurn(Enemy e) {
-        if ((e.hp <= e.hpMax * 0.3f) && (e.hasPotion)) {             // Wenn schwer verletzt und Potion vorhanden, dann Potion statt Angriff
-            e.drinkPotion();
-        } else if (!demon.ko){
-            pick = rnd.nextInt(e.numOptions);                        // Zufallszahlenbereich entspricht Anzahl seiner Optionen
-            if (pick == 0) {
-                hit = demon.applyDmgEvade(e.attack());
-            } else if (pick == 1) {
+        System.out.println("DEBUG: " + e.name + " nutzt defaultTurn().");
+        demon.applyDmgEvade(e.attack());
+        /* Aktion auswürfeln: Gegner-Attribut "int num" kennzeichnet Anzahl seiner Aktionen, "pick = rnd(bound: num)" lässt im richtigen Bereich würfeln:
+        else if (pick == 1) {
                 e.ability1();
             } else if (pick == 2) {
                 e.ability2();
             } else if (pick == 3) {
                 e.ability3();
             } else
-                System.out.println("DEBUG: Fehler beim Auswürfeln der Gegneraktion.");
-        }
+                System.out.println("DEBUG: Fehler beim Auswürfeln der Gegneraktion."); */
     }
-
 
 }
 

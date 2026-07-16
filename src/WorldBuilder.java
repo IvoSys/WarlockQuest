@@ -80,9 +80,9 @@ public class WorldBuilder {
     //ALCHEMIEZUTATEN
     //weiß, Katalysator static ItemIngred alch01 = new ItemIngred("", "", "", "", 10);
     //weiß, Katalysator static ItemIngred alch02 = new ItemIngred("", "", "", "", 10);
-    static Ingredience alch11 = new Ingredience("Molchauge", "", "Molchaugen", "Feine Blutgefäße ziehen sich in unruhigen Fäden durch den Augapfel.", 1);
-    static Ingredience alch12 = new Ingredience("Glutorchidee", "", "Glutorchideen", "Rein optisch wird diese empfindliche Blüte ihrem Namen gerecht.", 1);
-    static Ingredience alch21 = new Ingredience("Mondbeere", "", "Mondbeeren", "Eisblaue Früchte, die den Geist erfrischen.", 2);
+    static Ingredience alch11 = new Ingredience("Molchauge", "Kugel", "Molchaugen", "Feine Blutgefäße ziehen sich in unruhigen Fäden durch den Augapfel.", 1);
+    static Ingredience alch12 = new Ingredience("Glutorchidee", "Blüte", "Glutorchideen", "Rein optisch wird diese empfindliche Blüte ihrem Namen gerecht.", 1);
+    static Ingredience alch21 = new Ingredience("Mondbeere", "Beere", "Mondbeeren", "Eisblaue Früchte, die den Geist erfrischen.", 2);
     static Ingredience alch22 = new Ingredience("Mitternachtskraut", "", "Bund Mitternachtskraut", "Fahlblaue Blätter, die sich lieber dem Mondlicht als der Sonne zuwenden.", 2);
     //gelb static ItemIngred alch31 = new ItemIngred("", "", "", "", 3);
     //gelb static ItemIngred alch32 = new ItemIngred("", "", "", "", 3);
@@ -143,13 +143,115 @@ public class WorldBuilder {
 
 
     //GEGNER
-    static Enemy soldier01 = new Guard("Wache Karl", "ihrem Knüppel");
-    static Enemy soldier02 = new Watchdog("Hasso");
-    static Enemy soldier03 = new Guard("Wache Max", "ihrem Knüppel");
+    //region
+    static Enemy guard01 = new Guard("Wache Karl", "ihrem Knüppel", 60, 5, 5, 0);
+    static Enemy guard02 = new Guard("Wache Helga", "ihrem Knüppel", 60, 5, 5, 0);
+    static Enemy guard03 = new Guard("Wache Wenzel", "ihrem Knüppel", 60, 5, 5, 0);
+    static Enemy guard04 = new Guard("Wache Bertha", "ihrem Knüppel", 60, 5, 5, 0);
+    static Enemy guard05 = new Guard("Wache Jakob", "ihrem Knüppel", 60, 5, 5, 0);
+    static Enemy guard06 = new Guard("Wache Anna", "ihrem Knüppel", 60, 5, 5, 0);
+    static Enemy guard07 = new Guard("Wache XY", "ihrem Knüppel", 60, 5, 5, 0);
+    static Enemy guard08 = new Guard("Wache XX", "ihrem Knüppel", 60, 5, 5, 0);
+    static Enemy guard09 = new Guard("Wache XY", "ihrem Knüppel", 60, 5, 5, 0);
+
+    static Enemy dog01 = new Watchdog("Hund Urs",40, 5, 10);
+    static Enemy dog02 = new Watchdog("Hündin Luna",40, 5, 10);
+    static Enemy dog03 = new Watchdog("Hund Rumo",40, 5, 10);
+    static Enemy dog04 = new Watchdog("Hündin Lupa",40, 5, 10);
+    static Enemy dog05 = new Watchdog("Hund Rolv",40, 5, 10);
+    static Enemy dog06 = new Watchdog("Hündin Rala",40, 5, 10);
+    static Enemy dog07 = new Watchdog("Hund Rufus",40, 5, 10);
+    static Enemy dog08 = new Watchdog("Hündin Flauschi",40, 5, 10);
+    static Enemy dog09 = new Watchdog("Hund Brutus",40, 5, 10);
+
+    static Enemy soldier01 = new Soldier("Soldat Otto", "seinem Schwert", 80, 10, 8, 0);
+    static Enemy soldier02 = new Soldier("Soldatin Barbara", "ihrem Schwert", 80, 10, 8, 0);
+    static Enemy soldier03 = new Soldier("Soldat Hermann", "seinem Schwert", 80, 10, 8, 0);
+    static Enemy soldier04 = new Soldier("Soldatin X", "ihrem Schwert", 80, 10, 8, 0);
+    static Enemy soldier05 = new Soldier("Soldat Hannes", "seinem Schwert", 80, 10, 8, 0);
+    static Enemy soldier06 = new Soldier("Soldatin X", "ihrem Schwert", 80, 10, 8, 0);
+    static Enemy soldier07 = new Soldier("Soldat X", "seinem Schwert", 80, 10, 8, 0);
+    static Enemy soldier08 = new Soldier("Soldatin X", "ihrem Schwert", 80, 10, 8, 0);
+    static Enemy soldier09 = new Soldier("Soldat X", "seinem Schwert", 80, 10, 8, 0);
+
+    static Enemy archer01 = new Archer("Schützin X", "ihrem Bogen", 60, 10, 8, 0);
+    static Enemy archer02 = new Archer("Schütze X", "seinem Bogen", 60, 10, 8, 0);
+    static Enemy archer03 = new Archer("Schützin X", "ihrem Bogen", 60, 10, 8, 0);
+    static Enemy archer04 = new Archer("Schütze X", "seinem Bogen", 60, 10, 8, 0);
+    static Enemy archer05 = new Archer("Schützin X", "ihrem Bogen", 60, 10, 8, 0);
+    static Enemy archer06 = new Archer("Schütze X", "seinem Bogen", 60, 10, 8, 0);
+    static Enemy archer07 = new Archer("Schützin X", "ihrem Bogen", 60, 10, 8, 0);
+    static Enemy archer08 = new Archer("Schütze X", "seinem Bogen", 60, 10, 8, 0);
+    static Enemy archer09 = new Archer("Schützin X", "ihrem Bogen", 60, 10, 8, 0);
+
+    static Enemy apprentice01 = new Apprentice("Student X", "dem Zauber \"Froststrahl\"", 30, 10, 8, 0);
+    static Enemy apprentice02 = new Apprentice("Studentin X", "dem Zauber \"Froststrahl\"", 30, 10, 8, 0);
+    static Enemy apprentice03 = new Apprentice("Student X", "dem Zauber \"Froststrahl\"", 30, 10, 8, 0);
+    static Enemy apprentice04 = new Apprentice("Studentin X", "dem Zauber \"Froststrahl\"", 30, 10, 8, 0);
+    static Enemy apprentice05 = new Apprentice("Student X", "dem Zauber \"Froststrahl\"", 30, 10, 8, 0);
+    static Enemy apprentice06 = new Apprentice("Studentin X", "dem Zauber \"Froststrahl\"", 30, 10, 8, 0);
+    static Enemy apprentice07 = new Apprentice("Student X", "dem Zauber \"Froststrahl\"", 30, 10, 8, 0);
+    static Enemy apprentice08 = new Apprentice("Studentin X", "dem Zauber \"Froststrahl\"", 30, 10, 8, 0);
+    static Enemy apprentice09 = new Apprentice("Student X", "dem Zauber \"Froststrahl\"", 30, 10, 8, 0);
+
+    static Enemy novice01 = new Novice("Schwester X", "ihrem Streitkolben", 60, 10, 8, 0);
+    static Enemy novice02 = new Novice("Bruder X", "seinem Streitkolben", 60, 10, 8, 0);
+    static Enemy novice03 = new Novice("Schwester X", "ihrem Streitkolben", 60, 10, 8, 0);
+    static Enemy novice04 = new Novice("Bruder X", "seinem Streitkolben", 60, 10, 8, 0);
+    static Enemy novice05 = new Novice("Schwester X", "ihrem Streitkolben", 60, 10, 8, 0);
+    static Enemy novice06 = new Novice("Bruder X", "seinem Streitkolben", 60, 10, 8, 0);
+    static Enemy novice07 = new Novice("Schwester X", "ihrem Streitkolben", 60, 10, 8, 0);
+    static Enemy novice08 = new Novice("Bruder X", "seinem Streitkolben", 60, 10, 8, 0);
+    static Enemy novice09 = new Novice("Schwester X", "ihrem Streitkolben", 60, 10, 8, 0);
+
+    static Enemy knight01 = new Knight("Sir X", "seinem Zweihänder", 100, 10, 8, 20, 0);
+    static Enemy knight02 = new Knight("Dame Irina", "ihrem Zweihänder", 100, 10, 8, 20, 0);
+    static Enemy knight03 = new Knight("Sir X", "seinem Zweihänder", 100, 10, 8, 20, 0);
+    static Enemy knight04 = new Knight("Dame Beatrix", "ihrem Zweihänder", 100, 10, 8, 20, 0);
+    static Enemy knight05 = new Knight("Sir X", "seinem Zweihänder", 100, 10, 8, 20, 0);
+    static Enemy knight06 = new Knight("Dame X", "ihrem Zweihänder", 100, 10, 8, 20, 0);
+    static Enemy knight07 = new Knight("Sir X", "seinem Zweihänder", 100, 10, 8, 20, 0);
+    static Enemy knight08 = new Knight("Dame X", "ihrem Zweihänder", 100, 10, 8, 20, 0);
+    static Enemy knight09 = new Knight("Sir X", "seinem Zweihänder", 100, 10, 8, 20, 0);
+
+    static Enemy ranger01 = new Ranger("Assassine XX", "ihrem Langbogen", 80, 10, 8, 0);
+    static Enemy ranger02 = new Ranger("Assassine XY", "seinem Langbogen", 80, 10, 8, 0);
+    static Enemy ranger03 = new Ranger("Assassine XX", "ihrem Langbogen", 80, 10, 8, 0);
+    static Enemy ranger04 = new Ranger("Assassine XY", "seinem Langbogen", 80, 10, 8, 0);
+    static Enemy ranger05 = new Ranger("Assassine XX", "ihrem Langbogen", 80, 10, 8, 0);
+    static Enemy ranger06 = new Ranger("Assassine XY", "seinem Langbogen", 80, 10, 8, 0);
+    static Enemy ranger07 = new Ranger("Assassine XX", "ihrem Langbogen", 80, 10, 8, 0);
+    static Enemy ranger08 = new Ranger("Assassine XY", "seinem Langbogen", 80, 10, 8, 0);
+    static Enemy ranger09 = new Ranger("Assassine XX", "ihrem Langbogen", 80, 10, 8, 0);
+
+    static Enemy mage02 = new Mage("Professor X", "dem Zauber \"Feuerpfeil\"", 40, 10, 8, 0);
+    static Enemy mage03 = new Mage("Professorin Elvira", "dem Zauber \"Feuerpfeil\"", 80, 10, 8, 0);
+    static Enemy mage04 = new Mage("Professor X", "dem Zauber \"Feuerpfeil\"", 40, 10, 8, 0);
+    static Enemy mage05 = new Mage("Professorin Minerva", "dem Zauber \"Feuerpfeil\"", 40, 10, 8, 0);
+    static Enemy mage06 = new Mage("Professor X", "dem Zauber \"Feuerpfeil\"", 40, 10, 8, 0);
+    static Enemy mage07 = new Mage("Professorin X", "dem Zauber \"Feuerpfeil\"", 40, 10, 8, 0);
+    static Enemy mage08 = new Mage("Professor X", "dem Zauber \"Feuerpfeil\"", 40, 10, 8, 0);
+    static Enemy mage09 = new Mage("Professorin X", "dem Zauber \"Feuerpfeil\"", 40, 10, 8, 0);
+
+    static Enemy cleric01 = new Cleric("Mutter Gwendolyn", "ihrem Morgenstern", 80, 10, 8, 0);
+    static Enemy cleric02 = new Cleric("Vater X", "seinem Morgenstern", 80, 10, 8, 0);
+    static Enemy cleric03 = new Cleric("Mutter X", "ihrem Morgenstern", 80, 10, 8, 0);
+    static Enemy cleric04 = new Cleric("Vater X", "seinem Morgenstern", 80, 10, 8, 0);
+    static Enemy cleric05 = new Cleric("Mutter X", "ihrem Morgenstern", 80, 10, 8, 0);
+    static Enemy cleric06 = new Cleric("Vater X", "seinem Morgenstern", 80, 10, 8, 0);
+    static Enemy cleric07 = new Cleric("Mutter X", "ihrem Morgenstern", 80, 10, 8, 0);
+    static Enemy cleric08 = new Cleric("Vater X", "seinem Morgenstern", 80, 10, 8, 0);
+    static Enemy cleric09 = new Cleric("Mutter X", "ihrem Morgenstern", 80, 10, 8, 0);
+
+    static Enemy boss01 = new Boss01("X X", "X", 80, 10, 8, 0);
+    static Enemy boss02 = new Boss02("X X", "X", 80, 10, 8, 0);
+    static Enemy boss03 = new Boss03("X X", "X", 80, 10, 8, 0);
+    //endregion
+
 
     // ENCOUNTER
-    static Encounter enc221TEST = new Encounter("Testsoldaten", soldier01, soldier02, soldier03, "Achtung, Testüberfall!", "Achtung, Testüberfall beendet!", key999);
-    static Encounter enc022 = new Encounter("Angeheiterte Wachen", soldier01, soldier02, soldier03, "Achtung, Testüberfall!", "Achtung, Testüberfall beendet!", null);
+    static Encounter enc221TEST = new Encounter("Testsoldaten", guard01, guard02, guard03, "Achtung, Testüberfall!", "Achtung, Testüberfall beendet!", key999);
+    static Encounter enc022 = new Encounter("Angeheiterte Wachen", guard01, guard02, guard03, "Achtung, Testüberfall!", "Achtung, Testüberfall beendet!", null);
 
 
 

@@ -6,7 +6,6 @@ Hauptprogramm in WarlockQuest.java
   
 - ASCII: ASCII-Art für Titel usw.  
 - Battle: 	Battle-Loop für das Kampfsystem  
-- BattleFlavor:	ausstaffierende Strings für Kämpfe (Todo)  
 - Control: 	einfache Steuermethoden  
 - Demon:		Abstrakte Dämon-Klasse und implementierende Unterklassen  
 - Encounter:	Fasst Gegner, Strings und Items in Encountern zusammen  
