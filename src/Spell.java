@@ -198,6 +198,10 @@ class Lifeline extends Spell {
 
 }
 
+class RaiseUndead extends Spell {
+    // Code
+}
+
 
 class Soulreaper extends Spell {
 

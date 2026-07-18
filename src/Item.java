@@ -7,7 +7,8 @@ public abstract class Item {
     protected int num = 1;
     protected boolean isConsumed = true;
     protected int puzzleID = 0;                    //ID zum Lösen des Rätsels in einem Raum, wird mit der ID des Raums abgeglichen, 0 für neutral, room000 stattdessen -1
-    protected int combiID = 0;                     //ID zum Kombinieren zweier Items. Zwei Items mit gleicher combiID können kombiniert werden, Items mit combiID = 0 können nicht kombiniert werden, daher Standardwert.
+    protected int combiID = 0;                     //ID zum Kombinieren zweier Items. Zwei Items mit gleicher combiID können kombiniert werden, Items mit combiID  0 können nicht kombiniert werden, daher Standardwert.
+                                                        // Negative combiID für Bündel – mit "u.(name)" verwenden, um auszupacken. Bündel wird gelöscht, Inhalt kommt ins Inventar.
 
 
     public static boolean consumeItem(Item itemConsumed) {
@@ -75,6 +76,39 @@ public abstract class Item {
         System.out.printf("%d %s erhalten \n", numObtained, itemObtained.namePlural);
     }
 
+    public static void unpack(String input){
+        Item toUnpack = null;
+        int id = 0;
+
+        for (Item i : Player.inv) {
+            if (i.name.toLowerCase().equals(input)) {
+                toUnpack = i;
+                id = i.combiID;
+            }
+        }
+
+        switch (id) {
+            case -1:
+                obtainItem(WorldBuilder.evoc01);
+                obtainItem(WorldBuilder.scrollBloodletting);
+                Player.inv.remove(toUnpack);
+                System.out.println("\nZwei Schriftrollen! … Zwei von etlichen mehr. Die Wachen müssen den Großteil gestohlen haben. \nOb diese Proleten überhaupt lesen können? Hoffentlich treiben sie mit deinen wertvollen Formeln keinen Mumpitz.");
+                break;
+                    /*case -2:
+                        obtainItem();
+                        obtainItem();
+                        System.out.println("");
+                        break;
+                    case -3:
+                        obtainItem();
+                        obtainItem();
+                        System.out.println("");
+                        break;*/
+            default:
+                System.out.println("DEBUG: Item-Bündel konnte nicht aufgelöst werden, Case-Zuordnung in Item.unpack() nicht möglich."); break;
+        }
+    }
+
 }
 
 class Evocation extends Item {
@@ -109,6 +143,10 @@ class Evocation extends Item {
                                 System.out.println(toBind.textWhenBound);
                                 //WorldBuilder.freeDem.remove(j);                       // Eintrag nicht löschen, damit später noch abgeglichen werden kann für "bereits gebunden".
                                 success = true;                                         // Den Prozess als erfolgreich kennzeichnen und Schleife abbrechen.
+                                if (toBind.name.equals(WorldBuilder.dem01.name)) {
+                                    System.out.println("DAIMON: \"Yeah, mit diesem Viech zeigen wir den Wachen, wo der Hammer hängt!\"");
+                                    WorldBuilder.castle[0][1][2].daimon = WorldBuilder.castle[0][1][2].daimonB;
+                                }
                                 break;
                             }
                         }

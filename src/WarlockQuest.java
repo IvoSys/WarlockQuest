@@ -12,12 +12,9 @@ public class WarlockQuest {
     static void main(String[] args){
 
         WorldBuilder.buildCastle();
-
         WorldBuilder.giveStartItems();
 
         ASCII.title();
-
-        /*
         Story.intro();
         Story.needHelp();
         input = sc.nextLine().toLowerCase().trim();
@@ -27,14 +24,6 @@ public class WarlockQuest {
         }
         System.out.println();
         Story.daimonIntro();
-        
-         */
-
-
-        //TEST:
-        Player.curX = 2;
-        Player.curY = 2;
-        Player.curZ = 2;
 
         gameLoop();
 
@@ -62,12 +51,14 @@ public class WarlockQuest {
                 if (inputSplit[0].equals("n") || inputSplit[0].equals("nimm") || inputSplit[0].contains("nehm")){
                     Player.room.loot(inputSplit[1]);                                                                    // Nimm Item
                 } else if (inputSplit[0].equals("v") || inputSplit[0].equals("verwende") || inputSplit[0].contains("nutze")) {
-                    if (inputSplit[1].contains("trank")) {
-                        Potion.drink(inputSplit[1]);                                                                // Trinke Trank
+                    if (inputSplit[1].contains("trank") && !inputSplit[1].contains("gurt")) {
+                        Potion.drink(inputSplit[1]);                                                                    // Trinke Trank
                     } else if (inputSplit[1].contains("zauberschriftrolle")) {
-                        Spellscroll.learn();                                                                             // Lerne Zauber
+                        Spellscroll.learn();                                                                            // Lerne Zauber
                     } else if (inputSplit[1].contains("beschwörungsformel")) {
-                        Evocation.bind();                                                                                // Binde Dämon
+                        Evocation.bind();                                                                               // Binde Dämon
+                    } else if (inputSplit[1].contains("tasche") || inputSplit[1].contains("bündel")) {
+                        Item.unpack(inputSplit[1]);                                                                     // Entpacke Bündel
                     } else {
                         Player.room.solve(inputSplit[1]);                                                               // Verwende Item
                     }
@@ -97,7 +88,7 @@ public class WarlockQuest {
             } else if (input.equals("kampf")){
                 Story.helpBattle();                                                                                     // Kampftutorial
                 //} else if (input.equals("cleanup")){
-                //    Player.cleanUpInv();                                                                                // Inventar aufräumen
+                //    Player.cleanUpInv();                                                                              // Inventar aufräumen
             } else if (input.equals("credits")) {
                 credits();                                                                                              // Credits
             } else if (input.equals("ende")){
@@ -118,9 +109,9 @@ public class WarlockQuest {
         System.out.println("Erdacht und umgesetzt von Ivo Haarmann");
         System.out.println("Handgetippt am Ammersee, 2026");
         System.out.println();
-        System.out.println("Mit besonderem Dank an meine Trainer \nBilgin Sahin und Peter Schwertner");
+        System.out.println("Mit besonderem Dank an meine Trainer \n");
         System.out.println();
         System.out.println("Herzlichen Dank an die Betatester \nfür die wertvollen Rückmeldungen:");
-        System.out.println("- Sebastian Bathiany");
+        System.out.println("- ");
     }
 }

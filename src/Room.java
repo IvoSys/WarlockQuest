@@ -6,10 +6,12 @@ public class Room {
 
     protected String name;
     protected String desc;
-    protected String solvedText;
+    protected String descB;
     protected String descSolved;
     protected String daimon;
+    protected String daimonB;
     protected String daimonSolved;
+    protected String solvedText;
     protected boolean solved = false;
     protected boolean north, east, south, west, up, down;   //In welche Richtungen der Raum verlassen werden kann
     protected ArrayList<Item> loot = new ArrayList<>();

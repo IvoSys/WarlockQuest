@@ -4,8 +4,8 @@ public class Story {
 
     static Scanner sc = new Scanner(System.in);
     static String input = "0";
-    static int refuseViolence = 0;
 
+    static int refuseViolence = 0;
     static String daimonDidNotUnderstand = "DAIMON: \"Was nuschelst du da in deinen Ziegenbart?\" \n";
 
     public static void intro() {
@@ -246,18 +246,22 @@ public class Story {
                 WorldBuilder.castle[0][0][0].notLoot.remove("zellenschlüssel");
                 break;
             case "4":
-                if (refuseViolence == 0) {
-                    refuseViolence++;
-                    System.out.println("DAIMON: \"Ich bin nicht SO ein Dämon!\"");
-                } else {
-                    refuseViolence++;
-                    System.out.printf("DAIMON: \"Ich sag's dir jetzt zum %d. Mal: Ich bin nicht SO ein Dämon!\" \n", refuseViolence);
-                }
+                refuseViolence();
                 break;
             case "0":
                 break;
             default:
                 System.out.println(daimonDidNotUnderstand);
+        }
+    }
+
+    public static void refuseViolence(){
+        if (refuseViolence == 0) {
+            refuseViolence++;
+            System.out.println("DAIMON: \"Ich bin nicht SO ein Dämon!\"");
+        } else {
+            refuseViolence++;
+            System.out.printf("DAIMON: \"Ich sag's dir jetzt zum %d. Mal: Ich bin nicht SO ein Dämon!\" \n", refuseViolence);
         }
     }
 
@@ -282,54 +286,103 @@ public class Story {
         }
     }
 
+    public static void brainstorm012() {
+        System.out.println();
+        System.out.println(
+                """
+                        Maleficarius liegt etwas auf der Zunge:
+                        [1]\t Sei einfach still.
+                        [2]\t Was … bist du eigentlich?
+                        [3]\t Kannst du die Wachen mit deinen Dämonenklauen ist Stücke reißen?
+                        [0]\t (Lieber schweigen)
+                        """
+        );
+        System.out.print("> ");
+        input = sc.nextLine().toLowerCase().trim();
+        switch (input) {
+            case "1":
+                System.out.println("DAIMON: \"Na klar, Chef!\"");
+                break;
+            case "2":
+                System.out.println("DAIMON: \"Ach Malefex, weißt du überhaupt, wonach du fragst?\"");
+                break;
+            case "3":
+                refuseViolence();
+                break;
+            case "0":
+                break;
+            default:
+                System.out.println(daimonDidNotUnderstand);
+        }
+    }
+
 
     //RAUM-BESCHREIBUNGEN UND DAIMON-KOMMENTARE
     //region
+    //Zelle
     static String desc000 = "Eine klamme Nische hinter Eisenstangen, gegenüber ein schnarchender Wärter mit einem Schlüssel am Gürtel. Klassiker. \nDie Tür nach Osten steht offen, aber erstmal musst du dich aus der Zelle befreien.";
-    static String descSolved000 = "Eine klamme Nische hinter Eisenstangen, gegenüber ein schnarchender Wärter mit einem Schlüssel am Gürtel. Klassiker \nDie Zellentür nach Osten steht nun offen.";
+    static String descSolved000 = "Eine klamme Nische hinter Eisenstangen, gegenüber ein schnarchender Wärter mit einem Schlüssel am Gürtel. Klassiker. \nDie Zellentür nach Osten steht nun offen.";
     static String daimon000 = "DAIMON: \"Bei dem Schnarchen ist's nur eine Frage der Zeit, bis der Wärter die Gitterstäbe selbst durchgesägt hat …\"";
     static String daimonSolved000 = "DAIMON: \"Der Wärter ratzt einfach weiter …\"";
     static String solved000 = "Mit rostigem Knarzen schwingt die Zellentür auf, \ndu kannst nach Osten aus der Zelle heraustreten.\n";
+    //Kerker
     static String desc001 = "Der Wachraum liefert guten Blick auf die westliche Zelle – wenn man wach bleibt. Durch die offene Tür im Osten kriecht ein kalter Zug.";
     static String descSolved001;
     static String daimon001 = "DAIMON: \"Sieh mal zu, dass du dein Zeug wiederbekommst. Die Königsgarde hat dir alles abgenommen, bevor man dich eingebuchtet hat.\"";
     static String daimonSolved001;
     static String solved001 = "Platzhalter in Story-Klasse";
+    //Kellergang
     static String desc002 = "Der Gang führt um die Ecke nach Norden, aus der Ferne hallen Geräusche.";
     static String descSolved002;
     static String daimon002 = "DAIMON: \"Platzhalter in Story-Klasse\"";
     static String daimonSolved002;
     static String solved002 = "Platzhalter in Story-Klasse";
+    //Offiziersquartier
     static String desc010 = "Platzhalter in Story-Klasse";
     static String descSolved010;
     static String daimon010 = "DAIMON: \"Platzhalter in Story-Klasse\"";
     static String daimonSolved010;
     static String solved010 = "Platzhalter in Story-Klasse";
-    static String desc011 = "Platzhalter in Story-Klasse";
+    static String enc010Intro;
+    static String enc010Outro;
+    //Vorratskammer
+    static String desc011 = "Die Vorratskammer. Eine dir wohlbekannte Tasche findest du achtlos in die Ecke geworfen vor. In einem Einmachglas schwimmt eine einzelne glitschige Kugel.";
     static String descSolved011;
-    static String daimon011 = "DAIMON: \"Platzhalter in Story-Klasse\"";
+    static String daimon011 = "DAIMON: \"Eine Vorratskammer! Nimm alles mit, was nicht niet- und nagelfest ist!\"";
     static String daimonSolved011;
     static String solved011 = "Platzhalter in Story-Klasse";
-    static String desc012 = "Platzhalter in Story-Klasse";
+    //Vorraum (UG)
+    static String desc012 = """
+    Der Vorraum des Untergeschosses. Im Osten führt hinter einer Gittertür eine breite Steintreppe ins Erdgeschoss – Offiziere tragen einen Schlüssel.
+    Im Westen sitzt eine Tür zur "Vorratskammer" in der Wand. Im Norden geht es zur Kantine, aus der das Grölen einiger Wachen hallt.
+    """;
     static String descSolved012;
-    static String daimon012 = "DAIMON: \"Platzhalter in Story-Klasse\"";
+    static String daimon012 = "DAIMON: \"Schau dir meine Arme an – dünn wie Zahnstocher! Ganz zu schweigen von den welken Lauchstangen, die dir aus den Schultern wachsen. \nWenn du den Wachen ohne Argumentationsverstärker vor den Knüppel kommst, machen sie Hexerkompott aus dir.\"";
+    static String daimonB012 = "DAIMON: \"Jetzt hast du endlich SO einen Dämon. Also Mal, was hält dich noch – grau ist alle Theorie!\"";
     static String daimonSolved012;
     static String solved012 = "Platzhalter in Story-Klasse";
+    static String enc012Intro;
+    static String enc012Outro;
+    //Waschraum
     static String desc020 = "Platzhalter in Story-Klasse";
     static String descSolved020;
     static String daimon020 = "DAIMON: \"Platzhalter in Story-Klasse\"";
     static String daimonSolved020;
     static String solved020 = "Platzhalter in Story-Klasse";
+    //Schlafsaal
     static String desc021 = "Platzhalter in Story-Klasse";
     static String descSolved021;
     static String daimon021 = "DAIMON: \"Platzhalter in Story-Klasse\"";
     static String daimonSolved021;
     static String solved021 = "Platzhalter in Story-Klasse";
-    static String desc022 = "Platzhalter in Story-Klasse";
+    //Wachkantine
+    static String desc022 = "Speise- und Aufenthaltsraum der Wachbelegschaft. Die langen Tische sind spartanisch gedeckt, \nnur auf einem lässt ein Blümchen in einem halbvollen Wassergals den Kopf hängen. \nÜber dem glimmenden Kaminfeuer hängt ein großer Topf";
     static String descSolved022;
     static String daimon022 = "DAIMON: \"Platzhalter in Story-Klasse\"";
     static String daimonSolved022;
     static String solved022 = "Platzhalter in Story-Klasse";
+    static String enc022Intro = "Eine der Wachen hält ein Stück auseinandergerolltes Pergament in der Hand und liest wild gestikulierend daraus vor, die anderen kichern rotnasig. \nDramatisch reckt der Wächter seine Faust gen Zimmerdecke, während er eine ausgedachte Zauberformel rezitiert und sich seine Stimme sich vpr Aufregung überschlägt. \nDabei wirkt er irgendwie wie … du! \nDie anderen Wachen brechen in haltloses Gelächter aus. Angesäuert stößt du die Tür auf, drei Augenpaare wenden sich überrascht zu dir um. ";
+    static String enc022Outro = "Röchelnd gehen die Wachen zu Boden. Im nächsten Leben wird ihnen das eine Lehre sein. Du sammelst die Schriftrolle auf.";
 
     static String desc100 = "Platzhalter unten in Story-Klasse";
     static String descSolved100;
@@ -474,23 +527,23 @@ public class Story {
     static String trueNameDem03 = "Abaddon, Engel des Abgrunds";
 
     //Rätsel Zauber
-    static String riddleBloodletting = "";
-    static String formulaBloodletting = "";
+    static String riddleBloodletting = "PLATZHALTER: Wie lautet die Lösung?";
+    static String formulaBloodletting = "Aderlass";
 
-    static String riddleDoom = "";
-    static String formulaDoom = "";
+    static String riddleDoom = "PLATZHALTER: Wie lautet die Lösung?";
+    static String formulaDoom = "Untergang";
 
-    static String riddleIronMaiden = "";
-    static String formulaIronMaiden = "";
+    static String riddleIronMaiden = "PLATZHALTER: Wie lautet die Lösung?";
+    static String formulaIronMaiden = "Eiserne Jungfrau";
 
-    static String riddleLifeline = "";
-    static String formulaLifeline = "";
+    static String riddleLifeline = "PLATZHALTER: Wie lautet die Lösung?";
+    static String formulaLifeline = "Lebenslinie";
 
-    static String riddleSoulreaper = "";
+    static String riddleSoulreaper = "PLATZHALTER: Wie lautet die Lösung?";
     static String formulaSoulreaper = "Avada Kedavra";
 
-    static String riddleViciousSeed = "";
-    static String formulaViciousSeed = "";
+    static String riddleViciousSeed = "PLATZHALTER: Wie lautet die Lösung?";
+    static String formulaViciousSeed = "ÜbleSaat";
 
 
     //Fähigkeiten von Dämonen mit flavor

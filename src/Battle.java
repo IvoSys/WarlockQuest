@@ -10,7 +10,7 @@ public class Battle {
     static Random rnd = new Random();
 
     static Demon demon;
-    static Encounter encounter = WorldBuilder.enc221TEST;       // wird durch Worldbuilder überschrieben
+    static Encounter encounter = WorldBuilder.encStandard;       // wird durch Worldbuilder überschrieben
     static ArrayList<Enemy> enemyTeam = encounter.enemyTeam;
 
     static boolean isPlayerTurn;
@@ -114,7 +114,10 @@ public class Battle {
                     }
                 }                                                   // Ende while(isPlayerTurn)
                 while (!isPlayerTurn && !encounter.beaten) {        // GEGNERZUG
-                    System.out.println(encounter.name + " sind am Zug:\n");
+                    if (encounter.teamNamePlural)
+                        System.out.println(encounter.teamName + " sind am Zug:\n");
+                    else
+                        System.out.println(encounter.teamName + " ist am Zug:\n");
                     for (Enemy e : enemyTeam) {
                         if (e.lifelined)                                        // Vor Aktion Zaubereffekte abhandeln, könnten dmg verursachen
                             WorldBuilder.lifeline.tick(e);
@@ -166,7 +169,10 @@ public class Battle {
     public static void encounterIntro(){
         System.out.println("\n" + encounter.intro + "\n");
 
-        System.out.println(encounter.name + " greifen an:");
+        if (encounter.teamNamePlural)
+            System.out.println(encounter.teamName + " greifen an:");
+        else
+            System.out.println(encounter.teamName + " greift an:");
         for (Enemy e : enemyTeam)
             System.out.printf("%s \t (%d/%d HP) \n", e.name, e.hp, e.hpMax);
         System.out.println();
@@ -232,13 +238,16 @@ public class Battle {
             System.out.println(demon.name + " beginnt.");
         } else {
             isPlayerTurn = false;
-            System.out.println(encounter.name + " beginnen.");
+            if (encounter.teamNamePlural)
+                System.out.println(encounter.teamName + " beginnen.");
+            else
+                System.out.println(encounter.teamName + " beginnt.");
         }
         Control.enterToContinue();
     }
 
     public static void battleMenu(){
-        System.out.println(encounter.name.toUpperCase());
+        System.out.println(encounter.teamName.toUpperCase());
         for (Enemy e : enemyTeam) {
             if (!e.ko) {
                 System.out.printf("%s\t (%d/%d HP)", e.name, e.hp, e.hpMax);
@@ -431,6 +440,10 @@ public class Battle {
 
     public static void battleWon(){
         ASCII.BattleWon();
+        if (encounter.teamNamePlural)
+            System.out.println(encounter.teamName + " wurden besiegt!");
+        else
+            System.out.println(encounter.teamName + " wurde besiegt!");
         Player.room.encounterBeaten = true;
         Control.enterToContinue();
         System.out.println();

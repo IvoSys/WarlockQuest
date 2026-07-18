@@ -55,6 +55,9 @@ public class Player {
         if ((room.puzzleID == -1) && (room.reward != null)) {   //In bestimmten Räumen führt Daimon spezielle Methoden aus
             Story.getKey000();
         }
+        if ((room.puzzleID == 12) && (!Player.team.contains(WorldBuilder.dem01))) {   //In bestimmten Räumen führt Daimon spezielle Methoden aus
+            Story.brainstorm012();
+        }
     }
 
     public static boolean applyMpCost(int mpCost){
