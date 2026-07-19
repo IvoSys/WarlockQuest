@@ -7,16 +7,17 @@ public class Room {
     protected String name;
     protected String desc;
     protected String descB;
+    protected String descC;
     protected String descSolved;
     protected String daimon;
     protected String daimonB;
+    protected String daimonC;
     protected String daimonSolved;
     protected String solvedText;
     protected boolean solved = false;
     protected boolean north, east, south, west, up, down;   //In welche Richtungen der Raum verlassen werden kann
     protected ArrayList<Item> loot = new ArrayList<>();
     protected Map<String,String> notLoot = new HashMap<>();
-    protected String dummyLoot;                             //Erwähnte, aber nicht erhältliche Items, gibt passendes Feedback, mehrere Einträge möglich
     protected Item reward;                                  //Nach Lösung des Rätsels erhältlicher Gegenstand, wird in Loot-Array verschoben.
     protected int puzzleID;                                 //ID zum Lösen des Rätsels eines Raums, muss mit Key-Item oder in Daimon-Methode übereinstimmen, von Raumkoordinate abgeleitet
     protected Encounter encounter;

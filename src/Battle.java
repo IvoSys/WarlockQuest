@@ -66,6 +66,7 @@ public class Battle {
                                         try {
                                             System.out.print("> ");
                                             pick = sc.nextInt();
+                                            sc.next();
                                             if (pick == 0) {
                                                 break;
                                             }
@@ -114,7 +115,7 @@ public class Battle {
                     }
                 }                                                   // Ende while(isPlayerTurn)
                 while (!isPlayerTurn && !encounter.beaten) {        // GEGNERZUG
-                    if (encounter.teamNamePlural)
+                    if (encounter.nameIsPlural)
                         System.out.println(encounter.teamName + " sind am Zug:\n");
                     else
                         System.out.println(encounter.teamName + " ist am Zug:\n");
@@ -169,7 +170,7 @@ public class Battle {
     public static void encounterIntro(){
         System.out.println("\n" + encounter.intro + "\n");
 
-        if (encounter.teamNamePlural)
+        if (encounter.nameIsPlural)
             System.out.println(encounter.teamName + " greifen an:");
         else
             System.out.println(encounter.teamName + " greift an:");
@@ -209,6 +210,7 @@ public class Battle {
             try {
                 System.out.print("> ");
                 pick = sc.nextInt();
+                sc.next();
 
                 if (pick < 1 || pick > Player.team.size()) {
                     System.out.printf("Ungültige Eingabe. Wähle eine Zahl zwischen 1 und %d. \n", Player.team.size());
@@ -238,7 +240,7 @@ public class Battle {
             System.out.println(demon.name + " beginnt.");
         } else {
             isPlayerTurn = false;
-            if (encounter.teamNamePlural)
+            if (encounter.nameIsPlural)
                 System.out.println(encounter.teamName + " beginnen.");
             else
                 System.out.println(encounter.teamName + " beginnt.");
@@ -339,6 +341,7 @@ public class Battle {
             try {
                 System.out.print("> ");
                 pickedTarget = sc.nextInt();
+                sc.next();
                 if (pickedTarget < 0 || pickedTarget > enemyTeam.size()) {
                     System.out.printf("Ungültige Eingabe. Wähle eine Zahl zwischen 1 und %d oder die 0. \n", enemyTeam.size());
                 } else if (pickedTarget == 0) {
@@ -369,6 +372,7 @@ public class Battle {
             try {
                 System.out.print("> ");
                 pickedTarget = sc.nextInt();
+                sc.next();
                 if (pickedTarget < 0 || pickedTarget > enemyTeam.size()) {
                     System.out.printf("Ungültige Eingabe. Wähle eine Zahl zwischen 1 und %d oder die 0. \n", enemyTeam.size());
                 } else if (pickedTarget == 0) {
@@ -391,6 +395,7 @@ public class Battle {
             try {
                 System.out.print("> ");
                 pick = sc.nextInt();
+                sc.next();
                 if (pick == 0) {
                     break;
                 } else if (pick < 0 || pick > Player.team.size()) {
@@ -440,7 +445,7 @@ public class Battle {
 
     public static void battleWon(){
         ASCII.BattleWon();
-        if (encounter.teamNamePlural)
+        if (encounter.nameIsPlural)
             System.out.println(encounter.teamName + " wurden besiegt!");
         else
             System.out.println(encounter.teamName + " wurde besiegt!");
@@ -449,9 +454,13 @@ public class Battle {
         System.out.println();
         System.out.println(Player.room.encounter.outro);
         System.out.println();
-        if (Player.room.encounter.rewardItem != null) {
-            Item.obtainItem(Player.room.encounter.rewardItem);
-            Player.room.encounter.rewardItem = null;
+        if (Player.room.encounter.rewardItem1 != null) {
+            Item.obtainItem(Player.room.encounter.rewardItem1);
+            Player.room.encounter.rewardItem1 = null;
+        }
+        if (Player.room.encounter.rewardItem2 != null) {
+            Item.obtainItem(Player.room.encounter.rewardItem2);
+            Player.room.encounter.rewardItem2 = null;
         }
         for (Demon d : Player.team) {
             d.ko = false;
@@ -459,6 +468,11 @@ public class Battle {
                 d.hp = 1;
             }
         }
+
+        if (encounter == WorldBuilder.enc010) {                                 // Sieg in diesem Encounter löst weitere Ereignisse aus
+            WorldBuilder.castle[0][1][2].encounter = WorldBuilder.enc012;
+        }
+
         WarlockQuest.gameLoop();
     }
 

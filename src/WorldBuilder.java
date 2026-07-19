@@ -21,8 +21,11 @@ public class WorldBuilder {
 
         //UG, Reihe Mitte
         castle[0][1][0] = new Room("Offiziersquartier", Story.desc010, Story.daimon010, Story.solved010, true, false, false, false, false, false, 10);
+        castle[0][1][0].encounter = enc010; castle[0][1][0].loot.add(alche51); castle[0][1][0].loot.add(scrollViciousSeed);
         castle[0][1][1] = new Room("Vorratskammer", Story.desc011, Story.daimon011, Story.solved011, false, true, false, false, false, false, 11);
-        castle[0][1][1].loot.add(bag011); castle[0][1][1].loot.add(alch11);
+        castle[0][1][1].loot.add(bag011); castle[0][1][1].loot.add(alche11); castle[0][1][1].loot.add(alche21); castle[0][1][1].notLoot.put("wurst", "Ich bin nicht hungrig.");
+        castle[0][1][1].notLoot.put("würste", "Ich bin nicht hungrig."); castle[0][1][1].notLoot.put("schinken", "Ich bin nicht hungrig."); castle[0][1][1].notLoot.put("käse", "Ich bin nicht hungrig.");
+        castle[0][1][1].notLoot.put("bier", "Jetzt nicht.");castle[0][1][1].notLoot.put("wein", "Jetzt nicht.");
         castle[0][1][2] = new Room("Vorraum (UG)", Story.desc012, Story.daimon012, Story.solved012, true, false, true, true, false, false, 12);
         castle[0][1][2].daimonB = Story.daimonB012;
 
@@ -30,7 +33,7 @@ public class WorldBuilder {
         castle[0][2][0] = new Room("Waschraum", Story.desc020, Story.daimon020, Story.solved020, false, true, true, false, false, false, 20);
         castle[0][2][1] = new Room("Schlafsaal", Story.desc021, Story.daimon021, Story.solved021, false, true, false, true, false, false, 21);
         castle[0][2][2] = new Room("Wachkantine", Story.desc022, Story.daimon022, Story.solved022, false, false, true, true, false, false, 22);
-        castle[0][2][2].encounter = enc022; castle[0][2][2].loot.add(alch12); castle[0][2][2].notLoot.put("topf", "Zu schwer. Zu schmutzig.");
+        castle[0][2][2].encounter = enc022; castle[0][2][2].loot.add(alche12); castle[0][2][2].notLoot.put("topf", "Zu schwer. Zu schmutzig.");
 
         //EG, Reihe unten
         castle[1][0][0] = new Room("", Story.desc100, Story.daimon100, Story.solved100, false, false, false, false, false, false, 100);
@@ -80,18 +83,28 @@ public class WorldBuilder {
 
 
     //ALCHEMIEZUTATEN
-    //weiß, Katalysator static ItemIngred alch01 = new ItemIngred("", "", "", "", 10);
-    //weiß, Katalysator static ItemIngred alch02 = new ItemIngred("", "", "", "", 10);
-    static Ingredience alch11 = new Ingredience("Molchauge", "Kugel", "Molchaugen", "Feine Blutgefäße ziehen sich in unruhigen Fäden durch den Augapfel.", 1);
-    static Ingredience alch12 = new Ingredience("Glutorchidee", "Blümchen", "Glutorchideen", "Rein optisch wird diese empfindliche Blüte ihrem Namen gerecht.", 1);
-    static Ingredience alch21 = new Ingredience("Mondbeere", "Beere", "Mondbeeren", "Eisblaue Früchte, die den Geist erfrischen.", 2);
-    static Ingredience alch22 = new Ingredience("Mitternachtskraut", "", "Bund Mitternachtskraut", "Fahlblaue Blätter, die sich lieber dem Mondlicht als der Sonne zuwenden.", 2);
-    //gelb static ItemIngred alch31 = new ItemIngred("", "", "", "", 3);
-    //gelb static ItemIngred alch32 = new ItemIngred("", "", "", "", 3);
-    //grün static ItemIngred alch41 = new ItemIngred("", "", "", "", 4);
-    //grün static ItemIngred alch42 = new ItemIngred("", "", "", "", 4);
-    //schwarz, Levelup static ItemIngred alch51 = new ItemIngred("", "", "", "", 5);
-    //schwarz, Levelup static ItemIngred alch52 = new ItemIngred("", "", "", "", 5);
+    //Weiß, Katalysator
+    //static Ingredience alche01 = new Ingredience("", "", "", "", 10);
+    //static Ingredience alche02 = new Ingredience("", "", "", "", 10);
+    //Rot, ergibt Heiltränke
+    static Ingredience alche11 = new Ingredience("Molchauge", "Kugel", "Feine Blutgefäße ziehen sich in unruhigen Fäden durch den Augapfel.", 1);
+    static Ingredience alche12 = new Ingredience("Glutorchidee", "Blümchen", "Rein dem Aussehen nach wird diese empfindliche Blüte ihrem Namen gerecht.", 1);
+    static Ingredience alche13 = new Ingredience("Fliegenpilz", "Pilz", "Dieses gefährliche Gewächs zu entgiften und gar zu einem Trank zu verbrauen, sollte einem Meisteralchemisten vorbehalten sein. Wie dir.", 1);
+    static Ingredience alche14 = new Ingredience("Marienkäferflügel", "", "Zart durchscheinende Häutchen, noch verbunden mit einer gepunkteten Chitinschicht.", 1);
+    static Ingredience alche15 = new Ingredience("Sperlingszunge", "", "", 1);
+    static Ingredience alche16 = new Ingredience("", "", "", 1);
+    //Blau, ergibt Manatränke
+    static Ingredience alche21 = new Ingredience("Mondbeeren", "Beeren", "Eisblaue Früchte, die den Geist erfrischen.", 2);
+    static Ingredience alche22 = new Ingredience("Mitternachtskraut", "", "Fahlblaue Blätter, die sich lieber dem Mondlicht als der Sonne zuwenden.", 2);
+    //Gelb, frei (Wiederbelebung?)
+    //gelb static Ingredience alche31 = new Ingredience("", "", "", "", 3);
+    //gelb static Ingredience alche32 = new Ingredience("", "", "", "", 3);
+    //Grün, frei
+    //grün static Ingredience alche41 = new Ingredience("", "", "", "", 4);
+    //grün static Ingredience alche42 = new Ingredience("", "", "", "", 4);
+    //Schwarz, ergibt Level-up-Tränke
+    static Ingredience alche51 = new Ingredience("Maluswurzel", "", "Das gewundene dunkle Wurzelwerk der Crassula ovata.", 5);
+    static Ingredience alche52 = new Ingredience("Tollkirsche", "", "In falschen Händen tödlich.", 5);
 
 
     //TRÄNKE
@@ -131,6 +144,7 @@ public class WorldBuilder {
     static Key bookSpells = new Key("Zauberbuch", "", "Ein ledergebundener Foliant, in dem all deine Zauber verzeichnet sind: \n", 0, 0);
     static Key bookBlackArts = new Key("\"Die schwarzen Künste\"", "", Story.bookBlackArtsDesc, 0, 0);
     static Key key000 = new Key("Zellenschlüssel", "Schlüssel", "Ein rostiger Klumpen von Schlüssel.", -1, 0);
+    static Key key012 = new Key("Kerkerschlüssel", "Schlüssel", "Der Schlüssel zum Kerker … und AUS dem Kerker.", 12, 0);
     static Key key999 = new Key("Goldklumpen", "", "Alechimistisch betrachtet wertlos.", 0, 0);
     static Key bag011 = new Key("Maleficarius' Tasche", "Tasche", "Eine robuste Stofftasche, in der Maleficarius seine Schriftrollenbehälter transportiert.", 0, -1);
 
@@ -167,7 +181,7 @@ public class WorldBuilder {
     static Enemy dog08 = new Watchdog("Hündin Flauschi",35, 5, 10);
     static Enemy dog09 = new Watchdog("Hund Brutus",35, 5, 10);
 
-    static Enemy soldier01 = new Soldier("Soldat Otto", "dem Schwert", 60, 10, 8, 0);
+    static Enemy soldier01 = new Soldier("Aufseher Otto", "dem Schwert", 60, 10, 8, 1);
     static Enemy soldier02 = new Soldier("Soldatin Barbara", "dem Schwert", 60, 10, 8, 0);
     static Enemy soldier03 = new Soldier("Soldat Hermann", "dem Schwert", 60, 10, 8, 0);
     static Enemy soldier04 = new Soldier("Soldatin X", "dem Schwert", 60, 10, 8, 0);
@@ -207,8 +221,8 @@ public class WorldBuilder {
     static Enemy novice08 = new Novice("Bruder X", "dem Streitkolben", 55, 10, 8, 0);
     static Enemy novice09 = new Novice("Schwester X", "dem Streitkolben", 55, 10, 8, 0);
 
-    static Enemy knight01 = new Knight("Sir X", "dem Zweihänder", 100, 10, 8, 20, 0);
-    static Enemy knight02 = new Knight("Dame Irina", "dem Zweihänder", 100, 10, 8, 20, 0);
+    static Enemy knight01 = new Knight("Dame Beatrix", "dem Zweihänder", 100, 10, 8, 20, 0);
+    static Enemy knight02 = new Knight("Lady Irina", "dem Zweihänder", 100, 10, 8, 20, 0);
     static Enemy knight03 = new Knight("Sir X", "dem Zweihänder", 100, 10, 8, 20, 0);
     static Enemy knight04 = new Knight("Dame Beatrix", "dem Zweihänder", 100, 10, 8, 20, 0);
     static Enemy knight05 = new Knight("Sir X", "dem Zweihänder", 100, 10, 8, 20, 0);
@@ -253,9 +267,11 @@ public class WorldBuilder {
 
 
     // ENCOUNTER
-    static Encounter encStandard = new Encounter("Testwachen", guard01, guard02, guard03, "Achtung, Testüberfall!", "Achtung, Testüberfall beendet!", key999);
-    static Encounter enc022 = new Encounter("Angeheiterte Wachen", guard01, guard02, guard03, Story.enc022Intro, Story.enc022Outro, scrollLifeline);
-    //static Encounter enc010 = new Encounter();
+    static Encounter encStandard = new Encounter("Testwachen", true, guard01, guard02, guard03, "Achtung, Testüberfall!", "Achtung, Testüberfall beendet!", key999, null);
+    static Encounter enc022 = new Encounter("Angeheiterte Wachen", true, guard01, guard02, guard03, Story.enc022Intro, Story.enc022Outro, scrollLifeline, null);
+    static Encounter enc010 = new Encounter("Aufseher Otto", false, dog01, soldier01, dog02, Story.enc010Intro, Story.enc010Outro, key012, null);
+    static Encounter enc012 = new Encounter("Dame Beatrix", false, guard04, knight01, guard05, Story.enc012Intro, Story.enc012Outro, evoc02, alche52);
+
     //static Encounter enc012 = new Encounter();
 
 

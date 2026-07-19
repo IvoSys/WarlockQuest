@@ -31,31 +31,32 @@ public class Story {
         System.out.println(
                 """
                         
-                        =================================================== BEFEHLE ================================================================
-                        BEFEHLE
+                        =================================================== BEFEHLE ================================================================                        
                         Immer, wenn "Zeit zu handeln!" angezeigt wird, können folgende Befehle genutzt werden:
                         
                         Handlung\t\t\t| Eingabe\t\t\t| Effekt
                         ----------------------------------------------------------------------------------------------------------------------------
-                        Daimon fragen\t\t| (D)aimon \t\t\t| Bittet das Teufelchen auf deiner Schulter um Hilfe.
+                        Daimon fragen\t\t| (D)aimon \t\t\t| Bittet das Teufelchen auf deiner Schulter um Hilfe. Tue dies regelmäßig!
                         \t\t\t\t\t|\t\t\t\t\t|
                         Inventar zeigen\t\t| (I)tems\t\t\t| Zeigt an, welche Gegenstände du besitzt (ohne alchemistische Zutaten).
-                        Nimm Item\t\t\t| N.[Item]\t\t\t| Legt erreichbaren Gegenstand ins Inventar, z. B. "n.Zellenschlüssel".
-                        Untersuche Item\t\t| U.[Item]\t\t\t| Beschreibt einen Gegenstand aus dem Inventar genauer.
+                        \t\t\t\t\t|\t\t\t\t\t|
+                        Nimm Item\t\t\t| N.[Item]\t\t\t| Legt einen erreichbaren Gegenstand ins Inventar, z. B. "n.Zellenschlüssel".
+                        Betrachte Item\t\t| B.[Item]\t\t\t| Zeigt eine genauere (B)eschreibung zu einem Gegenstand im Inventar an.
                         Verwende Item \t\t| V.[Item]\t\t\t| Verwendet einen Gegenstand im Inventar, z. B. "v.Zellenschlüssel".
                         \t\t\t\t\t|\t\t\t\t\t| \tVerwende Zauberschriftrollen, um einen neuen Zauber zu lernen.
                         \t\t\t\t\t|\t\t\t\t\t| \tVerwende Beschwörungsformeln, um einen Dämon in deinen Dienst zu zwingen.
+                        \t\t\t\t\t|\t\t\t\t\t| \tVerwende Taschen oder Bündel, um die enthaltenen Gegenstände hervorzuholen.
                         \t\t\t\t\t|\t\t\t\t\t| \tVerwende sonstige Items (Schlüssel usw.), um sie im aktuellen Raum anzuwenden.
                         Kombiniere Items\t| K.[Item].[Item]\t| Kombiniert zwei Items aus dem Inventar miteinander,
-                        \t\t\t\t\t|\t\t\t\t\t| \tz. B. "k.blaue Farbe.gelbe Farbe" -> Maleficarius erhält grüne Farbe.
-                        \t\t\t\t\t|\t\t\t\t\t| \tAuf gleiche Weise kannst du aus Alchemiezutaten Tränke brauen:
+                          ("combine")\t\t| oder\t\t\t\t| \tz. B. "k.blaue Farbe.gelbe Farbe" -> Maleficarius erhält grüne Farbe.
+                        \t\t\t\t\t| C.[Item].[Item]\t| \tAuf gleiche Weise kannst du aus Alchemiezutaten Tränke brauen:
                         \t\t\t\t\t|\t\t\t\t\t| \tKombiniere rote Zutaten für Heiltränke, blaue für Manatränke.
-                        \t\t\t\t\t|\t\t\t\t\t|\s
+                        \t\t\t\t\t|\t\t\t\t\t|
                         Gehe in Richtung\t| G.[Richtung]\t\t| Versucht, den aktuellen Ort in gewählter Richtung zu verlassen.
-                        (Raum wechseln)\t\t|\t\t\t\t\t| \tRichtungen: Nord (N), Ost (O), Süd (S), West (W), hoch (h), runter (r),
-                        \t\t\t\t\t|\t\t\t\t\t| \tz. B. "Gehe.Norden" oder einfach "g.n"
+                          (Raum wechseln)\t| oder\t\t\t\t| \tRichtungen: Nord (N), Ost (O), Süd (S), West (W), hoch (h), runter (r),
+                          ("move")\t\t\t| M.[Richtung]\t\t| \tz. B. "G.Norden" oder einfach "g.n" / "m.n".
                         \t\t\t\t\t|\t\t\t\t\t| \tJedes Stockwerk des Schlosses besteht aus 3x3 Räumen.
-                        \t\t\t\t\t|\t\t\t\t\t|\s
+                        \t\t\t\t\t|\t\t\t\t\t|
                         Status anzeigen\t\t| (S)tatus\t\t\t| Zeigt den Stand von Lebens- und Magiepunkten an.
                         Raum ansehen\t\t| (R)aum \t\t\t| Zeigt erneut Namen und Beschreibung des aktuellen Raums an.
                         Zauberbuch\t\t\t| (Z)auber\t\t\t| Listet die von dir gelernten Zauber auf, nutze sie im Kampf.
@@ -71,7 +72,8 @@ public class Story {
                         Beenden\t\t\t\t| Ende \t\t\t\t| Beendet das Spiel.
                         
                         Groß-/Kleinschreibung wird ignoriert, außer bei Zauber- und Beschwörungsformeln. Copy-paste ist hilfreich.
-                        =========================================================================================================================
+                        Merkhilfe: Die mehrteiligen Befehle (mit ".") werden über die Tasten C bis M in der unteren Tastaturzeile angesteuert.
+                        ============================================================================================================================
                         """
         );
     }
@@ -110,23 +112,6 @@ public class Story {
         System.out.println(formulaDoom);
         System.out.println("\n===================================================================================================");
     }
-
-    /*
-    public static void help2() {
-        System.out.println(
-                "\n============================================================================================================= \n" +
-                        "WEITERE BEFEHLE \n" +
-                        "Immer, wenn \"Zeit zu handeln!\" angezeigt wird, können folgende weitere Befehle genutzt werden: \n\n" +
-                        "Handlung\t\t\t| Eingabe\t\t\t| Effekt \n" +
-                        "------------------------------------------------------------------------------------------------------------- \n" +
-
-                        "\t\t\t\t\t|\t\t\t\t\t| \n" +
-
-                        "============================================================================================================= \n"
-        );
-    }
-
-     */ //Methode für weitere Befehle
 
     public static void helpBattle() {
         System.out.println(
@@ -181,7 +166,7 @@ public class Story {
                         "Malefiz, alter Halunke, da hast du dir aber was eingebrockt!
                         Kein Wunder, dass ein Griesgram wie du irgendwann im Kerker endet."
                         
-                        Daimon, dein persönliches Teufelchen, hockt betont lässig auf deiner Schulter 
+                        Daimon, dein persönliches Teufelchen, hockt betont lässig auf deiner Schulter
                         und spielt schelmisch mit seiner Schwanzspitze.
                         """
         );
@@ -221,38 +206,40 @@ public class Story {
 
     public static void getKey000() {
         System.out.println();
-        System.out.println(
-                """
-                        Maleficarius liegt etwas auf der Zunge:
-                        [1]\t Sei einfach still.
-                        [2]\t Was … bist du eigentlich?
-                        [3]\t Kannst du dich durch die Gitterstäbe zwängen?
-                        [4]\t Kannst du den Wärter mit Dämonenmagie in Brand stecken?
-                        [0]\t (Lieber schweigen)"""
-        );
-        System.out.print("> ");
-        input = sc.nextLine().toLowerCase().trim();
-        switch (input) {
-            case "1":
-                System.out.println("DAIMON: \"Na klar, Chef!\"");
-                break;
-            case "2":
-                System.out.println("DAIMON: \"Ein Teil von jener Kraft, die stets das Böse will und stets das Gute schafft.\"");
-                break;
-            case "3":
-                System.out.println("DAIMON: \"Ach, auf einmal hast du's eilig und willst meine Hilfe, was? \nNa gut, bin ja nicht so ein Sauertopf wie du …\" \n\nDaimon schlüpft durch die Gitterstäbe und fingert den Schlüssel aus dem Gürtelring \ndes Wärters, der dies mit verschlafenem Grunzen quittiert. Dann kehrt das Teufelchen \nzu dir zurück, dreht noch einmal um, verknotet dem Wärter die Schnürsenkel, \nhuscht zurück in die Zelle und hält dir den ZELLENSCHLÜSSEL unter die Nase. \nDAIMON: \"Da, nimm!\"\n");
-                Player.room.loot.add(Player.room.reward);
-                Player.room.reward = null;
-                WorldBuilder.castle[0][0][0].notLoot.remove("zellenschlüssel");
-                break;
-            case "4":
-                refuseViolence();
-                break;
-            case "0":
-                break;
-            default:
-                System.out.println(daimonDidNotUnderstand);
-        }
+        do {
+            System.out.println(
+                    """
+                            Maleficarius liegt etwas auf der Zunge:
+                            [1]\t Sei einfach still.
+                            [2]\t Was … bist du eigentlich?
+                            [3]\t Kannst du dich durch die Gitterstäbe zwängen?
+                            [4]\t Kannst du den Wärter mit Dämonenmagie in Brand stecken?
+                            [0]\t (Lieber schweigen)"""
+            );
+            System.out.print("> ");
+            input = sc.nextLine().toLowerCase().trim();
+            switch (input) {
+                case "1":
+                    System.out.println("DAIMON: \"Na klar, Chef!\"");
+                    break;
+                case "2":
+                    System.out.println("DAIMON: \"Ein Teil von jener Kraft, die stets das Böse will und stets das Gute schafft.\"");
+                    break;
+                case "3":
+                    System.out.println("DAIMON: \"Ach, auf einmal hast du's eilig und willst meine Hilfe, was? \nNa gut, bin ja nicht so ein Sauertopf wie du …\" \n\nDaimon schlüpft durch die Gitterstäbe und fingert den Schlüssel aus dem Gürtelring \ndes Wärters, der dies mit verschlafenem Grunzen quittiert. Dann kehrt das Teufelchen \nzu dir zurück, dreht noch einmal um, verknotet dem Wärter die Schnürsenkel, \nhuscht zurück in die Zelle und hält dir den ZELLENSCHLÜSSEL unter die Nase. \nDAIMON: \"Da, nimm!\"\n");
+                    Player.room.loot.add(Player.room.reward);
+                    Player.room.reward = null;
+                    WorldBuilder.castle[0][0][0].notLoot.remove("zellenschlüssel");
+                    break;
+                case "4":
+                    refuseViolence();
+                    break;
+                case "0":
+                    break;
+                default:
+                    System.out.println(daimonDidNotUnderstand);
+            }
+        } while (!input.equals("0") && !input.equals("3"));
     }
 
     public static void refuseViolence(){
@@ -346,7 +333,11 @@ public class Story {
     static String enc010Intro;
     static String enc010Outro;
     //Vorratskammer
-    static String desc011 = "Die Vorratskammer. Eine dir wohlbekannte Tasche findest du achtlos in die Ecke geworfen vor. In einem Einmachglas schwimmt eine einzelne glitschige Kugel.";
+    static String desc011 = """
+    Eine Vielzahl von Gerüchen umgibt dich: Von der Decke hängen verschiedene Würste und Schinken,
+    ein angeschnittener Laib Käse liegt auf einem Tisch. Eine dir wohlbekannte Tasche wurde achtlos in die Ecke geworfen.
+    An der Wand sind Fässer mit Bier und Wein aufgestapelt. In einem Einmachglas schwimmt eine einzelne glitschige Kugel,
+    und in einer Schale ist eine Handvoll hellblaue Beeren übrig.""";
     static String descSolved011;
     static String daimon011 = "DAIMON: \"Eine Vorratskammer! Nimm alles mit, was nicht niet- und nagelfest ist!\"";
     static String daimonSolved011;
@@ -378,10 +369,10 @@ public class Story {
     //Wachkantine
     static String desc022 = "Speise- und Aufenthaltsraum der Wachbelegschaft. Die langen Tische sind spartanisch gedeckt, \nnur auf einem lässt ein Blümchen in einem halbvollen Wassergals den Kopf hängen. \nÜber dem glimmenden Kaminfeuer hängt ein großer Topf";
     static String descSolved022;
-    static String daimon022 = "DAIMON: \"Platzhalter in Story-Klasse\"";
+    static String daimon022 = "DAIMON: \"Du solltest zusehen, deinen Dämon zu heilen, bevor es weitergeht. \nAlso nicht mich – den mit der großen Axt.\"";
     static String daimonSolved022;
     static String solved022 = "Platzhalter in Story-Klasse";
-    static String enc022Intro = "Eine der Wachen hält ein Stück auseinandergerolltes Pergament in der Hand und liest wild gestikulierend daraus vor, die anderen kichern rotnasig. \nDramatisch reckt der Wächter seine Faust gen Zimmerdecke, während er eine ausgedachte Zauberformel rezitiert und sich seine Stimme sich vpr Aufregung überschlägt. \nDabei wirkt er irgendwie wie … du! \nDie anderen Wachen brechen in haltloses Gelächter aus. Angesäuert stößt du die Tür auf, drei Augenpaare wenden sich überrascht zu dir um. ";
+    static String enc022Intro = "Eine der Wachen hält ein Stück auseinandergerolltes Pergament in der Hand und liest wild gestikulierend daraus vor, die anderen kichern rotnasig. \nDramatisch reckt der Wächter seine Faust gen Zimmerdecke, während er eine ausgedachte Zauberformel rezitiert und seine Stimme immer höher schraubt, als würde sie sich vor Aufregung überschlagen. \nDabei wirkt er irgendwie wie … du! \nDie anderen Wachen brechen in haltloses Gelächter aus. Angesäuert stößt du die Tür auf, drei Augenpaare wenden sich überrascht zu dir um. ";
     static String enc022Outro = "Röchelnd gehen die Wachen zu Boden. Im nächsten Leben wird ihnen das eine Lehre sein. Du sammelst die Schriftrolle auf.";
 
     static String desc100 = "Platzhalter unten in Story-Klasse";

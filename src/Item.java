@@ -2,7 +2,6 @@ public abstract class Item {
 
     protected String name;
     protected String nameVague;
-    protected String namePlural;
     protected String desc;
     protected int num = 1;
     protected boolean isConsumed = true;
@@ -39,9 +38,9 @@ public abstract class Item {
             if (Player.inv.get(i).num >= numConsumed) {
                 Player.inv.get(i).num -= numConsumed;
                 success = true;
-                System.out.printf("%d %s verbraucht", numConsumed, Player.inv.get(i).namePlural);
+                System.out.printf("%dx %s verbraucht", numConsumed, Player.inv.get(i).name);
             } else {
-                System.out.printf("Du hast nicht genug %s. \n", itemConsumed.namePlural);
+                System.out.printf("Nicht ausreichend vorhanden: %s \n", itemConsumed.name);
             }
             if  (Player.inv.get(i).num <= 0) {
                 Player.inv.remove(i);
@@ -73,7 +72,7 @@ public abstract class Item {
             Player.inv.add(itemObtained);
             Player.inv.getLast().num = numObtained;
         }
-        System.out.printf("%d %s erhalten \n", numObtained, itemObtained.namePlural);
+        System.out.printf("%dx %s erhalten \n", numObtained, itemObtained.name);
     }
 
     public static void unpack(String input){
@@ -162,10 +161,9 @@ class Evocation extends Item {
 
 class Ingredience extends Item {
 
-    public Ingredience(String name, String nameVague, String namePlural, String desc, int combiID) {
+    public Ingredience(String name, String nameVague, String desc, int combiID) {
         this.name = name;
         this.nameVague = nameVague;
-        this.namePlural = namePlural;
         this.desc = desc;
         this.combiID = combiID;
 

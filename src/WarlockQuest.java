@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class WarlockQuest {
 
-    static String version = "v0.2.0";
+    static String version = "v0.3.0";
     static boolean running = true;
 
     static Scanner sc = new Scanner(System.in);
@@ -48,9 +48,9 @@ public class WarlockQuest {
                 Player.showInv();                                                                                       // Inventar
             } else if (input.contains(".")) {
                 inputSplit = input.split("\\.", 3);
-                if (inputSplit[0].equals("n") || inputSplit[0].equals("nimm") || inputSplit[0].contains("nehm")){
+                if (inputSplit[0].equals("n") || inputSplit[0].equals("t")){
                     Player.room.loot(inputSplit[1]);                                                                    // Nimm Item
-                } else if (inputSplit[0].equals("v") || inputSplit[0].equals("verwende") || inputSplit[0].contains("nutze")) {
+                } else if (inputSplit[0].equals("v") || inputSplit[0].equals("u")) {
                     if (inputSplit[1].contains("trank") && !inputSplit[1].contains("gurt")) {
                         Potion.drink(inputSplit[1]);                                                                    // Trinke Trank
                     } else if (inputSplit[1].contains("zauberschriftrolle")) {
@@ -62,11 +62,11 @@ public class WarlockQuest {
                     } else {
                         Player.room.solve(inputSplit[1]);                                                               // Verwende Item
                     }
-                } else if (inputSplit[0].equals("u") || inputSplit[0].contains("such") || inputSplit[0].equals("prüf")) {
+                } else if (inputSplit[0].equals("b") || inputSplit[0].equals("e")) {
                     Player.checkItem(inputSplit[1]);                                                                    // Untersuche Item
-                } else if (inputSplit[0].equals("k") || inputSplit[0].contains("kombi")) {
+                } else if (inputSplit[0].equals("k") || inputSplit[0].equals("c")) {
                     Player.combineItems(inputSplit[1], inputSplit[2]);                                                  // Kombiniere Items
-                } else if (inputSplit[0].equals("g") || inputSplit[0].contains("geh")){
+                } else if (inputSplit[0].equals("g") || inputSplit[0].equals("m")){
                     Player.move(inputSplit[1]);                                                                         // Bewegen
                 } else {
                     System.out.println("Du redest wirr!");
