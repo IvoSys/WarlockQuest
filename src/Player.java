@@ -50,16 +50,6 @@ public class Player {
         }
     }
 
-    public static void daimon() {                               //Zu nah an "Universalskript"?
-        System.out.println(room.daimon);                        //Daimon-Kommentar für diesen Raum
-        if ((room.puzzleID == -1) && (room.reward != null)) {   //In bestimmten Räumen führt Daimon spezielle Methoden aus
-            Story.getKey000();
-        }
-        if ((room.puzzleID == 12) && (!Player.team.contains(WorldBuilder.dem01))) {   //In bestimmten Räumen führt Daimon spezielle Methoden aus
-            Story.brainstorm012();
-        }
-    }
-
     public static boolean applyMpCost(int mpCost){
         if (mp - mpCost >= 0) {
             mp -= mpCost;
@@ -210,29 +200,23 @@ public class Player {
                         Item.obtainItem(WorldBuilder.potHealth1);
                     } else if (item1.combiID == 2) {        // 2x id 2 -> Manatrank (id 22)
                         Item.obtainItem(WorldBuilder.potMana1);
-                    } else if (item1.combiID == 3) {        // 2x id 3 -> Manatrank (id 33)
+                    } else if (item1.combiID == 3) {        // 2x id 3 -> Trank (id 33)
                         //Item.obtainItem(WorldBuilder.);
                         System.out.println("PLATZHALTER: Dies erzeugt Trank mit Combi-ID 33");
-                    } else if (item1.combiID == 4) {        // 2x id 4 -> Manatrank (id 44)
+                    } else if (item1.combiID == 4) {        // 2x id 4 -> Trank (id 44)
                         //Item.obtainItem(WorldBuilder.);
                         System.out.println("PLATZHALTER: Dies erzeugt Trank mit Combi-ID 44");
-                    } else if (item1.combiID == 5) {        // 2x id 5 -> Manatrank (id 55)
+                    } else if (item1.combiID == 5) {        // 2x id 5 -> Level-up-Trank (id 55)
                         Item.obtainItem(WorldBuilder.potLevelUp);
-                    } else if (item1.combiID == 11) {        // 2x id 11 -> Manatrank (id 1111)
+
+                    } else if (item1.combiID == 12) {        // 2x id 12 -> Käsebrot
+                        Item.obtainItem(WorldBuilder.cheeseBread);
+                    } else if (item1.combiID == 13) {        // 2x id 13 -> Sandwich
+                        Item.obtainItem(WorldBuilder.sandwich);
+                    } else if (item1.combiID == 14) {        // 2x id 14 ->
                         //Item.obtainItem(WorldBuilder.);
-                        System.out.println("PLATZHALTER: Dies erzeugt Item mit Combi-ID 1111");
-                    } else if (item1.combiID == 12) {        // 2x id 12 -> Manatrank (id 1212)
+                    } else if (item1.combiID == 15) {        // 2x id 15 ->
                         //Item.obtainItem(WorldBuilder.);
-                        System.out.println("PLATZHALTER: Dies erzeugt Item mit Combi-ID 1212");
-                    } else if (item1.combiID == 13) {        // 2x id 13 -> Manatrank (id 1313)
-                        //Item.obtainItem(WorldBuilder.);
-                        System.out.println("PLATZHALTER: Dies erzeugt Item mit Combi-ID 1313");
-                    } else if (item1.combiID == 14) {        // 2x id 14 -> Manatrank (id 1414)
-                        //Item.obtainItem(WorldBuilder.);
-                        System.out.println("PLATZHALTER: Dies erzeugt Item mit Combi-ID 1414");
-                    } else if (item1.combiID == 15) {        // 2x id 15 -> Manatrank (id 1515)
-                        //Item.obtainItem(WorldBuilder.);
-                        System.out.println("PLATZHALTER: Dies erzeugt Item mit Combi-ID 1515");
                     }
 
                     successConsumeItem1 = Item.consumeItem(item1);

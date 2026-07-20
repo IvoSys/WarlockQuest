@@ -15,6 +15,11 @@ public class Control {
         }
     }
 
+    public static void inputLine() {
+        System.out.print("> ");
+        Story.input = Story.sc.nextLine().toLowerCase().trim();
+    }
+
     public static void quit(){
         System.out.println("\n===================\nAUF WIEDERSEHEN");
         System.exit(0);

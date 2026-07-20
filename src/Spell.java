@@ -40,7 +40,7 @@ class Bloodletting extends Spell{
     public Bloodletting() {
         name = "Aderlass";
         desc = "Opfert Lebenspunkte deines Dämon, um deine Manareserven aufzufüllen.";
-        formula = Story.formulaBloodletting;
+        formula = Descriptions.formulaBloodletting;
         textWhenLearned = "";
         str = Player.spellpower * 2;
         mpCost = 0;
@@ -74,7 +74,7 @@ class Doom extends Spell {
     public Doom() {
         name = "Untergang";
         desc = "Verflucht einen Gegner, sodass er über mehrere Runden hinweg stetig ansteigenden Schaden erleidet.";
-        formula = Story.formulaDoom;
+        formula = Descriptions.formulaDoom;
         textWhenLearned = "";
         str = Player.spellpower;
         dur = 4;
@@ -114,7 +114,7 @@ class IronMaiden extends Spell {
     public IronMaiden() {
         name = "Eiserne Jungfrau";
         desc = "Verflucht alle Gegner, sodass sie sich selbst verletzen, wenn sie deinem Dämon Schaden zufügen.";
-        formula = Story.formulaIronMaiden;
+        formula = Descriptions.formulaIronMaiden;
         textWhenLearned = "";
         str = Player.spellpower;
         dur = 5;
@@ -152,7 +152,7 @@ class Lifeline extends Spell {
     public Lifeline() {
         name = "Lebenslinie";
         desc = "Spannt ein magisches Band zwischen deinem Dämon und einem Gegner. \nIn den folgenden Runden geht vor jeder Aktion dieses Gegners \nLebenskraft von ihm auf deinen Dämon über.";
-        formula = Story.formulaLifeline;
+        formula = Descriptions.formulaLifeline;
         textWhenLearned = "";
         str = Player.spellpower;
         dur = 3;
@@ -208,7 +208,7 @@ class Soulreaper extends Spell {
     public Soulreaper() {
         name = "Seelendieb";
         desc = "Stiehlt die Seele eines geschwächten Feindes. \nAuf einen Gegner mit unter 20 % HP angewendet, \nstirbt dessen Körper sofort und seine Seele füllt deinen Manavorrat.";
-        formula = Story.formulaSoulreaper;
+        formula = Descriptions.formulaSoulreaper;
         textWhenLearned = "";
         str = Player.spellpower * 2;
         mpCost = 0;
@@ -242,7 +242,7 @@ class ViciousSeed extends Spell {
     public ViciousSeed() {
         name = "Üble Saat";
         desc = "Pflanzt einen Keim in einem Gegner ein, der nach " + dur + " Runden \noder mit Tod des Gegners aufplatzt und bei allen Gegnern Schaden verursacht.";
-        formula = Story.formulaViciousSeed;
+        formula = Descriptions.formulaViciousSeed;
         textWhenLearned = "";
         str = Player.spellpower;
         dur = 3;

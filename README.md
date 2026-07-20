@@ -14,6 +14,6 @@ Hauptprogramm in WarlockQuest.java
 - Player:		Attribute und Methoden für den Spieler – Position in Spielwelt, aktuelle Magiepunkte, Arrays für Items und Zauber usw.  
 - Room:		Definiert Räume mit Encountern, Türen, Gegenständen usw.  
 - Spell:		Abstrakte Zauber-Klasse und implementierende Unterklassen (konkrete Zaubersprüche)  
-- Story:		Sammelt Strings für Dialoge und Beschreibungen für Räume und Gegenstände  
+- Story:		Sammelt Strings für Dialoge, Beschreibungen für Räume und Gegenstände, Tutorials usw.  
 - WarlockQuest:	Main-Methode und Game-Loop  
 - WorldBuilder:	Instanziiert Objekte aus Klassen (Räume, Items, Gegner …)  

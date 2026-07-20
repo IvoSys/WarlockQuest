@@ -157,7 +157,7 @@ class Minotauros extends Demon{
 
     public Minotauros() {
         name = "Minotauros";
-        trueName = Story.trueNameDem01;
+        trueName = Descriptions.trueNameDem01;
         desc = "Ein aufrecht gehender Stier, bewaffnet mit einer mächtigen Streitaxt. ";
         textWhenSummoned = "Aus Fleisch, Knochen und kochendem Blut formt sich der Körper eines gehörnten Untiers. Wut lodert in seinen Augen.";
         textWhenBound = "Du sprichst den wahren Namen des Minotauros aus und die Beschwörungsformel zerreißt unter deinen Fingern. \nAus den Tiefen der Unterwelt hebt sich ein Gebrüll der reinen Wut.\n\n(Über den Befehl \"Dämonen\" erfährst du mehr über deine Dämonen.)";
@@ -270,7 +270,7 @@ class Efreet extends Demon{
 
     public Efreet() {
         name = "Efreet";
-        trueName = Story.trueNameDem02;
+        trueName = Descriptions.trueNameDem02;
         desc = "Ein Geistwesen, geschaffen aus rauchlosem Feuer.";
         textWhenSummoned = "Flammen ziehen sich in einem Strudel zusammen und bilden eine Frau in roten Seidengewändern. Ihre goldenen Armreife glühen heiß.";
         textWhenBound = "Du sprichst den wahren Namen der Efreet aus und die Beschwörungsformel verbrennt unter deinen Fingern. \nEinen kurzen Moment lang glaubst du, in Flammen zu stehen.\n\n(Über den Befehl \"Dämonen\" erfährst du mehr über deine Dämonen.)";
@@ -324,7 +324,7 @@ class Abaddon extends Demon{
 
     public Abaddon() {
         name = "Abaddon";
-        trueName = Story.trueNameDem03;
+        trueName = Descriptions.trueNameDem03;
         desc = "";
         textWhenSummoned = "Aus den Schatten tritt eine verhüllte Gestalt. Eine schwarze Pfütze \nwandert an ihren Füßen mit ihr, dünne Tentakel züngeln daraus hevor.";
         textWhenBound = "Du sprichst den wahren Namen des Abaddon aus und die Beschwörungsformel verwelkt unter deinen Fingern. \nDie Schatten rücken näher, knurren und greifen nach dir.\n\n(Über den Befehl \"Dämonen\" erfährst du mehr über deine Dämonen.)";

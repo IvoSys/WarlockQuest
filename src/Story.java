@@ -8,159 +8,28 @@ public class Story {
     static int refuseViolence = 0;
     static String daimonDidNotUnderstand = "DAIMON: \"Was nuschelst du da in deinen Ziegenbart?\" \n";
 
+
+    //Fähigkeiten von Dämonen mit flavor
+
+    //Kills mit Flavor
+}
+
+class Daimon extends Story {
+
+    public static void speak() {
+        System.out.println(Player.room.daimon);                                 //Daimon-Kommentar für diesen Raum
+        if ((Player.room.puzzleID == -1) && (Player.room.reward != null)) {     //In bestimmten Räumen führt Daimon spezielle Methoden aus
+            getKey000();
+        }
+        if ((Player.room.puzzleID == 12) && (!Player.team.contains(WorldBuilder.dem01))) {
+            brainstorm012();
+        }
+        if ((Player.room.puzzleID == 10)) {
+            forAlfred010();
+        }
+    }
+
     public static void intro() {
-        System.out.println(
-                """
-                        Dieses Mal ist der König zu weit gegangen!
-                        Du, Maleficarius Liebwerk, der größte Hexenmeister, Alchemist und Dämonologe im Diesseits, sollst "ethisch nicht mehr tragbar" sein?! Lächerlich!
-                        Wo stünde dieses kümmerliche Reich schon ohne deine Forschung? "Aber Meister Liebwerk, Ihr lÄsTeRt DeR ScHöPfUnG GoTtEs!". Pahh!
-                        
-                        Und dann haben sie dich in den Kerker geworfen. Bauerntrampel ohne Ambition oder Vorstellungskraft!
-                        Es wird Zeit, den König über kleiner Flamme zu rösten!
-                        """
-        );
-    }
-
-    public static void needHelp() {
-        System.out.println("Dein Kopf brodelt vor Wut. Du solltest erst einmal wieder zu klaren Gedanken kommen. Wie ging das Ganze hier noch gleich?");
-        System.out.println("Anleitung anzeigen? (j/n)");
-        System.out.print("> ");
-    }
-
-    public static void help() {
-        System.out.println(
-                """
-                        
-                        =================================================== BEFEHLE ================================================================                        
-                        Immer, wenn "Zeit zu handeln!" angezeigt wird, können folgende Befehle genutzt werden:
-                        
-                        Handlung\t\t\t| Eingabe\t\t\t| Effekt
-                        ----------------------------------------------------------------------------------------------------------------------------
-                        Daimon fragen\t\t| (D)aimon \t\t\t| Bittet das Teufelchen auf deiner Schulter um Hilfe. Tue dies regelmäßig!
-                        \t\t\t\t\t|\t\t\t\t\t|
-                        Inventar zeigen\t\t| (I)tems\t\t\t| Zeigt an, welche Gegenstände du besitzt (ohne alchemistische Zutaten).
-                        \t\t\t\t\t|\t\t\t\t\t|
-                        Nimm Item\t\t\t| N.[Item]\t\t\t| Legt einen erreichbaren Gegenstand ins Inventar, z. B. "n.Zellenschlüssel".
-                        Betrachte Item\t\t| B.[Item]\t\t\t| Zeigt eine genauere (B)eschreibung zu einem Gegenstand im Inventar an.
-                        Verwende Item \t\t| V.[Item]\t\t\t| Verwendet einen Gegenstand im Inventar, z. B. "v.Zellenschlüssel".
-                        \t\t\t\t\t|\t\t\t\t\t| \tVerwende Zauberschriftrollen, um einen neuen Zauber zu lernen.
-                        \t\t\t\t\t|\t\t\t\t\t| \tVerwende Beschwörungsformeln, um einen Dämon in deinen Dienst zu zwingen.
-                        \t\t\t\t\t|\t\t\t\t\t| \tVerwende Taschen oder Bündel, um die enthaltenen Gegenstände hervorzuholen.
-                        \t\t\t\t\t|\t\t\t\t\t| \tVerwende sonstige Items (Schlüssel usw.), um sie im aktuellen Raum anzuwenden.
-                        Kombiniere Items\t| K.[Item].[Item]\t| Kombiniert zwei Items aus dem Inventar miteinander,
-                          ("combine")\t\t| oder\t\t\t\t| \tz. B. "k.blaue Farbe.gelbe Farbe" -> Maleficarius erhält grüne Farbe.
-                        \t\t\t\t\t| C.[Item].[Item]\t| \tAuf gleiche Weise kannst du aus Alchemiezutaten Tränke brauen:
-                        \t\t\t\t\t|\t\t\t\t\t| \tKombiniere rote Zutaten für Heiltränke, blaue für Manatränke.
-                        \t\t\t\t\t|\t\t\t\t\t|
-                        Gehe in Richtung\t| G.[Richtung]\t\t| Versucht, den aktuellen Ort in gewählter Richtung zu verlassen.
-                          (Raum wechseln)\t| oder\t\t\t\t| \tRichtungen: Nord (N), Ost (O), Süd (S), West (W), hoch (h), runter (r),
-                          ("move")\t\t\t| M.[Richtung]\t\t| \tz. B. "G.Norden" oder einfach "g.n" / "m.n".
-                        \t\t\t\t\t|\t\t\t\t\t| \tJedes Stockwerk des Schlosses besteht aus 3x3 Räumen.
-                        \t\t\t\t\t|\t\t\t\t\t|
-                        Status anzeigen\t\t| (S)tatus\t\t\t| Zeigt den Stand von Lebens- und Magiepunkten an.
-                        Raum ansehen\t\t| (R)aum \t\t\t| Zeigt erneut Namen und Beschreibung des aktuellen Raums an.
-                        Zauberbuch\t\t\t| (Z)auber\t\t\t| Listet die von dir gelernten Zauber auf, nutze sie im Kampf.
-                        Alchemiezutaten\t\t| (A)lchemie\t\t| Zeigt deine alchemistischen Zutaten an, braue Tränke aus ihnen.
-                        Trankgurt\t\t\t| (T)ränke\t\t\t| Zeigt deine Tränke an, nutze sie AUSSERHALB des Kampfes per "v.[Trank]".
-                        Dämonen-Kompendium\t| Dämonen\t\t\t| Zeigt nähere Informationen zu den von dir gebundenen Dämonen an.
-                        \t\t\t\t\t|\t\t\t\t\t|\s
-                        Spielanleitung\t\t| (H)ilfe \t\t\t| Ruft diese Anleitung auf.
-                        Kampftutorial\t\t| Kampf \t\t\t| Ruft die Anleitung zum Kampfsystem auf.
-                        Rätselhilfe\t\t\t| Rätsel \t\t\t| Wenn du beim Lernen von Zaubern oder Binden von Dämonen nicht weiterkommst.
-                        \t\t\t\t\t|\t\t\t\t\t|\s
-                        Mitwirkende\t\t\t| Credits \t\t\t| Zeigt die Mitwirkenden.
-                        Beenden\t\t\t\t| Ende \t\t\t\t| Beendet das Spiel.
-                        
-                        Groß-/Kleinschreibung wird ignoriert, außer bei Zauber- und Beschwörungsformeln. Copy-paste ist hilfreich.
-                        Merkhilfe: Die mehrteiligen Befehle (mit ".") werden über die Tasten C bis M in der unteren Tastaturzeile angesteuert.
-                        ============================================================================================================================
-                        """
-        );
-    }
-
-    public static void hints() {
-        System.out.println(
-                """
-                        
-                        ============================================ HINWEISE ZU RÄTSELN ==============================================
-                        ==============================================================================================================="""
-        );
-    }
-
-    public static void answers() {
-        System.out.println("\n======================================= LÖSUNGEN DER RÄTSEL =======================================");
-        System.out.print("DÄMONEN\n");
-        System.out.print(WorldBuilder.dem01.name + ": \t");
-        System.out.println(trueNameDem01);
-        System.out.print(WorldBuilder.dem02.name + ": \t");
-        System.out.println(trueNameDem02);
-        System.out.print(WorldBuilder.dem03.name + ": \t");
-        System.out.println(trueNameDem03);
-        System.out.println();
-        System.out.print("ZAUBER");
-        System.out.print(WorldBuilder.bloodletting.name + ": \t");
-        System.out.println(formulaBloodletting);
-        System.out.print(WorldBuilder.ironMaiden.name + ": \t");
-        System.out.println(formulaIronMaiden);
-        System.out.print(WorldBuilder.lifeline.name + ": \t");
-        System.out.println(formulaLifeline);
-        System.out.print(WorldBuilder.soulreaper.name + ": \t");
-        System.out.println(formulaSoulreaper);
-        System.out.print(WorldBuilder.viciousSeed.name + ": \t");
-        System.out.println(formulaViciousSeed);
-        System.out.print(WorldBuilder.doom.name + ": \t");
-        System.out.println(formulaDoom);
-        System.out.println("\n===================================================================================================");
-    }
-
-    public static void helpBattle() {
-        System.out.println(
-                """
-                        ================================================= KAMPFTUTORIAL =================================================
-                        Maleficarius lässt einen Dämonen für sich kämpfen und unterstützt ihn mit Hexerei.
-                        Zu Beginn des Kampfes beschwörst du einen Dämon. Wenn du am Zug bist, wird eine Liste mit Optionen angezeigt.
-                        Oben stehen die Fähigkeiten des Dämons, unter der gestrichelten Linie die Möglichkeiten von Maleficarius.
-                        Nach deinem Dämon sind die Gegner an der Reihe. Soll Maleficarius handeln, kann er dies vor dem Dämon tun,
-                        ohne dass dessen Zug verfällt. Einen Zauber zu wirken, kostet MP.
-                        
-                        Beispiel für eine Kampfsituation:
-                        
-                        [NAME GEGNERTEAM]
-                        Soldat Max\t(53/80 HP) \t\t\t\t\t<--- Name und HP der Gegner
-                        Soldat Jörg\t(63/80 HP) – Üble Saat (2)\t<--- Auf Gegner wirkende Zauber und verbleibende Dauer
-                        Soldatin Franziska\t(80/80 HP)\t\s
-                        
-                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-                        
-                        [NAME DÄMON] \t(67/100 HP)\t\t<--- Name und Lebenspunkte des aktiven Dämons
-                        [1] [Einzelangriff]\t\t\t\t<--- Dämon-Angriff gegen einzelnen Gegner
-                        [2] [Flächenangriff]\t\t\t<--- Dämon-Angriff gegen alle Gegner
-                        [3] [Selfbuff]\t\t\t\t\t<--- Dämon wirkt eine Fähigkeit auf sich selbst
-                        ------------------------------------------------------------------------
-                        [4] Hexerei\t\t\t\t\t\t<--- Maleficarius wirkt einen Zauber
-                        [5] Beschwören\t\t\t\t\t<--- Maleficarius beschwört einen anderen Dämon
-                        >\s
-                        
-                        Neben ">" gibst du die Zahl der gewünschten Aktion ein.
-                        
-                        Den meisten Angriffen (Schwertern, Pfeilen, magischen Projektilen) kann mit gewisser Chance ausgewichen werden.
-                        Die Flüche eines Hexenmeisters binden sich an die Seele eines Lebewesens und verfehlen niemals.
-                        
-                        Jeder Dämon verfügt über drei Fähigkeiten: Einen Angriff gegen einen Gegner,
-                        einen Angriff gegen alle Gegner und eine Fähigkeit, die den Dämon selbst verstärkt.
-                        
-                        Du kannst einen neuen Dämon beschwören, anschließend sind aber zuerst die Gegner an der Reihe.
-                        Zu jedem Zeitpunkt kann nur ein Dämon im Kampf sein.
-                        
-                        Fallen die HP eines Dämons auf 0, kannst du einen neuen beschwören.
-                        Nach dem Kampf erhalten besiegte Dämonen 1 HP zurück.
-                        Wurden alle deine Dämonen besiegt, ist Maleficarius' Ende gekommen.
-                        =======================================================================================================
-                        """
-        );
-    }
-
-    public static void daimonIntro() {
         System.out.println(
                 """
                         "Malefiz, alter Halunke, da hast du dir aber was eingebrockt!
@@ -168,8 +37,7 @@ public class Story {
                         
                         Daimon, dein persönliches Teufelchen, hockt betont lässig auf deiner Schulter
                         und spielt schelmisch mit seiner Schwanzspitze.
-                        """
-        );
+                        """);
         do {
             System.out.println(
                     """
@@ -206,43 +74,33 @@ public class Story {
 
     public static void getKey000() {
         System.out.println();
-        do {
-            System.out.println(
-                    """
-                            Maleficarius liegt etwas auf der Zunge:
-                            [1]\t Sei einfach still.
-                            [2]\t Was … bist du eigentlich?
-                            [3]\t Kannst du dich durch die Gitterstäbe zwängen?
-                            [4]\t Kannst du den Wärter mit Dämonenmagie in Brand stecken?
-                            [0]\t (Lieber schweigen)"""
-            );
-            System.out.print("> ");
-            input = sc.nextLine().toLowerCase().trim();
-            switch (input) {
-                case "1":
-                    System.out.println("DAIMON: \"Na klar, Chef!\"");
-                    break;
-                case "2":
-                    System.out.println("DAIMON: \"Ein Teil von jener Kraft, die stets das Böse will und stets das Gute schafft.\"");
-                    break;
-                case "3":
-                    System.out.println("DAIMON: \"Ach, auf einmal hast du's eilig und willst meine Hilfe, was? \nNa gut, bin ja nicht so ein Sauertopf wie du …\" \n\nDaimon schlüpft durch die Gitterstäbe und fingert den Schlüssel aus dem Gürtelring \ndes Wärters, der dies mit verschlafenem Grunzen quittiert. Dann kehrt das Teufelchen \nzu dir zurück, dreht noch einmal um, verknotet dem Wärter die Schnürsenkel, \nhuscht zurück in die Zelle und hält dir den ZELLENSCHLÜSSEL unter die Nase. \nDAIMON: \"Da, nimm!\"\n");
-                    Player.room.loot.add(Player.room.reward);
-                    Player.room.reward = null;
-                    WorldBuilder.castle[0][0][0].notLoot.remove("zellenschlüssel");
-                    break;
-                case "4":
-                    refuseViolence();
-                    break;
-                case "0":
-                    break;
-                default:
-                    System.out.println(daimonDidNotUnderstand);
-            }
-        } while (!input.equals("0") && !input.equals("3"));
+        System.out.println(
+                """
+                        Maleficarius liegt etwas auf der Zunge:
+                        [1]\t Sei einfach still.
+                        [2]\t Was … bist du eigentlich?
+                        [3]\t Kannst du dich durch die Gitterstäbe zwängen?
+                        [4]\t Kannst du den Wärter mit Dämonenmagie in Brand stecken?
+                        [0]\t (Lieber schweigen)"""
+        );
+        System.out.print("> ");
+        input = sc.nextLine().toLowerCase().trim();
+        switch (input) {
+            case "1": System.out.println("DAIMON: \"Na klar, Chef!\""); break;
+            case "2": System.out.println("DAIMON: \"Ein Teil von jener Kraft, die stets das Böse will und stets das Gute schafft.\""); break;
+            case "3":
+                System.out.println("DAIMON: \"Ach, auf einmal hast du's eilig und willst meine Hilfe, was? \nNa gut, bin ja nicht so ein Sauertopf wie du …\" \n\nDaimon schlüpft durch die Gitterstäbe und fingert den Schlüssel aus dem Gürtelring \ndes Wärters, der dies mit verschlafenem Grunzen quittiert. Dann kehrt das Teufelchen \nzu dir zurück, dreht noch einmal um, verknotet dem Wärter die Schnürsenkel, \nhuscht zurück in die Zelle und hält dir den ZELLENSCHLÜSSEL unter die Nase. \nDAIMON: \"Da, nimm!\"\n");
+                Player.room.loot.add(Player.room.reward);
+                Player.room.reward = null;
+                WorldBuilder.castle[0][0][0].notLoot.remove("zellenschlüssel");
+                break;
+            case "4": refuseViolence(); break;
+            case "0": break;
+            default: System.out.println(daimonDidNotUnderstand);
+        }
     }
 
-    public static void refuseViolence(){
+    public static void refuseViolence() {
         if (refuseViolence == 0) {
             refuseViolence++;
             System.out.println("DAIMON: \"Ich bin nicht SO ein Dämon!\"");
@@ -262,12 +120,8 @@ public class Story {
         System.out.print("> ");
         input = sc.nextLine().toLowerCase().trim();
         switch (input) {
-            case "1":
-                System.out.println("DAIMON: \"Meh, was hab ich erwartet.\"\n");
-                break;
-            case "2":
-                System.out.println("DAIMON: \"Na, das hat doch gar nicht weh getan!\"\n");
-                break;
+            case "1": System.out.println("DAIMON: \"Meh, was hab ich erwartet.\"\n"); break;
+            case "2": System.out.println("DAIMON: \"Na, das hat doch gar nicht weh getan!\"\n"); break;
             default:
                 System.out.println(daimonDidNotUnderstand);
         }
@@ -303,6 +157,37 @@ public class Story {
         }
     }
 
+    public static void forAlfred010() {
+        System.out.println("""
+            Wähle eine Antwort:
+            [1] … Alfred haben wir vorhin selbst umgebracht.
+            [2] Der Mann hatte recht, Essiggurken und Käsebrot gehören zusammen.
+            [0] (Schweigen)
+            """);
+        Control.inputLine();
+        switch (input) {
+            case "1": System.out.println("DAIMON: \"Aber er hätte es sicher so gewollt!\""); break;
+            case "2":
+                System.out.println("DAIMON: \"Ja ja, wie Leberwurst und Butter.\"\n");
+                System.out.println("""
+                Wähle eine Antwort:
+                [1] Du bist wahrhaftig eine Kreatur aus der Hölle.
+                [2] Genau.""");
+                Control.inputLine();
+                switch (input) {
+                    case "1": System.out.println("DAIMON: \"Und doch ist Leberwurst mit Butter eine irdische Erfindung. Die Teufel sind schon hier.\""); break;
+                    case "2": System.out.println("DAIMON: \"Das war Sarkasmus, du Monstrum.\""); break;
+                    default: System.out.println(daimonDidNotUnderstand); break;
+                }
+                break;
+            case "0": System.out.println("DAIMON: \"Aber nett von dir, dass du ihm das Käsebrot WIRKLICH gemacht hast, obwohl das Ganze eh nur ein Trick war.\""); break;
+            default: System.out.println(daimonDidNotUnderstand); break;
+        }
+    }
+
+}
+
+class Descriptions extends Story {
 
     //RAUM-BESCHREIBUNGEN UND DAIMON-KOMMENTARE
     //region
@@ -313,11 +198,11 @@ public class Story {
     static String daimonSolved000 = "DAIMON: \"Der Wärter ratzt einfach weiter …\"";
     static String solved000 = "Mit rostigem Knarzen schwingt die Zellentür auf, \ndu kannst nach Osten aus der Zelle heraustreten.\n";
     //Kerker
-    static String desc001 = "Der Wachraum liefert guten Blick auf die westliche Zelle – wenn man wach bleibt. Durch die offene Tür im Osten kriecht ein kalter Zug.";
+    static String desc001 = "Der Wachraum liefert guten Blick auf die westliche Zelle – wenn man wach bleibt. Durch die offene Tür im Osten kriecht ein kalter Zug. \nDer Wächter schläft immer noch.";
     static String descSolved001;
     static String daimon001 = "DAIMON: \"Sieh mal zu, dass du dein Zeug wiederbekommst. Die Königsgarde hat dir alles abgenommen, bevor man dich eingebuchtet hat.\"";
     static String daimonSolved001;
-    static String solved001 = "Platzhalter in Story-Klasse";
+    static String solved001 = "";
     //Kellergang
     static String desc002 = "Der Gang führt um die Ecke nach Norden, aus der Ferne hallen Geräusche.";
     static String descSolved002;
@@ -327,26 +212,27 @@ public class Story {
     //Offiziersquartier
     static String desc010 = "Platzhalter in Story-Klasse";
     static String descSolved010;
-    static String daimon010 = "DAIMON: \"Platzhalter in Story-Klasse\"";
+    static String daimon010 = "Daimon spuckt auf Aufseher Ottos Leiche.\nDAIMON: \"Das war für Alfred!\"";
     static String daimonSolved010;
     static String solved010 = "Platzhalter in Story-Klasse";
     static String enc010Intro;
     static String enc010Outro;
     //Vorratskammer
     static String desc011 = """
-    Eine Vielzahl von Gerüchen umgibt dich: Von der Decke hängen verschiedene Würste und Schinken,
-    ein angeschnittener Laib Käse liegt auf einem Tisch. Eine dir wohlbekannte Tasche wurde achtlos in die Ecke geworfen.
-    An der Wand sind Fässer mit Bier und Wein aufgestapelt. In einem Einmachglas schwimmt eine einzelne glitschige Kugel,
-    und in einer Schale ist eine Handvoll hellblaue Beeren übrig.""";
+            Eine Vielzahl von Gerüchen umgibt dich: Von der Decke hängen verschiedene Würste und Schinken,
+            ein angeschnittener Laib Käse liegt auf einem Tisch, daneben einige in Leinen geschlagene Brote.
+            Eine dir wohlbekannte Tasche wurde achtlos in die Ecke geworfen. An der Wand sind Fässer mit Bier und Wein aufgestapelt.
+            Ein Einmachglas ist mit Essiggurken gefüllt, in einem anderen schwimmt eine einzelne glitschige Kugel,
+            und in einer Schale ist eine Handvoll hellblaue Beeren übrig.""";
     static String descSolved011;
     static String daimon011 = "DAIMON: \"Eine Vorratskammer! Nimm alles mit, was nicht niet- und nagelfest ist!\"";
     static String daimonSolved011;
     static String solved011 = "Platzhalter in Story-Klasse";
     //Vorraum (UG)
     static String desc012 = """
-    Der Vorraum des Untergeschosses. Im Osten führt hinter einer Gittertür eine breite Steintreppe ins Erdgeschoss – Offiziere tragen einen Schlüssel.
-    Im Westen sitzt eine Tür zur "Vorratskammer" in der Wand. Im Norden geht es zur Kantine, aus der das Grölen einiger Wachen hallt.
-    """;
+            Der Vorraum des Untergeschosses. Im Osten führt hinter einer Gittertür eine breite Steintreppe ins Erdgeschoss – Offiziere tragen einen Schlüssel.
+            Im Westen sitzt eine Tür zur "Vorratskammer" in der Wand. Im Norden geht es zur Kantine, aus der das Grölen einiger Wachen hallt.
+            """;
     static String descSolved012;
     static String daimon012 = "DAIMON: \"Schau dir meine Arme an – dünn wie Zahnstocher! Ganz zu schweigen von den welken Lauchstangen, die dir aus den Schultern wachsen. \nWenn du den Wachen ohne Argumentationsverstärker vor den Knüppel kommst, machen sie Hexerkompott aus dir.\"";
     static String daimonB012 = "DAIMON: \"Jetzt hast du endlich SO einen Dämon. Also Mal, was hält dich noch – grau ist alle Theorie!\"";
@@ -367,12 +253,12 @@ public class Story {
     static String daimonSolved021;
     static String solved021 = "Platzhalter in Story-Klasse";
     //Wachkantine
-    static String desc022 = "Speise- und Aufenthaltsraum der Wachbelegschaft. Die langen Tische sind spartanisch gedeckt, \nnur auf einem lässt ein Blümchen in einem halbvollen Wassergals den Kopf hängen. \nÜber dem glimmenden Kaminfeuer hängt ein großer Topf";
+    static String desc022 = "Speise- und Aufenthaltsraum der Wachbelegschaft. Die langen Tische sind spartanisch gedeckt, \nnur auf einem lässt ein Blümchen in einem halbvollen Wassergals den Kopf hängen. \nÜber dem glimmenden Kaminfeuer hängt ein großer Topf.";
     static String descSolved022;
     static String daimon022 = "DAIMON: \"Du solltest zusehen, deinen Dämon zu heilen, bevor es weitergeht. \nAlso nicht mich – den mit der großen Axt.\"";
     static String daimonSolved022;
     static String solved022 = "Platzhalter in Story-Klasse";
-    static String enc022Intro = "Eine der Wachen hält ein Stück auseinandergerolltes Pergament in der Hand und liest wild gestikulierend daraus vor, die anderen kichern rotnasig. \nDramatisch reckt der Wächter seine Faust gen Zimmerdecke, während er eine ausgedachte Zauberformel rezitiert und seine Stimme immer höher schraubt, als würde sie sich vor Aufregung überschlagen. \nDabei wirkt er irgendwie wie … du! \nDie anderen Wachen brechen in haltloses Gelächter aus. Angesäuert stößt du die Tür auf, drei Augenpaare wenden sich überrascht zu dir um. ";
+    static String enc022Intro = "Eine der Wachen hält ein Stück auseinandergerolltes Pergament in der Hand und liest wild gestikulierend daraus vor, \ndie anderen kichern rotnasig. Dramatisch reckt der Wächter seine Faust gen Zimmerdecke, während er eine ausgedachte Zauberformel rezitiert \nund seine Stimme immer höher schraubt, als würde sie sich vor Aufregung überschlagen. \nDabei wirkt er irgendwie wie … du! Die anderen Wachen brechen in haltloses Gelächter aus. \nAngesäuert stößt du die Tür auf, drei Augenpaare wenden sich überrascht zu dir um. ";
     static String enc022Outro = "Röchelnd gehen die Wachen zu Boden. Im nächsten Leben wird ihnen das eine Lehre sein. Du sammelst die Schriftrolle auf.";
 
     static String desc100 = "Platzhalter unten in Story-Klasse";
@@ -488,11 +374,11 @@ public class Story {
             """;
 
     static String riddleDem01 = """
-                                Du hörst es hallen, das schreckliche Gebrüll aus den Gängen.
-                                Wenn das Ungeheuer dich in die Irre führt, findest du dann noch den Weg zurück?
-                                Schau hinab und suche den Pflasterstein, der vorher kam, immer ein Schritt nach dem anderen:
-                                ;ompzsitpd. e+zrmfrt E#vjzrt;
-                                """;
+            Du hörst es hallen, das schreckliche Gebrüll aus den Gängen.
+            Wenn das Ungeheuer dich in die Irre führt, findest du dann noch den Weg zurück?
+            Schau hinab und suche den Pflasterstein, der vorher kam, immer ein Schritt nach dem anderen:
+            ;ompzsitpd. e+zrmfrt E#vjzrt;
+            """;
     static String trueNameDem01 = "Minotauros, wütender Wächter";
 
     static String riddleDem02 = "";
@@ -536,8 +422,261 @@ public class Story {
     static String riddleViciousSeed = "PLATZHALTER: Wie lautet die Lösung?";
     static String formulaViciousSeed = "ÜbleSaat";
 
-
-    //Fähigkeiten von Dämonen mit flavor
-
-    //Kills mit Flavor
 }
+
+class Dialogue extends Story {
+
+    public static void speak() {
+        if (!Player.room.hasDialogue)
+            System.out.println("Niemand da.");
+        else {
+            switch (Player.room.puzzleID) {
+                case -1: dialogue000(); break;
+                case 1: dialogue001(); break;
+                case 20: dialogue020(); break;
+
+                default:
+                    System.out.println("DEBUG: Dialog nicht gefunden.");
+                    break;
+            }
+        }
+
+    }
+
+    public static void dialogue000() {
+        System.out.println("DAIMON: \"Den solltest du lieber schlafen lassen.\"");
+    }
+
+    public static void dialogue001() {
+        System.out.println("DAIMON: \"Den solltest du lieber schlafen lassen.\"");
+    }
+
+    public static void dialogue020() {
+        if (!Player.inv.contains(WorldBuilder.cheeseBread) && !Player.inv.contains(WorldBuilder.sandwich)) {
+            System.out.println("STIMME HINTER DER TÜR: \"Alfred? ALFRED! Schleichst du da draußen herum?");
+            System.out.println(
+                    """
+                            Wähle eine Antwort:
+                            [1]\t Nein.
+                            [2]\t … ja?
+                            [0]\t (Lieber schweigen)"""
+            );
+            Control.inputLine();
+            switch (input) {
+                case "1": System.out.println("STIMME HINTER DER TÜR: \"Alfred, du Witzbold. Bring mir lieber mein mittägliches Käsebrot. \nUnd zwar WIE ÜBRLICH, und ein wenig zackig!\""); break;
+                case "2": System.out.println("STIMME HINTER DER TÜR: \"Was Alfred, bist du dir nicht mal deiner eigenen Identität sicher? \nSei nicht so ein Waschlappen und bring mir mein mittägliches Käsebrot. Und zwar WIE ÜBRLICH, und ein wenig zackig!\""); break;
+                case "0": System.out.println("STIMME HINTER DER TÜR: \"Alfred? Aaaaalfred!\""); System.out.println("Du entfernst dich."); break;
+                default: System.out.println("STIMME HINTER DER TÜR: \"Alfred, mit dem Herumgedruckse wird das noch länger nichts mit der Beförderung. \nSei nicht so ein Waschlappen und bring mir mein mittägliches Käsebrot. Und zwar WIE ÜBRLICH, und ein wenig zackig!\""); break;
+            }
+        }
+        else if (Player.inv.contains(WorldBuilder.cheeseBread)) {
+            System.out.println("STIMME HINTER DER TÜR: \"Alfred? Hast du endlich mein Käsebrot? Hast du's auch richtig gemacht?");
+            System.out.println(
+                    """
+                            Wähle eine Antwort:
+                            [1]\t Nein.
+                            [2]\t Einmal Käsebrot – mit Käse. Und Brot. Was könnte man da falsch machen?
+                            [0]\t (Lieber schweigen)"""
+            );
+            Control.inputLine();
+            switch (input) {
+                case "1": System.out.println("STIMME HINTER DER TÜR: \"Dann mach mal hinne, Alfred!"); break;
+                case "2": System.out.println("STIMME HINTER DER TÜR: \"Man könnte zum Beispiel die Essiggurke vergessen, Alfred. \nMan könnte sie sogar STÄNDIG vergessen, wie du, Alfred. \nDeshalb schiebst du nach sechs Monaten auch immer noch Wachdienst. Und selbst den kriegst du nur, weil die Gefängniszellen von alleine zu bleiben, Alfred. \nUnd jetzt leg verdammt noch mal Essiggurke auf mein Käsebrot!\""); System.out.println("\nDAIMON: \"Uff, der ist ja fast so ein schlechter Chef wie du, Mal.\""); break;
+                case "0": System.out.println("STIMME HINTER DER TÜR: \"Alfred? Aaaaalfred!\""); System.out.println("Du entfernst dich."); break;
+                default: System.out.println("STIMME HINTER DER TÜR: \"Alfred, mit dem Herumgedruckse wird das noch länger nichts mit der Beförderung. \nSei nicht so ein Waschlappen und bring mir mein mittägliches Käsebrot. Und zwar WIE ÜBRLICH, und ein wenig zackig!\""); break;
+            }
+        }
+
+        else if (Player.inv.contains(WorldBuilder.sandwich)) {
+            System.out.println("STIMME HINTER DER TÜR: \"Alfred? Hast du endlich mein Käsebrot? Hast du's auch richtig gemacht?");
+            System.out.println(
+                    """
+                            Wähle eine Antwort:
+                            [1]\t Nein.
+                            [2]\t Einmal Käsebrot mit Essiggurke für den Chef.
+                            [0]\t (Lieber schweigen)"""
+            );
+            Control.inputLine();
+            switch (input) {
+                case "1":
+                    System.out.println("STIMME HINTER DER TÜR: \"Dann mach mal hinne, Alfred!");
+                    break;
+                case "2":
+                    WorldBuilder.castle[0][2][0].south = true;
+                    Item.consumeItem(WorldBuilder.sandwich);
+                    System.out.println("STIMME HINTER DER TÜR: \"Wurde auch Zeit.\"");
+                    System.out.println("Mit einem Klacken wird die Tür entriegelt, öffnet sich einen Spalt, eine Hand kommt hervor, greift sich das Käsebrot und zieht sich hinter die Tür zurück. \nDie Tür schließt sich wieder, doch das Schloss klickt nicht erneut.");
+                    break;
+                case "0":
+                    System.out.println("STIMME HINTER DER TÜR: \"Alfred? Aaaaalfred!\"");
+                    System.out.println("Du entfernst dich.");
+                    break;
+                default:
+                    System.out.println("STIMME HINTER DER TÜR: \"Alfred, mit dem Herumgedruckse wird das noch länger nichts mit der Beförderung. \nSei nicht so ein Waschlappen und bring mir mein mittägliches Käsebrot. Und zwar WIE ÜBRLICH, und ein wenig zackig!\"");
+                    break;
+            }
+        }
+
+    }
+
+}
+
+class Intro extends Story {
+
+    public static void intro() {
+        System.out.println(
+                """
+                        Dieses Mal ist der König zu weit gegangen!
+                        Du, Maleficarius Liebwerk, der größte Hexenmeister, Alchemist und Dämonologe im Diesseits, sollst "ethisch nicht mehr tragbar" sein?! Lächerlich!
+                        Wo stünde dieses kümmerliche Reich schon ohne deine Forschung? "Aber Meister Liebwerk, Ihr lÄsTeRt DeR ScHöPfUnG GoTtEs!". Pahh!
+                        
+                        Und dann haben sie dich in den Kerker geworfen. Bauerntrampel ohne Ambition oder Vorstellungskraft!
+                        Es wird Zeit, den König über kleiner Flamme zu rösten!
+                        """
+        );
+    }
+
+    public static void needHelp() {
+        System.out.println("Dein Kopf brodelt vor Wut. Du solltest erst einmal wieder zu klaren Gedanken kommen. Wie ging das Ganze hier noch gleich?");
+        System.out.println("Anleitung anzeigen? (j/n)");
+        System.out.print("> ");
+    }
+
+}
+
+class Tutorials extends Story {
+
+    public static void help() {
+        System.out.println(
+                """
+                        
+                        =================================================== BEFEHLE ================================================================                        
+                        Immer, wenn "Zeit zu handeln!" angezeigt wird, können folgende Befehle genutzt werden:
+                        
+                        Handlung\t\t\t| Eingabe\t\t\t| Effekt
+                        ----------------------------------------------------------------------------------------------------------------------------
+                        Daimon fragen\t\t| (D)aimon \t\t\t| Bittet das Teufelchen auf deiner Schulter um Hilfe. Tue dies regelmäßig!                        
+                        Sprechen\t\t\t| (S)prechen \t\t| Beginnt ein Gespräch mit einer Person im Raum, falls interessiert. 
+                        \t\t\t\t\t|\t\t\t\t\t|
+                        Inventar zeigen\t\t| (I)tems\t\t\t| Zeigt an, welche Gegenstände du besitzt (ohne alchemistische Zutaten).                        
+                        Nimm Item\t\t\t| N.[Item]\t\t\t| Legt einen erreichbaren Gegenstand ins Inventar, z. B. "n.Zellenschlüssel".
+                        Betrachte Item\t\t| B.[Item]\t\t\t| Zeigt eine genauere (B)eschreibung zu einem Gegenstand im Inventar an.
+                        Verwende Item \t\t| V.[Item]\t\t\t| Verwendet einen Gegenstand im Inventar, z. B. "v.Zellenschlüssel".
+                        \t\t\t\t\t|\t\t\t\t\t| \tVerwende Zauberschriftrollen, um einen neuen Zauber zu lernen.
+                        \t\t\t\t\t|\t\t\t\t\t| \tVerwende Beschwörungsformeln, um einen Dämon in deinen Dienst zu zwingen.
+                        \t\t\t\t\t|\t\t\t\t\t| \tVerwende Taschen oder Bündel, um die enthaltenen Gegenstände hervorzuholen.
+                        \t\t\t\t\t|\t\t\t\t\t| \tVerwende sonstige Items (Schlüssel usw.), um sie im aktuellen Raum anzuwenden.
+                        Kombiniere Items\t| K.[Item].[Item]\t| Kombiniert zwei Items aus dem Inventar miteinander,
+                          ("combine")\t\t| oder\t\t\t\t| \tz. B. "k.blaue Farbe.gelbe Farbe" -> Maleficarius erhält grüne Farbe.
+                        \t\t\t\t\t| C.[Item].[Item]\t| \tAuf gleiche Weise kannst du aus Alchemiezutaten Tränke brauen:
+                        \t\t\t\t\t|\t\t\t\t\t| \tKombiniere rote Zutaten für Heiltränke, blaue für Manatränke.
+                        \t\t\t\t\t|\t\t\t\t\t|
+                        Gehe in Richtung\t| G.[Richtung]\t\t| Versucht, den aktuellen Ort in gewählter Richtung zu verlassen.
+                          (Raum wechseln)\t| oder\t\t\t\t| \tRichtungen: Nord (N), Ost (O), Süd (S), West (W), hoch (h), runter (r),
+                          ("move")\t\t\t| M.[Richtung]\t\t| \tz. B. "G.Norden" oder einfach "g.n" / "m.n".
+                        \t\t\t\t\t|\t\t\t\t\t| \tJedes Stockwerk des Schlosses besteht aus 3x3 Räumen.
+                        \t\t\t\t\t|\t\t\t\t\t|
+                        Status anzeigen\t\t| Status\t\t\t| Zeigt den Stand von Lebens- und Magiepunkten an.
+                        Raum ansehen\t\t| (R)aum \t\t\t| Zeigt erneut Namen und Beschreibung des aktuellen Raums an.
+                        Zauberbuch\t\t\t| (Z)auber\t\t\t| Listet die von dir gelernten Zauber auf, nutze sie im Kampf.
+                        Alchemiezutaten\t\t| (A)lchemie\t\t| Zeigt deine alchemistischen Zutaten an, braue Tränke aus ihnen.
+                        Trankgurt\t\t\t| (T)ränke\t\t\t| Zeigt deine Tränke an, nutze sie AUSSERHALB des Kampfes per "v.[Trank]".
+                        Dämonen-Kompendium\t| Dämonen\t\t\t| Zeigt nähere Informationen zu den von dir gebundenen Dämonen an.
+                        \t\t\t\t\t|\t\t\t\t\t|\s
+                        Spielanleitung\t\t| (H)ilfe \t\t\t| Ruft diese Anleitung auf.
+                        Kampftutorial\t\t| Kampf \t\t\t| Ruft die Anleitung zum Kampfsystem auf.
+                        Rätselhilfe\t\t\t| Rätsel \t\t\t| Wenn du beim Lernen von Zaubern oder Binden von Dämonen nicht weiterkommst.
+                        \t\t\t\t\t|\t\t\t\t\t|\s
+                        Mitwirkende\t\t\t| Credits \t\t\t| Zeigt die Mitwirkenden.
+                        Beenden\t\t\t\t| Ende \t\t\t\t| Beendet das Spiel.
+                        
+                        Groß-/Kleinschreibung wird ignoriert, außer bei Zauber- und Beschwörungsformeln. Copy-paste ist hilfreich.
+                        Merkhilfe: Die mehrteiligen Befehle (mit ".") werden über die Tasten C bis M in der unteren Tastaturzeile angesteuert.
+                        ============================================================================================================================
+                        """
+        );
+    }
+
+    public static void hints() {
+        System.out.println(
+                """
+                        ============================================ HINWEISE ZU RÄTSELN ==============================================
+                        ==============================================================================================================="""
+        );
+    }
+
+    public static void answers() {
+        System.out.println("\n======================================= LÖSUNGEN DER RÄTSEL =======================================");
+        System.out.print("DÄMONEN\n");
+        System.out.print(WorldBuilder.dem01.name + ": \t");
+        System.out.println(Descriptions.trueNameDem01);
+        System.out.print(WorldBuilder.dem02.name + ": \t");
+        System.out.println(Descriptions.trueNameDem02);
+        System.out.print(WorldBuilder.dem03.name + ": \t");
+        System.out.println(Descriptions.trueNameDem03);
+        System.out.println();
+        System.out.print("ZAUBER");
+        System.out.print(WorldBuilder.bloodletting.name + ": \t");
+        System.out.println(Descriptions.formulaBloodletting);
+        System.out.print(WorldBuilder.ironMaiden.name + ": \t");
+        System.out.println(Descriptions.formulaIronMaiden);
+        System.out.print(WorldBuilder.lifeline.name + ": \t");
+        System.out.println(Descriptions.formulaLifeline);
+        System.out.print(WorldBuilder.soulreaper.name + ": \t");
+        System.out.println(Descriptions.formulaSoulreaper);
+        System.out.print(WorldBuilder.viciousSeed.name + ": \t");
+        System.out.println(Descriptions.formulaViciousSeed);
+        System.out.print(WorldBuilder.doom.name + ": \t");
+        System.out.println(Descriptions.formulaDoom);
+        System.out.println("\n===================================================================================================");
+    }
+
+    public static void helpBattle() {
+        System.out.println(
+                """
+                        ================================================= KAMPFTUTORIAL =================================================
+                        Maleficarius lässt einen Dämonen für sich kämpfen und unterstützt ihn mit Hexerei.
+                        Zu Beginn des Kampfes beschwörst du einen Dämon. Wenn du am Zug bist, wird eine Liste mit Optionen angezeigt.
+                        Oben stehen die Fähigkeiten des Dämons, unter der gestrichelten Linie die Möglichkeiten von Maleficarius.
+                        Nach deinem Dämon sind die Gegner an der Reihe. Soll Maleficarius handeln, kann er dies vor dem Dämon tun,
+                        ohne dass dessen Zug verfällt. Einen Zauber zu wirken, kostet MP.
+                        
+                        Beispiel für eine Kampfsituation:
+                        
+                        [NAME GEGNERTEAM]
+                        Soldat Max\t(53/80 HP) \t\t\t\t\t<--- Name und HP der Gegner
+                        Soldat Jörg\t(63/80 HP) – Üble Saat (2)\t<--- Auf Gegner wirkende Zauber und verbleibende Dauer
+                        Soldatin Franziska\t(80/80 HP)\t\s
+                        
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        
+                        [NAME DÄMON] \t(67/100 HP)\t\t<--- Name und Lebenspunkte des aktiven Dämons
+                        [1] [Einzelangriff]\t\t\t\t<--- Dämon-Angriff gegen einzelnen Gegner
+                        [2] [Flächenangriff]\t\t\t<--- Dämon-Angriff gegen alle Gegner
+                        [3] [Selfbuff]\t\t\t\t\t<--- Dämon wirkt eine Fähigkeit auf sich selbst
+                        ------------------------------------------------------------------------
+                        [4] Hexerei\t\t\t\t\t\t<--- Maleficarius wirkt einen Zauber
+                        [5] Beschwören\t\t\t\t\t<--- Maleficarius beschwört einen anderen Dämon
+                        >\s
+                        
+                        Neben ">" gibst du die Zahl der gewünschten Aktion ein.
+                        
+                        Den meisten Angriffen (Schwertern, Pfeilen, magischen Projektilen) kann mit gewisser Chance ausgewichen werden.
+                        Die Flüche eines Hexenmeisters binden sich an die Seele eines Lebewesens und verfehlen niemals.
+                        
+                        Jeder Dämon verfügt über drei Fähigkeiten: Einen Angriff gegen einen Gegner,
+                        einen Angriff gegen alle Gegner und eine Fähigkeit, die den Dämon selbst verstärkt.
+                        
+                        Du kannst einen neuen Dämon beschwören, anschließend sind aber zuerst die Gegner an der Reihe.
+                        Zu jedem Zeitpunkt kann nur ein Dämon im Kampf sein.
+                        
+                        Fallen die HP eines Dämons auf 0, kannst du einen neuen beschwören.
+                        Nach dem Kampf erhalten besiegte Dämonen 1 HP zurück.
+                        Wurden alle deine Dämonen besiegt, ist Maleficarius' Ende gekommen.
+                        =======================================================================================================
+                        """
+        );
+    }
+
+}
+

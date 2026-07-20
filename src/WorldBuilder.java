@@ -11,68 +11,67 @@ public class WorldBuilder {
     public static void buildCastle() {
 
         //UG, Reihe unten
-        castle[0][0][0] = new Room("Gefängniszelle", Story.desc000, Story.daimon000, Story.solved000, false, false, false, false, false, false, -1);
-        castle[0][0][0].reward = key000; castle[0][0][0].notLoot.put("schlüssel", "Ich komme nicht dran"); castle[0][0][0].descSolved = Story.descSolved000; castle[0][0][0].daimonSolved = Story.daimonSolved000;
+        castle[0][0][0] = new Room("Gefängniszelle", Descriptions.desc000, Descriptions.daimon000, Descriptions.solved000, false, false, false, false, false, false, true, -1);
+        castle[0][0][0].reward = key000; castle[0][0][0].notLoot.put("schlüssel", "Ich komme nicht dran"); castle[0][0][0].descSolved = Descriptions.descSolved000; castle[0][0][0].daimonSolved = Descriptions.daimonSolved000;
         //.notLoot.put(): Key darf nur Kleinbuchstaben verwenden, sonst scheitert Abgleich!
-        castle[0][0][1] = new Room("Kerker", Story.desc001, Story.daimon001, Story.solved001, false, true, false, true, false, false, 1);
+        castle[0][0][1] = new Room("Kerker", Descriptions.desc001, Descriptions.daimon001, Descriptions.solved001, false, true, false, true, false, false, true, 1);
         castle[0][0][1].notLoot.put("zeug", "Das ist leider nicht hier.");
-        castle[0][0][2] = new Room("Zugiger Kellergang", Story.desc002, Story.daimon002, Story.solved002, true, false, false, true, false, false, 2);
+        castle[0][0][2] = new Room("Zugiger Kellergang", Descriptions.desc002, Descriptions.daimon002, Descriptions.solved002, true, false, false, true, false, false, false, 2);
         //    [z][y][x]
 
         //UG, Reihe Mitte
-        castle[0][1][0] = new Room("Offiziersquartier", Story.desc010, Story.daimon010, Story.solved010, true, false, false, false, false, false, 10);
+        castle[0][1][0] = new Room("Offiziersquartier", Descriptions.desc010, Descriptions.daimon010, Descriptions.solved010, true, false, false, false, false, false, false, 10);
         castle[0][1][0].encounter = enc010; castle[0][1][0].loot.add(alche51); castle[0][1][0].loot.add(scrollViciousSeed);
-        castle[0][1][1] = new Room("Vorratskammer", Story.desc011, Story.daimon011, Story.solved011, false, true, false, false, false, false, 11);
-        castle[0][1][1].loot.add(bag011); castle[0][1][1].loot.add(alche11); castle[0][1][1].loot.add(alche21); castle[0][1][1].notLoot.put("wurst", "Ich bin nicht hungrig.");
-        castle[0][1][1].notLoot.put("würste", "Ich bin nicht hungrig."); castle[0][1][1].notLoot.put("schinken", "Ich bin nicht hungrig."); castle[0][1][1].notLoot.put("käse", "Ich bin nicht hungrig.");
-        castle[0][1][1].notLoot.put("bier", "Jetzt nicht.");castle[0][1][1].notLoot.put("wein", "Jetzt nicht.");
-        castle[0][1][2] = new Room("Vorraum (UG)", Story.desc012, Story.daimon012, Story.solved012, true, false, true, true, false, false, 12);
-        castle[0][1][2].daimonB = Story.daimonB012;
+        castle[0][1][1] = new Room("Vorratskammer", Descriptions.desc011, Descriptions.daimon011, Descriptions.solved011, false, true, false, false, false, false, false, 11);
+        castle[0][1][1].loot.add(bag011); castle[0][1][1].loot.add(alche11); castle[0][1][1].loot.add(alche21); castle[0][1][1].loot.add(bread); castle[0][1][1].loot.add(cheese); castle[0][1][1].loot.add(pickle);
+        castle[0][1][1].notLoot.put("wurst", "Danach ist mir gerade nicht."); castle[0][1][1].notLoot.put("würste", "Danach ist mir gerade nicht."); castle[0][1][1].notLoot.put("schinken", "Danach ist mir gerade nicht."); castle[0][1][1].notLoot.put("bier", "Jetzt nicht.");castle[0][1][1].notLoot.put("wein", "Jetzt nicht.");
+        castle[0][1][2] = new Room("Vorraum (UG)", Descriptions.desc012, Descriptions.daimon012, Descriptions.solved012, true, false, true, true, false, false, false, 12);
+        castle[0][1][2].daimonB = Descriptions.daimonB012;
 
         //UG, Reihe oben
-        castle[0][2][0] = new Room("Waschraum", Story.desc020, Story.daimon020, Story.solved020, false, true, true, false, false, false, 20);
-        castle[0][2][1] = new Room("Schlafsaal", Story.desc021, Story.daimon021, Story.solved021, false, true, false, true, false, false, 21);
-        castle[0][2][2] = new Room("Wachkantine", Story.desc022, Story.daimon022, Story.solved022, false, false, true, true, false, false, 22);
+        castle[0][2][0] = new Room("Waschraum", Descriptions.desc020, Descriptions.daimon020, Descriptions.solved020, false, true, false, false, false, false, true, 20);
+        castle[0][2][1] = new Room("Schlafsaal", Descriptions.desc021, Descriptions.daimon021, Descriptions.solved021, false, true, false, true, false, false, false, 21);
+        castle[0][2][2] = new Room("Wachkantine", Descriptions.desc022, Descriptions.daimon022, Descriptions.solved022, false, false, true, true, false, false, false, 22);
         castle[0][2][2].encounter = enc022; castle[0][2][2].loot.add(alche12); castle[0][2][2].notLoot.put("topf", "Zu schwer. Zu schmutzig.");
 
         //EG, Reihe unten
-        castle[1][0][0] = new Room("", Story.desc100, Story.daimon100, Story.solved100, false, false, false, false, false, false, 100);
-        castle[1][0][1] = new Room("", Story.desc101, Story.daimon101, Story.solved101, false, false, false, false, false, false, 101);
-        castle[1][0][2] = new Room("", Story.desc102, Story.daimon102, Story.solved102, false, false, false, false, false, false, 102);
+        castle[1][0][0] = new Room("", Descriptions.desc100, Descriptions.daimon100, Descriptions.solved100, false, false, false, false, false, false, false, 100);
+        castle[1][0][1] = new Room("", Descriptions.desc101, Descriptions.daimon101, Descriptions.solved101, false, false, false, false, false, false, false, 101);
+        castle[1][0][2] = new Room("", Descriptions.desc102, Descriptions.daimon102, Descriptions.solved102, false, false, false, false, false, false, false, 102);
 
         //EG, Reihe Mitte
-        castle[1][1][0] = new Room("", Story.desc110, Story.daimon110, Story.solved110, false, false, false, false, false, false, 110);
-        castle[1][1][1] = new Room("", Story.desc111, Story.daimon111, Story.solved111, false, false, false, false, false, false, 111);
-        castle[1][1][2] = new Room("", Story.desc112, Story.daimon112, Story.solved112, false, false, false, false, false, false, 112);
+        castle[1][1][0] = new Room("", Descriptions.desc110, Descriptions.daimon110, Descriptions.solved110, false, false, false, false, false, false, false, 110);
+        castle[1][1][1] = new Room("", Descriptions.desc111, Descriptions.daimon111, Descriptions.solved111, false, false, false, false, false, false, false, 111);
+        castle[1][1][2] = new Room("", Descriptions.desc112, Descriptions.daimon112, Descriptions.solved112, false, false, false, false, false, false, false, 112);
 
         //EG, Reihe oben
-        castle[1][2][0] = new Room("", Story.desc120, Story.daimon120, Story.solved120, false, false, false, false, false, false, 120);
-        castle[1][2][1] = new Room("", Story.desc121, Story.daimon121, Story.solved121, false, false, false, false, false, false, 121);
-        castle[1][2][2] = new Room("", Story.desc122, Story.daimon122, Story.solved122, false, false, false, false, false, false, 122);
+        castle[1][2][0] = new Room("", Descriptions.desc120, Descriptions.daimon120, Descriptions.solved120, false, false, false, false, false, false, false, 120);
+        castle[1][2][1] = new Room("", Descriptions.desc121, Descriptions.daimon121, Descriptions.solved121, false, false, false, false, false, false, false, 121);
+        castle[1][2][2] = new Room("", Descriptions.desc122, Descriptions.daimon122, Descriptions.solved122, false, false, false, false, false, false, false, 122);
 
         //OG, Reihe unten
-        castle[2][0][0] = new Room("", Story.desc200, Story.daimon200, Story.solved200, false, false, false, false, false, false, 200);
-        castle[2][0][1] = new Room("", Story.desc201, Story.daimon201, Story.solved201, false, false, false, false, false, false, 201);
-        castle[2][0][2] = new Room("", Story.desc202, Story.daimon202, Story.solved202, false, false, false, false, false, false, 202);
+        castle[2][0][0] = new Room("", Descriptions.desc200, Descriptions.daimon200, Descriptions.solved200, false, false, false, false, false, false, false, 200);
+        castle[2][0][1] = new Room("", Descriptions.desc201, Descriptions.daimon201, Descriptions.solved201, false, false, false, false, false, false, false, 201);
+        castle[2][0][2] = new Room("", Descriptions.desc202, Descriptions.daimon202, Descriptions.solved202, false, false, false, false, false, false, false, 202);
 
         //OG, Reihe Mitte
-        castle[2][1][0] = new Room("", Story.desc210, Story.daimon210, Story.solved210, false, false, false, false, false, false, 210);
-        castle[2][1][1] = new Room("", Story.desc211, Story.daimon211, Story.solved211, false, false, false, false, false, false, 211);
-        castle[2][1][2] = new Room("", Story.desc212, Story.daimon212, Story.solved212, false, false, false, false, false, false, 212);
+        castle[2][1][0] = new Room("", Descriptions.desc210, Descriptions.daimon210, Descriptions.solved210, false, false, false, false, false, false, false, 210);
+        castle[2][1][1] = new Room("", Descriptions.desc211, Descriptions.daimon211, Descriptions.solved211, false, false, false, false, false, false, false, 211);
+        castle[2][1][2] = new Room("", Descriptions.desc212, Descriptions.daimon212, Descriptions.solved212, false, false, false, false, false, false, false, 212);
 
         //OG, Reihe oben
-        castle[2][2][0] = new Room("", Story.desc220, Story.daimon220, Story.solved220, false, false, false, false, false, false, 220);
-        castle[2][2][1] = new Room("TESTRAUM A", Story.desc221, Story.daimon221, Story.solved221, false, true, false, false, false, false, 221);
+        castle[2][2][0] = new Room("", Descriptions.desc220, Descriptions.daimon220, Descriptions.solved220, false, false, false, false, false, false, false, 220);
+        castle[2][2][1] = new Room("TESTRAUM A", Descriptions.desc221, Descriptions.daimon221, Descriptions.solved221, false, true, false, false, false, false, false, 221);
         castle[2][2][1].encounter = encStandard;
-        castle[2][2][2] = new Room("TESTRAUM B", Story.desc222, Story.daimon222, Story.solved222, false, false, false, true, false, false, 222);
+        castle[2][2][2] = new Room("TESTRAUM B", Descriptions.desc222, Descriptions.daimon222, Descriptions.solved222, false, false, false, true, false, false, false, 222);
     }
 
 
     //BESCHWÖRUNGSFORMELN
-    static Evocation evoc00 = new Evocation("Beschwörungsformel des vertrauten Geistes", "Schriftrolle", Story.riddleDem00, "Daimon");
-    static Evocation evoc01 = new Evocation("Beschwörungsformel des gehörnten Königs", "Schriftrolle", Story.riddleDem01, "Minotauros");
-    static Evocation evoc02 = new Evocation("Beschwörungsformel der entflammten Dame", "Schriftrolle", Story.riddleDem02, "Efreet");
-    static Evocation evoc03 = new Evocation("Beschwörungsformel des Abgründigen", "Schriftrolle", Story.riddleDem03, "Abaddon");
+    static Evocation evoc00 = new Evocation("Beschwörungsformel des vertrauten Geistes", "Schriftrolle", Descriptions.riddleDem00, "Daimon");
+    static Evocation evoc01 = new Evocation("Beschwörungsformel des gehörnten Königs", "Schriftrolle", Descriptions.riddleDem01, "Minotauros");
+    static Evocation evoc02 = new Evocation("Beschwörungsformel der entflammten Dame", "Schriftrolle", Descriptions.riddleDem02, "Efreet");
+    static Evocation evoc03 = new Evocation("Beschwörungsformel des Abgründigen", "Schriftrolle", Descriptions.riddleDem03, "Abaddon");
 
     //DÄMONEN
     static Minotauros dem01 = new Minotauros();
@@ -120,12 +119,12 @@ public class WorldBuilder {
 
 
     //SCHRIFTROLLEN
-    static Spellscroll scrollBloodletting = new Spellscroll("Zauberschriftrolle \"Grundlagen der Blutmagie\"", "", Story.riddleBloodletting, "Aderlass");
-    static Spellscroll scrollDoom = new Spellscroll("Zauberschriftrolle \"Untergang\"", "", Story.riddleDoom, "Untergang");
-    static Spellscroll scrollIronMaiden = new Spellscroll("Zauberschriftrolle \"Eiserne Jungfrau\"", "", Story.riddleIronMaiden, "Eiserne Jungfrau");
-    static Spellscroll scrollLifeline = new Spellscroll("Zauberschriftrolle \"Lebenslinie\"", "", Story.riddleLifeline, "Lebenslinie");
-    static Spellscroll scrollSoulreaper = new Spellscroll("Zauberschriftrolle \"Seelendieb\"", "", Story.riddleSoulreaper, "Seelendieb");
-    static Spellscroll scrollViciousSeed = new Spellscroll("Zauberschriftrolle \"Üble Saat\"", "", Story.riddleViciousSeed, "Üble Saat");
+    static Spellscroll scrollBloodletting = new Spellscroll("Zauberschriftrolle \"Grundlagen der Blutmagie\"", "", Descriptions.riddleBloodletting, "Aderlass");
+    static Spellscroll scrollDoom = new Spellscroll("Zauberschriftrolle \"Untergang\"", "", Descriptions.riddleDoom, "Untergang");
+    static Spellscroll scrollIronMaiden = new Spellscroll("Zauberschriftrolle \"Eiserne Jungfrau\"", "", Descriptions.riddleIronMaiden, "Eiserne Jungfrau");
+    static Spellscroll scrollLifeline = new Spellscroll("Zauberschriftrolle \"Lebenslinie\"", "", Descriptions.riddleLifeline, "Lebenslinie");
+    static Spellscroll scrollSoulreaper = new Spellscroll("Zauberschriftrolle \"Seelendieb\"", "", Descriptions.riddleSoulreaper, "Seelendieb");
+    static Spellscroll scrollViciousSeed = new Spellscroll("Zauberschriftrolle \"Üble Saat\"", "", Descriptions.riddleViciousSeed, "Üble Saat");
 
     //ZAUBER
     static Spell bloodletting = new Bloodletting();
@@ -142,11 +141,16 @@ public class WorldBuilder {
     static Key bagAlche = new Key("Alchemiebeutel", "", "Ein samtener Beutel, in dem du all deine alchemistischen Zutaten aufbewahrst: \n", 0, 0);
     static Key bagPotions = new Key("Trankgurt", "", "Ein System aus Lederriemen, mit denen du Trankfläschchen am Gürtel befestigen kannst. \n", 0, 0);
     static Key bookSpells = new Key("Zauberbuch", "", "Ein ledergebundener Foliant, in dem all deine Zauber verzeichnet sind: \n", 0, 0);
-    static Key bookBlackArts = new Key("\"Die schwarzen Künste\"", "", Story.bookBlackArtsDesc, 0, 0);
+    static Key bookBlackArts = new Key("\"Die schwarzen Künste\"", "", Descriptions.bookBlackArtsDesc, 0, 0);
     static Key key000 = new Key("Zellenschlüssel", "Schlüssel", "Ein rostiger Klumpen von Schlüssel.", -1, 0);
     static Key key012 = new Key("Kerkerschlüssel", "Schlüssel", "Der Schlüssel zum Kerker … und AUS dem Kerker.", 12, 0);
-    static Key key999 = new Key("Goldklumpen", "", "Alechimistisch betrachtet wertlos.", 0, 0);
     static Key bag011 = new Key("Maleficarius' Tasche", "Tasche", "Eine robuste Stofftasche, in der Maleficarius seine Schriftrollenbehälter transportiert.", 0, -1);
+    static Key bread = new Key("Scheibe kerniges Bauernbrot", "Brot", "Fluffiges Brot mit knuspernder Kruste. Malzig im Geschmack und reich an Ballaststoffen.", 0, 12);
+    static Key cheese = new Key("Scheibe nussiger Bergkäse", "Käse", "Nussig-cremiger Käse. Vollmundig und sehr nahrhaft.", 0, 12);
+    static Key cheeseBread = new Key("Käsebrot", "", "Bestechend einfach und beinahe perfekt.", 0, 13);
+    static Key pickle = new Key("Essiggurke", "Essiggurke", "Süß-sauer eingelegt mit Senfkörnern und Dill. Rundet geschmacklich so einiges gelungen ab.", 0, 13);
+    static Key sandwich = new Key("Käsebrot mit Essiggurke", "Käsebrot mit Essiggurke", "Ein herzhaft-würziges Käsebrot mit Essiggurke. Eine ideale Zwischenmahlzeit.", 0, 0);    // puzzleID 0, da Item in Dialog verwendet
+    static Key gold999 = new Key("Goldklumpen", "", "Alechimistisch betrachtet wertlos.", 0, 0);
 
     //Startitems
     public static void giveStartItems() {
@@ -161,7 +165,7 @@ public class WorldBuilder {
 
     //GEGNER
     //region
-    static Enemy guard01 = new Guard("Wache Karl", "dem Knüppel", 50, 5, 5, 0);
+    static Enemy guard01 = new Guard("Wache Alfred", "dem Knüppel", 50, 5, 5, 0);
     static Enemy guard02 = new Guard("Wache Helga", "dem Knüppel", 50, 5, 5, 0);
     static Enemy guard03 = new Guard("Wache Wenzel", "dem Knüppel", 50, 5, 5, 0);
     static Enemy guard04 = new Guard("Wache Bertha", "dem Knüppel", 50, 5, 5, 0);
@@ -267,10 +271,10 @@ public class WorldBuilder {
 
 
     // ENCOUNTER
-    static Encounter encStandard = new Encounter("Testwachen", true, guard01, guard02, guard03, "Achtung, Testüberfall!", "Achtung, Testüberfall beendet!", key999, null);
-    static Encounter enc022 = new Encounter("Angeheiterte Wachen", true, guard01, guard02, guard03, Story.enc022Intro, Story.enc022Outro, scrollLifeline, null);
-    static Encounter enc010 = new Encounter("Aufseher Otto", false, dog01, soldier01, dog02, Story.enc010Intro, Story.enc010Outro, key012, null);
-    static Encounter enc012 = new Encounter("Dame Beatrix", false, guard04, knight01, guard05, Story.enc012Intro, Story.enc012Outro, evoc02, alche52);
+    static Encounter encStandard = new Encounter("Testwachen", true, guard01, guard02, guard03, "Achtung, Testüberfall!", "Achtung, Testüberfall beendet!", gold999, null);
+    static Encounter enc022 = new Encounter("Angeheiterte Wachen", true, guard01, guard02, guard03, Descriptions.enc022Intro, Descriptions.enc022Outro, scrollLifeline, null);
+    static Encounter enc010 = new Encounter("Aufseher Otto", false, dog01, soldier01, dog02, Descriptions.enc010Intro, Descriptions.enc010Outro, key012, null);
+    static Encounter enc012 = new Encounter("Dame Beatrix", false, guard04, knight01, guard05, Descriptions.enc012Intro, Descriptions.enc012Outro, evoc02, alche52);
 
     //static Encounter enc012 = new Encounter();
 

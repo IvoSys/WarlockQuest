@@ -15,15 +15,15 @@ public class WarlockQuest {
         WorldBuilder.giveStartItems();
 
         ASCII.title();
-        Story.intro();
-        Story.needHelp();
+        Intro.intro();
+        Intro.needHelp();
         input = sc.nextLine().toLowerCase().trim();
         if (input.contains("j")){
-            Story.help();
+            Tutorials.help();
             Control.enterToContinue();
         }
         System.out.println();
-        Story.daimonIntro();
+        Daimon.intro();
 
         gameLoop();
 
@@ -43,7 +43,9 @@ public class WarlockQuest {
             }
             Control.cta();
             if (input.equals("d") || input.equals("daimon")){
-                Player.daimon();                                                                                        // Daimon
+                Daimon.speak();                                                                                         // Daimon
+            } else if (input.equals("s") || input.equals("sprechen")){
+                Dialogue.speak();                                                                                       // Sprechen
             } else if (input.equals("i") || input.equals("items")){
                 Player.showInv();                                                                                       // Inventar
             } else if (input.contains(".")) {
@@ -71,7 +73,7 @@ public class WarlockQuest {
                 } else {
                     System.out.println("Du redest wirr!");
                 }
-            } else if (input.equals("s") || input.equals("status")){
+            } else if (input.equals("status")){
                 Player.showStatus();                                                                                    // Status
             } else if (input.equals("z") || input.equals("zauber")){
                 Player.showSpells();                                                                                    // Zauberbuch
@@ -84,9 +86,9 @@ public class WarlockQuest {
             } else if (input.equals("dämonen") || input.equals("dämon")){
                 Demon.showDemons();                                                                                     // Kompendium infernale
             } else if (input.equals("h") || input.equals("hilfe")){
-                Story.help();                                                                                           // Hilfe
+                Tutorials.help();                                                                                           // Hilfe
             } else if (input.equals("kampf")){
-                Story.helpBattle();                                                                                     // Kampftutorial
+                Tutorials.helpBattle();                                                                                     // Kampftutorial
                 //} else if (input.equals("cleanup")){
                 //    Player.cleanUpInv();                                                                              // Inventar aufräumen
             } else if (input.equals("credits")) {
@@ -94,7 +96,7 @@ public class WarlockQuest {
             } else if (input.equals("ende")){
                 Control.quit();                                                                                         // Beenden
             } else if (input.equals("gib mir einfach die lösungen")) {
-                Story.answers();
+                Tutorials.answers();
             //} else if (input.equals("ich bin der geist, der stets verneint!")) {
             } else if (input.equals("cheat")) {
                 Player.cheatAllDemsAndSpells();
