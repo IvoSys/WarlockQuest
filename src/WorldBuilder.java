@@ -10,28 +10,44 @@ public class WorldBuilder {
     //Methode: Schloss bauen
     public static void buildCastle() {
 
-        //UG, Reihe unten
+        //Zelle
+        //    [z][y][x]
         castle[0][0][0] = new Room("Gefängniszelle", Descriptions.desc000, Descriptions.daimon000, false, false, false, false, false, false, true, -1);
-        castle[0][0][0].reward = key000; castle[0][0][0].notLoot.put("schlüssel", "Ich komme nicht dran"); castle[0][0][0].descSolved = Descriptions.descSolved000; castle[0][0][0].daimonSolved = Descriptions.daimonSolved000;
+        castle[0][0][0].reward = key000; castle[0][0][0].notLoot.put("schlüssel", "Ich komme nicht dran"); castle[0][0][0].solvedText = Descriptions.solved000; castle[0][0][0].descSolved = Descriptions.descSolved000; castle[0][0][0].daimonSolved = Descriptions.daimonSolved000;
         //.notLoot.put(): Key darf nur Kleinbuchstaben verwenden, sonst scheitert Abgleich!
+
+        //Kerker
         castle[0][0][1] = new Room("Kerker", Descriptions.desc001, Descriptions.daimon001, false, true, false, true, false, false, true, 1);
         castle[0][0][1].notLoot.put("zeug", "Das ist leider nicht hier.");
-        castle[0][0][2] = new Room("Zugiger Kellergang", Descriptions.desc002, Descriptions.daimon002, true, false, false, true, false, false, false, 2);
-        castle[0][0][2].loot.add(WorldBuilder.rock);
-        //    [z][y][x]
 
-        //UG, Reihe Mitte
+        //Kellergang
+        castle[0][0][2] = new Room("Zugiger Kellergang", Descriptions.desc002, Descriptions.daimon002, true, false, false, true, false, false, false, 2);
+        castle[0][0][2].loot.add(WorldBuilder.rock); castle[0][0][2].descB = Descriptions.descB002;
+
+        //Offizier
         castle[0][1][0] = new Room("Offiziersquartier", Descriptions.desc010, Descriptions.daimon010, true, false, false, false, false, false, false, 10);
-        castle[0][1][0].encounter = enc010; castle[0][1][0].loot.add(alche51); castle[0][1][0].loot.add(scrollViciousSeed);
+        castle[0][1][0].encounter = enc010; castle[0][1][0].loot.add(alche51); castle[0][1][0].loot.add(scrollDoom); castle[0][1][0].notLoot.put("waffe", "Stichwaffen sind etwas für Straßenräuber."); castle[0][1][0].notLoot.put("schwert", "Stichwaffen sind etwas für Straßenräuber.");
+        castle[0][1][0].notLoot.put("knüppel", "Schlagwaffen sind etwas für Kneipenschläger."); castle[0][1][0].notLoot.put("schlagstock", "Schlagwaffen sind etwas für Kneipenschläger."); castle[0][1][0].notLoot.put("schild", "Mit so einer Platte am Arm könnte ich keine Zauber wirken.");
+        castle[0][1][0].notLoot.put("rüstung", "In so steifem Leder könnte ich keine Zauber wirken.");
+
+        //Vorratskammer
         castle[0][1][1] = new Room("Vorratskammer", Descriptions.desc011, Descriptions.daimon011, false, true, false, false, false, false, false, 11);
         castle[0][1][1].loot.add(bag011); castle[0][1][1].loot.add(alche11); castle[0][1][1].loot.add(alche21); castle[0][1][1].loot.add(bread); castle[0][1][1].loot.add(cheese); castle[0][1][1].loot.add(pickle);
         castle[0][1][1].notLoot.put("wurst", "Danach ist mir gerade nicht."); castle[0][1][1].notLoot.put("würste", "Danach ist mir gerade nicht."); castle[0][1][1].notLoot.put("schinken", "Danach ist mir gerade nicht."); castle[0][1][1].notLoot.put("bier", "Jetzt nicht.");castle[0][1][1].notLoot.put("wein", "Jetzt nicht.");
-        castle[0][1][2] = new Room("Vorraum (UG)", Descriptions.desc012, Descriptions.daimon012, true, false, true, true, false, false, false, 12);
-        castle[0][1][2].daimonB = Descriptions.daimonB012;
 
-        //UG, Reihe oben
-        castle[0][2][0] = new Room("Waschraum", Descriptions.desc020, Descriptions.daimon020, false, true, false, false, false, false, true, 20);
+        //Vorraum
+        castle[0][1][2] = new Room("Vorraum", Descriptions.desc012, Descriptions.daimon012, true, false, true, true, false, false, false, 12);
+        castle[0][1][2].daimonB = Descriptions.daimonB012;  castle[0][1][2].descB = Descriptions.descB012;
+
+        //Badestube
+        castle[0][2][0] = new Room("Badestube", Descriptions.desc020, Descriptions.daimon020, false, true, false, false, false, false, true, 20);
+        castle[0][2][0].notLoot.put("wasser", "Ich mache mir Sorgen wegen der Hygiene."); castle[0][2][0].notLoot.put("haar", "Ich mache mir Sorgen wegen der Hygiene."); castle[0][2][0].notLoot.put("haare", "Ich mache mir Sorgen wegen der Hygiene."); castle[0][2][0].notLoot.put("haarbüschel", "Ich mache mir Sorgen wegen der Hygiene.");
+
+        //Schlafsaal
         castle[0][2][1] = new Room("Schlafsaal", Descriptions.desc021, Descriptions.daimon021, false, true, false, true, false, false, false, 21);
+        castle[0][2][1].loot.add(alche22);
+
+        //Kantine
         castle[0][2][2] = new Room("Wachkantine", Descriptions.desc022, Descriptions.daimon022, false, false, true, true, false, false, false, 22);
         castle[0][2][2].encounter = enc022; castle[0][2][2].loot.add(alche12); castle[0][2][2].notLoot.put("topf", "Zu schwer. Zu schmutzig.");
 
@@ -95,7 +111,7 @@ public class WorldBuilder {
     static Ingredience alche16 = new Ingredience("", "", "", 1);
     //Blau, ergibt Manatränke
     static Ingredience alche21 = new Ingredience("Mondbeeren", "Beeren", "Eisblaue Früchte, die den Geist erfrischen.", 2);
-    static Ingredience alche22 = new Ingredience("Mitternachtskraut", "", "Fahlblaue Blätter, die sich lieber dem Mondlicht als der Sonne zuwenden.", 2);
+    static Ingredience alche22 = new Ingredience("Mitternachtskraut", "", "Fahlblaue Blätter, die sich lieber dem Mondlicht als der Sonne zuwenden. \nGeschätzt von denjenigen, die Nachts wach bleiben müssen.", 2);
     //Gelb, frei (Wiederbelebung?)
     //gelb static Ingredience alche31 = new Ingredience("", "", "", "", 3);
     //gelb static Ingredience alche32 = new Ingredience("", "", "", "", 3);
@@ -103,7 +119,7 @@ public class WorldBuilder {
     //grün static Ingredience alche41 = new Ingredience("", "", "", "", 4);
     //grün static Ingredience alche42 = new Ingredience("", "", "", "", 4);
     //Schwarz, ergibt Level-up-Tränke
-    static Ingredience alche51 = new Ingredience("Maluswurzel", "", "Das gewundene dunkle Wurzelwerk der Crassula ovata.", 5);
+    static Ingredience alche51 = new Ingredience("Maluswurzel", "Wurzel", "Das gewundene dunkle Wurzelwerk der Crassula ovata.", 5);
     static Ingredience alche52 = new Ingredience("Tollkirsche", "", "In falschen Händen tödlich.", 5);
 
 

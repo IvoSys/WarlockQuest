@@ -1,13 +1,15 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class WarlockQuest {
 
-    static String version = "v0.3.0";
+    static String version = "v0.4.0";
     static boolean running = true;
 
     static Scanner sc = new Scanner(System.in);
     static String input;
     static String[] inputSplit;
+
 
     static void main(String[] args){
 
@@ -20,7 +22,7 @@ public class WarlockQuest {
         input = sc.nextLine().toLowerCase().trim();
         if (input.contains("j")){
             Tutorials.help();
-            Control.enterToContinue();
+            enterToContinue();
         }
         System.out.println();
         Daimon.intro();
@@ -33,15 +35,17 @@ public class WarlockQuest {
     public static void gameLoop(){
         while (running){
             Player.room = WorldBuilder.castle[Player.curZ][Player.curY][Player.curX];
+            if (Player.curZ >= 1)
+                demoFinished();
             if (Player.moved) {
                 Room.describe();
                 if (Player.room.encounter != null && !Player.room.encounterBeaten) {
-                    Battle.encounter = Player.room.encounter;
                     Battle.fight();
                 }
                 Player.moved = false;
             }
-            Control.cta();
+            System.out.print("\nZeit zu handeln! \n> ");
+            WarlockQuest.input = WarlockQuest.sc.nextLine().toLowerCase().trim();
             if (input.equals("d") || input.equals("daimon")){
                 Daimon.speak();                                                                                         // Daimon
             } else if (input.equals("s") || input.equals("sprechen")){
@@ -94,7 +98,7 @@ public class WarlockQuest {
             } else if (input.equals("credits")) {
                 credits();                                                                                              // Credits
             } else if (input.equals("ende")){
-                Control.quit();                                                                                         // Beenden
+                quit();                                                                                                 // Beenden
             } else if (input.equals("gib mir einfach die lösungen")) {
                 Tutorials.answers();
             //} else if (input.equals("ich bin der geist, der stets verneint!")) {
@@ -103,6 +107,16 @@ public class WarlockQuest {
             } else {
                 System.out.println("Sprich deutlich!");
             }
+        }
+    }
+
+    public static void enterToContinue() {
+        System.out.println("(Weiter mit Eingabetaste)");
+        try {
+            System.in.read();
+        }
+        catch(Exception e){
+            System.out.println("ERROR: " + e.getMessage());
         }
     }
 
@@ -116,4 +130,17 @@ public class WarlockQuest {
         System.out.println("Herzlichen Dank an die Betatester \nfür die wertvollen Rückmeldungen:");
         System.out.println("- ");
     }
+
+    public static void quit(){
+        System.out.println("\n===================\nAUF WIEDERSEHEN");
+        System.exit(0);
+    }
+
+    public static void demoFinished(){
+        ASCII.congrats();
+        System.out.println("Die Demo von Warlock Quest endet hier – vielen Dank fürs Spielen!");
+        System.out.println("Komm gerne für die Vollversion zurück, wenn sie fertig ist.");
+        System.exit(0);
+    }
+
 }

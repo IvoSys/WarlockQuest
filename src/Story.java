@@ -9,6 +9,13 @@ public class Story {
     static String daimonDidNotUnderstand = "DAIMON: \"Was nuschelst du da in deinen Ziegenbart?\" \n";
 
 
+
+    public static void inputLine() {
+        System.out.print("> ");
+        Story.input = Story.sc.nextLine().toLowerCase().trim();
+    }
+
+
     //Fähigkeiten von Dämonen mit flavor
 
     //Kills mit Flavor
@@ -160,20 +167,20 @@ class Daimon extends Story {
     public static void forAlfred010() {
         System.out.println("""
             Wähle eine Antwort:
-            [1] … Alfred haben wir vorhin selbst umgebracht.
+            [1] … Alfred haben wir vorhin vermutlich selbst umgebracht.
             [2] Der Mann hatte recht, Essiggurken und Käsebrot gehören zusammen.
             [0] (Schweigen)
             """);
-        Control.inputLine();
+        inputLine();
         switch (input) {
-            case "1": System.out.println("DAIMON: \"Aber er hätte es sicher so gewollt!\""); break;
+            case "1": System.out.println("DAIMON: \"Er hätte es sicher so gewollt, dass wir den Aufseher auch umlegen!\""); break;
             case "2":
                 System.out.println("DAIMON: \"Ja ja, wie Leberwurst und Butter.\"\n");
                 System.out.println("""
                 Wähle eine Antwort:
                 [1] Du bist wahrhaftig eine Kreatur aus der Hölle.
                 [2] Genau.""");
-                Control.inputLine();
+                inputLine();
                 switch (input) {
                     case "1": System.out.println("DAIMON: \"Und doch ist Leberwurst mit Butter eine irdische Erfindung. Die Teufel sind schon hier.\""); break;
                     case "2": System.out.println("DAIMON: \"Das war Sarkasmus, du Monstrum.\""); break;
@@ -204,18 +211,19 @@ class Descriptions extends Story {
     static String daimonSolved001;
     static String solved001 = "";
     //Kellergang
-    static String desc002 = "Der Gang führt um die Ecke nach Norden, aus der Ferne hallen Geräusche. \nAus der Ostwand sind einige Steine ausgebrochen, die auf dem Boden verstreut liegen, \ndoch hinter der Mauer tritt nur felsiges Erdreich zutage.";
+    static String desc002 = "Aus Westen kommend führt der Gang um die Ecke nach Norden, aus der Ferne hallen Geräusche. \nAus der Ostwand sind einige Steine ausgebrochen, die auf dem Boden verstreut liegen, \ndoch hinter der Mauer tritt nur felsiges Erdreich zutage.";
+    static String descB002 = "Aus Westen kommend führt der Gang um die Ecke nach Norden. \nAus der Ostwand sind einige Steine ausgebrochen, die auf dem Boden verstreut liegen, \ndoch hinter der Mauer tritt nur felsiges Erdreich zutage.";
     static String descSolved002;
-    static String daimon002 = "DAIMON: \"Platzhalter in Story-Klasse\"";
+    static String daimon002 = "DAIMON: \"Ein langer Gang ohne was drin? Faule Architekten.\"";
     static String daimonSolved002;
     static String solved002 = "";
     //Offiziersquartier
-    static String desc010 = "Platzhalter in Story-Klasse";
+    static String desc010 = "Auf dem schweren Holztisch in der Mitte des Raumes liegt eine Schriftrolle ausgebreitet, \nbeschwert mit einem Glas mit einer konservierten dunklen WURZEL aus deinem eigenen Vorrat. \nAn der Südwand sind Waffen- und Rüstungsständer mit Knüppeln, Schwertern, Schilden und Rüstungen aufgereiht. \nIm Kamin prasselt ein Feuer.";
     static String descSolved010;
     static String daimon010 = "Daimon spuckt auf Aufseher Ottos Leiche.\nDAIMON: \"Das war für Alfred!\"";
     static String daimonSolved010;
-    static String solved010 = "Platzhalter in Story-Klasse";
-    static String enc010Intro;
+    static String solved010;
+    static String enc010Intro = "Verduzt kauend starrt der Aufseher dich an. Nach angestrengtem Schlucken prustet er empört: \"Du bist nicht Alfred!\", ein Stück Essiggurke wird aus seinem Mund katapultiert. \nDie beiden vor dem Feuer zusammengerollten Hunde erwachen. Der Aufseher zieht sein Schwert.";
     static String enc010Outro;
     //Vorratskammer
     static String desc011 = """
@@ -223,15 +231,22 @@ class Descriptions extends Story {
             ein angeschnittener Laib Käse liegt auf einem Tisch, daneben einige in Leinen geschlagene Brote.
             Eine dir wohlbekannte Tasche wurde achtlos in die Ecke geworfen. An der Wand sind Fässer mit Bier und Wein aufgestapelt.
             Ein Einmachglas ist mit Essiggurken gefüllt, in einem anderen schwimmt eine einzelne glitschige Kugel,
-            und in einer Schale ist eine Handvoll hellblaue Beeren übrig.""";
+            und in einer Schale ist eine Handvoll hellblaue Beeren übrig.
+            Die Tür im Osten führt zurück in den Vorraum.""";
     static String descSolved011;
     static String daimon011 = "DAIMON: \"Eine Vorratskammer! Nimm alles mit, was nicht niet- und nagelfest ist!\"";
     static String daimonSolved011;
     static String solved011 = "Platzhalter in Story-Klasse";
     //Vorraum (UG)
     static String desc012 = """
-            Der Vorraum des Untergeschosses. Im Osten führt hinter einer Gittertür eine breite Steintreppe ins Erdgeschoss – Offiziere tragen einen Schlüssel.
-            Im Westen sitzt eine Tür zur "Vorratskammer" in der Wand. Im Norden geht es zur Kantine, aus der das Grölen einiger Wachen hallt.
+            Der Vorraum des Untergeschosses. Im Westen sitzt eine Tür zur "Vorratskammer" in der Wand.
+            Hinter einer Gittertür führt eine breite Steintreppe hinauf ins Erdgeschoss – Offiziere tragen einen Schlüssel.
+            Im Süden liegt der Kerker. Im Norden geht es zur Kantine, aus der das Grölen einiger Wachen hallt.
+            """;
+    static String descB012 = """
+            Der Vorraum des Untergeschosses. Im Westen sitzt eine Tür zur "Vorratskammer" in der Wand.
+            Hinter einer Gittertür führt eine breite Steintreppe hinauf ins Erdgeschoss – Offiziere tragen einen Schlüssel.
+            Im Süden liegt der Kerker. Im Norden geht es zur Wachkantine.
             """;
     static String descSolved012;
     static String daimon012 = "DAIMON: \"Schau dir meine Arme an – dünn wie Zahnstocher! Ganz zu schweigen von den welken Lauchstangen, die dir aus den Schultern wachsen. \nWenn du den Wachen ohne Argumentationsverstärker vor den Knüppel kommst, machen sie Hexerkompott aus dir.\"";
@@ -242,25 +257,27 @@ class Descriptions extends Story {
     static String enc012Outro;
     //Waschraum
     static String desc020 = """
-            XXX
-            Im Süden 
+            Am Westende ist ein Kessel aufgestellt, aus dem, wenn angeheizt, warmes Wasser geschöpft werden kann. Daneben ein großer Kübel mit kaltem Wasser.
+            Einige Badezuber stehen im Raum verteilt. Hier und da liegen Haarbüschel am Boden, der Barbier muss hier gewesen sein.
+            Im Norden steht eine schwere, fleckige Holzbank – anscheinend ein Operationstisch. Östlich geht es zum Schlafsaal.
+            Im Süden eine Tür, darüber steht deutlich geschrieben: "Offiziersstube, Waffenausgabe". Sie ist abgeschlossen, aber ein Murmeln ist dahinter zu hören.
             """;
     static String descSolved020;
-    static String daimon020 = "DAIMON: \"Da drüben, die Offiziersstube. Vielleicht sollten wir einfach mal klopfen?\"";
+    static String daimon020 = "DAIMON: \"Da drüben, die Offiziersstube. Vielleicht sollten wir einfach mal klopfen und reinrufen, ob wer mit uns spricht?\"";
     static String daimonSolved020;
     static String solved020 = "Platzhalter in Story-Klasse";
     //Schlafsaal
-    static String desc021 = "Platzhalter in Story-Klasse";
+    static String desc021 = "Es ist spät am Abend und einige Betten sind von Wachen aus der Frühschicht belegt. Du gehst auf Zehenspitzen. \nNach Westen in die Badestube, nach Osten in die Wachkantine.";
     static String descSolved021;
-    static String daimon021 = "DAIMON: \"Platzhalter in Story-Klasse\"";
+    static String daimon021 = "DAIMON: \"Schau mal, da hat einer Mitternachtskraut auf dem Nachttisch liegen. \nDer hätte dem Gefängniswärter besser was davon abgegeben. Also besser für den Wärter, nicht für dich.\"";
     static String daimonSolved021;
-    static String solved021 = "Platzhalter in Story-Klasse";
+    static String solved021;
     //Wachkantine
-    static String desc022 = "Speise- und Aufenthaltsraum der Wachbelegschaft. Die langen Tische sind spartanisch gedeckt, \nnur auf einem lässt ein Blümchen in einem halbvollen Wassergals den Kopf hängen. \nÜber dem glimmenden Kaminfeuer hängt ein großer Topf.";
+    static String desc022 = "Speise- und Aufenthaltsraum der Wachbelegschaft. Die langen Tische sind spartanisch gedeckt, \nnur auf einem lässt ein Blümchen in einem halbvollen Wassergals den Kopf hängen. \nÜber dem glimmenden Kaminfeuer hängt ein großer Topf. \nDie Tür im Süden führt in den Vorraum, nach Westen geht es in den Schlafsaal.";
     static String descSolved022;
     static String daimon022 = "DAIMON: \"Du solltest zusehen, deinen Dämon zu heilen, bevor es weitergeht. \nAlso nicht mich – den mit der großen Axt.\"";
     static String daimonSolved022;
-    static String solved022 = "Platzhalter in Story-Klasse";
+    static String solved022;
     static String enc022Intro = "Eine der Wachen hält ein Stück auseinandergerolltes Pergament in der Hand und liest wild gestikulierend daraus vor, \ndie anderen kichern rotnasig. Dramatisch reckt der Wächter seine Faust gen Zimmerdecke, während er eine ausgedachte Zauberformel rezitiert \nund seine Stimme immer höher schraubt, als würde sie sich vor Aufregung überschlagen. \nDabei wirkt er irgendwie wie … du! Die anderen Wachen brechen in haltloses Gelächter aus. \nAngesäuert stößt du die Tür auf, drei Augenpaare wenden sich überrascht zu dir um. ";
     static String enc022Outro = "Röchelnd gehen die Wachen zu Boden. Im nächsten Leben wird ihnen das eine Lehre sein. Du sammelst die Schriftrolle auf.";
 
@@ -464,12 +481,12 @@ class Dialogue extends Story {
                             [2]\t … ja?
                             [0]\t (Lieber schweigen)"""
             );
-            Control.inputLine();
+            inputLine();
             switch (input) {
                 case "1": System.out.println("STIMME HINTER DER TÜR: \"Alfred, du Witzbold. Bring mir lieber mein abendliches Käsebrot. \nUnd zwar WIE ÜBRLICH, und ein wenig zackig!\""); break;
-                case "2": System.out.println("STIMME HINTER DER TÜR: \"Was Alfred, bist du dir nicht mal deiner eigenen Identität sicher? \nSei nicht so ein Waschlappen und bring mir mein mittägliches Käsebrot. Und zwar WIE ÜBRLICH, und ein wenig zackig!\""); break;
+                case "2": System.out.println("STIMME HINTER DER TÜR: \"Was Alfred, bist du dir nicht mal deiner eigenen Identität sicher? \nSei nicht so ein Waschlappen und bring mir mein abendliches Käsebrot. Und zwar WIE ÜBRLICH, und ein wenig zackig!\""); break;
                 case "0": System.out.println("STIMME HINTER DER TÜR: \"Alfred? Aaaaalfred!\""); System.out.println("Du entfernst dich."); break;
-                default: System.out.println("STIMME HINTER DER TÜR: \"Alfred, mit dem Herumgedruckse wird das noch länger nichts mit der Beförderung. \nSei nicht so ein Waschlappen und bring mir mein mittägliches Käsebrot. Und zwar WIE ÜBRLICH, und ein wenig zackig!\""); break;
+                default: System.out.println("STIMME HINTER DER TÜR: \"Alfred, mit dem Herumgedruckse wird das noch länger nichts mit der Beförderung. \nSei nicht so ein Waschlappen und bring mir mein abendliches Käsebrot. Und zwar WIE ÜBRLICH, und ein wenig zackig!\""); break;
             }
         }
         else if (Player.inv.contains(WorldBuilder.cheeseBread)) {
@@ -478,10 +495,10 @@ class Dialogue extends Story {
                     """
                             Wähle eine Antwort:
                             [1]\t Nein.
-                            [2]\t Einmal Käsebrot – mit Käse. Und Brot. Was könnte man da falsch machen?
+                            [2]\t Einmal Käsebrot. Mit Käse. Und Brot. Was könnte man da falsch machen?
                             [0]\t (Lieber schweigen)"""
             );
-            Control.inputLine();
+            inputLine();
             switch (input) {
                 case "1": System.out.println("STIMME HINTER DER TÜR: \"Dann mach mal hinne, Alfred!"); break;
                 case "2": System.out.println("STIMME HINTER DER TÜR: \"Man könnte zum Beispiel die Essiggurke vergessen, Alfred. \nMan könnte sie sogar STÄNDIG vergessen, wie du, Alfred. \nDeshalb schiebst du nach sechs Monaten auch immer noch Wachdienst. Und selbst den kriegst du nur, weil die Gefängniszellen von alleine zu bleiben, Alfred. \nUnd jetzt leg verdammt noch mal Essiggurke aufs Käsebrot!\""); System.out.println("\nDAIMON: \"Uff, der ist ja fast so ein schlechter Chef wie du, Mal.\""); break;
@@ -499,7 +516,7 @@ class Dialogue extends Story {
                             [2]\t Einmal Käsebrot mit Essiggurke für den Chef.
                             [0]\t (Lieber schweigen)"""
             );
-            Control.inputLine();
+            inputLine();
             switch (input) {
                 case "1":
                     System.out.println("STIMME HINTER DER TÜR: \"Dann mach mal hinne, Alfred!");

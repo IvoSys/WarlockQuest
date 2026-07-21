@@ -93,11 +93,9 @@ public class Player {
         System.out.println("=============ZAUBERBUCH============\n");
         for (Spell i : spellbook) {
             System.out.printf("%s \n", i.name.toUpperCase());
-            System.out.printf("Manakosten: %d \tStärke: %d\n", i.mpCost, i.str);
+            System.out.printf("Manakosten: %d ", i.mpCost);
             if (i.dur != 0)
-                System.out.printf("Dauer: %d Runden\t\t", i.dur);
-            if (i.aoe)
-                System.out.print("Flächenwirkung ");
+                System.out.printf("\tDauer: %d Runden\n", i.dur);
             else
                 System.out.println();
             System.out.printf("%s \n\n", i.desc);
@@ -151,8 +149,6 @@ public class Player {
         } else {
             Item item1 = null;
             Item item2 = null;
-            boolean successConsumeItem1 = false;
-            boolean successConsumeItem2 = false;
 
             for (Item i : inv) {                                // Inventar durchgeben,
                 if (input1.equals(i.name.toLowerCase())) {      // wenn input mit Namen eines Items genau übereinstimmt
@@ -185,8 +181,8 @@ public class Player {
                     else
                         System.out.println("Dieser Gegenstand kann nicht mit einem Katalysator verstärkt werden.");
 
-                    successConsumeItem1 = Item.consumeItem(item1);
-                    successConsumeItem2 = Item.consumeItem(item2);
+                    Item.consumeItem(item1);
+                    Item.consumeItem(item2);
 
                 // Abbruch, wenn IDs unterschiedlich oder 0 sind – diese Items können nicht kombiniert werden können
                 } else if ((item1.combiID != item2.combiID) || item1.combiID == 0) {
@@ -219,16 +215,11 @@ public class Player {
                         //Item.obtainItem(WorldBuilder.);
                     }
 
-                    successConsumeItem1 = Item.consumeItem(item1);
-                    successConsumeItem2 = Item.consumeItem(item2);
+                    Item.consumeItem(item1);
+                    Item.consumeItem(item2);
 
                 }
             }
-            // Meldung bei Fehler, sicherheitshalber
-            if (!successConsumeItem1)
-                System.out.println("DEBUG: Erstes Item konnte nicht verbraucht werden.");
-            if (!successConsumeItem2)
-                System.out.println("DEBUG: Zweites Item konnte nicht verbraucht werden.");
         }
     }
 

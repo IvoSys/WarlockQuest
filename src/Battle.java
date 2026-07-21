@@ -10,12 +10,13 @@ public class Battle {
     static Random rnd = new Random();
 
     static Demon demon;
-    static Encounter encounter = WorldBuilder.encStandard;       // wird durch Worldbuilder überschrieben
-    static ArrayList<Enemy> enemyTeam = encounter.enemyTeam;
+    static Encounter encounter;
+    static ArrayList<Enemy> enemyTeam;
 
     static boolean isPlayerTurn;
     static boolean malActed;
     static int counter;
+
     static int pick;
     static int pickedTarget;
     static boolean inputValid = false;
@@ -24,6 +25,10 @@ public class Battle {
     static boolean counterAtk;
 
     public static void fight() {
+        sc.useDelimiter("\\R");
+
+        encounter = Player.room.encounter;
+        enemyTeam = encounter.enemyTeam;
 
         encounterIntro();
         ifNoDemons();
@@ -38,7 +43,6 @@ public class Battle {
                     try {
                         System.out.print("> ");
                         pick = sc.nextInt();
-                        sc.nextLine();
                         switch (pick) {
                             case 1:                                 // Single-Target Attack
                                 printEnemies();
@@ -50,12 +54,12 @@ public class Battle {
                                     if (!e.ko)
                                         e.applyDmgEvade(demon.aoeAttack());
                                 isPlayerTurn = false;
-                                Control.enterToContinue();
+                                WarlockQuest.enterToContinue();
                                 break;
                             case 3:                                 // Demon Selfbuff
                                 demon.selfBuff();
                                 isPlayerTurn = false;
-                                Control.enterToContinue();
+                                WarlockQuest.enterToContinue();
                                 break;
                             case 4:                                 // Spell
                                 if (!malActed) {
@@ -80,12 +84,12 @@ public class Battle {
                                         } else {
                                             pickedSpell.cast();
                                             malActed = true;
-                                            Control.enterToContinue();
+                                            WarlockQuest.enterToContinue();
                                         }
                                     }
                                 } else {
                                     System.out.println("Maleficarius hat diese Runde schon gehandelt.");
-                                    Control.enterToContinue();
+                                    WarlockQuest.enterToContinue();
                                 }
                                 break;
                             case 5:                                 // Summon
@@ -94,7 +98,7 @@ public class Battle {
                                     pickDemon();
                                 } else {
                                     System.out.println("Maleficarius hat diese Runde schon gehandelt.");
-                                    Control.enterToContinue();
+                                    WarlockQuest.enterToContinue();
                                 }
                                 break;
                             default:                                // Default für Battle Menu
@@ -154,7 +158,7 @@ public class Battle {
                                 }
                             }
                         if (!e.ko)
-                            Control.enterToContinue();                          // mit If-Bedingung, sonst müsste man nach ausgefallener Handlung eines besiegten Gegners trotzdem Eingabetaste drücken.
+                            WarlockQuest.enterToContinue();                          // mit If-Bedingung, sonst müsste man nach ausgefallener Handlung eines besiegten Gegners trotzdem Eingabetaste drücken.
 
                     } // Ende Aktion Gegnerteam
                     isPlayerTurn = true;
@@ -176,7 +180,7 @@ public class Battle {
         for (Enemy e : enemyTeam)
             System.out.printf("%s \t (%d/%d HP) \n", e.name, e.hp, e.hpMax);
         System.out.println();
-        Control.enterToContinue();
+        WarlockQuest.enterToContinue();
     }
 
     public static void ifNoDemons(){
@@ -189,6 +193,7 @@ public class Battle {
     }
 
     public static void forcePickDemon(){
+        sc.useDelimiter("\\R");
         int counter = 1;
         int pick;
         boolean inputValid = false;
@@ -204,12 +209,10 @@ public class Battle {
             }
             counter++;
         }
-
         while (!inputValid) {
             try {
                 System.out.print("> ");
                 pick = sc.nextInt();
-                sc.next();
                 if (pick < 1 || pick > Player.team.size()) {
                     System.out.printf("Ungültige Eingabe. Wähle eine Zahl zwischen 1 und %d. \n", Player.team.size());
                 } else if (Player.team.get(pick - 1).ko) {
@@ -243,7 +246,7 @@ public class Battle {
             else
                 System.out.println(encounter.teamName + " beginnt.");
         }
-        Control.enterToContinue();
+        WarlockQuest.enterToContinue();
     }
 
     public static void battleMenu(){
@@ -333,13 +336,13 @@ public class Battle {
     }
 
     public static void pickTargetDemonAttack(){
+        sc.useDelimiter("\\R");
         inputValid = false;
         while (!inputValid) {
             System.out.println("Wähle ein Ziel. (Zurück: 0)");
             try {
                 System.out.print("> ");
                 pickedTarget = sc.nextInt();
-                sc.nextInt();
                 if (pickedTarget < 0 || pickedTarget > enemyTeam.size()) {
                     System.out.printf("Ungültige Eingabe. Wähle eine Zahl zwischen 1 und %d oder die 0. \n", enemyTeam.size());
                 } else if (pickedTarget == 0) {
@@ -354,7 +357,7 @@ public class Battle {
                         demon.applyDmg(enemyTeam.get(pickedTarget - 1).attack());
                         counterAtk = false;
                     }
-                    Control.enterToContinue();
+                    WarlockQuest.enterToContinue();
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Ungültige Eingabe. Gib eine Ziffer ein.");
@@ -364,13 +367,13 @@ public class Battle {
     }
 
     public static void pickSpellTarget(Spell pickedSpell){
+        sc.useDelimiter("\\R");
         inputValid = false;
         while (!inputValid) {
             System.out.println("Wähle ein Ziel. (Zurück: 0)");
             try {
                 System.out.print("> ");
                 pickedTarget = sc.nextInt();
-                sc.next();
                 if (pickedTarget < 0 || pickedTarget > enemyTeam.size()) {
                     System.out.printf("Ungültige Eingabe. Wähle eine Zahl zwischen 1 und %d oder die 0. \n", enemyTeam.size());
                 } else if (pickedTarget == 0) {
@@ -379,7 +382,7 @@ public class Battle {
                 pickedSpell.cast(pickedTarget - 1);
                 inputValid = true;
                 malActed = true;
-                Control.enterToContinue();
+                WarlockQuest.enterToContinue();
             } catch (InputMismatchException e) {
                 System.out.println("Ungültige Eingabe. Gib eine Ziffer ein.");
                 sc.next();
@@ -388,12 +391,12 @@ public class Battle {
     }
 
     public static void pickDemon(){
+        sc.useDelimiter("\\R");
         inputValid = false;
         while (!inputValid) {
             try {
                 System.out.print("> ");
                 pick = sc.nextInt();
-                sc.next();
                 if (pick == 0) {
                     break;
                 } else if (pick < 0 || pick > Player.team.size()) {
@@ -404,7 +407,7 @@ public class Battle {
                     Demon.summon(pick - 1);
                     inputValid = true;
                     isPlayerTurn = false;
-                    Control.enterToContinue();
+                    WarlockQuest.enterToContinue();
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Ungültige Eingabe. Gib eine Ziffer ein.");
@@ -448,7 +451,7 @@ public class Battle {
         else
             System.out.println(encounter.teamName + " wurde besiegt!");
         Player.room.encounterBeaten = true;
-        Control.enterToContinue();
+        WarlockQuest.enterToContinue();
         System.out.println();
         System.out.println(Player.room.encounter.outro);
         System.out.println();
@@ -467,7 +470,10 @@ public class Battle {
             }
         }
 
-        if (encounter == WorldBuilder.enc010) {                                 // Sieg in diesem Encounter löst weitere Ereignisse aus
+        if (encounter == WorldBuilder.enc022) {                                 // Sieg in diesem Encounter löst weitere Ereignisse aus
+            WorldBuilder.castle[0][0][2].desc = WorldBuilder.castle[0][0][2].descB;
+            WorldBuilder.castle[0][1][2].desc = WorldBuilder.castle[0][1][2].descB;
+        } else if (encounter == WorldBuilder.enc010) {
             WorldBuilder.castle[0][1][2].encounter = WorldBuilder.enc012;
         }
 

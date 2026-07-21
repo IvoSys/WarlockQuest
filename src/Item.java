@@ -3,6 +3,7 @@ public abstract class Item {
     protected String name;
     protected String nameVague;
     protected String desc;
+    protected String addRoomDesc;                   //Room.describe() geht Loot-Liste des Raumes durch und hängt für jedes Item diese Variable an die Raumbeschreibung an. Wurde Item bereits gelootet, wird es nicht mehr erwähnt!
     protected int num = 1;
     protected boolean isConsumed = true;
     protected int puzzleID = 0;                    //ID zum Lösen des Rätsels in einem Raum, wird mit der ID des Raums abgeglichen, 0 für neutral, room000 stattdessen -1
@@ -78,7 +79,7 @@ public abstract class Item {
         int id = 0;
 
         for (Item i : Player.inv) {
-            if (i.name.toLowerCase().equals(input)) {
+            if (i.name.toLowerCase().equals(input) || i.nameVague.toLowerCase().equals(input)) {
                 toUnpack = i;
                 id = i.combiID;
             }
@@ -90,7 +91,7 @@ public abstract class Item {
                 obtainItem(WorldBuilder.scrollBloodletting);
                 obtainItem(WorldBuilder.scrollViciousSeed);
                 Player.inv.remove(toUnpack);
-                System.out.println("\nSchriftrollen! … Drei von etlichen mehr. Die Wachen müssen den Großteil gestohlen haben. \nOb diese Proleten überhaupt lesen können? Hoffentlich treiben sie mit deinen wertvollen Formeln keinen Mumpitz.");
+                System.out.println("\nSchriftrollen! … Drei von etlichen mehr. Die Wachen müssen einen Großteil deiner Pergamente und Trankzutaten gestohlen haben. \nOb diese Proleten überhaupt lesen können? Hoffentlich treiben sie mit deinen wertvollen Formeln keinen Mumpitz.");
                 break;
                     /*case -2:
                         obtainItem();
@@ -285,6 +286,11 @@ class Manapotion extends Potion{
                 Player.mp = Player.mpMax;
             }
         }
+        if (sucess && Player.mp == Player.mpMax) {
+            System.out.println("Maleficarius ist wieder vollständig erfrischt'.");
+        } else if (sucess)
+            System.out.println("Maleficarius' Mana wurde auf " + Player.mp + " MP aufgefüllt.");
+
         return sucess;
     }
 }

@@ -5,8 +5,7 @@ Mein Textadventure mit Dialogen, Rätseln, Kampfsystem, Alchemiesystem und mehr.
 Hauptprogramm in WarlockQuest.java  
   
 - ASCII: ASCII-Art für Titel usw.  
-- Battle: 	Battle-Loop für das Kampfsystem  
-- Control: 	einfache Steuermethoden  
+- Battle: 	Battle-Loop für das Kampfsystem 
 - Demon:		Abstrakte Dämon-Klasse und implementierende Unterklassen  
 - Encounter:	Fasst Gegner, Strings und Items in Encountern zusammen  
 - Enemy:		Abstrakte Gegner-Klasse und implementierende Unterklassen (Soldat, Ritter, Magier …)  

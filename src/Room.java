@@ -42,6 +42,10 @@ public class Room {
         System.out.println();
         System.out.println(Player.room.name.toUpperCase());
         System.out.println(Player.room.desc);
+        for (Item i : Player.room.loot){
+            if (i.addRoomDesc != null)
+                System.out.println(i.addRoomDesc);
+        }
     }
 
     public void loot(String input){

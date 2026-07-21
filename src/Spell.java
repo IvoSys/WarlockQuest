@@ -1,4 +1,8 @@
+import java.util.Random;
+
 public abstract class Spell {
+
+    Random rnd = new Random();
 
     protected String name;
     protected String desc;
@@ -41,7 +45,7 @@ class Bloodletting extends Spell{
         name = "Aderlass";
         desc = "Opfert Lebenspunkte deines Dämon, um deine Manareserven aufzufüllen.";
         formula = Descriptions.formulaBloodletting;
-        textWhenLearned = "";
+        textWhenLearned = "Du erlernst den Zauber \"Aderlass\".";
         str = Player.spellpower * 2;
         mpCost = 0;
         aoe = false;
@@ -75,7 +79,7 @@ class Doom extends Spell {
         name = "Untergang";
         desc = "Verflucht einen Gegner, sodass er über mehrere Runden hinweg stetig ansteigenden Schaden erleidet.";
         formula = Descriptions.formulaDoom;
-        textWhenLearned = "";
+        textWhenLearned = "Du erlernst den Zauber \"Untergang\".";
         str = Player.spellpower;
         dur = 4;
         mpCost = 20;
@@ -115,7 +119,7 @@ class IronMaiden extends Spell {
         name = "Eiserne Jungfrau";
         desc = "Verflucht alle Gegner, sodass sie sich selbst verletzen, wenn sie deinem Dämon Schaden zufügen.";
         formula = Descriptions.formulaIronMaiden;
-        textWhenLearned = "";
+        textWhenLearned = "Du erlernst den Zauber \"Eiserne Jungfrau\".";
         str = Player.spellpower;
         dur = 5;
         mpCost = 10;
@@ -153,10 +157,10 @@ class Lifeline extends Spell {
         name = "Lebenslinie";
         desc = "Spannt ein magisches Band zwischen deinem Dämon und einem Gegner. \nIn den folgenden Runden geht vor jeder Aktion dieses Gegners \nLebenskraft von ihm auf deinen Dämon über.";
         formula = Descriptions.formulaLifeline;
-        textWhenLearned = "";
-        str = Player.spellpower;
+        textWhenLearned = "Du erlernst den Zauber \"Lebenslinie\".";
+        str = Player.spellpower/2;
         dur = 3;
-        mpCost = 10;
+        mpCost = 15;
         aoe = false;
     }
 
@@ -176,8 +180,8 @@ class Lifeline extends Spell {
 
     @Override
     public void tick(Enemy e) {
-        int hpRestored = str;
-        e.hp -= str;
+        int hpRestored = rnd.nextInt(str+1) + str;                      // Bei 10 Spellpower dmg 5–10
+        e.hp -= hpRestored;
         if (e.hp <= 0) {
             hpRestored += e.hp;
             System.out.println(e.name + " überlebt den Lebensentzug nicht.");
@@ -209,7 +213,7 @@ class Soulreaper extends Spell {
         name = "Seelendieb";
         desc = "Stiehlt die Seele eines geschwächten Feindes. \nAuf einen Gegner mit unter 20 % HP angewendet, \nstirbt dessen Körper sofort und seine Seele füllt deinen Manavorrat.";
         formula = Descriptions.formulaSoulreaper;
-        textWhenLearned = "";
+        textWhenLearned = "Du erlernst den Zauber \"Seelendieb\".";
         str = Player.spellpower * 2;
         mpCost = 0;
         aoe = false;
@@ -241,10 +245,10 @@ class ViciousSeed extends Spell {
 
     public ViciousSeed() {
         name = "Üble Saat";
-        desc = "Pflanzt einen Keim in einem Gegner ein, der nach " + dur + " Runden \noder mit Tod des Gegners aufplatzt und bei allen Gegnern Schaden verursacht.";
+        desc = "Pflanzt einen Keim in einem Gegner ein, der nach Ablauf der Dauer \noder mit Tod des Gegners aufplatzt und bei allen Gegnern Schaden verursacht.";
         formula = Descriptions.formulaViciousSeed;
-        textWhenLearned = "";
-        str = Player.spellpower;
+        textWhenLearned = "Du erlernst den Zauber \"Üble Saat\".";
+        str = Player.spellpower/2;
         dur = 3;
         mpCost = 10;
         aoe = false;
@@ -277,7 +281,7 @@ class ViciousSeed extends Spell {
         System.out.println("Der Keim des Übels in " + e.name + " platzt auf.");
         for (Enemy f : Player.room.encounter.enemyTeam) {
             if (!f.ko)
-                f.applyDmg(str);
+                f.applyDmg(rnd.nextInt(Player.spellpower+1) + str);
         }
     }
 
