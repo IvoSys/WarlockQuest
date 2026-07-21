@@ -24,11 +24,10 @@ public class Room {
     protected Encounter encounter;
     protected boolean encounterBeaten = false;
 
-    public Room(String name, String desc, String daimon, String solvedText, boolean north, boolean east, boolean south, boolean west, boolean up, boolean down, boolean hasDialogue, int puzzleID) {
+    public Room(String name, String desc, String daimon, boolean north, boolean east, boolean south, boolean west, boolean up, boolean down, boolean hasDialogue, int puzzleID) {
         this.name = name;
         this.desc = desc;
         this.daimon = daimon;
-        this.solvedText = solvedText;
         this.north = north;
         this.east = east;
         this.south = south;
@@ -109,6 +108,9 @@ public class Room {
         if (Player.room.puzzleID == -1) {                     //Individuelle Ereignisse für gelöste Räume
             WorldBuilder.castle[0][0][0].east = true;         //Zellentür öffnet sich, Raum kann nach Osten verlassen werden
             Daimon.solved000Comment();
+        }
+        if (Player.room.puzzleID == 12) {
+            WorldBuilder.castle[0][1][2].up = true;
         }
     }
 

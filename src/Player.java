@@ -21,27 +21,27 @@ public class Player {
 
 
     public static void move(String input) {
-        if (input.contains("nord") || input.equals("n") && room.north) {
+        if ((input.contains("nord") || input.equals("n")) && room.north) {
             curY++;
             moved = true;
             System.out.println("Du gehst nach Norden.");
-        } else if (input.contains("ost") || input.equals("o") && room.east) {
+        } else if ((input.contains("ost") || input.equals("o")) && room.east) {
             curX++;
             moved = true;
             System.out.println("Du gehst nach Osten.");
-        } else if (input.contains("süd") || input.equals("s") && room.south) {
+        } else if ((input.contains("süd") || input.equals("s")) && room.south) {
             curY--;
             moved = true;
             System.out.println("Du gehst nach Süden.");
-        } else if (input.contains("west") || input.equals("w") && room.west) {
+        } else if ((input.contains("west") || input.equals("w")) && room.west) {
             curX--;
             moved = true;
             System.out.println("Du gehst nach Westen.");
-        } else if (input.contains("hoch") || input.equals("h") || input.contains("oben") && room.up) {
+        } else if ((input.contains("hoch") || input.equals("h") || input.contains("oben")) && room.up) {
             curZ++;
             moved = true;
             System.out.println("Du gehst nach oben.");
-        } else if (input.contains("runter") || input.equals("r") || input.contains("unten") && room.down) {
+        } else if ((input.contains("runter") || input.equals("r") || input.contains("unten")) && room.down) {
             curZ--;
             moved = true;
             System.out.println("Du gehst nach unten.");

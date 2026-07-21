@@ -204,11 +204,11 @@ class Descriptions extends Story {
     static String daimonSolved001;
     static String solved001 = "";
     //Kellergang
-    static String desc002 = "Der Gang führt um die Ecke nach Norden, aus der Ferne hallen Geräusche.";
+    static String desc002 = "Der Gang führt um die Ecke nach Norden, aus der Ferne hallen Geräusche. \nAus der Ostwand sind einige Steine ausgebrochen, die auf dem Boden verstreut liegen, \ndoch hinter der Mauer tritt nur felsiges Erdreich zutage.";
     static String descSolved002;
     static String daimon002 = "DAIMON: \"Platzhalter in Story-Klasse\"";
     static String daimonSolved002;
-    static String solved002 = "Platzhalter in Story-Klasse";
+    static String solved002 = "";
     //Offiziersquartier
     static String desc010 = "Platzhalter in Story-Klasse";
     static String descSolved010;
@@ -241,9 +241,12 @@ class Descriptions extends Story {
     static String enc012Intro;
     static String enc012Outro;
     //Waschraum
-    static String desc020 = "Platzhalter in Story-Klasse";
+    static String desc020 = """
+            XXX
+            Im Süden 
+            """;
     static String descSolved020;
-    static String daimon020 = "DAIMON: \"Platzhalter in Story-Klasse\"";
+    static String daimon020 = "DAIMON: \"Da drüben, die Offiziersstube. Vielleicht sollten wir einfach mal klopfen?\"";
     static String daimonSolved020;
     static String solved020 = "Platzhalter in Story-Klasse";
     //Schlafsaal
@@ -360,7 +363,7 @@ class Descriptions extends Story {
                     Das Standardwerk über Hexerei, Alchemie und Dämonologie in drei Bänden, verfasst von Meister Maleficarius Liebwerk:
                     […] Zauber werden mittels Schriftrollen erlernt und können bis zur geistigen Erschöpfung gewirkt werden.
                     […] Tränke werden mit Verabreichung verbraucht und entfalten unvergleichliche Wirkungen, selbst bei Dämonen.
-                    […] Spricht man den wahren Namen eines Dämonen deulich aus, zwingt man ihn in seinen Dienst. Doch Obacht, er wird dies nicht schätzen!""";
+                    […] Spricht man den wahren Namen eines Dämonen deutlich aus, zwingt man ihn in seinen Dienst. Doch Obacht, er wird dies nicht schätzen!""";
 
     //Rätsel Dämonen
     static String riddleDem00 = """
@@ -417,10 +420,10 @@ class Descriptions extends Story {
     static String formulaLifeline = "Lebenslinie";
 
     static String riddleSoulreaper = "PLATZHALTER: Wie lautet die Lösung?";
-    static String formulaSoulreaper = "Avada Kedavra";
+    static String formulaSoulreaper = "Seelendieb";
 
     static String riddleViciousSeed = "PLATZHALTER: Wie lautet die Lösung?";
-    static String formulaViciousSeed = "ÜbleSaat";
+    static String formulaViciousSeed = "Üble Saat";
 
 }
 
@@ -463,7 +466,7 @@ class Dialogue extends Story {
             );
             Control.inputLine();
             switch (input) {
-                case "1": System.out.println("STIMME HINTER DER TÜR: \"Alfred, du Witzbold. Bring mir lieber mein mittägliches Käsebrot. \nUnd zwar WIE ÜBRLICH, und ein wenig zackig!\""); break;
+                case "1": System.out.println("STIMME HINTER DER TÜR: \"Alfred, du Witzbold. Bring mir lieber mein abendliches Käsebrot. \nUnd zwar WIE ÜBRLICH, und ein wenig zackig!\""); break;
                 case "2": System.out.println("STIMME HINTER DER TÜR: \"Was Alfred, bist du dir nicht mal deiner eigenen Identität sicher? \nSei nicht so ein Waschlappen und bring mir mein mittägliches Käsebrot. Und zwar WIE ÜBRLICH, und ein wenig zackig!\""); break;
                 case "0": System.out.println("STIMME HINTER DER TÜR: \"Alfred? Aaaaalfred!\""); System.out.println("Du entfernst dich."); break;
                 default: System.out.println("STIMME HINTER DER TÜR: \"Alfred, mit dem Herumgedruckse wird das noch länger nichts mit der Beförderung. \nSei nicht so ein Waschlappen und bring mir mein mittägliches Käsebrot. Und zwar WIE ÜBRLICH, und ein wenig zackig!\""); break;
@@ -481,7 +484,7 @@ class Dialogue extends Story {
             Control.inputLine();
             switch (input) {
                 case "1": System.out.println("STIMME HINTER DER TÜR: \"Dann mach mal hinne, Alfred!"); break;
-                case "2": System.out.println("STIMME HINTER DER TÜR: \"Man könnte zum Beispiel die Essiggurke vergessen, Alfred. \nMan könnte sie sogar STÄNDIG vergessen, wie du, Alfred. \nDeshalb schiebst du nach sechs Monaten auch immer noch Wachdienst. Und selbst den kriegst du nur, weil die Gefängniszellen von alleine zu bleiben, Alfred. \nUnd jetzt leg verdammt noch mal Essiggurke auf mein Käsebrot!\""); System.out.println("\nDAIMON: \"Uff, der ist ja fast so ein schlechter Chef wie du, Mal.\""); break;
+                case "2": System.out.println("STIMME HINTER DER TÜR: \"Man könnte zum Beispiel die Essiggurke vergessen, Alfred. \nMan könnte sie sogar STÄNDIG vergessen, wie du, Alfred. \nDeshalb schiebst du nach sechs Monaten auch immer noch Wachdienst. Und selbst den kriegst du nur, weil die Gefängniszellen von alleine zu bleiben, Alfred. \nUnd jetzt leg verdammt noch mal Essiggurke aufs Käsebrot!\""); System.out.println("\nDAIMON: \"Uff, der ist ja fast so ein schlechter Chef wie du, Mal.\""); break;
                 case "0": System.out.println("STIMME HINTER DER TÜR: \"Alfred? Aaaaalfred!\""); System.out.println("Du entfernst dich."); break;
                 default: System.out.println("STIMME HINTER DER TÜR: \"Alfred, mit dem Herumgedruckse wird das noch länger nichts mit der Beförderung. \nSei nicht so ein Waschlappen und bring mir mein mittägliches Käsebrot. Und zwar WIE ÜBRLICH, und ein wenig zackig!\""); break;
             }
@@ -550,13 +553,13 @@ class Tutorials extends Story {
         System.out.println(
                 """
                         
-                        =================================================== BEFEHLE ================================================================                        
+                        =================================================== BEFEHLE ================================================================ 
                         Immer, wenn "Zeit zu handeln!" angezeigt wird, können folgende Befehle genutzt werden:
                         
                         Handlung\t\t\t| Eingabe\t\t\t| Effekt
                         ----------------------------------------------------------------------------------------------------------------------------
                         Daimon fragen\t\t| (D)aimon \t\t\t| Bittet das Teufelchen auf deiner Schulter um Hilfe. Tue dies regelmäßig!                        
-                        Sprechen\t\t\t| (S)prechen \t\t| Beginnt ein Gespräch mit einer Person im Raum, falls interessiert. 
+                        Sprechen\t\t\t| (S)prechen \t\t| Beginnt ein Gespräch, wenn eine interessierte Person anwesend ist. 
                         \t\t\t\t\t|\t\t\t\t\t|
                         Inventar zeigen\t\t| (I)tems\t\t\t| Zeigt an, welche Gegenstände du besitzt (ohne alchemistische Zutaten).                        
                         Nimm Item\t\t\t| N.[Item]\t\t\t| Legt einen erreichbaren Gegenstand ins Inventar, z. B. "n.Zellenschlüssel".

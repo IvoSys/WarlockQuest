@@ -20,9 +20,7 @@ public abstract class Item {
             success = true;
             if  (Player.inv.get(i).num <= 0) {
                 Player.inv.remove(i);
-                System.out.println(", Vorrat erschöpft.");
-            } else {
-                System.out.println(".");
+                System.out.println(", Vorrat erschöpft");
             }
         } else {
             System.out.println("Item nicht im Inventar.");
@@ -90,8 +88,9 @@ public abstract class Item {
             case -1:
                 obtainItem(WorldBuilder.evoc01);
                 obtainItem(WorldBuilder.scrollBloodletting);
+                obtainItem(WorldBuilder.scrollViciousSeed);
                 Player.inv.remove(toUnpack);
-                System.out.println("\nZwei Schriftrollen! … Zwei von etlichen mehr. Die Wachen müssen den Großteil gestohlen haben. \nOb diese Proleten überhaupt lesen können? Hoffentlich treiben sie mit deinen wertvollen Formeln keinen Mumpitz.");
+                System.out.println("\nSchriftrollen! … Drei von etlichen mehr. Die Wachen müssen den Großteil gestohlen haben. \nOb diese Proleten überhaupt lesen können? Hoffentlich treiben sie mit deinen wertvollen Formeln keinen Mumpitz.");
                 break;
                     /*case -2:
                         obtainItem();

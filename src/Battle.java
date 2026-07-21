@@ -23,7 +23,6 @@ public class Battle {
     static boolean hit;
     static boolean counterAtk;
 
-
     public static void fight() {
 
         encounterIntro();
@@ -32,14 +31,14 @@ public class Battle {
         do {                                                        //Äußerer Battle Loop – wiederholt nach Prüfung auf Niederlage
             initiative();
             do {                                                    //Innerer Battle Loop – wiederholt nach Gegner-Zug, solange Dämon nicht K.O.
-                System.out.println("Maleficarius ist am Zug: \n");
                 malActed = false;
                 while (isPlayerTurn) {
+                    System.out.println("Maleficarius ist am Zug: \n");
                     battleMenu();
                     try {
                         System.out.print("> ");
                         pick = sc.nextInt();
-                        sc.next();
+                        sc.nextLine();
                         switch (pick) {
                             case 1:                                 // Single-Target Attack
                                 printEnemies();
@@ -211,7 +210,6 @@ public class Battle {
                 System.out.print("> ");
                 pick = sc.nextInt();
                 sc.next();
-
                 if (pick < 1 || pick > Player.team.size()) {
                     System.out.printf("Ungültige Eingabe. Wähle eine Zahl zwischen 1 und %d. \n", Player.team.size());
                 } else if (Player.team.get(pick - 1).ko) {
@@ -341,7 +339,7 @@ public class Battle {
             try {
                 System.out.print("> ");
                 pickedTarget = sc.nextInt();
-                sc.next();
+                sc.nextInt();
                 if (pickedTarget < 0 || pickedTarget > enemyTeam.size()) {
                     System.out.printf("Ungültige Eingabe. Wähle eine Zahl zwischen 1 und %d oder die 0. \n", enemyTeam.size());
                 } else if (pickedTarget == 0) {
@@ -580,6 +578,7 @@ public class Battle {
             } else
                 System.out.println("DEBUG: Fehler beim Auswürfeln der Gegneraktion."); */
     }
+
 
 }
 
