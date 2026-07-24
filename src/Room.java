@@ -7,7 +7,7 @@ public class Room {
     protected String name;
     protected String desc;
     protected String descB;
-    protected String descC;
+    protected String descPostBattle;
     protected String descSolved;
     protected String daimon;
     protected String daimonB;
@@ -19,6 +19,7 @@ public class Room {
     protected boolean hasDialogue;
     protected ArrayList<Item> loot = new ArrayList<>();
     protected Map<String,String> notLoot = new HashMap<>();
+    protected Map<String,String> viewable = new HashMap<>();
     protected Item reward;                                  //Nach Lösung des Rätsels erhältlicher Gegenstand, wird in Loot-Array verschoben.
     protected int puzzleID;                                 //ID zum Lösen des Rätsels eines Raums, muss mit Key-Item oder in Daimon-Methode übereinstimmen, von Raumkoordinate abgeleitet
     protected Encounter encounter;

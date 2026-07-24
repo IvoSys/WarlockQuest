@@ -60,7 +60,7 @@ public class Player {
     }
 
     public static void showInv() {
-        System.out.println("=============INVENTAR==============");
+        System.out.println("============= INVENTAR ==============");
         for (Item i : inv) {
             if ((i instanceof Ingredience) || (i instanceof Potion))
                 continue;
@@ -70,7 +70,7 @@ public class Player {
             else
                 System.out.print("\n");
         }
-        System.out.println("===================================");
+        System.out.println("=====================================");
     }
 
     public static void showIngredients() {
@@ -90,7 +90,7 @@ public class Player {
 
     public static void showSpells() {
         boolean empty = true;
-        System.out.println("=============ZAUBERBUCH============\n");
+        System.out.println("============= ZAUBERBUCH ============\n");
         for (Spell i : spellbook) {
             System.out.printf("%s \n", i.name.toUpperCase());
             System.out.printf("Manakosten: %d ", i.mpCost);
@@ -104,7 +104,7 @@ public class Player {
         if (empty) {
             System.out.println("Kein einziger Zauber.");
         }
-        System.out.println("===================================");
+        System.out.println("=====================================");
     }
 
     public static void showPotions() {
@@ -125,6 +125,7 @@ public class Player {
 
     public static void checkItem(String input) {
         boolean found = false;
+
         for (Item i : inv) {
             if (input.contains(i.name.toLowerCase())) {
                 System.out.println(i.desc);
@@ -139,8 +140,14 @@ public class Player {
                 break;
             }
         }
+        if (!found) {
+            if (room.viewable.get(input) != null) {
+                System.out.println(room.viewable.get(input));
+                found = true;
+            }
+        }
         if (!found)
-            System.out.println("So etwas habe ich nicht.");
+             System.out.println("Nicht zu finden.");
     }
 
     public static void combineItems(String input1, String input2) {

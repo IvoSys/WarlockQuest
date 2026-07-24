@@ -33,7 +33,7 @@ public abstract class Demon {
     }
 
     public static void showDemons() {
-        System.out.println("=============DÄMONEN==============\n");
+        System.out.println("============= DÄMONEN ==============\n");
         if (Player.team.isEmpty())
             System.out.println("Du hast noch keine Dämonen gebunden.");
         else
@@ -48,9 +48,9 @@ public abstract class Demon {
                 System.out.println(d.aoeAttackDesc);
                 System.out.println("3. " + d.selfBuffName);
                 System.out.println(d.selfBuffDesc);
-                System.out.println("----------------------------------\n");
+                System.out.println("------------------------------------\n");
             }
-        System.out.println("==================================");
+        System.out.println("====================================");
     }
 
     public void toPlayerLevel() {

@@ -60,8 +60,10 @@ public class WarlockQuest {
                     if (inputSplit[1].contains("trank") && !inputSplit[1].contains("gurt")) {
                         Potion.drink(inputSplit[1]);                                                                    // Trinke Trank
                     } else if (inputSplit[1].contains("zauberschriftrolle")) {
+                        Player.checkItem(inputSplit[1]);
                         Spellscroll.learn();                                                                            // Lerne Zauber
                     } else if (inputSplit[1].contains("beschwörungsformel")) {
+                        Player.checkItem(inputSplit[1]);
                         Evocation.bind();                                                                               // Binde Dämon
                     } else if (inputSplit[1].contains("tasche") || inputSplit[1].contains("bündel")) {
                         Item.unpack(inputSplit[1]);                                                                     // Entpacke Bündel
@@ -69,7 +71,7 @@ public class WarlockQuest {
                         Player.room.solve(inputSplit[1]);                                                               // Verwende Item
                     }
                 } else if (inputSplit[0].equals("b") || inputSplit[0].equals("e")) {
-                    Player.checkItem(inputSplit[1]);                                                                    // Untersuche Item
+                    Player.checkItem(inputSplit[1]);                                                                    // Betrachte Item
                 } else if (inputSplit[0].equals("k") || inputSplit[0].equals("c")) {
                     Player.combineItems(inputSplit[1], inputSplit[2]);                                                  // Kombiniere Items
                 } else if (inputSplit[0].equals("g") || inputSplit[0].equals("m")){

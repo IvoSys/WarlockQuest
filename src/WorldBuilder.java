@@ -13,28 +13,41 @@ public class WorldBuilder {
         //Zelle
         //    [z][y][x]
         castle[0][0][0] = new Room("Gefängniszelle", Descriptions.desc000, Descriptions.daimon000, false, false, false, false, false, false, true, -1);
-        castle[0][0][0].reward = key000; castle[0][0][0].notLoot.put("schlüssel", "Ich komme nicht dran"); castle[0][0][0].solvedText = Descriptions.solved000; castle[0][0][0].descSolved = Descriptions.descSolved000; castle[0][0][0].daimonSolved = Descriptions.daimonSolved000;
-        //.notLoot.put(): Key darf nur Kleinbuchstaben verwenden, sonst scheitert Abgleich!
+        castle[0][0][0].reward = key000; castle[0][0][0].notLoot.put("schlüssel", "Du kommst nicht dran."); castle[0][0][0].solvedText = Descriptions.solved000; castle[0][0][0].descSolved = Descriptions.descSolved000; castle[0][0][0].daimonSolved = Descriptions.daimonSolved000;
+        castle[0][0][0].viewable.put("wärter", "Ein leicht untersetzter Mann mit Schlüsselring, Schlagstock und schlechtem Schlafmanagement.");
+        //.notLoot.put() und .viewable.put(): Key nur Kleinbuchstaben verwenden, sonst scheitert Abgleich!
 
         //Kerker
         castle[0][0][1] = new Room("Kerker", Descriptions.desc001, Descriptions.daimon001, false, true, false, true, false, false, true, 1);
-        castle[0][0][1].notLoot.put("zeug", "Das ist leider nicht hier.");
+        castle[0][0][1].notLoot.put("zeug", "Das ist leider nicht hier."); castle[0][0][1].notLoot.put("stundenkerze", "Das will ich nicht mit mir rumtragen."); castle[0][0][1].viewable.put("wächter", "Ein leicht untersetzter Mann mit Schlüsselring, Schlagstock und schlechtem Schlafmanagement.");
+        castle[0][0][1].loot.add(alche18); castle[0][0][1].viewable.put("radieschen", "Leuchtend rote kleine Rettiche. Sehen frisch aus."); castle[0][0][1].viewable.put("stundenkerze", "Eine Kerze zur Zeitmessung. Es muss später Abend sein.");
+
+
 
         //Kellergang
         castle[0][0][2] = new Room("Zugiger Kellergang", Descriptions.desc002, Descriptions.daimon002, true, false, false, true, false, false, false, 2);
-        castle[0][0][2].loot.add(WorldBuilder.rock); castle[0][0][2].descB = Descriptions.descB002;
+        castle[0][0][2].loot.add(rock); castle[0][0][2].loot.add(alche17); castle[0][0][2].descB = Descriptions.descB002;
+        castle[0][0][2].viewable.put("stein", "Es sind Steine"); castle[0][0][2].viewable.put("steine", "Es sind Steine");
+        castle[0][0][2].viewable.put("erde", "Kalte, wurzeldurchzogene, sich windende Erde. \nHalt – was sich dort windet, ist ein Wurm! Er sieht seltsam aus.");
+        castle[0][0][2].viewable.put("erdreich", "Kalte, wurzeldurchzogene, sich windende Erde. \nHalt – was sich dort windet, ist ein Wurm! Er sieht seltsam aus.");
+        castle[0][0][2].viewable.put("wurm", "Furia infernalis! Ein rostroter Tollwurm.");
 
         //Offizier
         castle[0][1][0] = new Room("Offiziersquartier", Descriptions.desc010, Descriptions.daimon010, true, false, false, false, false, false, false, 10);
         castle[0][1][0].encounter = enc010; castle[0][1][0].loot.add(alche51); castle[0][1][0].loot.add(scrollDoom); castle[0][1][0].notLoot.put("waffe", "Stichwaffen sind etwas für Straßenräuber."); castle[0][1][0].notLoot.put("schwert", "Stichwaffen sind etwas für Straßenräuber.");
-        castle[0][1][0].notLoot.put("knüppel", "Schlagwaffen sind etwas für Kneipenschläger."); castle[0][1][0].notLoot.put("schlagstock", "Schlagwaffen sind etwas für Kneipenschläger."); castle[0][1][0].notLoot.put("schild", "Mit so einer Platte am Arm könnte ich keine Zauber wirken.");
-        castle[0][1][0].notLoot.put("rüstung", "In so steifem Leder könnte ich keine Zauber wirken.");
+        castle[0][1][0].notLoot.put("knüppel", "Schlagwaffen sind etwas für Kneipenschläger."); castle[0][1][0].notLoot.put("schlagstock", "Schlagwaffen sind etwas für Kneipenschläger."); castle[0][1][0].notLoot.put("schild", "Mit so einer Platte am Arm könntest du keine Zauber wirken.");
+        castle[0][1][0].notLoot.put("rüstung", "In so steifem Leder könntest du keine Zauber wirken.");
 
         //Vorratskammer
         castle[0][1][1] = new Room("Vorratskammer", Descriptions.desc011, Descriptions.daimon011, false, true, false, false, false, false, false, 11);
         castle[0][1][1].loot.add(bag011); castle[0][1][1].loot.add(alche11); castle[0][1][1].loot.add(alche21); castle[0][1][1].loot.add(bread); castle[0][1][1].loot.add(cheese); castle[0][1][1].loot.add(pickle);
-        castle[0][1][1].notLoot.put("wurst", "Danach ist mir gerade nicht."); castle[0][1][1].notLoot.put("würste", "Danach ist mir gerade nicht."); castle[0][1][1].notLoot.put("schinken", "Danach ist mir gerade nicht."); castle[0][1][1].notLoot.put("bier", "Jetzt nicht.");castle[0][1][1].notLoot.put("wein", "Jetzt nicht.");
-
+        castle[0][1][1].notLoot.put("wurst", "Danach ist mir gerade nicht."); castle[0][1][1].notLoot.put("würste", "Danach ist mir gerade nicht."); castle[0][1][1].notLoot.put("schinken", "Danach ist mir gerade nicht.");
+        castle[0][1][1].notLoot.put("bier", "Jetzt nicht.");castle[0][1][1].notLoot.put("wein", "Jetzt nicht."); castle[0][1][1].viewable.put("würste", "Haltbare Würste mit östlichen Gewürzen.");
+        castle[0][1][1].viewable.put("schinken","Intensiv über heimischem Nadelholz geräuchert."); castle[0][1][1].viewable.put("käse", "Nussig-cremig und sehr nahrhaft.");
+        castle[0][1][1].viewable.put("brot", "Fluffig mit knuspernder Kruste."); castle[0][1][1].viewable.put("tasche", "Eindeutig deine, etliche Schriftrollen sollten da drin sein.");
+        castle[0][1][1].viewable.put("bier", "Das dunkle Bier, für das das örtliche Kloster bekannt ist."); castle[0][1][1].viewable.put("wein", "Vollmundiger Wein aus südlichen Gefilden.");
+        castle[0][1][1].viewable.put("kugel", "Ist das etwa … aus deinem Labor?"); castle[0][1][1].viewable.put("essiggurken", "Süß-sauer mit Senfkörnern und Dill eingelegt.");
+        castle[0][1][1].viewable.put("beeren", "Vitaminreich und Zutat bestimmter Tränke.");
         //Vorraum
         castle[0][1][2] = new Room("Vorraum", Descriptions.desc012, Descriptions.daimon012, true, false, true, true, false, false, false, 12);
         castle[0][1][2].daimonB = Descriptions.daimonB012;  castle[0][1][2].descB = Descriptions.descB012;
@@ -42,6 +55,9 @@ public class WorldBuilder {
         //Badestube
         castle[0][2][0] = new Room("Badestube", Descriptions.desc020, Descriptions.daimon020, false, true, false, false, false, false, true, 20);
         castle[0][2][0].notLoot.put("wasser", "Ich mache mir Sorgen wegen der Hygiene."); castle[0][2][0].notLoot.put("haar", "Ich mache mir Sorgen wegen der Hygiene."); castle[0][2][0].notLoot.put("haare", "Ich mache mir Sorgen wegen der Hygiene."); castle[0][2][0].notLoot.put("haarbüschel", "Ich mache mir Sorgen wegen der Hygiene.");
+        castle[0][2][0].viewable.put("haarbüschel", "Der Barbier muss da gewesen sein."); castle[0][2][0].viewable.put("haare", "Der Barbier muss da gewesen sein."); castle[0][2][0].viewable.put("badezuber", "Urgh, da schwimmt etwas. Sind das Blüten?");
+        castle[0][2][0].loot.add(alche16);
+        castle[0][2][0].descPostBattle = Descriptions.descPostBattle020;
 
         //Schlafsaal
         castle[0][2][1] = new Room("Schlafsaal", Descriptions.desc021, Descriptions.daimon021, false, true, false, true, false, false, false, 21);
@@ -49,7 +65,7 @@ public class WorldBuilder {
 
         //Kantine
         castle[0][2][2] = new Room("Wachkantine", Descriptions.desc022, Descriptions.daimon022, false, false, true, true, false, false, false, 22);
-        castle[0][2][2].encounter = enc022; castle[0][2][2].loot.add(alche12); castle[0][2][2].notLoot.put("topf", "Zu schwer. Zu schmutzig.");
+        castle[0][2][2].encounter = enc022; castle[0][2][2].loot.add(alche12); castle[0][2][2].notLoot.put("topf", "Zu schwer. Zu schmutzig."); castle[0][2][2].viewable.put("topf", "Braun und eintönig köchelt ein Eintopf da drin schon ewig vor sich hin.");
 
         //EG, Reihe unten
         castle[1][0][0] = new Room("", Descriptions.desc100, Descriptions.daimon100, false, false, false, false, false, false, false, 100);
@@ -105,13 +121,16 @@ public class WorldBuilder {
     //Rot, ergibt Heiltränke
     static Ingredience alche11 = new Ingredience("Molchauge", "Kugel", "Feine Blutgefäße ziehen sich in unruhigen Fäden durch den Augapfel.", 1);
     static Ingredience alche12 = new Ingredience("Glutorchidee", "Blümchen", "Rein dem Aussehen nach wird diese empfindliche Blüte ihrem Namen gerecht.", 1);
-    static Ingredience alche13 = new Ingredience("Fliegenpilz", "Pilz", "Dieses gefährliche Gewächs zu entgiften und gar zu einem Trank zu verbrauen, sollte einem Meisteralchemisten vorbehalten sein. Wie dir.", 1);
+    static Ingredience alche13 = new Ingredience("Fliegenpilz", "Pilz", "Dieses gefährliche Gewächs zu entgiften und gar zu einem Trank zu verbrauen, \nsollte einem Meisteralchemisten vorbehalten sein. Wie dir.", 1);
     static Ingredience alche14 = new Ingredience("Marienkäferflügel", "", "Zart durchscheinende Häutchen, noch verbunden mit einer gepunkteten Chitinschicht.", 1);
     static Ingredience alche15 = new Ingredience("Sperlingszunge", "", "", 1);
-    static Ingredience alche16 = new Ingredience("", "", "", 1);
+    static Ingredience alche16 = new Ingredience("Rosenblüten", "Blüten", "Für sinnliches Badevergnügen.", 1);
+    static Ingredience alche17 = new Ingredience("Tollwurm", "Wurm", "Furia infernalis! Ein rostrotes und, in falschen Händen, hochgiftiges Insekt.", 1);
+    static Ingredience alche18 = new Ingredience("Radieschen", "Radieschen", "Raphanus sativus. Diese kleinen Wurzelknollen entfalten mitunter einen scharfen Geschmack. \nBreit verfügbar und günstig, und dennoch für einfache Tränke geeignet.", 1);
     //Blau, ergibt Manatränke
     static Ingredience alche21 = new Ingredience("Mondbeeren", "Beeren", "Eisblaue Früchte, die den Geist erfrischen.", 2);
-    static Ingredience alche22 = new Ingredience("Mitternachtskraut", "", "Fahlblaue Blätter, die sich lieber dem Mondlicht als der Sonne zuwenden. \nGeschätzt von denjenigen, die Nachts wach bleiben müssen.", 2);
+    static Ingredience alche22 = new Ingredience("Mitternachtskraut", "Kraut", "Fahlblaue Blätter, die sich lieber dem Mondlicht als der Sonne zuwenden. \nGeschätzt von denjenigen, die Nachts wach bleiben müssen.", 2);
+    static Ingredience alche23 = new Ingredience("Eisenhut", "Kraut", "Eine Blüte wie ein blauer Helm.", 2);
     //Gelb, frei (Wiederbelebung?)
     //gelb static Ingredience alche31 = new Ingredience("", "", "", "", 3);
     //gelb static Ingredience alche32 = new Ingredience("", "", "", "", 3);
@@ -162,8 +181,8 @@ public class WorldBuilder {
     static Key key000 = new Key("Zellenschlüssel", "Schlüssel", "Ein rostiger Klumpen von Schlüssel.", -1, 0);
     static Key key012 = new Key("Kerkerschlüssel", "Schlüssel", "Der Schlüssel zum Kerker … und AUS dem Kerker.", 12, 0);
     static Key bag011 = new Key("Maleficarius' Tasche", "Tasche", "Eine robuste Stofftasche, in der Maleficarius seine Schriftrollenbehälter transportiert.", 0, -1);
-    static Key bread = new Key("Scheibe kerniges Bauernbrot", "Brot", "Fluffiges Brot mit knuspernder Kruste. Malzig im Geschmack und reich an Ballaststoffen.", 0, 12);
-    static Key cheese = new Key("Scheibe nussiger Bergkäse", "Käse", "Nussig-cremiger Käse. Vollmundig und sehr nahrhaft.", 0, 12);
+    static Key bread = new Key("Scheibe Brot", "Brot", "Fluffiges Brot mit knuspernder Kruste. Malzig im Geschmack und reich an Ballaststoffen.", 0, 12);
+    static Key cheese = new Key("Scheibe Käse", "Käse", "Nussig-cremiger Bergkäse. Vollmundig und sehr nahrhaft.", 0, 12);
     static Key cheeseBread = new Key("Käsebrot", "", "Bestechend einfach und beinahe perfekt.", 0, 13);
     static Key pickle = new Key("Essiggurke", "Essiggurken", "Süß-sauer eingelegt mit Senfkörnern und Dill. Rundet geschmacklich so einiges gelungen ab.", 0, 13);
     static Key sandwich = new Key("Käsebrot mit Essiggurke", "Käsebrot mit Essiggurke", "Ein herzhaft-würziges Käsebrot mit Essiggurke. Eine ideale Zwischenmahlzeit.", 0, 0);    // puzzleID 0, da Item in Dialog verwendet
@@ -183,13 +202,13 @@ public class WorldBuilder {
 
     //GEGNER
     //region
-    static Enemy guard01 = new Guard("Wache Alfred", "dem Knüppel", 50, 5, 5, 0);
-    static Enemy guard02 = new Guard("Wache Helga", "dem Knüppel", 50, 5, 5, 0);
-    static Enemy guard03 = new Guard("Wache Wenzel", "dem Knüppel", 50, 5, 5, 0);
-    static Enemy guard04 = new Guard("Wache Bertha", "dem Knüppel", 50, 5, 5, 0);
-    static Enemy guard05 = new Guard("Wache Jakob", "dem Knüppel", 50, 5, 5, 0);
-    static Enemy guard06 = new Guard("Wache Anna", "dem Knüppel", 50, 5, 5, 0);
-    static Enemy guard07 = new Guard("Wache XY", "dem Knüppel", 50, 5, 5, 0);
+    static Enemy guard01 = new Guard("Wache Rüdiger", "dem Knüppel", 50, 5, 5, 0);
+    static Enemy guard02 = new Guard("Wache Alfred", "dem Knüppel", 50, 5, 5, 0);
+    static Enemy guard03 = new Guard("Wache Helga", "dem Knüppel", 50, 5, 5, 0);
+    static Enemy guard04 = new Guard("Wache Wenzel", "dem Knüppel", 50, 5, 5, 0);
+    static Enemy guard05 = new Guard("Wache Bertha", "dem Knüppel", 50, 5, 5, 0);
+    static Enemy guard06 = new Guard("Wache Hedwig", "dem Knüppel", 50, 5, 5, 0);
+    static Enemy guard07 = new Guard("Wache Hans", "dem Knüppel", 50, 5, 5, 0);
     static Enemy guard08 = new Guard("Wache XX", "dem Knüppel", 50, 5, 5, 0);
     static Enemy guard09 = new Guard("Wache XY", "dem Knüppel", 50, 5, 5, 0);
 
@@ -233,7 +252,7 @@ public class WorldBuilder {
     static Enemy apprentice08 = new Apprentice("Studentin X", "dem Zauber \"Froststrahl\"", 30, 10, 8, 0);
     static Enemy apprentice09 = new Apprentice("Student X", "dem Zauber \"Froststrahl\"", 30, 10, 8, 0);
 
-    static Enemy novice01 = new Novice("Schwester X", "dem Streitkolben", 55, 10, 8, 0);
+    static Enemy novice01 = new Novice("Schwester Friede", "dem Streitkolben", 55, 10, 8, 0);
     static Enemy novice02 = new Novice("Bruder X", "dem Streitkolben", 55, 10, 8, 0);
     static Enemy novice03 = new Novice("Schwester X", "dem Streitkolben", 55, 10, 8, 0);
     static Enemy novice04 = new Novice("Bruder X", "dem Streitkolben", 55, 10, 8, 0);
@@ -289,12 +308,13 @@ public class WorldBuilder {
 
 
     // ENCOUNTER
-    static Encounter encStandard = new Encounter("Testwachen", true, guard01, guard02, guard03, "Achtung, Testüberfall!", "Achtung, Testüberfall beendet!", gold999, null);
-    static Encounter enc022 = new Encounter("Angeheiterte Wachen", true, guard01, guard02, guard03, Descriptions.enc022Intro, Descriptions.enc022Outro, scrollLifeline, null);
+    static Encounter encStandard = new Encounter("Testwachen", true, guard02, guard03, guard04, "Achtung, Testüberfall!", "Achtung, Testüberfall beendet!", gold999, null);
+    static Encounter enc022 = new Encounter("Angeheiterte Wachen", true, guard02, guard03, guard04, Descriptions.enc022Intro, Descriptions.enc022Outro, scrollLifeline, null);
     static Encounter enc010 = new Encounter("Aufseher Otto", false, dog01, soldier01, dog02, Descriptions.enc010Intro, Descriptions.enc010Outro, key012, null);
-    static Encounter enc012 = new Encounter("Dame Beatrix", false, guard04, knight01, guard05, Descriptions.enc012Intro, Descriptions.enc012Outro, evoc02, alche52);
+    static Encounter enc021 = new Encounter("Erwachte Wachen", true, guard05, guard06, guard07, Descriptions.enc021Intro, Descriptions.enc021Outro, alche21, alche22);
+    static Encounter enc012 = new Encounter("Dame Beatrix", false, guard01, knight01, novice01, Descriptions.enc012Intro, Descriptions.enc012Outro, evoc02, alche52);
 
-    //static Encounter enc012 = new Encounter();
+
 
 
 

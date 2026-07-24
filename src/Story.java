@@ -96,7 +96,7 @@ class Daimon extends Story {
             case "1": System.out.println("DAIMON: \"Na klar, Chef!\""); break;
             case "2": System.out.println("DAIMON: \"Ein Teil von jener Kraft, die stets das Böse will und stets das Gute schafft.\""); break;
             case "3":
-                System.out.println("DAIMON: \"Ach, auf einmal hast du's eilig und willst meine Hilfe, was? \nNa gut, bin ja nicht so ein Sauertopf wie du …\" \n\nDaimon schlüpft durch die Gitterstäbe und fingert den Schlüssel aus dem Gürtelring \ndes Wärters, der dies mit verschlafenem Grunzen quittiert. Dann kehrt das Teufelchen \nzu dir zurück, dreht noch einmal um, verknotet dem Wärter die Schnürsenkel, \nhuscht zurück in die Zelle und hält dir den ZELLENSCHLÜSSEL unter die Nase. \nDAIMON: \"Da, nimm!\"\n");
+                System.out.println("DAIMON: \"Ach, auf einmal hast du's eilig und willst meine Hilfe, was? \nNa gut, bin ja nicht so ein Sauertopf wie du …\" \n\nDaimon schlüpft durch die Gitterstäbe und fingert den Schlüssel aus dem Gürtelring \ndes Wärters, der dies mit verschlafenem Grunzen quittiert. Dann kehrt das Teufelchen \nzu dir zurück, dreht noch einmal um, verknotet dem Wärter die Schnürsenkel, \nhuscht zurück in die Zelle und hält dir den ZELLENSCHLÜSSEL unter die Nase. \nDAIMON: \"Da, nimm!\"");
                 Player.room.loot.add(Player.room.reward);
                 Player.room.reward = null;
                 WorldBuilder.castle[0][0][0].notLoot.remove("zellenschlüssel");
@@ -142,9 +142,7 @@ class Daimon extends Story {
                         [1]\t Sei einfach still.
                         [2]\t Was … bist du eigentlich?
                         [3]\t Kannst du die Wachen mit deinen Dämonenklauen ist Stücke reißen?
-                        [0]\t (Lieber schweigen)
-                        """
-        );
+                        [0]\t (Lieber schweigen)""");
         System.out.print("> ");
         input = sc.nextLine().toLowerCase().trim();
         switch (input) {
@@ -205,26 +203,26 @@ class Descriptions extends Story {
     static String daimonSolved000 = "DAIMON: \"Der Wärter ratzt einfach weiter …\"";
     static String solved000 = "Mit rostigem Knarzen schwingt die Zellentür auf, \ndu kannst nach Osten aus der Zelle heraustreten.\n";
     //Kerker
-    static String desc001 = "Der Wachraum liefert guten Blick auf die westliche Zelle – wenn man wach bleibt. Durch die offene Tür im Osten kriecht ein kalter Zug. \nDer Wächter schläft immer noch.";
+    static String desc001 = "Der Wachraum liefert guten Blick auf die westliche Zelle – wenn man wach bleibt. Durch die offene Tür im Osten kriecht ein kalter Zug. \nDer Wächter schläft immer noch. Auf dem Tisch steht eine Stundenkerze und eine Schale Radieschen.";
     static String descSolved001;
     static String daimon001 = "DAIMON: \"Sieh mal zu, dass du dein Zeug wiederbekommst. Die Königsgarde hat dir alles abgenommen, bevor man dich eingebuchtet hat.\"";
     static String daimonSolved001;
     static String solved001 = "";
     //Kellergang
-    static String desc002 = "Aus Westen kommend führt der Gang um die Ecke nach Norden, aus der Ferne hallen Geräusche. \nAus der Ostwand sind einige Steine ausgebrochen, die auf dem Boden verstreut liegen, \ndoch hinter der Mauer tritt nur felsiges Erdreich zutage.";
-    static String descB002 = "Aus Westen kommend führt der Gang um die Ecke nach Norden. \nAus der Ostwand sind einige Steine ausgebrochen, die auf dem Boden verstreut liegen, \ndoch hinter der Mauer tritt nur felsiges Erdreich zutage.";
+    static String desc002 = "Aus Westen kommend führt der Gang um die Ecke nach Norden, aus der Ferne hallen Geräusche. \nAus der Ostwand sind einige Steine ausgebrochen, die auf dem Boden verstreut liegen, \ndoch hinter der Mauer tritt nur wurzeldurchzogenes Erdreich zutage.";
+    static String descB002 = "Aus Westen kommend führt der Gang um die Ecke nach Norden. \nAus der Ostwand sind einige Steine ausgebrochen, die auf dem Boden verstreut liegen, \ndoch hinter der Mauer tritt nur wurzeldurchzogenes Erdreich zutage.";
     static String descSolved002;
     static String daimon002 = "DAIMON: \"Ein langer Gang ohne was drin? Faule Architekten.\"";
     static String daimonSolved002;
     static String solved002 = "";
     //Offiziersquartier
-    static String desc010 = "Auf dem schweren Holztisch in der Mitte des Raumes liegt eine Schriftrolle ausgebreitet, \nbeschwert mit einem Glas mit einer konservierten dunklen WURZEL aus deinem eigenen Vorrat. \nAn der Südwand sind Waffen- und Rüstungsständer mit Knüppeln, Schwertern, Schilden und Rüstungen aufgereiht. \nIm Kamin prasselt ein Feuer.";
+    static String desc010 = "Auf dem schweren Holztisch in der Mitte des Raumes liegt eine Schriftrolle ausgebreitet, \nbeschwert mit einem Glas mit einer konservierten dunklen Wurzel aus deinem eigenen Vorrat. \nAn der Südwand sind Waffen- und Rüstungsständer mit Knüppeln, Schwertern, Schilden und Rüstungen aufgereiht. \nIm Kamin prasselt ein Feuer.";
     static String descSolved010;
     static String daimon010 = "Daimon spuckt auf Aufseher Ottos Leiche.\nDAIMON: \"Das war für Alfred!\"";
     static String daimonSolved010;
     static String solved010;
-    static String enc010Intro = "Verduzt kauend starrt der Aufseher dich an. Nach angestrengtem Schlucken prustet er empört: \"Du bist nicht Alfred!\", ein Stück Essiggurke wird aus seinem Mund katapultiert. \nDie beiden vor dem Feuer zusammengerollten Hunde erwachen. Der Aufseher zieht sein Schwert.";
-    static String enc010Outro;
+    static String enc010Intro = "Verduzt kauend starrt der Aufseher dich an. Nach angestrengtem Schlucken prustet er empört: \"Du bist nicht Alfred!\", \nein Stück Essiggurke wird aus seinem Mund katapultiert. \nDie beiden vor dem Feuer zusammengerollten Hunde erwachen. Der Aufseher zieht sein Schwert.";
+    static String enc010Outro = "Du holst dir den Kerkerschlüssel von Ottos Kette. Dein Blick fällt auf deine Besitztümer auf dem Schreibtisch, \nals laute Rufe durch das Kerkergewölbe hallen. Wer im Schlafsaal noch geschlafen hat, ist jetzt wohl wach.";
     //Vorratskammer
     static String desc011 = """
             Eine Vielzahl von Gerüchen umgibt dich: Von der Decke hängen verschiedene Würste und Schinken,
@@ -253,12 +251,17 @@ class Descriptions extends Story {
     static String daimonB012 = "DAIMON: \"Jetzt hast du endlich SO einen Dämon. Also Mal, was hält dich noch – grau ist alle Theorie!\"";
     static String daimonSolved012;
     static String solved012 = "Platzhalter in Story-Klasse";
-    static String enc012Intro;
-    static String enc012Outro;
+    static String enc012Intro = """
+    "Stehen bleiben, Hexer!"
+    Dame Beatrix steht vor dir, die sagenumwobene Schwertmeisterin. Ihr schneidender Anblick soll weinende Kinder verstummen lassen.
+    An ihrer Seite stehen eine Heilerin und der (jetzt nicht mehr schlafende) Wächter aus dem Kerker, mit einer auffälligen Schramme am Kinn.
+    Beatrix zieht ihren Zweihänder: "Dein nächster Zellenaufenthalt wird weit weniger angenehm."
+    """;
+    static String enc012Outro = "";
     //Waschraum
     static String desc020 = """
             Am Westende ist ein Kessel aufgestellt, aus dem, wenn angeheizt, warmes Wasser geschöpft werden kann. Daneben ein großer Kübel mit kaltem Wasser.
-            Einige Badezuber stehen im Raum verteilt. Hier und da liegen Haarbüschel am Boden, der Barbier muss hier gewesen sein.
+            Einige Badezuber stehen im Raum verteilt. Hier und da liegen Haarbüschel am Boden.
             Im Norden steht eine schwere, fleckige Holzbank – anscheinend ein Operationstisch. Östlich geht es zum Schlafsaal.
             Im Süden eine Tür, darüber steht deutlich geschrieben: "Offiziersstube, Waffenausgabe". Sie ist abgeschlossen, aber ein Murmeln ist dahinter zu hören.
             """;
@@ -266,19 +269,28 @@ class Descriptions extends Story {
     static String daimon020 = "DAIMON: \"Da drüben, die Offiziersstube. Vielleicht sollten wir einfach mal klopfen und reinrufen, ob wer mit uns spricht?\"";
     static String daimonSolved020;
     static String solved020 = "Platzhalter in Story-Klasse";
+    static String descPostBattle020 = """
+            Am Westende ist ein Kessel aufgestellt, aus dem, wenn angeheizt, warmes Wasser geschöpft werden kann. Daneben ein großer Kübel mit kaltem Wasser.
+            Einige Badezuber stehen im Raum verteilt. Hier und da liegen Haarbüschel am Boden.
+            Im Norden steht eine schwere, fleckige Holzbank – anscheinend ein Operationstisch. Östlich geht es zum Schlafsaal.
+            Im Süden eine Tür, darüber steht deutlich geschrieben: "Offiziersstube, Waffenausgabe".
+            """;
     //Schlafsaal
-    static String desc021 = "Es ist spät am Abend und einige Betten sind von Wachen aus der Frühschicht belegt. Du gehst auf Zehenspitzen. \nNach Westen in die Badestube, nach Osten in die Wachkantine.";
+    static String desc021 = "Es ist spät am Abend und einige Betten sind von Wachen aus der Frühschicht belegt. Du schleichst auf Zehenspitzen. \nAn der Nordwand steht eine große Tafel mit der Überschrift \"Mitarbeitende des Monats\". \nNach Westen geht es in die Badestube, nach Osten in die Wachkantine.";
     static String descSolved021;
     static String daimon021 = "DAIMON: \"Schau mal, da hat einer Mitternachtskraut auf dem Nachttisch liegen. \nDer hätte dem Gefängniswärter besser was davon abgegeben. Also besser für den Wärter, nicht für dich.\"";
     static String daimonSolved021;
     static String solved021;
+    static String enc021Intro;
+    static String enc021Outro;
+
     //Wachkantine
     static String desc022 = "Speise- und Aufenthaltsraum der Wachbelegschaft. Die langen Tische sind spartanisch gedeckt, \nnur auf einem lässt ein Blümchen in einem halbvollen Wassergals den Kopf hängen. \nÜber dem glimmenden Kaminfeuer hängt ein großer Topf. \nDie Tür im Süden führt in den Vorraum, nach Westen geht es in den Schlafsaal.";
     static String descSolved022;
     static String daimon022 = "DAIMON: \"Du solltest zusehen, deinen Dämon zu heilen, bevor es weitergeht. \nAlso nicht mich – den mit der großen Axt.\"";
     static String daimonSolved022;
     static String solved022;
-    static String enc022Intro = "Eine der Wachen hält ein Stück auseinandergerolltes Pergament in der Hand und liest wild gestikulierend daraus vor, \ndie anderen kichern rotnasig. Dramatisch reckt der Wächter seine Faust gen Zimmerdecke, während er eine ausgedachte Zauberformel rezitiert \nund seine Stimme immer höher schraubt, als würde sie sich vor Aufregung überschlagen. \nDabei wirkt er irgendwie wie … du! Die anderen Wachen brechen in haltloses Gelächter aus. \nAngesäuert stößt du die Tür auf, drei Augenpaare wenden sich überrascht zu dir um. ";
+    static String enc022Intro = "An einem der Tische sitzen drei Wachen mit Bierhumpen.\nEiner hält ein Stück auseinandergerolltes Pergament in der Hand und liest wild gestikulierend daraus vor, \ndie anderen kichern rotnasig. Dramatisch reckt der Vortragende seine Faust gen Zimmerdecke, \nwährend er eine ausgedachte Zauberformel rezitiert und seine Stimme immer höher schraubt, \nals würde sie sich vor Aufregung überschlagen. \nDabei wirkt er irgendwie wie … wie du! \nDie anderen Wachen brechen in haltloses Gelächter aus. \nAngesäuert stößt du die Tür auf, drei Augenpaare wenden sich überrascht zu dir um. ";
     static String enc022Outro = "Röchelnd gehen die Wachen zu Boden. Im nächsten Leben wird ihnen das eine Lehre sein. Du sammelst die Schriftrolle auf.";
 
     static String desc100 = "Platzhalter unten in Story-Klasse";
@@ -382,6 +394,28 @@ class Descriptions extends Story {
                     […] Tränke werden mit Verabreichung verbraucht und entfalten unvergleichliche Wirkungen, selbst bei Dämonen.
                     […] Spricht man den wahren Namen eines Dämonen deutlich aus, zwingt man ihn in seinen Dienst. Doch Obacht, er wird dies nicht schätzen!""";
 
+    static String employeeOfTheMonth =
+            """
+                    Du trittst näher an die Tafel heran und studierst die Aufschrift.
+                    
+                    === MITARBEITENDE DES MONDES – A.D. 1475 ===
+                    Eismond:\t
+                    Thaumond:\t
+                    Lenzmond:\t
+                    Keimmond:\t
+                    Wonnemond:\t
+                    Brachmond:\t
+                    Heumond:\t
+                    Erntemond:\t
+                    Herbstmond:\t
+                    Weinmond:\t
+                    Nebelmond:\t
+                    Julmond:\t
+                    ============================================
+                    
+                    DAIMON: "Die müssen sich wohl ganz schön ins Zeug gelegt haben, damit der Laden hier läuft."
+                    """;
+
     //Rätsel Dämonen
     static String riddleDem00 = """
             Diesen okkulten Text hast du vor einer Weile schon entschlüsselt.
@@ -394,6 +428,8 @@ class Descriptions extends Story {
             """;
 
     static String riddleDem01 = """
+            Du blickst auf die Schriftrolle, da steht:
+            
             Du hörst es hallen, das schreckliche Gebrüll aus den Gängen.
             Wenn das Ungeheuer dich in die Irre führt, findest du dann noch den Weg zurück?
             Schau hinab und suche den Pflasterstein, der vorher kam, immer ein Schritt nach dem anderen:
@@ -401,11 +437,15 @@ class Descriptions extends Story {
             """;
     static String trueNameDem01 = "Minotauros, wütender Wächter";
 
-    static String riddleDem02 = "";
+    static String riddleDem02 = """
+            Du blickst auf die Schriftrolle, da steht:
+            
+            [Rätsel Efreet]
+            """;
     static String trueNameDem02 = "Efreet";
 
     static String riddleDem03 = """
-            Die Formel enthält nichts als einen tiefschwarzen Tintenklecks.
+            Du blickst auf die Schriftrolle, die Formel enthält nichts als einen tiefschwarzen Tintenklecks:
             
             ⠀⠀⠀⠀⠀⠀⠀         ⠀⠀⠀\u001B[30m\u001B[40m⢀⣀⣤⣤⣤⣤⣴⣤⣤⣄⡀\u001B[0m⠀⠀⠀⠀⠀⠀⠀⠀⠀
                     ⠀⠀⠀⠀⠀⠀⠀\u001B[30m\u001B[40m⣀⣴⣾⠿⠛⠋⠉⠁⠀⠀⠀⠈⠙⠻⢷⣦⡀\u001B[0m⠀⠀⠀⠀⠀⠀
@@ -418,28 +458,51 @@ class Descriptions extends Story {
                     ⠀⠀⠀⠀⠀⠀⠀⠀⠀\u001B[30m\u001B[40m⠉⠙⠛⠛⠙⠋⠉⠉\u001B[0m⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
             
             Du fühlst dich beobachtet.
-            
             """;
 
     static String trueNameDem03 = "Abaddon, Engel des Abgrunds";
 
     //Rätsel Zauber
-    static String riddleBloodletting = "PLATZHALTER: Wie lautet die Lösung?";
+    static String riddleBloodletting = """
+    Du blickst auf die Schriftrolle, da steht:
+    
+    [Rätsel]
+    """;
     static String formulaBloodletting = "Aderlass";
 
-    static String riddleDoom = "PLATZHALTER: Wie lautet die Lösung?";
+    static String riddleDoom = """
+    Du blickst auf die Schriftrolle, da steht:
+    
+    [Rätsel]
+    """;
     static String formulaDoom = "Untergang";
 
-    static String riddleIronMaiden = "PLATZHALTER: Wie lautet die Lösung?";
+    static String riddleIronMaiden = """
+    Du blickst auf die Schriftrolle, da steht:
+    
+    [Rätsel]
+    """;
     static String formulaIronMaiden = "Eiserne Jungfrau";
 
-    static String riddleLifeline = "PLATZHALTER: Wie lautet die Lösung?";
+    static String riddleLifeline = """
+    Du blickst auf die Schriftrolle, da steht:
+    
+    [Rätsel]
+    """;
     static String formulaLifeline = "Lebenslinie";
 
-    static String riddleSoulreaper = "PLATZHALTER: Wie lautet die Lösung?";
+    static String riddleSoulreaper = """
+    Du blickst auf die Schriftrolle, da steht:
+    
+    [Rätsel]
+    """;
     static String formulaSoulreaper = "Seelendieb";
 
-    static String riddleViciousSeed = "PLATZHALTER: Wie lautet die Lösung?";
+    static String riddleViciousSeed = """
+    Du blickst auf die Schriftrolle, da steht:
+    
+    [Rätsel]
+    """;
     static String formulaViciousSeed = "Üble Saat";
 
 }
@@ -501,7 +564,7 @@ class Dialogue extends Story {
             inputLine();
             switch (input) {
                 case "1": System.out.println("STIMME HINTER DER TÜR: \"Dann mach mal hinne, Alfred!"); break;
-                case "2": System.out.println("STIMME HINTER DER TÜR: \"Man könnte zum Beispiel die Essiggurke vergessen, Alfred. \nMan könnte sie sogar STÄNDIG vergessen, wie du, Alfred. \nDeshalb schiebst du nach sechs Monaten auch immer noch Wachdienst. Und selbst den kriegst du nur, weil die Gefängniszellen von alleine zu bleiben, Alfred. \nUnd jetzt leg verdammt noch mal Essiggurke aufs Käsebrot!\""); System.out.println("\nDAIMON: \"Uff, der ist ja fast so ein schlechter Chef wie du, Mal.\""); break;
+                case "2": System.out.println("STIMME HINTER DER TÜR: \"Man könnte zum Beispiel die Essiggurke vergessen, Alfred. \nMan könnte sie sogar STÄNDIG vergessen, wie du, Alfred. \nDeshalb schiebst du nach sechs Monaten auch immer noch Wachdienst. \nUnd selbst den kriegst du nur, weil die Gefängniszellen von alleine zu bleiben, Alfred. \nUnd jetzt leg verdammt noch mal Essiggurke aufs Käsebrot!\""); System.out.println("\nDAIMON: \"Uff, der ist ja fast so ein schlechter Chef wie du, Mal.\""); break;
                 case "0": System.out.println("STIMME HINTER DER TÜR: \"Alfred? Aaaaalfred!\""); System.out.println("Du entfernst dich."); break;
                 default: System.out.println("STIMME HINTER DER TÜR: \"Alfred, mit dem Herumgedruckse wird das noch länger nichts mit der Beförderung. \nSei nicht so ein Waschlappen und bring mir mein mittägliches Käsebrot. Und zwar WIE ÜBRLICH, und ein wenig zackig!\""); break;
             }
@@ -557,7 +620,7 @@ class Intro extends Story {
     }
 
     public static void needHelp() {
-        System.out.println("Dein Kopf brodelt vor Wut. Du solltest erst einmal wieder zu klaren Gedanken kommen. Wie ging das Ganze hier noch gleich?");
+        System.out.println("Dein Kopf brodelt vor Wut. Erst einmal solltest du wieder zu klaren Gedanken kommen. Wie ging das Ganze hier noch gleich?");
         System.out.println("Anleitung anzeigen? (j/n)");
         System.out.print("> ");
     }
@@ -580,11 +643,12 @@ class Tutorials extends Story {
                         \t\t\t\t\t|\t\t\t\t\t|
                         Inventar zeigen\t\t| (I)tems\t\t\t| Zeigt an, welche Gegenstände du besitzt (ohne alchemistische Zutaten).                        
                         Nimm Item\t\t\t| N.[Item]\t\t\t| Legt einen erreichbaren Gegenstand ins Inventar, z. B. "n.Zellenschlüssel".
-                        Betrachte Item\t\t| B.[Item]\t\t\t| Zeigt eine genauere (B)eschreibung zu einem Gegenstand im Inventar an.
+                        Betrachte Item\t\t| B.[Item]\t\t\t| Zeigt eine genauere (B)eschreibung zu einem Gegenstand im Inventar 
+                        \t\t\t\t\t|\t\t\t\t\t| \toder manchen Objekten im aktuellen Raum an.
                         Verwende Item \t\t| V.[Item]\t\t\t| Verwendet einen Gegenstand im Inventar, z. B. "v.Zellenschlüssel".
                         \t\t\t\t\t|\t\t\t\t\t| \tVerwende Zauberschriftrollen, um einen neuen Zauber zu lernen.
                         \t\t\t\t\t|\t\t\t\t\t| \tVerwende Beschwörungsformeln, um einen Dämon in deinen Dienst zu zwingen.
-                        \t\t\t\t\t|\t\t\t\t\t| \tVerwende Taschen oder Bündel, um die enthaltenen Gegenstände hervorzuholen.
+                        \t\t\t\t\t|\t\t\t\t\t| \tVerwende Taschen oder Bündel, um die enthaltenen Gegenstände auszupacken.
                         \t\t\t\t\t|\t\t\t\t\t| \tVerwende sonstige Items (Schlüssel usw.), um sie im aktuellen Raum anzuwenden.
                         Kombiniere Items\t| K.[Item].[Item]\t| Kombiniert zwei Items aus dem Inventar miteinander,
                           ("combine")\t\t| oder\t\t\t\t| \tz. B. "k.blaue Farbe.gelbe Farbe" -> Maleficarius erhält grüne Farbe.
@@ -601,7 +665,7 @@ class Tutorials extends Story {
                         Zauberbuch\t\t\t| (Z)auber\t\t\t| Listet die von dir gelernten Zauber auf, nutze sie im Kampf.
                         Alchemiezutaten\t\t| (A)lchemie\t\t| Zeigt deine alchemistischen Zutaten an, braue Tränke aus ihnen.
                         Trankgurt\t\t\t| (T)ränke\t\t\t| Zeigt deine Tränke an, nutze sie AUSSERHALB des Kampfes per "v.[Trank]".
-                        Dämonen-Kompendium\t| Dämonen\t\t\t| Zeigt nähere Informationen zu den von dir gebundenen Dämonen an.
+                        Dämonen-Kompendium\t| Dämon\t\t\t\t| Zeigt nähere Informationen zu den von dir gebundenen Dämonen an.
                         \t\t\t\t\t|\t\t\t\t\t|\s
                         Spielanleitung\t\t| (H)ilfe \t\t\t| Ruft diese Anleitung auf.
                         Kampftutorial\t\t| Kampf \t\t\t| Ruft die Anleitung zum Kampfsystem auf.
@@ -610,8 +674,7 @@ class Tutorials extends Story {
                         Mitwirkende\t\t\t| Credits \t\t\t| Zeigt die Mitwirkenden.
                         Beenden\t\t\t\t| Ende \t\t\t\t| Beendet das Spiel.
                         
-                        Groß-/Kleinschreibung wird ignoriert, außer bei Zauber- und Beschwörungsformeln. Copy-paste ist hilfreich.
-                        Merkhilfe: Die mehrteiligen Befehle (mit ".") werden über die Tasten C bis M in der unteren Tastaturzeile angesteuert.
+                        Groß-/Kleinschreibung wird ignoriert, außer bei Zauber- und Beschwörungsformeln. Copy-paste ist hilfreich.                        
                         ============================================================================================================================
                         """
         );

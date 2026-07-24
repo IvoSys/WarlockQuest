@@ -189,10 +189,11 @@ abstract class Potion extends Item{
 
     public static void drink(String trank) {
         for (Item i : Player.inv) {
-            if (i instanceof Potion && i.name.contains(trank)) {
-                if (((Potion) i).effect())
+            if (i instanceof Potion && i.name.toLowerCase().equals(trank)) {
+                if (((Potion) i).effect()) {
                     Item.consumeItem(i);
-                break;
+                    break;
+                }
             }
         }
     }
@@ -211,10 +212,12 @@ class Healthpotion extends Potion{
         this.combiID = combiID;
     }
 
+    @Override
     public boolean effect() {
         int count = 1;
         int pick;
         boolean success = false;
+        WarlockQuest.sc.useDelimiter("\\R");
 
         if (Player.team.isEmpty()) {
             System.out.println("Du hast keine Dämonen, die du heilen könntest.");
@@ -239,8 +242,11 @@ class Healthpotion extends Potion{
                 healedDemon.hp += str;
                 healedDemon.ko = false;             // falls Heiltränke wiederbeleben können sollen, sonst stattdessen in if-Bedingung aufnehmen.
                 success = true;
-                if (healedDemon.hp > healedDemon.hpMax) {
+                if (healedDemon.hp >= healedDemon.hpMax) {
                     healedDemon.hp = healedDemon.hpMax;
+                    System.out.println(healedDemon.name + " wurde vollständig geheilt.");
+                } else {
+                    System.out.printf("%s wurde geheilt und hat nun %d/%d HP.\n", healedDemon.name, healedDemon.hp, healedDemon.hpMax);
                 }
             }
         }
@@ -274,6 +280,7 @@ class Manapotion extends Potion{
         this.combiID = combiID;
     }
 
+    @Override
     public boolean effect() {
         boolean sucess = false;
 
@@ -289,7 +296,7 @@ class Manapotion extends Potion{
         if (sucess && Player.mp == Player.mpMax) {
             System.out.println("Maleficarius ist wieder vollständig erfrischt'.");
         } else if (sucess)
-            System.out.println("Maleficarius' Mana wurde auf " + Player.mp + " MP aufgefüllt.");
+            System.out.printf("Maleficarius fühlt sich erfrischt und hat nun %d/%d MP.", Player.mp, Player.mpMax);
 
         return sucess;
     }

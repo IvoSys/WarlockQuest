@@ -69,7 +69,6 @@ public class Battle {
                                         try {
                                             System.out.print("> ");
                                             pick = sc.nextInt();
-                                            sc.next();
                                             if (pick == 0) {
                                                 break;
                                             }
@@ -161,6 +160,7 @@ public class Battle {
                             WarlockQuest.enterToContinue();                          // mit If-Bedingung, sonst müsste man nach ausgefallener Handlung eines besiegten Gegners trotzdem Eingabetaste drücken.
 
                     } // Ende Aktion Gegnerteam
+                    checkVictory();                                 // Check Victory nachdem Gegner dran waren, falls letzter Gegner durch DOT besiegt
                     isPlayerTurn = true;
                 }
             } while (!demon.ko);                                    // Ende innerer Battle-Loop. Wiederholt, solange Dämon am Leben
@@ -463,6 +463,9 @@ public class Battle {
             Item.obtainItem(Player.room.encounter.rewardItem2);
             Player.room.encounter.rewardItem2 = null;
         }
+        if (Player.room.descPostBattle != null) {
+            Player.room.desc = Player.room.descPostBattle;
+        }
         for (Demon d : Player.team) {
             d.ko = false;
             if (d.hp == 0) {
@@ -475,6 +478,7 @@ public class Battle {
             WorldBuilder.castle[0][1][2].desc = WorldBuilder.castle[0][1][2].descB;
         } else if (encounter == WorldBuilder.enc010) {
             WorldBuilder.castle[0][1][2].encounter = WorldBuilder.enc012;
+            WorldBuilder.castle[0][2][0].desc = WorldBuilder.castle[0][2][0].descPostBattle;
         }
 
         WarlockQuest.gameLoop();
