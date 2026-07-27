@@ -16,16 +16,57 @@ public abstract class Spell {
 
     public Spell() {}
 
-    public static int pickTarget(){
-        int counter = 1;
-        int enemyIndex;
-        for (Enemy e : Player.room.encounter.enemyTeam) {
-            System.out.printf("[%d] %s \t (%d/%d HP) \n", counter, e.name, e.hp, e.hpMax);
-            counter++;
+    public static void learnOnTake(String nameSpell) {              //Zauber lernen, wenn Schriftrolle NEHMEN
+        Spell toLearn = null;
+        for (Spell s : WorldBuilder.freeSpells) {
+            if (s.name.equals(nameSpell)) {
+                toLearn = s;
+                break;
+            }
         }
-        enemyIndex = Battle.sc.nextInt() - 1;
-        return enemyIndex;
+        if (toLearn == null) {
+            System.out.println("DEBUG: Zauber nicht gefunden.");
+        } else {
+            Player.spellbook.add(toLearn);
+            System.out.println("Du brichst das Siegel, rollst das Pergament auseinander und beginnst zu lesen.");
+            System.out.println("Du prägst dir die Zauberformel und die erforderlichen Gesten ein und übst sie, bis sie sitzen.");
+            System.out.println("Die Schriftrolle verbrennt unter deinen Fingern und du lernst den Zauber \"" + toLearn.name + "\".");
+        }
+
     }
+
+    public static void learnOnUse(String nameScroll) {              //Zauber lernen, wenn Schriftrolle VERWENDEN
+        Spellscroll toUse = null;
+        Spell toLearn = null;
+
+        for (Item i : Player.inv) {
+            if (i instanceof Spellscroll && i.name.toLowerCase().equals(nameScroll)) {
+                toUse = (Spellscroll) i;
+                break;
+            }
+        }
+        if (toUse == null) {
+            System.out.println("DEBUG: Schriftrolle nicht gefunden.");
+        } else {
+            for (Spell s : WorldBuilder.freeSpells) {
+                if (s.name.equals(toUse.nameSpell)) {
+                    toLearn = s;
+                    break;
+                }
+            }
+            if (toLearn == null) {
+                System.out.println("DEBUG: Zauber nicht gefunden.");
+            } else {
+                Player.spellbook.add(toLearn);
+                Player.inv.remove(toUse);
+                System.out.println("Du brichst das Siegel, rollst das Pergament auseinander und beginnst zu lesen.");
+                System.out.println("Du prägst dir die Zauberformel und die erforderlichen Gesten ein und übst sie, bis sie sitzen.");
+                System.out.println("Die Schriftrolle verbrennt unter deinen Fingern und du lernst den Zauber \"" + toLearn.name + "\".");
+            }
+        }
+    }
+
+
 
     public void cast(int enemyIndex) { }     // Single target
 
@@ -248,7 +289,7 @@ class ViciousSeed extends Spell {
         desc = "Pflanzt einen Keim in einem Gegner ein, der nach Ablauf der Dauer \noder mit Tod des Gegners aufplatzt und bei allen Gegnern Schaden verursacht.";
         formula = Descriptions.formulaViciousSeed;
         textWhenLearned = "Du erlernst den Zauber \"Üble Saat\".";
-        str = Player.spellpower/2;
+        str = Player.spellpower / 2;
         dur = 3;
         mpCost = 10;
         aoe = false;
@@ -281,9 +322,10 @@ class ViciousSeed extends Spell {
         System.out.println("Der Keim des Übels in " + e.name + " platzt auf.");
         for (Enemy f : Player.room.encounter.enemyTeam) {
             if (!f.ko)
-                f.applyDmg(rnd.nextInt(Player.spellpower+1) + str);
+                f.applyDmg(rnd.nextInt(Player.spellpower + 1) + str);
         }
     }
 
 
 }
+

@@ -1,24 +1,22 @@
 public abstract class Item {
 
     protected String name;
-    protected String nameVague;
     protected String desc;
-    protected String addRoomDesc;                   //Room.describe() geht Loot-Liste des Raumes durch und hängt für jedes Item diese Variable an die Raumbeschreibung an. Wurde Item bereits gelootet, wird es nicht mehr erwähnt!
+    protected String nameVague;
+    protected String DescInRoom;        //Room.describe() geht Loot-Liste des Raumes durch und hängt für jedes Item diese Variable an die Raumbeschreibung an. Wurde Item bereits gelootet, wird es nicht mehr erwähnt!
+    protected String DescInRoomV;       //String wird genutzt, wenn Item erst erwähnt werden soll, wenn anderes Objekt näher betrachtet wird (zB Rosenblüten in Badezuber). EINES PRO RAUM!
     protected int num = 1;
     protected boolean isConsumed = true;
-    protected int puzzleID = 0;                    //ID zum Lösen des Rätsels in einem Raum, wird mit der ID des Raums abgeglichen, 0 für neutral, room000 stattdessen -1
+    protected int ID = 0;                  //ID für Schlüssel und Rätselitems, wird mit der ID des Raums abgeglichen, 0 für neutral, room000 stattdessen -1
     protected int combiID = 0;                     //ID zum Kombinieren zweier Items. Zwei Items mit gleicher combiID können kombiniert werden, Items mit combiID  0 können nicht kombiniert werden, daher Standardwert.
-                                                        // Negative combiID für Bündel – mit "u.(name)" verwenden, um auszupacken. Bündel wird gelöscht, Inhalt kommt ins Inventar.
+                                                   // Negative combiID für Bündel – mit "u.(name)" verwenden, um auszupacken. Bündel wird gelöscht, Inhalt kommt ins Inventar.
 
 
-    public static boolean consumeItem(Item itemConsumed) {
-        boolean success = false;
-
+    public static void consume(Item itemConsumed) {
         if (Player.inv.contains(itemConsumed)) {
             int i = Player.inv.indexOf(itemConsumed);
             Player.inv.get(i).num--;
             System.out.printf("%s verbraucht", Player.inv.get(i).name);
-            success = true;
             if  (Player.inv.get(i).num <= 0) {
                 Player.inv.remove(i);
                 System.out.println(", Vorrat erschöpft");
@@ -26,10 +24,9 @@ public abstract class Item {
         } else {
             System.out.println("Item nicht im Inventar.");
         }
-        return success;
     }
 
-    public static boolean consumeItemMult(Item itemConsumed, int numConsumed) {
+    public static boolean consumeMult(Item itemConsumed, int numConsumed) {
         boolean success = false;
 
         if (Player.inv.contains(itemConsumed)) {
@@ -53,7 +50,7 @@ public abstract class Item {
         return success;
     }
 
-    public static void obtainItem(Item itemObtained) {
+    public static void obtain(Item itemObtained) {
         if (Player.inv.contains(itemObtained)) {
             int i = Player.inv.indexOf(itemObtained);
             Player.inv.get(i).num++;
@@ -63,7 +60,7 @@ public abstract class Item {
         System.out.printf("%s erhalten \n", itemObtained.name);
     }
 
-    public static void obtainItemMult(Item itemObtained, int numObtained) {
+    public static void obtainMult(Item itemObtained, int numObtained) {
         if (Player.inv.contains(itemObtained)) {
             int i = Player.inv.indexOf(itemObtained);
             Player.inv.get(i).num += numObtained;
@@ -87,11 +84,10 @@ public abstract class Item {
 
         switch (id) {
             case -1:
-                obtainItem(WorldBuilder.evoc01);
-                obtainItem(WorldBuilder.scrollBloodletting);
-                obtainItem(WorldBuilder.scrollViciousSeed);
+                obtain(WorldBuilder.evoc01);
+                obtain(WorldBuilder.scrollViciousSeed);
                 Player.inv.remove(toUnpack);
-                System.out.println("\nSchriftrollen! … Drei von etlichen mehr. Die Wachen müssen einen Großteil deiner Pergamente und Trankzutaten gestohlen haben. \nOb diese Proleten überhaupt lesen können? Hoffentlich treiben sie mit deinen wertvollen Formeln keinen Mumpitz.");
+                System.out.println("\nSchriftrollen! … Zwei von etlichen mehr. Die Wachen müssen einen Großteil deiner Pergamente und Trankzutaten gestohlen haben. \nOb diese Proleten überhaupt lesen können? Hoffentlich treiben sie mit deinen wertvollen Formeln keinen Mumpitz.");
                 break;
                     /*case -2:
                         obtainItem();
@@ -108,17 +104,100 @@ public abstract class Item {
         }
     }
 
+    public static void combine(String input1, String input2) {
+        if (input1.equals(input2)) {                // Abbruch, wenn zweimal gleiches Item eingegeben wurde
+            System.out.println("Das funktioniert nur mit zwei unterschiedlichen Gegenständen.");
+        } else {
+            Item item1 = null;
+            Item item2 = null;
+
+            for (Item i : Player.inv) {                                // Inventar durchgeben,
+                if (input1.equals(i.name.toLowerCase())) {      // wenn input mit Namen eines Items genau übereinstimmt
+                    item1 = i;                                  // Item in Wegwerfvariable speichern
+                }
+                if (input2.equals(i.name.toLowerCase())) {      // für zweiten Input auch
+                    item2 = i;
+                }
+            }
+            // Abbruch, wenn eine oder beide Variablen nicht befüllt wurden, d.h. die angegebenen Items nicht im Inventar sind
+            if (item1 == null && item2 == null)
+                System.out.println("Du hast nichts davon.");
+            else if (item1 == null)
+                System.out.println("Den ersten Gegenstand hast du nicht.");
+            else if (item2 == null)
+                System.out.println("Den zweiten Gegenstand hast du nicht.");
+            else {
+
+                // Items sind im Inventar
+                // Wenn eine ID = 10, könnte eine Verstärkung durchgeführt werden
+                if ((item1.combiID == 10) || item2.combiID == 10) {                 // Ein Item ist Katalysator …
+                    if ((item1.combiID == 11) || item2.combiID == 11)               // … ein Item ist Heiltrank1
+                        obtain(WorldBuilder.potHealth2);                   //  -> Heiltrank2
+                    else if ((item1.combiID == 110) || item2.combiID == 110)        // … ein Item ist Heiltrank2
+                        obtain(WorldBuilder.potHealth3);                   //  -> Heiltrank3
+                    else if ((item1.combiID == 22) || item2.combiID == 22)          // … ein Item ist Manatrank1
+                        obtain(WorldBuilder.potMana2);                     //  -> Manatrank2
+                    else if ((item1.combiID == 220) || item2.combiID == 220)        // … ein Item ist Manatrank2
+                        obtain(WorldBuilder.potMana3);                     //  -> Manatrank3
+                    else
+                        System.out.println("Dieser Gegenstand kann nicht mit einem Katalysator verstärkt werden.");
+
+                    consume(item1);
+                    consume(item2);
+
+                    // Abbruch, wenn IDs unterschiedlich oder 0 sind – diese Items können nicht kombiniert werden können
+                } else if ((item1.combiID != item2.combiID) || item1.combiID == 0) {
+                    System.out.println("Diese beiden Gegenstände lassen sich nicht kombinieren.");
+
+                    // Items sind im Inventar vorhanden und können kombiniert werden.
+                } else {
+
+                    // Items erzeugen und Zutaten verbrauchen
+                    if (item1.combiID == 1) {               // 2x id 1 -> Heiltrank (id 11)
+                        obtain(WorldBuilder.potHealth1);
+                    } else if (item1.combiID == 2) {        // 2x id 2 -> Manatrank (id 22)
+                        obtain(WorldBuilder.potMana1);
+                    } else if (item1.combiID == 3) {        // 2x id 3 -> Trank (id 33)
+                        //Item.obtainItem(WorldBuilder.);
+                        System.out.println("PLATZHALTER: Dies erzeugt Trank mit Combi-ID 33");
+                    } else if (item1.combiID == 4) {        // 2x id 4 -> Trank (id 44)
+                        //Item.obtainItem(WorldBuilder.);
+                        System.out.println("PLATZHALTER: Dies erzeugt Trank mit Combi-ID 44");
+                    } else if (item1.combiID == 5) {        // 2x id 5 -> Level-up-Trank (id 55)
+                        obtain(WorldBuilder.potLevelUp);
+
+                    } else if (item1.combiID == 12) {        // 2x id 12 -> Käsebrot
+                        obtain(WorldBuilder.cheeseBread);
+                    } else if (item1.combiID == 13) {        // 2x id 13 -> Sandwich
+                        obtain(WorldBuilder.sandwich);
+                    } else if (item1.combiID == 14) {        // 2x id 14 ->
+                        //Item.obtainItem(WorldBuilder.);
+                    } else if (item1.combiID == 15) {        // 2x id 15 ->
+                        //Item.obtainItem(WorldBuilder.);
+                    }
+
+                    consume(item1);
+                    consume(item2);
+
+                }
+            }
+        }
+    }
+
+
 }
 
 class Evocation extends Item {
 
     String demonShortName;
+    String hint;
 
-    public Evocation(String scrollTitle, String nameVague, String desc, String demonShortName) {
+    public Evocation(String scrollTitle, String nameVague, String desc, String demonShortName, String hint) {
         name = scrollTitle;                     //Name der Beschwörungsformel
         this.nameVague = nameVague;
         this.desc = desc;                       //Text mit Rätsel zum trueName des Dämonen
         this.demonShortName = demonShortName;   //Kann mit name-Variablen des Dämonen abgeglichen werden
+        this.hint = hint;
     }
 
     public static void bind() {
@@ -157,6 +236,28 @@ class Evocation extends Item {
             System.out.println("Hämisches Gelächter hämmert in deinem Schädel hin und her wie der Klöppel eine Glocke. \nDieses Mal hast du keinen neuen Diener erhalten.");
     }
 
+    public static void hint() {
+        boolean found = false;
+        for (Item i : Player.inv)
+            if (i instanceof Evocation) {
+                System.out.println(((Evocation) i).hint);
+                found = true;
+            }
+        if (!found)
+            System.out.println("Keine ungelöste Beschwörungsformel im Inventar.");
+
+    }
+
+}
+
+class GeneralItem extends Item {
+    public GeneralItem(String name, String nameVague, String desc, int roomID, int combiID) {
+        this.name = name;
+        this.nameVague = nameVague;
+        this.desc = desc;
+        this.ID = roomID;
+        this.combiID = combiID;
+    }
 }
 
 class Ingredience extends Item {
@@ -172,11 +273,22 @@ class Ingredience extends Item {
 
 class Key extends Item {
 
-    public Key(String name, String nameVague, String desc, int puzzleID, int combiID) {
+    public Key(String name, String nameVague, String desc, int roomID, int combiID) {
         this.name = name;
         this.nameVague = nameVague;
         this.desc = desc;
-        this.puzzleID = puzzleID;
+        this.ID = roomID;
+        this.combiID = combiID;
+    }
+}
+
+class PuzzleItem extends Item {
+
+    public PuzzleItem(String name, String nameVague, String desc, int roomID, int combiID) {
+        this.name = name;
+        this.nameVague = nameVague;
+        this.desc = desc;
+        this.ID = roomID;
         this.combiID = combiID;
     }
 }
@@ -191,7 +303,7 @@ abstract class Potion extends Item{
         for (Item i : Player.inv) {
             if (i instanceof Potion && i.name.toLowerCase().equals(trank)) {
                 if (((Potion) i).effect()) {
-                    Item.consumeItem(i);
+                    Item.consume(i);
                     break;
                 }
             }
@@ -313,7 +425,7 @@ class Spellscroll extends Item {
         this.nameSpell = nameSpell;
     }
 
-    public static void learn() {
+/*    public static void learn() {
         boolean success = false;
         System.out.print("Du machst dich bereit, einen neuen Zauber zu erlernen. \nGib die Zauberformel ein, und sei genau! \n> ");
         WarlockQuest.input = WarlockQuest.sc.nextLine().trim();                     // Nutzer gibt ein, was er für Formel eines Zaubers hält.
@@ -344,6 +456,8 @@ class Spellscroll extends Item {
         if (!success)                       // Wenn das Ganze nicht funktioniert hat, anderen Text ausgeben
             System.out.println("Dir raucht der Kopf vor Anstrengung. \nDiesen Zauber verstehst du einfach nicht!");
     }
+
+ */ //Veraltete Methode Spellscroll.learn()
 
 }
 

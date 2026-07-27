@@ -456,11 +456,11 @@ public class Battle {
         System.out.println(Player.room.encounter.outro);
         System.out.println();
         if (Player.room.encounter.rewardItem1 != null) {
-            Item.obtainItem(Player.room.encounter.rewardItem1);
+            Item.obtain(Player.room.encounter.rewardItem1);
             Player.room.encounter.rewardItem1 = null;
         }
         if (Player.room.encounter.rewardItem2 != null) {
-            Item.obtainItem(Player.room.encounter.rewardItem2);
+            Item.obtain(Player.room.encounter.rewardItem2);
             Player.room.encounter.rewardItem2 = null;
         }
         if (Player.room.descPostBattle != null) {

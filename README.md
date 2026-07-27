@@ -11,7 +11,8 @@ Hauptprogramm in WarlockQuest.java
 - Enemy:		Abstrakte Gegner-Klasse und implementierende Unterklassen (Soldat, Ritter, Magier …)  
 - Item:		Abstrakte Item-Klasse und implementierende Unterklassen (Schlüssel, Trankzutaten, Schriftrollen …)  
 - Player:		Attribute und Methoden für den Spieler – Position in Spielwelt, aktuelle Magiepunkte, Arrays für Items und Zauber usw.  
-- Room:		Definiert Räume mit Encountern, Türen, Gegenständen usw.  
+- Room:		Definiert Räume mit Encountern, Türen, Gegenständen usw.
+- RoomObject:  Objekte in Räumen, die näher angesehen, Items enthalten und verschiedene Beschreibungen ausgeben können.
 - Spell:		Abstrakte Zauber-Klasse und implementierende Unterklassen (konkrete Zaubersprüche)  
 - Story:		Sammelt Strings für Dialoge, Beschreibungen für Räume und Gegenstände, Tutorials usw.  
 - WarlockQuest:	Main-Methode und Game-Loop  

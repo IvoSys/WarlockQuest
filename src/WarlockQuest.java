@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class WarlockQuest {
@@ -44,7 +43,7 @@ public class WarlockQuest {
                 }
                 Player.moved = false;
             }
-            System.out.print("\nZeit zu handeln! \n> ");
+            System.out.print("\n+++ Zeit zu handeln! +++ \n> ");
             WarlockQuest.input = WarlockQuest.sc.nextLine().toLowerCase().trim();
             if (input.equals("d") || input.equals("daimon")){
                 Daimon.speak();                                                                                         // Daimon
@@ -59,52 +58,46 @@ public class WarlockQuest {
                 } else if (inputSplit[0].equals("v") || inputSplit[0].equals("u")) {
                     if (inputSplit[1].contains("trank") && !inputSplit[1].contains("gurt")) {
                         Potion.drink(inputSplit[1]);                                                                    // Trinke Trank
-                    } else if (inputSplit[1].contains("zauberschriftrolle")) {
-                        Player.checkItem(inputSplit[1]);
-                        Spellscroll.learn();                                                                            // Lerne Zauber
-                    } else if (inputSplit[1].contains("beschwörungsformel")) {
-                        Player.checkItem(inputSplit[1]);
+                    } else if (inputSplit[1].contains("zauberschriftrolle ")) {
+                        Spell.learnOnUse(inputSplit[1]);                                                                   // Lerne Zauber
+                    } else if (inputSplit[1].contains("beschwörungsformel ")) {
+                        Player.examine(inputSplit[1]);
                         Evocation.bind();                                                                               // Binde Dämon
                     } else if (inputSplit[1].contains("tasche") || inputSplit[1].contains("bündel")) {
                         Item.unpack(inputSplit[1]);                                                                     // Entpacke Bündel
                     } else {
-                        Player.room.solve(inputSplit[1]);                                                               // Verwende Item
+                        Player.room.unlockOrSolve(inputSplit[1]);                                                       // Verwende Item
                     }
                 } else if (inputSplit[0].equals("b") || inputSplit[0].equals("e")) {
-                    Player.checkItem(inputSplit[1]);                                                                    // Betrachte Item
+                    Player.examine(inputSplit[1]);                                                                    // Betrachte Item
                 } else if (inputSplit[0].equals("k") || inputSplit[0].equals("c")) {
-                    Player.combineItems(inputSplit[1], inputSplit[2]);                                                  // Kombiniere Items
+                    Item.combine(inputSplit[1], inputSplit[2]);                                                    // Kombiniere Items
                 } else if (inputSplit[0].equals("g") || inputSplit[0].equals("m")){
                     Player.move(inputSplit[1]);                                                                         // Bewegen
                 } else {
                     System.out.println("Du redest wirr!");
                 }
-            } else if (input.equals("status")){
+            } else if (input.equals("stat")|| input.equals("status")){
                 Player.showStatus();                                                                                    // Status
             } else if (input.equals("z") || input.equals("zauber")){
                 Player.showSpells();                                                                                    // Zauberbuch
-            } else if (input.equals("t") || input.equals("tränke")){
-                Player.showPotions();                                                                                   // Tranktasche
-            } else if (input.equals("a") || input.equals("zutaten") || input.equals("alchemie")){
-                Player.showIngredients();                                                                               // Alchemiezutaten
             } else if (input.equals("r") || input.equals("raum")){
                 Room.describe();                                                                                        // Raum ansehen
             } else if (input.equals("dämonen") || input.equals("dämon")){
                 Demon.showDemons();                                                                                     // Kompendium infernale
             } else if (input.equals("h") || input.equals("hilfe")){
-                Tutorials.help();                                                                                           // Hilfe
+                Tutorials.help();                                                                                       // Hilfe
             } else if (input.equals("kampf")){
-                Tutorials.helpBattle();                                                                                     // Kampftutorial
-                //} else if (input.equals("cleanup")){
-                //    Player.cleanUpInv();                                                                              // Inventar aufräumen
+                Tutorials.helpBattle();                                                                                 // Kampftutorial
             } else if (input.equals("credits")) {
                 credits();                                                                                              // Credits
+            } else if (input.equals("tipp")) {
+                Evocation.hint();                                                                                       // Hinweis zu Beschwörungsformel
             } else if (input.equals("ende")){
                 quit();                                                                                                 // Beenden
             } else if (input.equals("gib mir einfach die lösungen")) {
                 Tutorials.answers();
-            //} else if (input.equals("ich bin der geist, der stets verneint!")) {
-            } else if (input.equals("cheat")) {
+            } else if (input.equals("cheat") || input.equals("ich bin der geist, der stets verneint!")) {
                 Player.cheatAllDemsAndSpells();
             } else {
                 System.out.println("Sprich deutlich!");
@@ -130,7 +123,7 @@ public class WarlockQuest {
         System.out.println("Mit besonderem Dank an meine Trainer \n");
         System.out.println();
         System.out.println("Herzlichen Dank an die Betatester \nfür die wertvollen Rückmeldungen:");
-        System.out.println("- ");
+        System.out.println("- Sebastian Bathiany");
     }
 
     public static void quit(){

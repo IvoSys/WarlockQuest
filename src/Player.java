@@ -60,7 +60,7 @@ public class Player {
     }
 
     public static void showInv() {
-        System.out.println("============= INVENTAR ==============");
+        System.out.println("================= INVENTAR =================");
         for (Item i : inv) {
             if ((i instanceof Ingredience) || (i instanceof Potion))
                 continue;
@@ -70,27 +70,59 @@ public class Player {
             else
                 System.out.print("\n");
         }
-        System.out.println("=====================================");
-    }
+        System.out.println();
 
-    public static void showIngredients() {
-        boolean empty = true;
-        System.out.println("==========ALCHEMIEZUTATEN==========");
+        System.out.println("------------------ TRÄNKE ------------------");
+        System.out.println("Verwende diese Tränke AUSSERHALB von Kämpfen:");
+        boolean noPotion = true;
+        for (Item i : inv) {
+            if (i instanceof Potion) {
+                System.out.printf("· \t%s \n", i.name);
+                System.out.printf("\t%s \n", i.desc);
+                noPotion = false;
+            }
+        }
+        if (noPotion) {
+            System.out.println("[Kein einziger Trank]");
+        }
+        System.out.println();
+
+        System.out.println("-------------- ALCHEMIEZUTATEN -------------");
+        System.out.println("Braue Tränke aus diesen Zutaten:");
+        boolean noIngred = true;
         for (Item i : inv) {
             if (i instanceof Ingredience) {
                 System.out.printf("· %s [%d] \n", i.name, i.num);
-                empty = false;
+                noIngred = false;
             }
         }
-        if (empty) {
+        if (noIngred) {
+            System.out.println("[Keine einzige Zutat]");
+        }
+        System.out.println();
+        System.out.println("============================================");
+    }
+
+    public static void showIngredients() {
+        boolean noIngred = true;
+        System.out.println("========== ALCHEMIEZUTATEN ==========");
+        System.out.println("Braue Tränke aus diesen Zutaten:");
+        for (Item i : inv) {
+            if (i instanceof Ingredience) {
+                System.out.printf("· %s [%d] \n", i.name, i.num);
+                noIngred = false;
+            }
+        }
+        if (noIngred) {
             System.out.println("Keine einzige Zutat.");
         }
-        System.out.println("===================================");
+        System.out.println("=====================================");
     }
 
     public static void showSpells() {
         boolean empty = true;
-        System.out.println("============= ZAUBERBUCH ============\n");
+        System.out.println("============= ZAUBERBUCH ============");
+        System.out.println("Wirke diese Zauber IN KÄMPFEN gegen MP:\n");
         for (Spell i : spellbook) {
             System.out.printf("%s \n", i.name.toUpperCase());
             System.out.printf("Manakosten: %d ", i.mpCost);
@@ -108,23 +140,25 @@ public class Player {
     }
 
     public static void showPotions() {
-        boolean empty = true;
-        System.out.println("===============TRÄNKE===============");
+        boolean noPotion = true;
+        System.out.println("=============== TRÄNKE ===============");
+        System.out.println("Verwende diese Tränke AUSSERHALB von Kämpfen:");
         for (Item i : inv) {
             if (i instanceof Potion) {
                 System.out.printf("· \t%s \n", i.name);
                 System.out.printf("\t%s \n", i.desc);
-                empty = false;
+                noPotion = false;
             }
         }
-        if (empty) {
+        if (noPotion) {
             System.out.println("Kein einziger Trank.");
         }
-        System.out.println("====================================");
+        System.out.println("======================================");
     }
 
-    public static void checkItem(String input) {
-        boolean found = false;
+    public static void examine(String input) {
+        boolean inInv = false;
+        boolean inRoom = false;
 
         for (Item i : inv) {
             if (input.contains(i.name.toLowerCase())) {
@@ -136,99 +170,28 @@ public class Player {
                 else if (i == WorldBuilder.bookSpells)
                     showSpells();
 
-                found = true;
+                inInv = true;
                 break;
             }
         }
-        if (!found) {
-            if (room.viewable.get(input) != null) {
-                System.out.println(room.viewable.get(input));
-                found = true;
+
+        if (!inInv) {
+            for (RoomObject o : room.objects){
+                if (input.equals(o.name.toLowerCase()) || input.equals(o.name2.toLowerCase()) || input.equals(o.name3.toLowerCase()) || input.equals(o.name4.toLowerCase())) {
+                    if (o.loot != null)
+                        System.out.println(o.descFull);
+                    else
+                        System.out.println(o.descEmpty);
+
+                    inRoom = true;
+                    break;
+                }
             }
         }
-        if (!found)
+        if (!inInv && !inRoom)
              System.out.println("Nicht zu finden.");
     }
 
-    public static void combineItems(String input1, String input2) {
-        if (input1.equals(input2)) {                // Abbruch, wenn zweimal gleiches Item eingegeben wurde
-            System.out.println("Das funktioniert nur mit zwei unterschiedlichen Gegenständen.");
-        } else {
-            Item item1 = null;
-            Item item2 = null;
-
-            for (Item i : inv) {                                // Inventar durchgeben,
-                if (input1.equals(i.name.toLowerCase())) {      // wenn input mit Namen eines Items genau übereinstimmt
-                    item1 = i;                                  // Item in Wegwerfvariable speichern
-                }
-                if (input2.equals(i.name.toLowerCase())) {      // für zweiten Input auch
-                    item2 = i;
-                }
-            }
-            // Abbruch, wenn eine oder beide Variablen nicht befüllt wurden, d.h. die angegebenen Items nicht im Inventar sind
-            if (item1 == null && item2 == null)
-                System.out.println("Du hast nichts davon.");
-            else if (item1 == null)
-                System.out.println("Den ersten Gegenstand hast du nicht.");
-            else if (item2 == null)
-                System.out.println("Den zweiten Gegenstand hast du nicht.");
-            else {
-
-                // Items sind im Inventar
-                // Wenn eine ID = 10, könnte eine Verstärkung durchgeführt werden
-                if ((item1.combiID == 10) || item2.combiID == 10) {                 // Ein Item ist Katalysator …
-                    if ((item1.combiID == 11) || item2.combiID == 11)               // … ein Item ist Heiltrank1
-                        Item.obtainItem(WorldBuilder.potHealth2);                   //  -> Heiltrank2
-                    else if ((item1.combiID == 110) || item2.combiID == 110)        // … ein Item ist Heiltrank2
-                        Item.obtainItem(WorldBuilder.potHealth3);                   //  -> Heiltrank3
-                    else if ((item1.combiID == 22) || item2.combiID == 22)          // … ein Item ist Manatrank1
-                        Item.obtainItem(WorldBuilder.potMana2);                     //  -> Manatrank2
-                    else if ((item1.combiID == 220) || item2.combiID == 220)        // … ein Item ist Manatrank2
-                        Item.obtainItem(WorldBuilder.potMana3);                     //  -> Manatrank3
-                    else
-                        System.out.println("Dieser Gegenstand kann nicht mit einem Katalysator verstärkt werden.");
-
-                    Item.consumeItem(item1);
-                    Item.consumeItem(item2);
-
-                // Abbruch, wenn IDs unterschiedlich oder 0 sind – diese Items können nicht kombiniert werden können
-                } else if ((item1.combiID != item2.combiID) || item1.combiID == 0) {
-                    System.out.println("Diese beiden Gegenstände lassen sich nicht kombinieren.");
-
-                // Items sind im Inventar vorhanden und können kombiniert werden.
-                } else {
-
-                    // Items erzeugen und Zutaten verbrauchen
-                    if (item1.combiID == 1) {               // 2x id 1 -> Heiltrank (id 11)
-                        Item.obtainItem(WorldBuilder.potHealth1);
-                    } else if (item1.combiID == 2) {        // 2x id 2 -> Manatrank (id 22)
-                        Item.obtainItem(WorldBuilder.potMana1);
-                    } else if (item1.combiID == 3) {        // 2x id 3 -> Trank (id 33)
-                        //Item.obtainItem(WorldBuilder.);
-                        System.out.println("PLATZHALTER: Dies erzeugt Trank mit Combi-ID 33");
-                    } else if (item1.combiID == 4) {        // 2x id 4 -> Trank (id 44)
-                        //Item.obtainItem(WorldBuilder.);
-                        System.out.println("PLATZHALTER: Dies erzeugt Trank mit Combi-ID 44");
-                    } else if (item1.combiID == 5) {        // 2x id 5 -> Level-up-Trank (id 55)
-                        Item.obtainItem(WorldBuilder.potLevelUp);
-
-                    } else if (item1.combiID == 12) {        // 2x id 12 -> Käsebrot
-                        Item.obtainItem(WorldBuilder.cheeseBread);
-                    } else if (item1.combiID == 13) {        // 2x id 13 -> Sandwich
-                        Item.obtainItem(WorldBuilder.sandwich);
-                    } else if (item1.combiID == 14) {        // 2x id 14 ->
-                        //Item.obtainItem(WorldBuilder.);
-                    } else if (item1.combiID == 15) {        // 2x id 15 ->
-                        //Item.obtainItem(WorldBuilder.);
-                    }
-
-                    Item.consumeItem(item1);
-                    Item.consumeItem(item2);
-
-                }
-            }
-        }
-    }
 
     public static void showStatus() {
         boolean first = true;

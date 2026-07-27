@@ -25,13 +25,13 @@ class Daimon extends Story {
 
     public static void speak() {
         System.out.println(Player.room.daimon);                                 //Daimon-Kommentar für diesen Raum
-        if ((Player.room.puzzleID == -1) && (Player.room.reward != null)) {     //In bestimmten Räumen führt Daimon spezielle Methoden aus
+        if ((Player.room.ID == -1) && (Player.room.reward != null)) {     //In bestimmten Räumen führt Daimon spezielle Methoden aus
             getKey000();
         }
-        if ((Player.room.puzzleID == 12) && (!Player.team.contains(WorldBuilder.dem01))) {
+        if ((Player.room.ID == 12) && (!Player.team.contains(WorldBuilder.dem01))) {
             brainstorm012();
         }
-        if ((Player.room.puzzleID == 10)) {
+        if ((Player.room.ID == 10)) {
             forAlfred010();
         }
     }
@@ -197,19 +197,23 @@ class Descriptions extends Story {
     //RAUM-BESCHREIBUNGEN UND DAIMON-KOMMENTARE
     //region
     //Zelle
-    static String desc000 = "Eine klamme Nische hinter Eisenstangen, gegenüber ein schnarchender Wärter mit einem Schlüssel am Gürtel. Klassiker. \nDie Tür nach Osten steht offen, aber erstmal musst du dich aus der Zelle befreien.";
-    static String descSolved000 = "Eine klamme Nische hinter Eisenstangen, gegenüber ein schnarchender Wärter mit einem Schlüssel am Gürtel. Klassiker. \nDie Zellentür nach Osten steht nun offen.";
+    static String desc000 = "Eine klamme Nische hinter Eisenstangen, gegenüber ein schnarchender Wärter mit einem Schlüssel am Gürtel. Klassiker. \n";
+    static String descDoors000 = "Die Tür nach Osten steht offen, aber erstmal musst du dich aus der Zelle befreien.";
+    static String descDoorsB000 = "Die Zellentür nach Osten steht nun offen";
+    static String descSolved000;
     static String daimon000 = "DAIMON: \"Bei dem Schnarchen ist's nur eine Frage der Zeit, bis der Wärter die Gitterstäbe selbst durchgesägt hat …\"";
     static String daimonSolved000 = "DAIMON: \"Der Wärter ratzt einfach weiter …\"";
     static String solved000 = "Mit rostigem Knarzen schwingt die Zellentür auf, \ndu kannst nach Osten aus der Zelle heraustreten.\n";
     //Kerker
     static String desc001 = "Der Wachraum liefert guten Blick auf die westliche Zelle – wenn man wach bleibt. Durch die offene Tür im Osten kriecht ein kalter Zug. \nDer Wächter schläft immer noch. Auf dem Tisch steht eine Stundenkerze und eine Schale Radieschen.";
+    static String descDoors001;
     static String descSolved001;
     static String daimon001 = "DAIMON: \"Sieh mal zu, dass du dein Zeug wiederbekommst. Die Königsgarde hat dir alles abgenommen, bevor man dich eingebuchtet hat.\"";
     static String daimonSolved001;
     static String solved001 = "";
     //Kellergang
     static String desc002 = "Aus Westen kommend führt der Gang um die Ecke nach Norden, aus der Ferne hallen Geräusche. \nAus der Ostwand sind einige Steine ausgebrochen, die auf dem Boden verstreut liegen, \ndoch hinter der Mauer tritt nur wurzeldurchzogenes Erdreich zutage.";
+    static String descDoors002;
     static String descB002 = "Aus Westen kommend führt der Gang um die Ecke nach Norden. \nAus der Ostwand sind einige Steine ausgebrochen, die auf dem Boden verstreut liegen, \ndoch hinter der Mauer tritt nur wurzeldurchzogenes Erdreich zutage.";
     static String descSolved002;
     static String daimon002 = "DAIMON: \"Ein langer Gang ohne was drin? Faule Architekten.\"";
@@ -217,6 +221,7 @@ class Descriptions extends Story {
     static String solved002 = "";
     //Offiziersquartier
     static String desc010 = "Auf dem schweren Holztisch in der Mitte des Raumes liegt eine Schriftrolle ausgebreitet, \nbeschwert mit einem Glas mit einer konservierten dunklen Wurzel aus deinem eigenen Vorrat. \nAn der Südwand sind Waffen- und Rüstungsständer mit Knüppeln, Schwertern, Schilden und Rüstungen aufgereiht. \nIm Kamin prasselt ein Feuer.";
+    static String descDoors010;
     static String descSolved010;
     static String daimon010 = "Daimon spuckt auf Aufseher Ottos Leiche.\nDAIMON: \"Das war für Alfred!\"";
     static String daimonSolved010;
@@ -231,6 +236,7 @@ class Descriptions extends Story {
             Ein Einmachglas ist mit Essiggurken gefüllt, in einem anderen schwimmt eine einzelne glitschige Kugel,
             und in einer Schale ist eine Handvoll hellblaue Beeren übrig.
             Die Tür im Osten führt zurück in den Vorraum.""";
+    static String descDoors011;
     static String descSolved011;
     static String daimon011 = "DAIMON: \"Eine Vorratskammer! Nimm alles mit, was nicht niet- und nagelfest ist!\"";
     static String daimonSolved011;
@@ -241,6 +247,7 @@ class Descriptions extends Story {
             Hinter einer Gittertür führt eine breite Steintreppe hinauf ins Erdgeschoss – Offiziere tragen einen Schlüssel.
             Im Süden liegt der Kerker. Im Norden geht es zur Kantine, aus der das Grölen einiger Wachen hallt.
             """;
+    static String descDoors012;
     static String descB012 = """
             Der Vorraum des Untergeschosses. Im Westen sitzt eine Tür zur "Vorratskammer" in der Wand.
             Hinter einer Gittertür führt eine breite Steintreppe hinauf ins Erdgeschoss – Offiziere tragen einen Schlüssel.
@@ -265,6 +272,7 @@ class Descriptions extends Story {
             Im Norden steht eine schwere, fleckige Holzbank – anscheinend ein Operationstisch. Östlich geht es zum Schlafsaal.
             Im Süden eine Tür, darüber steht deutlich geschrieben: "Offiziersstube, Waffenausgabe". Sie ist abgeschlossen, aber ein Murmeln ist dahinter zu hören.
             """;
+    static String descDoors020;
     static String descSolved020;
     static String daimon020 = "DAIMON: \"Da drüben, die Offiziersstube. Vielleicht sollten wir einfach mal klopfen und reinrufen, ob wer mit uns spricht?\"";
     static String daimonSolved020;
@@ -277,6 +285,7 @@ class Descriptions extends Story {
             """;
     //Schlafsaal
     static String desc021 = "Es ist spät am Abend und einige Betten sind von Wachen aus der Frühschicht belegt. Du schleichst auf Zehenspitzen. \nAn der Nordwand steht eine große Tafel mit der Überschrift \"Mitarbeitende des Monats\". \nNach Westen geht es in die Badestube, nach Osten in die Wachkantine.";
+    static String descDoors021;
     static String descSolved021;
     static String daimon021 = "DAIMON: \"Schau mal, da hat einer Mitternachtskraut auf dem Nachttisch liegen. \nDer hätte dem Gefängniswärter besser was davon abgegeben. Also besser für den Wärter, nicht für dich.\"";
     static String daimonSolved021;
@@ -286,6 +295,7 @@ class Descriptions extends Story {
 
     //Wachkantine
     static String desc022 = "Speise- und Aufenthaltsraum der Wachbelegschaft. Die langen Tische sind spartanisch gedeckt, \nnur auf einem lässt ein Blümchen in einem halbvollen Wassergals den Kopf hängen. \nÜber dem glimmenden Kaminfeuer hängt ein großer Topf. \nDie Tür im Süden führt in den Vorraum, nach Westen geht es in den Schlafsaal.";
+    static String descDoors022;
     static String descSolved022;
     static String daimon022 = "DAIMON: \"Du solltest zusehen, deinen Dämon zu heilen, bevor es weitergeht. \nAlso nicht mich – den mit der großen Axt.\"";
     static String daimonSolved022;
@@ -294,92 +304,110 @@ class Descriptions extends Story {
     static String enc022Outro = "Röchelnd gehen die Wachen zu Boden. Im nächsten Leben wird ihnen das eine Lehre sein. Du sammelst die Schriftrolle auf.";
 
     static String desc100 = "Platzhalter unten in Story-Klasse";
+    static String descDoors100;
     static String descSolved100;
     static String daimon100 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
     static String daimonSolved100;
     static String solved100 = "Platzhalter unten in Story-Klasse";
     static String desc101 = "Platzhalter unten in Story-Klasse";
+    static String descDoors101;
     static String descSolved101;
     static String daimon101 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
     static String daimonSolved101;
     static String solved101 = "Platzhalter unten in Story-Klasse";
     static String desc102 = "Platzhalter unten in Story-Klasse";
+    static String descDoors102;
     static String descSolved102;
     static String daimon102 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
     static String daimonSolved102;
     static String solved102 = "Platzhalter unten in Story-Klasse";
     static String desc110 = "Platzhalter unten in Story-Klasse";
+    static String descDoors110;
     static String descSolved110;
     static String daimon110 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
     static String daimonSolved110;
     static String solved110 = "Platzhalter unten in Story-Klasse";
     static String desc111 = "Platzhalter unten in Story-Klasse";
+    static String descDoors111;
     static String descSolved111;
     static String daimon111 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
     static String daimonSolved111;
     static String solved111 = "Platzhalter unten in Story-Klasse";
     static String desc112 = "Platzhalter unten in Story-Klasse";
+    static String descDoors112;
     static String descSolved112;
     static String daimon112 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
     static String daimonSolved112;
     static String solved112 = "Platzhalter unten in Story-Klasse";
     static String desc120 = "Platzhalter unten in Story-Klasse";
+    static String descDoors120;
     static String descSolved120;
     static String daimon120 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
     static String daimonSolved120;
     static String solved120 = "Platzhalter unten in Story-Klasse";
     static String desc121 = "Platzhalter unten in Story-Klasse";
+    static String descDoors121;
     static String descSolved121;
     static String daimon121 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
     static String daimonSolved121;
     static String solved121 = "Platzhalter unten in Story-Klasse";
     static String desc122 = "Platzhalter unten in Story-Klasse";
+    static String descDoors122;
     static String descSolved122;
     static String daimon122 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
     static String daimonSolved122;
     static String solved122 = "Platzhalter unten in Story-Klasse";
 
     static String desc200 = "Platzhalter unten in Story-Klasse";
+    static String descDoors200;
     static String descSolved200;
     static String daimon200 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
     static String daimonSolved200;
     static String solved200 = "Platzhalter unten in Story-Klasse";
     static String desc201 = "Platzhalter unten in Story-Klasse";
+    static String descDoors201;
     static String descSolved201;
     static String daimon201 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
     static String daimonSolved201;
     static String solved201 = "Platzhalter unten in Story-Klasse";
     static String desc202 = "Platzhalter unten in Story-Klasse";
+    static String descDoors202;
     static String descSolved202;
     static String daimon202 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
     static String daimonSolved202;
     static String solved202 = "Platzhalter unten in Story-Klasse";
     static String desc210 = "Platzhalter unten in Story-Klasse";
+    static String descDoors210;
     static String descSolved210;
     static String daimon210 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
     static String daimonSolved210;
     static String solved210 = "Platzhalter unten in Story-Klasse";
     static String desc211 = "Platzhalter unten in Story-Klasse";
+    static String descDoors211;
     static String descSolved211;
     static String daimon211 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
     static String daimonSolved211;
     static String solved211 = "Platzhalter unten in Story-Klasse";
     static String desc212 = "Platzhalter unten in Story-Klasse";
+    static String descDoors212;
     static String descSolved212;
     static String daimon212 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
     static String daimonSolved212;
     static String solved212 = "Platzhalter unten in Story-Klasse";
     static String desc220 = "Platzhalter unten in Story-Klasse";
+    static String descDoors220;
     static String descSolved220;
     static String daimon220 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
     static String daimonSolved220;
     static String solved220 = "Platzhalter unten in Story-Klasse";
     static String desc221 = "*** Hier werden Encounter getestet ***";
+    static String descDoors221;
     static String descSolved221;
     static String daimon221 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
     static String daimonSolved221;
     static String solved221 = "Platzhalter unten in Story-Klasse";
     static String desc222 = "*** Im Raum westlich werden Encounter getestet ***";
+    static String descDoors222;
     static String descSolved222;
     static String daimon222 = "DAIMON: \"Platzhalter unten in Story-Klasse\"";
     static String daimonSolved222;
@@ -433,7 +461,7 @@ class Descriptions extends Story {
             Du hörst es hallen, das schreckliche Gebrüll aus den Gängen.
             Wenn das Ungeheuer dich in die Irre führt, findest du dann noch den Weg zurück?
             Schau hinab und suche den Pflasterstein, der vorher kam, immer ein Schritt nach dem anderen:
-            ;ompzsitpd. e+zrmfrt E#vjzrt;
+            ;ompzsitpd. e+zrmfrt E#vjzrt
             """;
     static String trueNameDem01 = "Minotauros, wütender Wächter";
 
@@ -513,7 +541,7 @@ class Dialogue extends Story {
         if (!Player.room.hasDialogue)
             System.out.println("Niemand da.");
         else {
-            switch (Player.room.puzzleID) {
+            switch (Player.room.ID) {
                 case -1: dialogue000(); break;
                 case 1: dialogue001(); break;
                 case 20: dialogue020(); break;
@@ -586,7 +614,7 @@ class Dialogue extends Story {
                     break;
                 case "2":
                     WorldBuilder.castle[0][2][0].south = true;
-                    Item.consumeItem(WorldBuilder.sandwich);
+                    Item.consume(WorldBuilder.sandwich);
                     System.out.println("STIMME HINTER DER TÜR: \"Wurde auch Zeit.\"");
                     System.out.println("Mit einem Klacken wird die Tür entriegelt, öffnet sich einen Spalt, eine Hand kommt hervor, greift sich das Käsebrot und zieht sich hinter die Tür zurück. \nDie Tür schließt sich wieder, doch das Schloss klickt nicht erneut.");
                     break;
@@ -634,84 +662,53 @@ class Tutorials extends Story {
                 """
                         
                         =================================================== BEFEHLE ================================================================ 
-                        Immer, wenn "Zeit zu handeln!" angezeigt wird, können folgende Befehle genutzt werden:
+                        Immer, wenn "+++ Zeit zu handeln! +++" angezeigt wird, können folgende Befehle genutzt werden:
                         
                         Handlung\t\t\t| Eingabe\t\t\t| Effekt
                         ----------------------------------------------------------------------------------------------------------------------------
-                        Daimon fragen\t\t| (D)aimon \t\t\t| Bittet das Teufelchen auf deiner Schulter um Hilfe. Tue dies regelmäßig!                        
+                        Daimon fragen\t\t| (D)aimon \t\t\t| Bittet das Teufelchen auf deiner Schulter um Hilfe. Tue dies regelmäßig!   
+                        \t\t\t\t\t|\t\t\t\t\t|               
                         Sprechen\t\t\t| (S)prechen \t\t| Beginnt ein Gespräch, wenn eine interessierte Person anwesend ist. 
                         \t\t\t\t\t|\t\t\t\t\t|
-                        Inventar zeigen\t\t| (I)tems\t\t\t| Zeigt an, welche Gegenstände du besitzt (ohne alchemistische Zutaten).                        
+                        Inventar zeigen\t\t| (I)tems\t\t\t| Zeigt an, welche Gegenstände du besitzt.
+                        \t\t\t\t\t|\t\t\t\t\t|                        
                         Nimm Item\t\t\t| N.[Item]\t\t\t| Legt einen erreichbaren Gegenstand ins Inventar, z. B. "n.Zellenschlüssel".
+                        \t\t\t\t\t|\t\t\t\t\t|
                         Betrachte Item\t\t| B.[Item]\t\t\t| Zeigt eine genauere (B)eschreibung zu einem Gegenstand im Inventar 
                         \t\t\t\t\t|\t\t\t\t\t| \toder manchen Objekten im aktuellen Raum an.
-                        Verwende Item \t\t| V.[Item]\t\t\t| Verwendet einen Gegenstand im Inventar, z. B. "v.Zellenschlüssel".
-                        \t\t\t\t\t|\t\t\t\t\t| \tVerwende Zauberschriftrollen, um einen neuen Zauber zu lernen.
-                        \t\t\t\t\t|\t\t\t\t\t| \tVerwende Beschwörungsformeln, um einen Dämon in deinen Dienst zu zwingen.
-                        \t\t\t\t\t|\t\t\t\t\t| \tVerwende Taschen oder Bündel, um die enthaltenen Gegenstände auszupacken.
-                        \t\t\t\t\t|\t\t\t\t\t| \tVerwende sonstige Items (Schlüssel usw.), um sie im aktuellen Raum anzuwenden.
+                        \t\t\t\t\t|\t\t\t\t\t|
+                        Verwende Item \t\t| V.[Item]\t\t\t| Verwendet einen Gegenstand IM INVENTAR:                         
+                        \t\t\t\t\t|\t\t\t\t\t| \tVerwende Schlüssel und sonstige Items, um sie im aktuellen Raum anzuwenden.
+                        \t\t\t\t\t|\t\t\t\t\t| \tVerwende Schriftrollen und Formeln, um die darin verborgenen Künste zu erlernen.
+                        \t\t\t\t\t|\t\t\t\t\t| \tVerwende Taschen und Beutel, um die Inhalte auszupacken und ins Inventar zu legen.
+                        \t\t\t\t\t|\t\t\t\t\t| \tz. B. "v.Zellenschlüssel", "v.Zauberschriftrolle zur üblen Saat", "v.Hexertasche"
+                        \t\t\t\t\t|\t\t\t\t\t|
                         Kombiniere Items\t| K.[Item].[Item]\t| Kombiniert zwei Items aus dem Inventar miteinander,
                           ("combine")\t\t| oder\t\t\t\t| \tz. B. "k.blaue Farbe.gelbe Farbe" -> Maleficarius erhält grüne Farbe.
                         \t\t\t\t\t| C.[Item].[Item]\t| \tAuf gleiche Weise kannst du aus Alchemiezutaten Tränke brauen:
-                        \t\t\t\t\t|\t\t\t\t\t| \tKombiniere rote Zutaten für Heiltränke, blaue für Manatränke.
+                        \t\t\t\t\t|\t\t\t\t\t| \tKombiniere z. B. rote Zutaten für Heiltränke, blaue für Manatränke.
                         \t\t\t\t\t|\t\t\t\t\t|
                         Gehe in Richtung\t| G.[Richtung]\t\t| Versucht, den aktuellen Ort in gewählter Richtung zu verlassen.
                           (Raum wechseln)\t| oder\t\t\t\t| \tRichtungen: Nord (N), Ost (O), Süd (S), West (W), hoch (h), runter (r),
                           ("move")\t\t\t| M.[Richtung]\t\t| \tz. B. "G.Norden" oder einfach "g.n" / "m.n".
                         \t\t\t\t\t|\t\t\t\t\t| \tJedes Stockwerk des Schlosses besteht aus 3x3 Räumen.
                         \t\t\t\t\t|\t\t\t\t\t|
-                        Status anzeigen\t\t| Status\t\t\t| Zeigt den Stand von Lebens- und Magiepunkten an.
+                        Status anzeigen\t\t| Stat\t\t\t\t| Zeigt den Stand von Lebens- und Magiepunkten an.
                         Raum ansehen\t\t| (R)aum \t\t\t| Zeigt erneut Namen und Beschreibung des aktuellen Raums an.
                         Zauberbuch\t\t\t| (Z)auber\t\t\t| Listet die von dir gelernten Zauber auf, nutze sie im Kampf.
-                        Alchemiezutaten\t\t| (A)lchemie\t\t| Zeigt deine alchemistischen Zutaten an, braue Tränke aus ihnen.
-                        Trankgurt\t\t\t| (T)ränke\t\t\t| Zeigt deine Tränke an, nutze sie AUSSERHALB des Kampfes per "v.[Trank]".
                         Dämonen-Kompendium\t| Dämon\t\t\t\t| Zeigt nähere Informationen zu den von dir gebundenen Dämonen an.
                         \t\t\t\t\t|\t\t\t\t\t|\s
                         Spielanleitung\t\t| (H)ilfe \t\t\t| Ruft diese Anleitung auf.
                         Kampftutorial\t\t| Kampf \t\t\t| Ruft die Anleitung zum Kampfsystem auf.
-                        Rätselhilfe\t\t\t| Rätsel \t\t\t| Wenn du beim Lernen von Zaubern oder Binden von Dämonen nicht weiterkommst.
-                        \t\t\t\t\t|\t\t\t\t\t|\s
+                        Rätselhilfe\t\t\t| Tipp \t\t\t\t| Erhalte einen Hinweis, wenn du beim Binden von Dämonen nicht weiterkommst.
+                        \t\t\t\t\t|\t\t\t\t\t|
                         Mitwirkende\t\t\t| Credits \t\t\t| Zeigt die Mitwirkenden.
                         Beenden\t\t\t\t| Ende \t\t\t\t| Beendet das Spiel.
                         
-                        Groß-/Kleinschreibung wird ignoriert, außer bei Zauber- und Beschwörungsformeln. Copy-paste ist hilfreich.                        
+                        Groß-/Kleinschreibung wird ignoriert, außer bei Beschwörungsformeln. Copy-paste ist hilfreich.                        
                         ============================================================================================================================
                         """
         );
-    }
-
-    public static void hints() {
-        System.out.println(
-                """
-                        ============================================ HINWEISE ZU RÄTSELN ==============================================
-                        ==============================================================================================================="""
-        );
-    }
-
-    public static void answers() {
-        System.out.println("\n======================================= LÖSUNGEN DER RÄTSEL =======================================");
-        System.out.print("DÄMONEN\n");
-        System.out.print(WorldBuilder.dem01.name + ": \t");
-        System.out.println(Descriptions.trueNameDem01);
-        System.out.print(WorldBuilder.dem02.name + ": \t");
-        System.out.println(Descriptions.trueNameDem02);
-        System.out.print(WorldBuilder.dem03.name + ": \t");
-        System.out.println(Descriptions.trueNameDem03);
-        System.out.println();
-        System.out.print("ZAUBER");
-        System.out.print(WorldBuilder.bloodletting.name + ": \t");
-        System.out.println(Descriptions.formulaBloodletting);
-        System.out.print(WorldBuilder.ironMaiden.name + ": \t");
-        System.out.println(Descriptions.formulaIronMaiden);
-        System.out.print(WorldBuilder.lifeline.name + ": \t");
-        System.out.println(Descriptions.formulaLifeline);
-        System.out.print(WorldBuilder.soulreaper.name + ": \t");
-        System.out.println(Descriptions.formulaSoulreaper);
-        System.out.print(WorldBuilder.viciousSeed.name + ": \t");
-        System.out.println(Descriptions.formulaViciousSeed);
-        System.out.print(WorldBuilder.doom.name + ": \t");
-        System.out.println(Descriptions.formulaDoom);
-        System.out.println("\n===================================================================================================");
     }
 
     public static void helpBattle() {
@@ -759,6 +756,20 @@ class Tutorials extends Story {
                         =======================================================================================================
                         """
         );
+    }
+
+    public static void answers() {
+        System.out.println("\n======================================= LÖSUNGEN DER RÄTSEL =======================================");
+        System.out.print("Erster Dämon, ");
+        System.out.print(WorldBuilder.dem01.name + ": \t");
+        System.out.println(Descriptions.trueNameDem01);
+        System.out.print("Zweiter Dämon, ");
+        System.out.print(WorldBuilder.dem02.name + ": \t\t");
+        System.out.println(Descriptions.trueNameDem02);
+        System.out.print("Dritter Dämon, ");
+        System.out.print(WorldBuilder.dem03.name + ": \t");
+        System.out.println(Descriptions.trueNameDem03);
+        System.out.println("\n===================================================================================================");
     }
 
 }
