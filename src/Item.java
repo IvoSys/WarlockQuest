@@ -3,13 +3,12 @@ public abstract class Item {
     protected String name;
     protected String desc;
     protected String nameVague;
-    protected String DescInRoom;        //Room.describe() geht Loot-Liste des Raumes durch und hängt für jedes Item diese Variable an die Raumbeschreibung an. Wurde Item bereits gelootet, wird es nicht mehr erwähnt!
-    protected String DescInRoomV;       //String wird genutzt, wenn Item erst erwähnt werden soll, wenn anderes Objekt näher betrachtet wird (zB Rosenblüten in Badezuber). EINES PRO RAUM!
+    protected String DescInRoom;           // Room.describe() geht Loot-Liste des Raumes durch und hängt für jedes Item diese Variable an die Raumbeschreibung an. Wurde Item bereits gelootet, wird es nicht mehr erwähnt!
     protected int num = 1;
     protected boolean isConsumed = true;
-    protected int ID = 0;                  //ID für Schlüssel und Rätselitems, wird mit der ID des Raums abgeglichen, 0 für neutral, room000 stattdessen -1
-    protected int combiID = 0;                     //ID zum Kombinieren zweier Items. Zwei Items mit gleicher combiID können kombiniert werden, Items mit combiID  0 können nicht kombiniert werden, daher Standardwert.
-                                                   // Negative combiID für Bündel – mit "u.(name)" verwenden, um auszupacken. Bündel wird gelöscht, Inhalt kommt ins Inventar.
+    protected int ID = 0;                  // ID für Schlüssel und Rätselitems, wird mit der ID des Raums abgeglichen, 0 für neutral, room000 stattdessen -1
+    protected int combiID = 0;             // ID zum Kombinieren zweier Items. Zwei Items mit gleicher combiID können kombiniert werden, Items mit combiID  0 können nicht kombiniert werden, daher Standardwert.
+                                           // Negative combiID für Bündel – mit "u.(name)" verwenden, um auszupacken. Bündel wird gelöscht, Inhalt kommt ins Inventar.
 
 
     public static void consume(Item itemConsumed) {
@@ -84,8 +83,8 @@ public abstract class Item {
 
         switch (id) {
             case -1:
-                obtain(WorldBuilder.evoc01);
-                obtain(WorldBuilder.scrollViciousSeed);
+                obtain(BuildItems.evoc01);
+                obtain(BuildItems.scrollViciousSeed);
                 Player.inv.remove(toUnpack);
                 System.out.println("\nSchriftrollen! … Zwei von etlichen mehr. Die Wachen müssen einen Großteil deiner Pergamente und Trankzutaten gestohlen haben. \nOb diese Proleten überhaupt lesen können? Hoffentlich treiben sie mit deinen wertvollen Formeln keinen Mumpitz.");
                 break;
@@ -132,13 +131,13 @@ public abstract class Item {
                 // Wenn eine ID = 10, könnte eine Verstärkung durchgeführt werden
                 if ((item1.combiID == 10) || item2.combiID == 10) {                 // Ein Item ist Katalysator …
                     if ((item1.combiID == 11) || item2.combiID == 11)               // … ein Item ist Heiltrank1
-                        obtain(WorldBuilder.potHealth2);                   //  -> Heiltrank2
+                        obtain(BuildItems.potHealth2);                   //  -> Heiltrank2
                     else if ((item1.combiID == 110) || item2.combiID == 110)        // … ein Item ist Heiltrank2
-                        obtain(WorldBuilder.potHealth3);                   //  -> Heiltrank3
+                        obtain(BuildItems.potHealth3);                   //  -> Heiltrank3
                     else if ((item1.combiID == 22) || item2.combiID == 22)          // … ein Item ist Manatrank1
-                        obtain(WorldBuilder.potMana2);                     //  -> Manatrank2
+                        obtain(BuildItems.potMana2);                     //  -> Manatrank2
                     else if ((item1.combiID == 220) || item2.combiID == 220)        // … ein Item ist Manatrank2
-                        obtain(WorldBuilder.potMana3);                     //  -> Manatrank3
+                        obtain(BuildItems.potMana3);                     //  -> Manatrank3
                     else
                         System.out.println("Dieser Gegenstand kann nicht mit einem Katalysator verstärkt werden.");
 
@@ -154,9 +153,9 @@ public abstract class Item {
 
                     // Items erzeugen und Zutaten verbrauchen
                     if (item1.combiID == 1) {               // 2x id 1 -> Heiltrank (id 11)
-                        obtain(WorldBuilder.potHealth1);
+                        obtain(BuildItems.potHealth1);
                     } else if (item1.combiID == 2) {        // 2x id 2 -> Manatrank (id 22)
-                        obtain(WorldBuilder.potMana1);
+                        obtain(BuildItems.potMana1);
                     } else if (item1.combiID == 3) {        // 2x id 3 -> Trank (id 33)
                         //Item.obtainItem(WorldBuilder.);
                         System.out.println("PLATZHALTER: Dies erzeugt Trank mit Combi-ID 33");
@@ -164,12 +163,12 @@ public abstract class Item {
                         //Item.obtainItem(WorldBuilder.);
                         System.out.println("PLATZHALTER: Dies erzeugt Trank mit Combi-ID 44");
                     } else if (item1.combiID == 5) {        // 2x id 5 -> Level-up-Trank (id 55)
-                        obtain(WorldBuilder.potLevelUp);
+                        obtain(BuildItems.potLevelUp);
 
                     } else if (item1.combiID == 12) {        // 2x id 12 -> Käsebrot
-                        obtain(WorldBuilder.cheeseBread);
+                        obtain(BuildItems.cheeseBread);
                     } else if (item1.combiID == 13) {        // 2x id 13 -> Sandwich
-                        obtain(WorldBuilder.sandwich);
+                        obtain(BuildItems.sandwich);
                     } else if (item1.combiID == 14) {        // 2x id 14 ->
                         //Item.obtainItem(WorldBuilder.);
                     } else if (item1.combiID == 15) {        // 2x id 15 ->
@@ -204,16 +203,16 @@ class Evocation extends Item {
         boolean success = false;
         System.out.print("Du machst dich bereit, einen neuen Dämon zu versklaven. \nGib seinen wahren Namen ein, und sei genau! \n> ");
         WarlockQuest.input = WarlockQuest.sc.nextLine().trim();                     // Nutzer gibt ein, was er für wahren Namen eines Dämonen hält.
-        for (int i = 0; i < WorldBuilder.freeDem.size(); i++) {                     // Liste durchgehen und
-            if (WorldBuilder.freeDem.get(i).trueName.equals(WarlockQuest.input)) {  // Dämon finden, dessen trueName mit der Eingabe übereinstimmt.
-                Demon toBind = WorldBuilder.freeDem.get(i);                         // Treffer für Lesbarkeit in temp-Variablen speichern.
+        for (int i = 0; i < BuildItems.freeDem.size(); i++) {                     // Liste durchgehen und
+            if (BuildItems.freeDem.get(i).trueName.equals(WarlockQuest.input)) {  // Dämon finden, dessen trueName mit der Eingabe übereinstimmt.
+                Demon toBind = BuildItems.freeDem.get(i);                         // Treffer für Lesbarkeit in temp-Variablen speichern.
 
                 if (Player.team.contains(toBind)) {                                 // Prüfen, ob dieser Dämon bereits gebunden wurde.
                     System.out.println("Diesen Dämon hast du bereits gebunden.");
 
                 } else {                                                            // Wenn nicht, dann
                     for (Item j : Player.inv) {                                     // Inventar durchgehen und prüfen,
-                        if (j.name.contains("Beschwörungsformel")) {
+                        if (j.name.contains("Beschwörungsformel") && !j.name.contains("des vertrauten Geistes")) {
                             if (((Evocation) j).demonShortName.equals(toBind.name)) { // ob Beschwörungsformel für diesen Dämon in Besitz ist
                                 Player.inv.remove(j);                                   // Wenn ja, kann Formel vernichtet und Dämon gebunden werden.
                                 toBind.toPlayerLevel();                                 // Dämon-Stufe anpassen und …
@@ -221,9 +220,9 @@ class Evocation extends Item {
                                 System.out.println(toBind.textWhenBound);
                                 //WorldBuilder.freeDem.remove(j);                       // Eintrag nicht löschen, damit später noch abgeglichen werden kann für "bereits gebunden".
                                 success = true;                                         // Den Prozess als erfolgreich kennzeichnen und Schleife abbrechen.
-                                if (toBind.name.equals(WorldBuilder.dem01.name)) {
+                                if (toBind.name.equals(BuildItems.dem01.name)) {
                                     System.out.println("DAIMON: \"Yeah, mit diesem Viech zeigen wir den Wachen, wo der Hammer hängt!\"");
-                                    WorldBuilder.castle[0][1][2].daimon = WorldBuilder.castle[0][1][2].daimonB;
+                                    BuildCastle.castle[0][1][2].daimon = BuildCastle.castle[0][1][2].daimonB;
                                 }
                                 break;
                             }
@@ -424,40 +423,5 @@ class Spellscroll extends Item {
         this.desc = desc;
         this.nameSpell = nameSpell;
     }
-
-/*    public static void learn() {
-        boolean success = false;
-        System.out.print("Du machst dich bereit, einen neuen Zauber zu erlernen. \nGib die Zauberformel ein, und sei genau! \n> ");
-        WarlockQuest.input = WarlockQuest.sc.nextLine().trim();                     // Nutzer gibt ein, was er für Formel eines Zaubers hält.
-        for (int i = 0; i < WorldBuilder.freeSpells.size(); i++) {                  // Liste durchgehen und
-            if (WorldBuilder.freeSpells.get(i).formula.equals(WarlockQuest.input)) { // Zauber finden, dessen formula mit der Eingabe übereinstimmt.
-                Spell toLearn = WorldBuilder.freeSpells.get(i);                     // Treffer für Lesbarkeit in temp-Variablen speichern.
-
-                if (Player.spellbook.contains(toLearn)) {                           // Prüfen, ob dieser Zauber bereits erlernt wurde.
-                    System.out.println("Diesen Zauber beherrschst du bereits.");
-
-                } else {                                                            // Wenn nicht, dann
-                    for (Item j : Player.inv) {                                     // Inventar durchgehen und prüfen,
-                        if (j.name.contains("Zauberschriftrolle")) {
-                            if (((Spellscroll) j).nameSpell.equals(toLearn.name)) {       // ob Schriftrolle für diesen Zauber in Besitz ist
-                                Player.inv.remove(j);                                   // Wenn ja, kann Formel vernichtet und Zauber erlernt werden.
-                                System.out.println("Die Zauberschriftrolle verbrennt unter deinen Fingern.");
-                                Player.spellbook.add(toLearn);
-                                System.out.println(toLearn.textWhenLearned);
-                                //WorldBuilder.freeSpells.remove(i);                    // Eintrag nicht löschen, damit später noch abgeglichen werden kann für "beherrschst du bereits".
-                                success = true;                                         // Den Prozess als erfolgreich kennzeichnen und Schleife abbrechen.
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        if (!success)                       // Wenn das Ganze nicht funktioniert hat, anderen Text ausgeben
-            System.out.println("Dir raucht der Kopf vor Anstrengung. \nDiesen Zauber verstehst du einfach nicht!");
-    }
-
- */ //Veraltete Methode Spellscroll.learn()
-
 }
 

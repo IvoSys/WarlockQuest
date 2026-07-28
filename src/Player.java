@@ -16,7 +16,7 @@ public class Player {
     static int curX = 0;
     static int curY = 0;
     static int curZ = 0;
-    static Room room = WorldBuilder.castle[curX][curY][curZ];
+    static Room room = BuildCastle.castle[curX][curY][curZ];
     static boolean moved = true;
 
 
@@ -50,13 +50,129 @@ public class Player {
         }
     }
 
-    public static boolean applyMpCost(int mpCost){
-        if (mp - mpCost >= 0) {
-            mp -= mpCost;
-            return true;
-        } else {
-            return false;
+    public static void examine(String input) {
+        boolean inInv = false;
+        boolean inRoomLoot = false;
+        boolean inRoomObjects = false;
+
+        for (Item i : inv) {
+            if (input.contains(i.name.toLowerCase())) {
+                System.out.println(i.desc);
+                if (i == BuildItems.bagAlche)
+                    showIngredients();
+                else if (i == BuildItems.bagPotions)
+                    showPotions();
+                else if (i == BuildItems.bookSpells)
+                    showSpells();
+
+                inInv = true;
+                break;
+            }
         }
+
+        if (!inInv) {
+            for (Item i : Player.room.loot) {
+                if (input.contains(i.nameVague.toLowerCase()) || input.contains(i.name.toLowerCase())) {
+                    System.out.println(i.desc);
+                    inRoomLoot = true;
+                    break;
+                }
+            }
+            if (!inRoomLoot) {
+                for (RoomObject o : room.objects) {
+                    if (o.loot != null && (input.equals(o.loot.name.toLowerCase()) || input.equals(o.loot.nameVague.toLowerCase()))) {
+                        System.out.println(o.loot.desc);
+                        inRoomLoot = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (!inInv && !inRoomLoot) {
+            for (RoomObject o : room.objects){
+                if (input.equals(o.name.toLowerCase()) || input.equals(o.name2.toLowerCase()) || input.equals(o.name3.toLowerCase()) || input.equals(o.name4.toLowerCase())) {
+                    if (o.loot != null)
+                        System.out.println(o.descFull);
+                    else
+                        System.out.println(o.descEmpty);
+
+                    inRoomObjects = true;
+                    break;
+                }
+            }
+        }
+
+        if (!inInv && !inRoomLoot && !inRoomObjects)
+            System.out.println("Nicht zu finden.");
+    }
+
+    public static void loot(String input){
+        boolean received = false;
+        boolean lootExists = false;
+
+        if (!room.loot.isEmpty()) {                      // In Raum suchen
+            for (Item i : room.loot) {
+                if (input.contains(i.name.toLowerCase()) || input.contains(i.nameVague.toLowerCase())) {
+                    if (i instanceof Spellscroll) {
+                        System.out.println("Du erhältst die " + i.name);
+                        Spell.learnOnTake(((Spellscroll) i).nameSpell);
+                    } else {
+                        inv.add(i);
+                        System.out.printf("Du nimmst an dich: %s \n", i.name);
+                    }
+                    room.loot.remove(i);
+                    received = true;
+                    break;
+                }
+            }
+        }
+
+        if (!room.objects.isEmpty()){        // In Raumobjekten suchen
+            for (RoomObject o : room.objects){
+                if (o.loot != null && (o.loot.name.toLowerCase().equals(input) || o.loot.nameVague.toLowerCase().equals(input) )) {
+                    if (o.loot instanceof Spellscroll) {
+                        System.out.println("Du erhältst die " + o.loot.name);
+                        Spell.learnOnTake(((Spellscroll) o.loot).nameSpell);
+                    } else {
+                        inv.add(o.loot);
+                        System.out.printf("Du nimmst an dich: %s \n", o.loot.name);
+                    }
+                    o.loot = null;
+                    received = true;
+                    break;
+                }
+            }
+        }
+
+        if (!received) {       // Wenn nichts erhalten, Raumobjekte prüfen und tryLoot ausgeben
+            for (RoomObject o : room.objects) {
+                if (input.equals(o.name.toLowerCase()) || input.equals(o.name2.toLowerCase()) || input.equals(o.name3.toLowerCase()) || input.equals(o.name4.toLowerCase())) {
+                    System.out.println(o.tryLoot);
+                    received = true;
+                    break;
+                }
+            }
+        }
+
+        if (!received) {                            // Wenn immer noch nichts erhalten,
+            if (!room.loot.isEmpty()) {             // prüfen, ob grundsätzlich Loot vorhanden
+                lootExists = true;
+            } else {
+                for (RoomObject o : room.objects) {
+                    if (o.loot != null) {
+                        lootExists = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (!received && !lootExists)                     // Wenn gar kein Loot vorhanden, Hinweis ausgeben.
+            System.out.println("Hier gibt es nichts zu holen.");
+        else if (!received)                               // Wenn Loot vorhanden, aber nichts erhalten wurde
+            System.out.println("Leider nicht.");
+
     }
 
     public static void showInv() {
@@ -103,22 +219,6 @@ public class Player {
         System.out.println("============================================");
     }
 
-    public static void showIngredients() {
-        boolean noIngred = true;
-        System.out.println("========== ALCHEMIEZUTATEN ==========");
-        System.out.println("Braue Tränke aus diesen Zutaten:");
-        for (Item i : inv) {
-            if (i instanceof Ingredience) {
-                System.out.printf("· %s [%d] \n", i.name, i.num);
-                noIngred = false;
-            }
-        }
-        if (noIngred) {
-            System.out.println("Keine einzige Zutat.");
-        }
-        System.out.println("=====================================");
-    }
-
     public static void showSpells() {
         boolean empty = true;
         System.out.println("============= ZAUBERBUCH ============");
@@ -139,6 +239,22 @@ public class Player {
         System.out.println("=====================================");
     }
 
+    public static void showIngredients() {
+        boolean noIngred = true;
+        System.out.println("========== ALCHEMIEZUTATEN ==========");
+        System.out.println("Braue Tränke aus diesen Zutaten:");
+        for (Item i : inv) {
+            if (i instanceof Ingredience) {
+                System.out.printf("· %s [%d] \n", i.name, i.num);
+                noIngred = false;
+            }
+        }
+        if (noIngred) {
+            System.out.println("Keine einzige Zutat.");
+        }
+        System.out.println("=====================================");
+    }
+
     public static void showPotions() {
         boolean noPotion = true;
         System.out.println("=============== TRÄNKE ===============");
@@ -155,43 +271,6 @@ public class Player {
         }
         System.out.println("======================================");
     }
-
-    public static void examine(String input) {
-        boolean inInv = false;
-        boolean inRoom = false;
-
-        for (Item i : inv) {
-            if (input.contains(i.name.toLowerCase())) {
-                System.out.println(i.desc);
-                if (i == WorldBuilder.bagAlche)
-                    showIngredients();
-                else if (i == WorldBuilder.bagPotions)
-                    showPotions();
-                else if (i == WorldBuilder.bookSpells)
-                    showSpells();
-
-                inInv = true;
-                break;
-            }
-        }
-
-        if (!inInv) {
-            for (RoomObject o : room.objects){
-                if (input.equals(o.name.toLowerCase()) || input.equals(o.name2.toLowerCase()) || input.equals(o.name3.toLowerCase()) || input.equals(o.name4.toLowerCase())) {
-                    if (o.loot != null)
-                        System.out.println(o.descFull);
-                    else
-                        System.out.println(o.descEmpty);
-
-                    inRoom = true;
-                    break;
-                }
-            }
-        }
-        if (!inInv && !inRoom)
-             System.out.println("Nicht zu finden.");
-    }
-
 
     public static void showStatus() {
         boolean first = true;
@@ -236,16 +315,27 @@ public class Player {
 
     }
 
-    //Funktioniert nicht richtig!!!
-    public static void cleanUpInv() {
+
+    public static boolean applyMpCost(int mpCost){
+        if (mp - mpCost >= 0) {
+            mp -= mpCost;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    //CleanUpInv() funktioniert nicht richtig!!!
+    /*public static void cleanUpInv() {
         boolean merge;
         // Schleife von hinten nach vorne durchlaufen, damit keine Fehler entstehen,
         // wenn sich die Indexe durch Löschen eines Eintrags verschieben
-        for (int i = Player.inv.size() - 1; i >= 1; i--) {
+        for (int i = inv.size() - 1; i >= 1; i--) {
             for (int j = i - 1; j >= 0; j--) {
-                if (Player.inv.get(i).name.equals(Player.inv.get(j).name)) {
-                    Player.inv.get(j).num += Player.inv.get(i).num;
-                    Player.inv.remove(i);
+                if (inv.get(i).name.equals(inv.get(j).name)) {
+                    inv.get(j).num += inv.get(i).num;
+                    inv.remove(i);
                     break;
                 }
             }
@@ -253,13 +343,15 @@ public class Player {
         System.out.println("Gegenstände aufgeräumt.");
     }
 
+     */
+
     public static void cheatAllDemsAndSpells() {
-        for (Demon d : WorldBuilder.freeDem)
-            if (!Player.team.contains(d))
-                Player.team.add(d);
-        for (Spell s : WorldBuilder.freeSpells)
-            if (!Player.spellbook.contains(s))
-                Player.spellbook.add(s);
+        for (Demon d : BuildItems.freeDem)
+            if (!team.contains(d))
+                team.add(d);
+        for (Spell s : BuildItems.freeSpells)
+            if (!spellbook.contains(s))
+                spellbook.add(s);
         System.out.println("Und das mit Recht; denn alles was entsteht, \nIst wert, dass es zugrunde geht.");
     }
 

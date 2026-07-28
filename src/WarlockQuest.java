@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class WarlockQuest {
 
-    static String version = "v0.4.0";
+    static String version = "v0.5.0";
     static boolean running = true;
 
     static Scanner sc = new Scanner(System.in);
@@ -12,8 +12,9 @@ public class WarlockQuest {
 
     static void main(String[] args){
 
-        WorldBuilder.buildCastle();
-        WorldBuilder.giveStartItems();
+        BuildCastle.buildCastle();
+        BuildCastle.addRoomObjects();
+        BuildItems.giveStartItems();
 
         ASCII.title();
         Intro.intro();
@@ -33,7 +34,7 @@ public class WarlockQuest {
     // GAME LOOP
     public static void gameLoop(){
         while (running){
-            Player.room = WorldBuilder.castle[Player.curZ][Player.curY][Player.curX];
+            Player.room = BuildCastle.castle[Player.curZ][Player.curY][Player.curX];
             if (Player.curZ >= 1)
                 demoFinished();
             if (Player.moved) {
@@ -54,12 +55,12 @@ public class WarlockQuest {
             } else if (input.contains(".")) {
                 inputSplit = input.split("\\.", 3);
                 if (inputSplit[0].equals("n") || inputSplit[0].equals("t")){
-                    Player.room.loot(inputSplit[1]);                                                                    // Nimm Item
+                    Player.loot(inputSplit[1]);                                                                         // Nimm Item
                 } else if (inputSplit[0].equals("v") || inputSplit[0].equals("u")) {
                     if (inputSplit[1].contains("trank") && !inputSplit[1].contains("gurt")) {
                         Potion.drink(inputSplit[1]);                                                                    // Trinke Trank
                     } else if (inputSplit[1].contains("zauberschriftrolle ")) {
-                        Spell.learnOnUse(inputSplit[1]);                                                                   // Lerne Zauber
+                        Spell.learnOnUse(inputSplit[1]);                                                                // Lerne Zauber
                     } else if (inputSplit[1].contains("beschwörungsformel ")) {
                         Player.examine(inputSplit[1]);
                         Evocation.bind();                                                                               // Binde Dämon
@@ -69,9 +70,9 @@ public class WarlockQuest {
                         Player.room.unlockOrSolve(inputSplit[1]);                                                       // Verwende Item
                     }
                 } else if (inputSplit[0].equals("b") || inputSplit[0].equals("e")) {
-                    Player.examine(inputSplit[1]);                                                                    // Betrachte Item
+                    Player.examine(inputSplit[1]);                                                                      // Betrachte Item
                 } else if (inputSplit[0].equals("k") || inputSplit[0].equals("c")) {
-                    Item.combine(inputSplit[1], inputSplit[2]);                                                    // Kombiniere Items
+                    Item.combine(inputSplit[1], inputSplit[2]);                                                         // Kombiniere Items
                 } else if (inputSplit[0].equals("g") || inputSplit[0].equals("m")){
                     Player.move(inputSplit[1]);                                                                         // Bewegen
                 } else {

@@ -6,7 +6,6 @@ public abstract class Spell {
 
     protected String name;
     protected String desc;
-    protected String formula;
     protected String textWhenLearned;
     protected int str;
     protected int dur;
@@ -18,7 +17,7 @@ public abstract class Spell {
 
     public static void learnOnTake(String nameSpell) {              //Zauber lernen, wenn Schriftrolle NEHMEN
         Spell toLearn = null;
-        for (Spell s : WorldBuilder.freeSpells) {
+        for (Spell s : BuildItems.freeSpells) {
             if (s.name.equals(nameSpell)) {
                 toLearn = s;
                 break;
@@ -48,7 +47,7 @@ public abstract class Spell {
         if (toUse == null) {
             System.out.println("DEBUG: Schriftrolle nicht gefunden.");
         } else {
-            for (Spell s : WorldBuilder.freeSpells) {
+            for (Spell s : BuildItems.freeSpells) {
                 if (s.name.equals(toUse.nameSpell)) {
                     toLearn = s;
                     break;
@@ -85,7 +84,6 @@ class Bloodletting extends Spell{
     public Bloodletting() {
         name = "Aderlass";
         desc = "Opfert Lebenspunkte deines Dämon, um deine Manareserven aufzufüllen.";
-        formula = Descriptions.formulaBloodletting;
         textWhenLearned = "Du erlernst den Zauber \"Aderlass\".";
         str = Player.spellpower * 2;
         mpCost = 0;
@@ -119,7 +117,6 @@ class Doom extends Spell {
     public Doom() {
         name = "Untergang";
         desc = "Verflucht einen Gegner, sodass er über mehrere Runden hinweg stetig ansteigenden Schaden erleidet.";
-        formula = Descriptions.formulaDoom;
         textWhenLearned = "Du erlernst den Zauber \"Untergang\".";
         str = Player.spellpower;
         dur = 4;
@@ -159,7 +156,6 @@ class IronMaiden extends Spell {
     public IronMaiden() {
         name = "Eiserne Jungfrau";
         desc = "Verflucht alle Gegner, sodass sie sich selbst verletzen, wenn sie deinem Dämon Schaden zufügen.";
-        formula = Descriptions.formulaIronMaiden;
         textWhenLearned = "Du erlernst den Zauber \"Eiserne Jungfrau\".";
         str = Player.spellpower;
         dur = 5;
@@ -197,7 +193,6 @@ class Lifeline extends Spell {
     public Lifeline() {
         name = "Lebenslinie";
         desc = "Spannt ein magisches Band zwischen deinem Dämon und einem Gegner. \nIn den folgenden Runden geht vor jeder Aktion dieses Gegners \nLebenskraft von ihm auf deinen Dämon über.";
-        formula = Descriptions.formulaLifeline;
         textWhenLearned = "Du erlernst den Zauber \"Lebenslinie\".";
         str = Player.spellpower/2;
         dur = 3;
@@ -253,7 +248,6 @@ class Soulreaper extends Spell {
     public Soulreaper() {
         name = "Seelendieb";
         desc = "Stiehlt die Seele eines geschwächten Feindes. \nAuf einen Gegner mit unter 20 % HP angewendet, \nstirbt dessen Körper sofort und seine Seele füllt deinen Manavorrat.";
-        formula = Descriptions.formulaSoulreaper;
         textWhenLearned = "Du erlernst den Zauber \"Seelendieb\".";
         str = Player.spellpower * 2;
         mpCost = 0;
@@ -287,7 +281,6 @@ class ViciousSeed extends Spell {
     public ViciousSeed() {
         name = "Üble Saat";
         desc = "Pflanzt einen Keim in einem Gegner ein, der nach Ablauf der Dauer \noder mit Tod des Gegners aufplatzt und bei allen Gegnern Schaden verursacht.";
-        formula = Descriptions.formulaViciousSeed;
         textWhenLearned = "Du erlernst den Zauber \"Üble Saat\".";
         str = Player.spellpower / 2;
         dur = 3;

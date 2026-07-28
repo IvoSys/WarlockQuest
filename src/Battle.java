@@ -123,13 +123,13 @@ public class Battle {
                         System.out.println(encounter.teamName + " ist am Zug:\n");
                     for (Enemy e : enemyTeam) {
                         if (e.lifelined)                                        // Vor Aktion Zaubereffekte abhandeln, könnten dmg verursachen
-                            WorldBuilder.lifeline.tick(e);
+                            BuildItems.lifeline.tick(e);
                         if (e.doomed)
-                            WorldBuilder.doom.tick(e);
+                            BuildItems.doom.tick(e);
                         if (e.carriesVSeed)
-                            WorldBuilder.viciousSeed.tick(e);
+                            BuildItems.viciousSeed.tick(e);
                         if (e.inIronMaiden)
-                            WorldBuilder.ironMaiden.tick(e);
+                            BuildItems.ironMaiden.tick(e);
                         hit = false;
                         if (!e.ko) {                                            // Aktion
                             switch (e) {
@@ -171,7 +171,7 @@ public class Battle {
     }
 
     public static void encounterIntro(){
-        System.out.println("\n" + encounter.intro + "\n");
+        System.out.println("\n\n" + encounter.intro + "\n");
 
         if (encounter.nameIsPlural)
             System.out.println(encounter.teamName + " greifen an:");
@@ -266,12 +266,12 @@ public class Battle {
         System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
         System.out.printf("%s \t\t\t(%d/%d HP)\n", demon.name.toUpperCase(), demon.hp, demon.hpMax);
         System.out.print("[1] " + demon.attackName);
-        if (demon == WorldBuilder.dem01 && WorldBuilder.dem01.roar > 0)
-            System.out.printf(" (+%d)\n", WorldBuilder.dem01.roar);
+        if (demon == BuildItems.dem01 && BuildItems.dem01.roar > 0)
+            System.out.printf(" (+%d)\n", BuildItems.dem01.roar);
         else
             System.out.println();
-        if (demon == WorldBuilder.dem02 && WorldBuilder.dem02.isBlazing)
-            System.out.println("[2] " + WorldBuilder.dem02.aoeAttackNameBlazing);
+        if (demon == BuildItems.dem02 && BuildItems.dem02.isBlazing)
+            System.out.println("[2] " + BuildItems.dem02.aoeAttackNameBlazing);
         else
             System.out.println("[2] " + demon.aoeAttackName);
         System.out.println("[3] " + demon.selfBuffName);
@@ -473,12 +473,12 @@ public class Battle {
             }
         }
 
-        if (encounter == WorldBuilder.enc022) {                                 // Sieg in diesem Encounter löst weitere Ereignisse aus
-            WorldBuilder.castle[0][0][2].desc = WorldBuilder.castle[0][0][2].descB;
-            WorldBuilder.castle[0][1][2].desc = WorldBuilder.castle[0][1][2].descB;
-        } else if (encounter == WorldBuilder.enc010) {
-            WorldBuilder.castle[0][1][2].encounter = WorldBuilder.enc012;
-            WorldBuilder.castle[0][2][0].desc = WorldBuilder.castle[0][2][0].descPostBattle;
+        if (encounter == BuildEncounters.enc022) {                                 // Sieg in diesem Encounter löst weitere Ereignisse aus
+            BuildCastle.castle[0][0][2].desc = BuildCastle.castle[0][0][2].descB;
+            BuildCastle.castle[0][1][2].desc = BuildCastle.castle[0][1][2].descB;
+        } else if (encounter == BuildEncounters.enc010) {
+            BuildCastle.castle[0][1][2].encounter = BuildEncounters.enc012;
+            BuildCastle.castle[0][2][0].desc = BuildCastle.castle[0][2][0].descPostBattle;
         }
 
         WarlockQuest.gameLoop();

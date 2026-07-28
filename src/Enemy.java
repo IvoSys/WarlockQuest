@@ -67,7 +67,7 @@ public abstract class Enemy {
     }
 
     public void applyMaidenDmg(int dmg){
-        System.out.printf("%s verletzt sich durch den Fluch \"%s\" selbst: ", name, WorldBuilder.ironMaiden.name);
+        System.out.printf("%s verletzt sich durch den Fluch \"%s\" selbst: ", name, BuildItems.ironMaiden.name);
         applyDmg(dmg);
     }
 
@@ -118,19 +118,19 @@ public abstract class Enemy {
         lifelined = false;
         inIronMaiden = false;
         if (carriesVSeed)
-            WorldBuilder.viciousSeed.explode(this);
+            BuildItems.viciousSeed.explode(this);
     }
 
     //Standard-Angriff
     public int attack(){
         int dmg = rnd.nextInt(6) + power;
         if (inIronMaiden) {
-            System.out.printf("\"%s\" wirkt: ", WorldBuilder.ironMaiden.name);
+            System.out.printf("\"%s\" wirkt: ", BuildItems.ironMaiden.name);
             applyMaidenDmg(dmg);
         }
-        if (Battle.demon == WorldBuilder.dem02 && WorldBuilder.dem02.isBlazing && meele) {
-            System.out.printf("%s ist in Flammen gehüllt: ", WorldBuilder.dem02.name);
-            applyDmg(WorldBuilder.dem02.power / 2);
+        if (Battle.demon == BuildItems.dem02 && BuildItems.dem02.isBlazing && meele) {
+            System.out.printf("%s ist in Flammen gehüllt: ", BuildItems.dem02.name);
+            applyDmg(BuildItems.dem02.power / 2);
         }
         return dmg;
     }

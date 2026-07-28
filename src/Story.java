@@ -28,7 +28,7 @@ class Daimon extends Story {
         if ((Player.room.ID == -1) && (Player.room.reward != null)) {     //In bestimmten Räumen führt Daimon spezielle Methoden aus
             getKey000();
         }
-        if ((Player.room.ID == 12) && (!Player.team.contains(WorldBuilder.dem01))) {
+        if ((Player.room.ID == 12) && (!Player.team.contains(BuildItems.dem01))) {
             brainstorm012();
         }
         if ((Player.room.ID == 10)) {
@@ -96,10 +96,9 @@ class Daimon extends Story {
             case "1": System.out.println("DAIMON: \"Na klar, Chef!\""); break;
             case "2": System.out.println("DAIMON: \"Ein Teil von jener Kraft, die stets das Böse will und stets das Gute schafft.\""); break;
             case "3":
-                System.out.println("DAIMON: \"Ach, auf einmal hast du's eilig und willst meine Hilfe, was? \nNa gut, bin ja nicht so ein Sauertopf wie du …\" \n\nDaimon schlüpft durch die Gitterstäbe und fingert den Schlüssel aus dem Gürtelring \ndes Wärters, der dies mit verschlafenem Grunzen quittiert. Dann kehrt das Teufelchen \nzu dir zurück, dreht noch einmal um, verknotet dem Wärter die Schnürsenkel, \nhuscht zurück in die Zelle und hält dir den ZELLENSCHLÜSSEL unter die Nase. \nDAIMON: \"Da, nimm!\"");
+                System.out.println("DAIMON: \"Ach, auf einmal hast du's eilig und willst meine Hilfe, was? \nNa gut, bin ja nicht so ein Sauertopf wie du …\" \n\nDaimon schlüpft durch die Gitterstäbe und fingert den Schlüssel aus dem Gürtelring \ndes Wärters, der dies mit verschlafenem Grunzen quittiert. Dann kehrt das Teufelchen \nzu dir zurück, dreht noch einmal um, verknotet dem Wärter die Schnürsenkel, \nhuscht zurück in die Zelle und hält dir den Zellenschlüssel unter die Nase. \nDAIMON: \"Da, nimm!\"");
                 Player.room.loot.add(Player.room.reward);
                 Player.room.reward = null;
-                WorldBuilder.castle[0][0][0].notLoot.remove("zellenschlüssel");
                 break;
             case "4": refuseViolence(); break;
             case "0": break;
@@ -199,11 +198,11 @@ class Descriptions extends Story {
     //Zelle
     static String desc000 = "Eine klamme Nische hinter Eisenstangen, gegenüber ein schnarchender Wärter mit einem Schlüssel am Gürtel. Klassiker. \n";
     static String descDoors000 = "Die Tür nach Osten steht offen, aber erstmal musst du dich aus der Zelle befreien.";
-    static String descDoorsB000 = "Die Zellentür nach Osten steht nun offen";
+    static String descDoorsB000 = "Die Zellentür nach Osten steht nun offen.";
     static String descSolved000;
     static String daimon000 = "DAIMON: \"Bei dem Schnarchen ist's nur eine Frage der Zeit, bis der Wärter die Gitterstäbe selbst durchgesägt hat …\"";
     static String daimonSolved000 = "DAIMON: \"Der Wärter ratzt einfach weiter …\"";
-    static String solved000 = "Mit rostigem Knarzen schwingt die Zellentür auf, \ndu kannst nach Osten aus der Zelle heraustreten.\n";
+    static String unlocked000 = "Mit rostigem Knarzen schwingt die Zellentür auf, \ndu kannst nach Osten aus der Zelle heraustreten.\n";
     //Kerker
     static String desc001 = "Der Wachraum liefert guten Blick auf die westliche Zelle – wenn man wach bleibt. Durch die offene Tür im Osten kriecht ein kalter Zug. \nDer Wächter schläft immer noch. Auf dem Tisch steht eine Stundenkerze und eine Schale Radieschen.";
     static String descDoors001;
@@ -489,50 +488,6 @@ class Descriptions extends Story {
             """;
 
     static String trueNameDem03 = "Abaddon, Engel des Abgrunds";
-
-    //Rätsel Zauber
-    static String riddleBloodletting = """
-    Du blickst auf die Schriftrolle, da steht:
-    
-    [Rätsel]
-    """;
-    static String formulaBloodletting = "Aderlass";
-
-    static String riddleDoom = """
-    Du blickst auf die Schriftrolle, da steht:
-    
-    [Rätsel]
-    """;
-    static String formulaDoom = "Untergang";
-
-    static String riddleIronMaiden = """
-    Du blickst auf die Schriftrolle, da steht:
-    
-    [Rätsel]
-    """;
-    static String formulaIronMaiden = "Eiserne Jungfrau";
-
-    static String riddleLifeline = """
-    Du blickst auf die Schriftrolle, da steht:
-    
-    [Rätsel]
-    """;
-    static String formulaLifeline = "Lebenslinie";
-
-    static String riddleSoulreaper = """
-    Du blickst auf die Schriftrolle, da steht:
-    
-    [Rätsel]
-    """;
-    static String formulaSoulreaper = "Seelendieb";
-
-    static String riddleViciousSeed = """
-    Du blickst auf die Schriftrolle, da steht:
-    
-    [Rätsel]
-    """;
-    static String formulaViciousSeed = "Üble Saat";
-
 }
 
 class Dialogue extends Story {
@@ -563,7 +518,7 @@ class Dialogue extends Story {
     }
 
     public static void dialogue020() {
-        if (!Player.inv.contains(WorldBuilder.cheeseBread) && !Player.inv.contains(WorldBuilder.sandwich)) {
+        if (!Player.inv.contains(BuildItems.cheeseBread) && !Player.inv.contains(BuildItems.sandwich)) {
             System.out.println("STIMME HINTER DER TÜR: \"Alfred? ALFRED! Schleichst du da draußen herum?");
             System.out.println(
                     """
@@ -580,7 +535,7 @@ class Dialogue extends Story {
                 default: System.out.println("STIMME HINTER DER TÜR: \"Alfred, mit dem Herumgedruckse wird das noch länger nichts mit der Beförderung. \nSei nicht so ein Waschlappen und bring mir mein abendliches Käsebrot. Und zwar WIE ÜBRLICH, und ein wenig zackig!\""); break;
             }
         }
-        else if (Player.inv.contains(WorldBuilder.cheeseBread)) {
+        else if (Player.inv.contains(BuildItems.cheeseBread)) {
             System.out.println("STIMME HINTER DER TÜR: \"Alfred? Hast du endlich mein Käsebrot? Hast du's auch richtig gemacht?");
             System.out.println(
                     """
@@ -598,7 +553,7 @@ class Dialogue extends Story {
             }
         }
 
-        else if (Player.inv.contains(WorldBuilder.sandwich)) {
+        else if (Player.inv.contains(BuildItems.sandwich)) {
             System.out.println("STIMME HINTER DER TÜR: \"Alfred? Hast du endlich mein Käsebrot? Hast du's auch richtig gemacht?");
             System.out.println(
                     """
@@ -613,8 +568,8 @@ class Dialogue extends Story {
                     System.out.println("STIMME HINTER DER TÜR: \"Dann mach mal hinne, Alfred!");
                     break;
                 case "2":
-                    WorldBuilder.castle[0][2][0].south = true;
-                    Item.consume(WorldBuilder.sandwich);
+                    BuildCastle.castle[0][2][0].south = true;
+                    Item.consume(BuildItems.sandwich);
                     System.out.println("STIMME HINTER DER TÜR: \"Wurde auch Zeit.\"");
                     System.out.println("Mit einem Klacken wird die Tür entriegelt, öffnet sich einen Spalt, eine Hand kommt hervor, greift sich das Käsebrot und zieht sich hinter die Tür zurück. \nDie Tür schließt sich wieder, doch das Schloss klickt nicht erneut.");
                     break;
@@ -674,14 +629,14 @@ class Tutorials extends Story {
                         \t\t\t\t\t|\t\t\t\t\t|                        
                         Nimm Item\t\t\t| N.[Item]\t\t\t| Legt einen erreichbaren Gegenstand ins Inventar, z. B. "n.Zellenschlüssel".
                         \t\t\t\t\t|\t\t\t\t\t|
-                        Betrachte Item\t\t| B.[Item]\t\t\t| Zeigt eine genauere (B)eschreibung zu einem Gegenstand im Inventar 
-                        \t\t\t\t\t|\t\t\t\t\t| \toder manchen Objekten im aktuellen Raum an.
+                        Betrachte Item\t\t| B.[Item]\t\t\t| Zeigt eine genauere (B)eschreibung zu Gegenständen im Inventar 
+                        \t\t\t\t\t|\t\t\t\t\t| \toder Objekten im aktuellen Raum an.
                         \t\t\t\t\t|\t\t\t\t\t|
                         Verwende Item \t\t| V.[Item]\t\t\t| Verwendet einen Gegenstand IM INVENTAR:                         
                         \t\t\t\t\t|\t\t\t\t\t| \tVerwende Schlüssel und sonstige Items, um sie im aktuellen Raum anzuwenden.
                         \t\t\t\t\t|\t\t\t\t\t| \tVerwende Schriftrollen und Formeln, um die darin verborgenen Künste zu erlernen.
                         \t\t\t\t\t|\t\t\t\t\t| \tVerwende Taschen und Beutel, um die Inhalte auszupacken und ins Inventar zu legen.
-                        \t\t\t\t\t|\t\t\t\t\t| \tz. B. "v.Zellenschlüssel", "v.Zauberschriftrolle zur üblen Saat", "v.Hexertasche"
+                        \t\t\t\t\t|\t\t\t\t\t| \tz. B. "v.Zellenschlüssel", "v.Zauberschriftrolle der üblen Saat", "v.Hexertasche"
                         \t\t\t\t\t|\t\t\t\t\t|
                         Kombiniere Items\t| K.[Item].[Item]\t| Kombiniert zwei Items aus dem Inventar miteinander,
                           ("combine")\t\t| oder\t\t\t\t| \tz. B. "k.blaue Farbe.gelbe Farbe" -> Maleficarius erhält grüne Farbe.
@@ -761,13 +716,13 @@ class Tutorials extends Story {
     public static void answers() {
         System.out.println("\n======================================= LÖSUNGEN DER RÄTSEL =======================================");
         System.out.print("Erster Dämon, ");
-        System.out.print(WorldBuilder.dem01.name + ": \t");
+        System.out.print(BuildItems.dem01.name + ": \t");
         System.out.println(Descriptions.trueNameDem01);
         System.out.print("Zweiter Dämon, ");
-        System.out.print(WorldBuilder.dem02.name + ": \t\t");
+        System.out.print(BuildItems.dem02.name + ": \t\t");
         System.out.println(Descriptions.trueNameDem02);
         System.out.print("Dritter Dämon, ");
-        System.out.print(WorldBuilder.dem03.name + ": \t");
+        System.out.print(BuildItems.dem03.name + ": \t");
         System.out.println(Descriptions.trueNameDem03);
         System.out.println("\n===================================================================================================");
     }

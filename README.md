@@ -6,6 +6,7 @@ Hauptprogramm in WarlockQuest.java
   
 - ASCII: ASCII-Art für Titel usw.  
 - Battle: 	Battle-Loop für das Kampfsystem 
+- BuildCastle/BuildItems/BuildEncounters:	Instanziieren Objekte aus Klassen (Räume, Items, Gegner …)
 - Demon:		Abstrakte Dämon-Klasse und implementierende Unterklassen  
 - Encounter:	Fasst Gegner, Strings und Items in Encountern zusammen  
 - Enemy:		Abstrakte Gegner-Klasse und implementierende Unterklassen (Soldat, Ritter, Magier …)  
@@ -16,4 +17,3 @@ Hauptprogramm in WarlockQuest.java
 - Spell:		Abstrakte Zauber-Klasse und implementierende Unterklassen (konkrete Zaubersprüche)  
 - Story:		Sammelt Strings für Dialoge, Beschreibungen für Räume und Gegenstände, Tutorials usw.  
 - WarlockQuest:	Main-Methode und Game-Loop  
-- WorldBuilder:	Instanziiert Objekte aus Klassen (Räume, Items, Gegner …)  
