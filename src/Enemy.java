@@ -13,6 +13,7 @@ public abstract class Enemy {
     boolean meele;
     int potions;
     int potionStr;
+    int casts = 0;
 
     boolean ko = false;
 
@@ -249,6 +250,7 @@ class Apprentice extends Enemy{
         this.dex = dex;
         this.potions = potions;
         potionStr = hpMax / 2;
+        casts = 3;
     }
 
     @Override
@@ -272,6 +274,7 @@ class Novice extends Enemy {
         this.dex = dex;
         this.potions = potions;
         potionStr = hpMax / 2;
+        casts = 3;
     }
 
     @Override
@@ -283,6 +286,7 @@ class Novice extends Enemy {
     @Override
     public int heal() {
         System.out.printf("%s wirkt einen Heilzauber – ", name);
+        casts--;
         return super.heal();
     }
 
@@ -372,6 +376,7 @@ class Mage extends Enemy{
         this.dex = dex;
         this.potions = potions;
         potionStr = hpMax / 2;
+        casts = 3;
     }
 
     @Override
@@ -394,6 +399,7 @@ class Cleric extends Enemy {
         this.dex = dex;
         this.potions = potions;
         potionStr = hpMax / 2;
+        casts = 3;
     }
 
     @Override

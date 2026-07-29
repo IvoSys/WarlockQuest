@@ -47,17 +47,17 @@ public class Room {
         System.out.println(Player.room.name.toUpperCase());
         System.out.print(Player.room.desc);
         for (Item i : Player.room.loot){
-            if (i.DescInRoom != null) {
+            if (i.descInRoom != null) {
                 if (!loot)
                     System.out.println();
-                System.out.print(i.DescInRoom);
+                System.out.print(i.descInRoom);
                 loot = true;
             }
         }
-        if (loot)
+        if (Player.room.descDoors != null) {
             System.out.println();
-        if (Player.room.descDoors != null)
             System.out.println(Player.room.descDoors);
+        }
     }
 
     public void unlockOrSolve(String input){

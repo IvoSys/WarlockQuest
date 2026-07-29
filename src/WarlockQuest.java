@@ -61,7 +61,7 @@ public class WarlockQuest {
                         Potion.drink(inputSplit[1]);                                                                    // Trinke Trank
                     } else if (inputSplit[1].contains("zauberschriftrolle ")) {
                         Spell.learnOnUse(inputSplit[1]);                                                                // Lerne Zauber
-                    } else if (inputSplit[1].contains("beschwörungsformel ")) {
+                    } else if (inputSplit[1].contains(BuildItems.evoc01.name) || inputSplit[1].contains(BuildItems.evoc02.name) || inputSplit[1].contains(BuildItems.evoc03.name)) {
                         Player.examine(inputSplit[1]);
                         Evocation.bind();                                                                               // Binde Dämon
                     } else if (inputSplit[1].contains("tasche") || inputSplit[1].contains("bündel")) {

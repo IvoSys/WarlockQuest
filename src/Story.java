@@ -231,11 +231,8 @@ class Descriptions extends Story {
     static String desc011 = """
             Eine Vielzahl von Gerüchen umgibt dich: Von der Decke hängen verschiedene Würste und Schinken,
             ein angeschnittener Laib Käse liegt auf einem Tisch, daneben einige in Leinen geschlagene Brote.
-            Eine dir wohlbekannte Tasche wurde achtlos in die Ecke geworfen. An der Wand sind Fässer mit Bier und Wein aufgestapelt.
-            Ein Einmachglas ist mit Essiggurken gefüllt, in einem anderen schwimmt eine einzelne glitschige Kugel,
-            und in einer Schale ist eine Handvoll hellblaue Beeren übrig.
-            Die Tür im Osten führt zurück in den Vorraum.""";
-    static String descDoors011;
+            An der Wand sind Fässer mit Bier und Wein aufgestapelt, ein weiteres Fass ist mit Essiggurken gefüllt.""";
+    static String descDoors011 = "Die Tür im Osten führt zurück in den Vorraum.";
     static String descSolved011;
     static String daimon011 = "DAIMON: \"Eine Vorratskammer! Nimm alles mit, was nicht niet- und nagelfest ist!\"";
     static String daimonSolved011;
@@ -248,12 +245,12 @@ class Descriptions extends Story {
             """;
     static String descDoors012;
     static String descB012 = """
-            Der Vorraum des Untergeschosses. Im Westen sitzt eine Tür zur "Vorratskammer" in der Wand.
-            Hinter einer Gittertür führt eine breite Steintreppe hinauf ins Erdgeschoss – Offiziere tragen einen Schlüssel.
+            Der Vorraum des Untergeschosses. Im Westen sitzt eine Tür zur Vorratskammer in der Wand.
+            Hinter einer Gittertür führt eine breite Steintreppe hinauf ins Erdgeschoss – von einem Offizier könntest du einen Schlüssel erhalten.
             Im Süden liegt der Kerker. Im Norden geht es zur Wachkantine.
             """;
     static String descSolved012;
-    static String daimon012 = "DAIMON: \"Schau dir meine Arme an – dünn wie Zahnstocher! Ganz zu schweigen von den welken Lauchstangen, die dir aus den Schultern wachsen. \nWenn du den Wachen ohne Argumentationsverstärker vor den Knüppel kommst, machen sie Hexerkompott aus dir.\"";
+    static String daimon012 = "DAIMON: \"Schau dir meine Arme an – dünn wie Zahnstocher! Ganz zu schweigen von den welken Lauchstangen, die dir aus den Schultern wuchern. \nWenn du den Wachen ohne Argumentationsverstärker vor den Knüppel kommst, machen sie Hexerkompott aus dir.\"";
     static String daimonB012 = "DAIMON: \"Jetzt hast du endlich SO einen Dämon. Also Mal, was hält dich noch – grau ist alle Theorie!\"";
     static String daimonSolved012;
     static String solved012 = "Platzhalter in Story-Klasse";

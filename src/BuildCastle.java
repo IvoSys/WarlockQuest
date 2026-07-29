@@ -12,7 +12,8 @@ public class BuildCastle {
 
         // 000 Zelle
         //    [z][y][x]
-        castle[0][0][0] = new Room("Gefängniszelle", Descriptions.desc000, Descriptions.descDoors000, Descriptions.daimon000, false, false, false, false, false, false, true, -1);
+        castle[0][0][0] = new Room("Gefängniszelle", Descriptions.desc000, Descriptions.descDoors000, Descriptions.daimon000,
+                false, false, false, false, false, false, true, -1);
         castle[0][0][0].reward = BuildItems.key000;
         castle[0][0][0].unlockedText = Descriptions.unlocked000;
         castle[0][0][0].descSolved = Descriptions.descSolved000;
@@ -20,75 +21,101 @@ public class BuildCastle {
         castle[0][0][0].descDoorsB = Descriptions.descDoorsB000;
 
         // 001 Kerker
-        castle[0][0][1] = new Room("Kerker", Descriptions.desc001, Descriptions.descDoors001, Descriptions.daimon001, false, true, false, true, false, false, true, 1);
+        castle[0][0][1] = new Room("Kerker", Descriptions.desc001, Descriptions.descDoors001, Descriptions.daimon001,
+                false, true, false, true, false, false, true, 1);
         castle[0][0][1].loot.add(BuildItems.alche108);
 
         // 002 Kellergang
-        castle[0][0][2] = new Room("Zugiger Kellergang", Descriptions.desc002, Descriptions.descDoors002, Descriptions.daimon002, true, false, false, true, false, false, false, 2);
+        castle[0][0][2] = new Room("Zugiger Kellergang", Descriptions.desc002, Descriptions.descDoors002, Descriptions.daimon002,
+                true, false, false, true, false, false, false, 2);
         castle[0][0][2].loot.add(BuildItems.rock);
         castle[0][0][2].descB = Descriptions.descB002;
 
         // 010 Offiziersstube
-        castle[0][1][0] = new Room("Offiziersquartier", Descriptions.desc010, Descriptions.descDoors010, Descriptions.daimon010, true, false, false, false, false, false, false, 10);
+        castle[0][1][0] = new Room("Offiziersquartier", Descriptions.desc010, Descriptions.descDoors010, Descriptions.daimon010,
+                true, false, false, false, false, false, false, 10);
         castle[0][1][0].encounter = BuildEncounters.enc010;
         castle[0][1][0].loot.add(BuildItems.alche501);
         castle[0][1][0].loot.add(BuildItems.scrollDoom);
 
         // 011 Vorratskammer
-        castle[0][1][1] = new Room("Vorratskammer", Descriptions.desc011, Descriptions.descDoors011, Descriptions.daimon011, false, true, false, false, false, false, false, 11);
+        castle[0][1][1] = new Room("Vorratskammer", Descriptions.desc011, Descriptions.descDoors011, Descriptions.daimon011,
+                false, true, false, false, false, false, false, 11);
         castle[0][1][1].loot.add(BuildItems.bag011);
         castle[0][1][1].loot.add(BuildItems.alche101);
         castle[0][1][1].loot.add(BuildItems.alche201);
 
         // 012 Vorraum
-        castle[0][1][2] = new Room("Vorraum", Descriptions.desc012, Descriptions.descDoors012, Descriptions.daimon012, true, false, true, true, false, false, false, 12);
+        castle[0][1][2] = new Room("Vorraum", Descriptions.desc012, Descriptions.descDoors012, Descriptions.daimon012,
+                true, false, true, true, false, false, false, 12);
         castle[0][1][2].daimonB = Descriptions.daimonB012;
         castle[0][1][2].descB = Descriptions.descB012;
 
         // 020 Badestube
-        castle[0][2][0] = new Room("Badestube", Descriptions.desc020, Descriptions.descDoors020, Descriptions.daimon020, false, true, false, false, false, false, true, 20);
+        castle[0][2][0] = new Room("Badestube", Descriptions.desc020, Descriptions.descDoors020, Descriptions.daimon020,
+                false, true, false, false, false, false, true, 20);
         castle[0][2][0].loot.add(BuildItems.alche106);
         castle[0][2][0].descPostBattle = Descriptions.descPostBattle020;
 
         // 021 Schlafsaal
-        castle[0][2][1] = new Room("Schlafsaal", Descriptions.desc021, Descriptions.descDoors021, Descriptions.daimon021, false, true, false, true, false, false, false, 21);
+        castle[0][2][1] = new Room("Schlafsaal", Descriptions.desc021, Descriptions.descDoors021, Descriptions.daimon021,
+                false, true, false, true, false, false, false, 21);
         castle[0][2][1].loot.add(BuildItems.alche202);
 
         // 022 Kantine
-        castle[0][2][2] = new Room("Wachkantine", Descriptions.desc022, Descriptions.descDoors022, Descriptions.daimon022, false, false, true, true, false, false, false, 22);
+        castle[0][2][2] = new Room("Wachkantine", Descriptions.desc022, Descriptions.descDoors022, Descriptions.daimon022,
+                false, false, true, true, false, false, false, 22);
         castle[0][2][2].encounter = BuildEncounters.enc022;
         castle[0][2][2].loot.add(BuildItems.alche102);
 
         //EG, Reihe unten
-        castle[1][0][0] = new Room("", Descriptions.desc100, Descriptions.descDoors100, Descriptions.daimon100, false, false, false, false, false, false, false, 100);
-        castle[1][0][1] = new Room("", Descriptions.desc101, Descriptions.descDoors101, Descriptions.daimon101, false, false, false, false, false, false, false, 101);
-        castle[1][0][2] = new Room("", Descriptions.desc102, Descriptions.descDoors102, Descriptions.daimon102, false, false, false, false, false, false, false, 102);
+        castle[1][0][0] = new Room("", Descriptions.desc100, Descriptions.descDoors100, Descriptions.daimon100,
+                false, false, false, false, false, false, false, 100);
+        castle[1][0][1] = new Room("", Descriptions.desc101, Descriptions.descDoors101, Descriptions.daimon101,
+                false, false, false, false, false, false, false, 101);
+        castle[1][0][2] = new Room("", Descriptions.desc102, Descriptions.descDoors102, Descriptions.daimon102,
+                false, false, false, false, false, false, false, 102);
 
         //EG, Reihe Mitte
-        castle[1][1][0] = new Room("", Descriptions.desc110, Descriptions.descDoors110, Descriptions.daimon110, false, false, false, false, false, false, false, 110);
-        castle[1][1][1] = new Room("", Descriptions.desc111, Descriptions.descDoors111, Descriptions.daimon111, false, false, false, false, false, false, false, 111);
-        castle[1][1][2] = new Room("", Descriptions.desc112, Descriptions.descDoors112, Descriptions.daimon112, false, false, false, false, false, false, false, 112);
+        castle[1][1][0] = new Room("", Descriptions.desc110, Descriptions.descDoors110, Descriptions.daimon110,
+                false, false, false, false, false, false, false, 110);
+        castle[1][1][1] = new Room("", Descriptions.desc111, Descriptions.descDoors111, Descriptions.daimon111,
+                false, false, false, false, false, false, false, 111);
+        castle[1][1][2] = new Room("", Descriptions.desc112, Descriptions.descDoors112, Descriptions.daimon112,
+                false, false, false, false, false, false, false, 112);
 
         //EG, Reihe oben
-        castle[1][2][0] = new Room("", Descriptions.desc120, Descriptions.descDoors120, Descriptions.daimon120, false, false, false, false, false, false, false, 120);
-        castle[1][2][1] = new Room("", Descriptions.desc121, Descriptions.descDoors121, Descriptions.daimon121, false, false, false, false, false, false, false, 121);
-        castle[1][2][2] = new Room("", Descriptions.desc122, Descriptions.descDoors122, Descriptions.daimon122, false, false, false, false, false, false, false, 122);
+        castle[1][2][0] = new Room("", Descriptions.desc120, Descriptions.descDoors120, Descriptions.daimon120,
+                false, false, false, false, false, false, false, 120);
+        castle[1][2][1] = new Room("", Descriptions.desc121, Descriptions.descDoors121, Descriptions.daimon121,
+                false, false, false, false, false, false, false, 121);
+        castle[1][2][2] = new Room("", Descriptions.desc122, Descriptions.descDoors122, Descriptions.daimon122,
+                false, false, false, false, false, false, false, 122);
 
         //OG, Reihe unten
-        castle[2][0][0] = new Room("", Descriptions.desc200, Descriptions.descDoors200, Descriptions.daimon200, false, false, false, false, false, false, false, 200);
-        castle[2][0][1] = new Room("", Descriptions.desc201, Descriptions.descDoors201, Descriptions.daimon201, false, false, false, false, false, false, false, 201);
-        castle[2][0][2] = new Room("", Descriptions.desc202, Descriptions.descDoors202, Descriptions.daimon202, false, false, false, false, false, false, false, 202);
+        castle[2][0][0] = new Room("", Descriptions.desc200, Descriptions.descDoors200, Descriptions.daimon200,
+                false, false, false, false, false, false, false, 200);
+        castle[2][0][1] = new Room("", Descriptions.desc201, Descriptions.descDoors201, Descriptions.daimon201,
+                false, false, false, false, false, false, false, 201);
+        castle[2][0][2] = new Room("", Descriptions.desc202, Descriptions.descDoors202, Descriptions.daimon202,
+                false, false, false, false, false, false, false, 202);
 
         //OG, Reihe Mitte
-        castle[2][1][0] = new Room("", Descriptions.desc210, Descriptions.descDoors210, Descriptions.daimon210, false, false, false, false, false, false, false, 210);
-        castle[2][1][1] = new Room("", Descriptions.desc211, Descriptions.descDoors211, Descriptions.daimon211, false, false, false, false, false, false, false, 211);
-        castle[2][1][2] = new Room("", Descriptions.desc212, Descriptions.descDoors212, Descriptions.daimon212, false, false, false, false, false, false, false, 212);
+        castle[2][1][0] = new Room("", Descriptions.desc210, Descriptions.descDoors210, Descriptions.daimon210,
+                false, false, false, false, false, false, false, 210);
+        castle[2][1][1] = new Room("", Descriptions.desc211, Descriptions.descDoors211, Descriptions.daimon211,
+                false, false, false, false, false, false, false, 211);
+        castle[2][1][2] = new Room("", Descriptions.desc212, Descriptions.descDoors212, Descriptions.daimon212,
+                false, false, false, false, false, false, false, 212);
 
         //OG, Reihe oben
-        castle[2][2][0] = new Room("", Descriptions.desc220, Descriptions.descDoors220, Descriptions.daimon220, false, false, false, false, false, false, false, 220);
-        castle[2][2][1] = new Room("TESTRAUM A", Descriptions.desc221, Descriptions.descDoors221, Descriptions.daimon221, false, true, false, false, false, false, false, 221);
+        castle[2][2][0] = new Room("", Descriptions.desc220, Descriptions.descDoors220, Descriptions.daimon220,
+                false, false, false, false, false, false, false, 220);
+        castle[2][2][1] = new Room("TESTRAUM A", Descriptions.desc221, Descriptions.descDoors221, Descriptions.daimon221,
+                false, true, false, false, false, false, false, 221);
         castle[2][2][1].encounter = BuildEncounters.encStandard;
-        castle[2][2][2] = new Room("TESTRAUM B", Descriptions.desc222, Descriptions.descDoors222, Descriptions.daimon222, false, false, false, true, false, false, false, 222);
+        castle[2][2][2] = new Room("TESTRAUM B", Descriptions.desc222, Descriptions.descDoors222, Descriptions.daimon222,
+                false, false, false, true, false, false, false, 222);
     }
 
     //RAUM-OBJEKTE              name 1-4, descFull, descEmpty, tryLoot, Item loot           static RoomObject o = new RoomObject();

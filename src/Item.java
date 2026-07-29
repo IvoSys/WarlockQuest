@@ -3,7 +3,7 @@ public abstract class Item {
     protected String name;
     protected String desc;
     protected String nameVague;
-    protected String DescInRoom;           // Room.describe() geht Loot-Liste des Raumes durch und hängt für jedes Item diese Variable an die Raumbeschreibung an. Wurde Item bereits gelootet, wird es nicht mehr erwähnt!
+    protected String descInRoom;           // Room.describe() geht Loot-Liste des Raumes durch und hängt für jedes Item diese Variable an die Raumbeschreibung an. Wurde Item bereits gelootet, wird es nicht mehr erwähnt!
     protected int num = 1;
     protected boolean isConsumed = true;
     protected int ID = 0;                  // ID für Schlüssel und Rätselitems, wird mit der ID des Raums abgeglichen, 0 für neutral, room000 stattdessen -1
@@ -182,8 +182,6 @@ public abstract class Item {
             }
         }
     }
-
-
 }
 
 class Evocation extends Item {
@@ -250,10 +248,11 @@ class Evocation extends Item {
 }
 
 class GeneralItem extends Item {
-    public GeneralItem(String name, String nameVague, String desc, int roomID, int combiID) {
+    public GeneralItem(String name, String nameVague, String desc, String descInRoom, int roomID, int combiID) {
         this.name = name;
         this.nameVague = nameVague;
         this.desc = desc;
+        this.descInRoom = descInRoom;
         this.ID = roomID;
         this.combiID = combiID;
     }
@@ -261,10 +260,11 @@ class GeneralItem extends Item {
 
 class Ingredience extends Item {
 
-    public Ingredience(String name, String nameVague, String desc, int combiID) {
+    public Ingredience(String name, String nameVague, String desc, String descInRoom, int combiID) {
         this.name = name;
         this.nameVague = nameVague;
         this.desc = desc;
+        this.descInRoom = descInRoom;
         this.combiID = combiID;
 
     }
@@ -272,10 +272,11 @@ class Ingredience extends Item {
 
 class Key extends Item {
 
-    public Key(String name, String nameVague, String desc, int roomID, int combiID) {
+    public Key(String name, String nameVague, String desc, String descInRoom, int roomID, int combiID) {
         this.name = name;
         this.nameVague = nameVague;
         this.desc = desc;
+        this.descInRoom = descInRoom;
         this.ID = roomID;
         this.combiID = combiID;
     }
@@ -283,10 +284,11 @@ class Key extends Item {
 
 class PuzzleItem extends Item {
 
-    public PuzzleItem(String name, String nameVague, String desc, int roomID, int combiID) {
+    public PuzzleItem(String name, String nameVague, String desc, String descInRoom, int roomID, int combiID) {
         this.name = name;
         this.nameVague = nameVague;
         this.desc = desc;
+        this.descInRoom = descInRoom;
         this.ID = roomID;
         this.combiID = combiID;
     }
@@ -417,10 +419,11 @@ class Spellscroll extends Item {
 
     String nameSpell;
 
-    public Spellscroll(String name, String nameVague, String desc, String nameSpell) {
+    public Spellscroll(String name, String nameVague, String desc, String descInRoom, String nameSpell) {
         this.name = name;
         this.nameVague = nameVague;
         this.desc = desc;
+        this.descInRoom = descInRoom;
         this.nameSpell = nameSpell;
     }
 }

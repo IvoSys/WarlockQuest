@@ -22,18 +22,18 @@ public class BuildItems {
     //static Ingredience alche01 = new Ingredience("", "", "", "", 10);
     //static Ingredience alche02 = new Ingredience("", "", "", "", 10);
     //Rot, ergibt Heiltränke
-    static Ingredience alche101 = new Ingredience("Molchauge", "Kugel", "Feine Blutgefäße ziehen sich in unruhigen Fäden durch den Augapfel.", 1);
-    static Ingredience alche102 = new Ingredience("Glutorchidee", "Blümchen", "Rein dem Aussehen nach wird diese empfindliche Blüte ihrem Namen gerecht.", 1);
-    static Ingredience alche103 = new Ingredience("Fliegenpilz", "Pilz", "Dieses gefährliche Gewächs zu entgiften und gar zu einem Trank zu verbrauen, \nsollte einem Meisteralchemisten vorbehalten sein. Wie dir.", 1);
-    static Ingredience alche104 = new Ingredience("Marienkäferflügel", "", "Zart durchscheinende Häutchen, noch verbunden mit einer gepunkteten Chitinschicht.", 1);
-    static Ingredience alche105 = new Ingredience("Sperlingszunge", "", "", 1);
-    static Ingredience alche106 = new Ingredience("Rosenblüten", "Blüten", "Für sinnliches Badevergnügen.", 1);
-    static Ingredience alche107 = new Ingredience("Tollwurm", "Wurm", "Furia infernalis! Ein rostrotes und, in falschen Händen, hochgiftiges Insekt.", 1);
-    static Ingredience alche108 = new Ingredience("Radieschen", "Radieschen", "Raphanus sativus. Diese kleinen Wurzelknollen entfalten mitunter einen scharfen Geschmack. \nBreit verfügbar und günstig, und dennoch für einfache Tränke geeignet.", 1);
+    static Ingredience alche101 = new Ingredience("Molchauge", "Kugel", "Feine Blutgefäße ziehen sich in unruhigen Fäden durch den Augapfel.", "In einem Einmachglas schwimmt eine einzelne glitschige Kugel. ", 1);
+    static Ingredience alche102 = new Ingredience("Glutorchidee", "Blümchen", "Rein dem Aussehen nach wird diese empfindliche Blüte ihrem Namen gerecht.", null, 1);
+    static Ingredience alche103 = new Ingredience("Fliegenpilz", "Pilz", "Dieses gefährliche Gewächs zu entgiften und gar zu einem Trank zu verbrauen, \nsollte einem Meisteralchemisten vorbehalten sein. Wie dir.", null, 1);
+    static Ingredience alche104 = new Ingredience("Marienkäferflügel", "", "Zart durchscheinende Häutchen, noch verbunden mit einer gepunkteten Chitinschicht.", null, 1);
+    static Ingredience alche105 = new Ingredience("Sperlingszunge", "", "", null, 1);
+    static Ingredience alche106 = new Ingredience("Rosenblüten", "Blüten", "Für sinnliches Badevergnügen.", null, 1);
+    static Ingredience alche107 = new Ingredience("Tollwurm", "Wurm", "Furia infernalis! Ein rostrotes und, in falschen Händen, hochgiftiges Insekt.", null, 1);
+    static Ingredience alche108 = new Ingredience("Radieschen", "Radieschen", "Raphanus sativus. Diese kleinen Wurzelknollen entfalten mitunter einen scharfen Geschmack. \nBreit verfügbar und günstig, und dennoch für einfache Tränke geeignet.", null, 1);
     //Blau, ergibt Manatränke
-    static Ingredience alche201 = new Ingredience("Mondbeeren", "Beeren", "Eisblaue Früchte, die den Geist erfrischen.", 2);
-    static Ingredience alche202 = new Ingredience("Mitternachtskraut", "Kraut", "Fahlblaue Blätter, die sich lieber dem Mondlicht als der Sonne zuwenden. \nGeschätzt von denjenigen, die Nachts wach bleiben müssen.", 2);
-    static Ingredience alche203 = new Ingredience("Eisenhut", "Kraut", "Eine Blüte wie ein blauer Helm.", 2);
+    static Ingredience alche201 = new Ingredience("Mondbeeren", "Beeren", "Eisblaue Früchte, die den Geist erfrischen.", "In einer Schale ist eine Handvoll hellblaue Beeren übrig. ", 2);
+    static Ingredience alche202 = new Ingredience("Mitternachtskraut", "Kraut", "Fahlblaue Blätter, die sich lieber dem Mondlicht als der Sonne zuwenden. \nGeschätzt von denjenigen, die Nachts wach bleiben müssen.", null, 2);
+    static Ingredience alche203 = new Ingredience("Eisenhut", "Kraut", "Eine Blüte wie ein blauer Helm.", null, 2);
     //Gelb, frei (Wiederbelebung?)
     //gelb static Ingredience alche301 = new Ingredience("", "", "", "", 3);
     //gelb static Ingredience alche302 = new Ingredience("", "", "", "", 3);
@@ -41,8 +41,8 @@ public class BuildItems {
     //grün static Ingredience alche401 = new Ingredience("", "", "", "", 4);
     //grün static Ingredience alche402 = new Ingredience("", "", "", "", 4);
     //Schwarz, ergibt Level-up-Tränke
-    static Ingredience alche501 = new Ingredience("Maluswurzel", "Wurzel", "Das gewundene dunkle Wurzelwerk der Crassula ovata.", 5);
-    static Ingredience alche502 = new Ingredience("Tollkirsche", "", "In falschen Händen tödlich.", 5);
+    static Ingredience alche501 = new Ingredience("Maluswurzel", "Wurzel", "Das gewundene dunkle Wurzelwerk der Crassula ovata.", null, 5);
+    static Ingredience alche502 = new Ingredience("Tollkirsche", "", "In falschen Händen tödlich.", null, 5);
 
 
     //TRÄNKE
@@ -58,12 +58,12 @@ public class BuildItems {
 
 
     //SCHRIFTROLLEN
-    static Spellscroll scrollBloodletting = new Spellscroll("Zauberschriftrolle des Aderlasses", "", "", "Aderlass");
-    static Spellscroll scrollDoom = new Spellscroll("Zauberschriftrolle des Untergangs", "", "", "Untergang");
-    static Spellscroll scrollIronMaiden = new Spellscroll("Zauberschriftrolle der Eisernen Jungfrau", "", "", "Eiserne Jungfrau");
-    static Spellscroll scrollLifeline = new Spellscroll("Zauberschriftrolle der Lebenslinie", "", "", "Lebenslinie");
-    static Spellscroll scrollSoulreaper = new Spellscroll("Zauberschriftrolle des Seelendiebes", "", "", "Seelendieb");
-    static Spellscroll scrollViciousSeed = new Spellscroll("Zauberschriftrolle der Üblen Saat", "", "", "Üble Saat");
+    static Spellscroll scrollBloodletting = new Spellscroll("Zauberschriftrolle des Aderlasses", "", "", null, "Aderlass");
+    static Spellscroll scrollDoom = new Spellscroll("Zauberschriftrolle des Untergangs", "", "", null, "Untergang");
+    static Spellscroll scrollIronMaiden = new Spellscroll("Zauberschriftrolle der Eisernen Jungfrau", "", "", null, "Eiserne Jungfrau");
+    static Spellscroll scrollLifeline = new Spellscroll("Zauberschriftrolle der Lebenslinie", "", "", null, "Lebenslinie");
+    static Spellscroll scrollSoulreaper = new Spellscroll("Zauberschriftrolle des Seelendiebes", "", "", null, "Seelendieb");
+    static Spellscroll scrollViciousSeed = new Spellscroll("Zauberschriftrolle der Üblen Saat", "", "", null, "Üble Saat");
 
     //ZAUBER
     static Spell bloodletting = new Bloodletting();
@@ -77,26 +77,26 @@ public class BuildItems {
     static ArrayList<Spell> freeSpells = new ArrayList<>(Arrays.asList(allSpells));
 
     //ITEMS
-    static GeneralItem bagAlche = new GeneralItem("Alchemiebeutel", "", "Ein samtener Beutel, in dem du all deine alchemistischen Zutaten aufbewahrst: \n", 0, 0);
-    static GeneralItem bagPotions = new GeneralItem("Trankgurt", "", "Ein System aus Lederriemen, mit denen du Trankfläschchen am Gürtel befestigen kannst. \n", 0, 0);
-    static GeneralItem bookSpells = new GeneralItem("Zauberbuch", "", "Ein ledergebundener Foliant, in dem all deine Zauber verzeichnet sind: \n", 0, 0);
-    static GeneralItem bookBlackArts = new GeneralItem("\"Die schwarzen Künste\"", "", Descriptions.bookBlackArtsDesc, 0, 0);
-    static GeneralItem evoc00 = new GeneralItem("Beschwörungsformel des vertrauten Geistes", "Schriftrolle", Descriptions.riddleDem00, 0, 0);
-    static GeneralItem bag011 = new GeneralItem("Hexertasche", "Tasche", "Eine robuste Stofftasche, in der Maleficarius seine Schriftrollenbehälter transportiert.", 0, -1);
+    static GeneralItem bagAlche = new GeneralItem("Alchemiebeutel", "", "Ein samtener Beutel, in dem du all deine alchemistischen Zutaten aufbewahrst: \n", null, 0, 0);
+    static GeneralItem bagPotions = new GeneralItem("Trankgurt", "", "Ein System aus Lederriemen, mit denen du Trankfläschchen am Gürtel befestigen kannst. \n", null, 0, 0);
+    static GeneralItem bookSpells = new GeneralItem("Zauberbuch", "", "Ein ledergebundener Foliant, in dem all deine Zauber verzeichnet sind: \n", null, 0, 0);
+    static GeneralItem bookBlackArts = new GeneralItem("\"Die schwarzen Künste\"", "", Descriptions.bookBlackArtsDesc, null, 0, 0);
+    static GeneralItem evoc00 = new GeneralItem("Beschwörungsformel des vertrauten Geistes", "Schriftrolle", Descriptions.riddleDem00, null, 0, 0);
+    static GeneralItem bag011 = new GeneralItem("Hexertasche", "Tasche", "Eine robuste Stofftasche, in der Maleficarius seine Schriftrollenbehälter transportiert.", "Eine dir wohlbekannte Tasche wurde achtlos in die Ecke geworfen. \n", 0, -1);
 
 
     //Schlüssel
-    static Key key000 = new Key("Zellenschlüssel", "Schlüssel", "Ein rostiger Klumpen von Schlüssel.", -1, 0);
-    static Key key012 = new Key("Kerkerschlüssel", "Schlüssel", "Der Schlüssel zum Kerker … und AUS dem Kerker.", 12, 0);
+    static Key key000 = new Key("Zellenschlüssel", "Schlüssel", "Ein rostiger Klumpen von Schlüssel.", null, -1, 0);
+    static Key key012 = new Key("Kerkerschlüssel", "Schlüssel", "Der Schlüssel zum Kerker … und AUS dem Kerker.", null, 12, 0);
 
     //Puzzle-Item
-    static PuzzleItem bread = new PuzzleItem("Brot", "Brot", "Eine Scheibe fluffiges Brot mit knuspernder Kruste. Malzig im Geschmack und reich an Ballaststoffen.", 0, 12);
-    static PuzzleItem cheese = new PuzzleItem("Käse", "Käse", "Eine Scheibe nussig-cremiger Bergkäse. Vollmundig und sehr nahrhaft.", 0, 12);
-    static PuzzleItem cheeseBread = new PuzzleItem("Käsebrot", "", "Bestechend einfach und beinahe perfekt.", 0, 13);
-    static PuzzleItem pickle = new PuzzleItem("Essiggurke", "Essiggurken", "Süß-sauer eingelegt mit Senfkörnern und Dill. Rundet geschmacklich so einiges gelungen ab.", 0, 13);
-    static PuzzleItem sandwich = new PuzzleItem("Käsebrot mit Essiggurke", "Käsebrot mit Essiggurke", "Ein herzhaft-würziges Käsebrot mit Essiggurke. Eine ideale Zwischenmahlzeit.", 0, 0);    // roomID 0, da Item in Dialog verwendet
-    static PuzzleItem rock = new PuzzleItem("Stein", "Steine", "Es ist ein Stein.", 20, 0);
-    static PuzzleItem gold = new PuzzleItem("Goldklumpen", "", "Alechimistisch betrachtet wertlos.", 0, 0);
+    static PuzzleItem bread = new PuzzleItem("Brot", "Brot", "Eine Scheibe fluffiges Brot mit knuspernder Kruste. Malzig im Geschmack und reich an Ballaststoffen.", null, 0, 12);
+    static PuzzleItem cheese = new PuzzleItem("Käse", "Käse", "Eine Scheibe nussig-cremiger Bergkäse. Vollmundig und sehr nahrhaft.", null, 0, 12);
+    static PuzzleItem cheeseBread = new PuzzleItem("Käsebrot", "", "Bestechend einfach und beinahe perfekt.", null, 0, 13);
+    static PuzzleItem pickle = new PuzzleItem("Essiggurke", "Essiggurken", "Süß-sauer eingelegt mit Senfkörnern und Dill. Rundet geschmacklich so einiges gelungen ab.", null, 0, 13);
+    static PuzzleItem sandwich = new PuzzleItem("Käsebrot mit Essiggurke", "Käsebrot mit Essiggurke", "Ein herzhaft-würziges Käsebrot mit Essiggurke. Eine ideale Zwischenmahlzeit.", null, 0, 0);    // roomID 0, da Item in Dialog verwendet
+    static PuzzleItem rock = new PuzzleItem("Stein", "Steine", "Es ist ein Stein.", null, 20, 0);
+    static PuzzleItem gold = new PuzzleItem("Goldklumpen", "", "Alechimistisch betrachtet wertlos.", null, 0, 0);
 
     //Startitems
     public static void giveStartItems() {

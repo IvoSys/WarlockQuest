@@ -531,17 +531,21 @@ public class Battle {
 
     public static void noviceTurn(Enemy e) {
         Enemy toHeal = null;
-        for (Enemy f : enemyTeam) {
-            if (toHeal == null) {
-                if (f.hp <= f.hpMax * 0.6f)
+        if (e.casts > 0) {
+            for (Enemy f : enemyTeam) {
+                if (toHeal == null) {
+                    if (f.hp <= f.hpMax * 0.6f)
+                        toHeal = f;
+                } else if (f.hp < toHeal.hp) {
                     toHeal = f;
-            } else if (f.hp < toHeal.hp) {
-                toHeal = f;
+                }
             }
-        }
-        if (toHeal != null) {
-            toHeal.applyHeal(e.heal());
-        } else if (!demon.ko){
+            if (toHeal != null) {
+                toHeal.applyHeal(e.heal());
+            } else if (!demon.ko) {
+                demon.applyDmgEvade(e.attack());
+            }
+        } else if (!demon.ko) {
             demon.applyDmgEvade(e.attack());
         }
 
