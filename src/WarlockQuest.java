@@ -61,7 +61,9 @@ public class WarlockQuest {
                         Potion.drink(inputSplit[1]);                                                                    // Trinke Trank
                     } else if (inputSplit[1].contains("zauberschriftrolle ")) {
                         Spell.learnOnUse(inputSplit[1]);                                                                // Lerne Zauber
-                    } else if (inputSplit[1].contains(BuildItems.evoc01.name) || inputSplit[1].contains(BuildItems.evoc02.name) || inputSplit[1].contains(BuildItems.evoc03.name)) {
+                    } else if (inputSplit[1].contains(BuildItems.evoc01.name.toLowerCase()) ||
+                            inputSplit[1].contains(BuildItems.evoc02.name.toLowerCase()) ||
+                            inputSplit[1].contains(BuildItems.evoc03.name.toLowerCase())) {
                         Player.examine(inputSplit[1]);
                         Evocation.bind();                                                                               // Binde Dämon
                     } else if (inputSplit[1].contains("tasche") || inputSplit[1].contains("bündel")) {
@@ -98,7 +100,7 @@ public class WarlockQuest {
                 quit();                                                                                                 // Beenden
             } else if (input.equals("gib mir einfach die lösungen")) {
                 Tutorials.answers();
-            } else if (input.equals("cheat") || input.equals("ich bin der geist, der stets verneint!")) {
+            } else if (input.equals("ich bin der geist, der stets verneint!")) {
                 Player.cheatAllDemsAndSpells();
             } else {
                 System.out.println("Sprich deutlich!");

@@ -115,7 +115,7 @@ public class Player {
             for (Item i : room.loot) {
                 if (input.contains(i.name.toLowerCase()) || input.contains(i.nameVague.toLowerCase())) {
                     if (i instanceof Spellscroll) {
-                        System.out.println("Du erhältst die " + i.name);
+                        System.out.println("Du erhältst die " + i.name + ".");
                         Spell.learnOnTake(((Spellscroll) i).nameSpell);
                     } else {
                         inv.add(i);
@@ -128,11 +128,11 @@ public class Player {
             }
         }
 
-        if (!room.objects.isEmpty()){        // In Raumobjekten suchen
+        if (!received && !room.objects.isEmpty()){        // In Raumobjekten suchen
             for (RoomObject o : room.objects){
                 if (o.loot != null && (o.loot.name.toLowerCase().equals(input) || o.loot.nameVague.toLowerCase().equals(input) )) {
                     if (o.loot instanceof Spellscroll) {
-                        System.out.println("Du erhältst die " + o.loot.name);
+                        System.out.println("Du erhältst die " + o.loot.name + ".");
                         Spell.learnOnTake(((Spellscroll) o.loot).nameSpell);
                     } else {
                         inv.add(o.loot);
@@ -222,7 +222,7 @@ public class Player {
     public static void showSpells() {
         boolean empty = true;
         System.out.println("============= ZAUBERBUCH ============");
-        System.out.println("Wirke diese Zauber IN KÄMPFEN gegen MP:\n");
+        System.out.println("Wirke diese Zauber IM KAMPF gegen MP:\n");
         for (Spell i : spellbook) {
             System.out.printf("%s \n", i.name.toUpperCase());
             System.out.printf("Manakosten: %d ", i.mpCost);

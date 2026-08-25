@@ -153,7 +153,7 @@ public class Battle {
                             for (Enemy f : enemyTeam) {
                                 if (f.lifelined) {
                                     f.lifelined = false;
-                                    System.out.printf("Die Lebenslinie zwischen %s und %s reißt.", f.name, demon.name);
+                                    System.out.printf("Die Lebenslinie zwischen %s und %s reißt. \n", f.name, demon.name);
                                 }
                             }
                         if (!e.ko)

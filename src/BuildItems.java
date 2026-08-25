@@ -29,7 +29,7 @@ public class BuildItems {
     static Ingredience alche105 = new Ingredience("Sperlingszunge", "", "", null, 1);
     static Ingredience alche106 = new Ingredience("Rosenblüten", "Blüten", "Für sinnliches Badevergnügen.", null, 1);
     static Ingredience alche107 = new Ingredience("Tollwurm", "Wurm", "Furia infernalis! Ein rostrotes und, in falschen Händen, hochgiftiges Insekt.", null, 1);
-    static Ingredience alche108 = new Ingredience("Radieschen", "Radieschen", "Raphanus sativus. Diese kleinen Wurzelknollen entfalten mitunter einen scharfen Geschmack. \nBreit verfügbar und günstig, und dennoch für einfache Tränke geeignet.", null, 1);
+    static Ingredience alche108 = new Ingredience("Radieschen", "Radieschen", "Raphanus sativus. Diese kleinen Wurzelknollen entfalten mitunter einen scharfen Geschmack. \nBreit verfügbar und günstig, dennoch für einfache Tränke geeignet.", null, 1);
     //Blau, ergibt Manatränke
     static Ingredience alche201 = new Ingredience("Mondbeeren", "Beeren", "Eisblaue Früchte, die den Geist erfrischen.", "In einer Schale ist eine Handvoll hellblaue Beeren übrig. ", 2);
     static Ingredience alche202 = new Ingredience("Mitternachtskraut", "Kraut", "Fahlblaue Blätter, die sich lieber dem Mondlicht als der Sonne zuwenden. \nGeschätzt von denjenigen, die Nachts wach bleiben müssen.", null, 2);
@@ -58,12 +58,12 @@ public class BuildItems {
 
 
     //SCHRIFTROLLEN
-    static Spellscroll scrollBloodletting = new Spellscroll("Zauberschriftrolle des Aderlasses", "", "", null, "Aderlass");
-    static Spellscroll scrollDoom = new Spellscroll("Zauberschriftrolle des Untergangs", "", "", null, "Untergang");
-    static Spellscroll scrollIronMaiden = new Spellscroll("Zauberschriftrolle der Eisernen Jungfrau", "", "", null, "Eiserne Jungfrau");
-    static Spellscroll scrollLifeline = new Spellscroll("Zauberschriftrolle der Lebenslinie", "", "", null, "Lebenslinie");
-    static Spellscroll scrollSoulreaper = new Spellscroll("Zauberschriftrolle des Seelendiebes", "", "", null, "Seelendieb");
-    static Spellscroll scrollViciousSeed = new Spellscroll("Zauberschriftrolle der Üblen Saat", "", "", null, "Üble Saat");
+    static Spellscroll scrollBloodletting = new Spellscroll("Zauberschriftrolle des Aderlasses", "", "Diese Schriftrolle lehrt verbotene Blutmagie.", null, "Aderlass");
+    static Spellscroll scrollDoom = new Spellscroll("Zauberschriftrolle des Untergangs", "", "Diese Schriftrolle lehrt einen furchtbaren Fluch.", null, "Untergang");
+    static Spellscroll scrollIronMaiden = new Spellscroll("Zauberschriftrolle der Eisernen Jungfrau", "", "Diese Schriftrolle lehrt einen furchtbaren Fluch.", null, "Eiserne Jungfrau");
+    static Spellscroll scrollLifeline = new Spellscroll("Zauberschriftrolle der Lebenslinie", "", "Diese Schriftrolle lehrt verbotene Blutmagie.", null, "Lebenslinie");
+    static Spellscroll scrollSoulreaper = new Spellscroll("Zauberschriftrolle des Seelendiebes", "", "Diese Schriftrolle lehrt finstere Hexerei.", null, "Seelendieb");
+    static Spellscroll scrollViciousSeed = new Spellscroll("Zauberschriftrolle der Üblen Saat", "", "Diese Schriftrolle lehrt finstere Hexerei.", null, "Üble Saat");
 
     //ZAUBER
     static Spell bloodletting = new Bloodletting();

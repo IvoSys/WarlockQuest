@@ -18,7 +18,7 @@ public abstract class Item {
             System.out.printf("%s verbraucht", Player.inv.get(i).name);
             if  (Player.inv.get(i).num <= 0) {
                 Player.inv.remove(i);
-                System.out.println(", Vorrat erschöpft");
+                //System.out.println(", Vorrat erschöpft");
             }
         } else {
             System.out.println("Item nicht im Inventar.");
@@ -407,9 +407,9 @@ class Manapotion extends Potion{
             }
         }
         if (sucess && Player.mp == Player.mpMax) {
-            System.out.println("Maleficarius ist wieder vollständig erfrischt'.");
+            System.out.println("Maleficarius ist wieder vollständig erfrischt. ");
         } else if (sucess)
-            System.out.printf("Maleficarius fühlt sich erfrischt und hat nun %d/%d MP.", Player.mp, Player.mpMax);
+            System.out.printf("Maleficarius fühlt sich erfrischt und hat nun %d/%d MP. ", Player.mp, Player.mpMax);
 
         return sucess;
     }

@@ -239,14 +239,14 @@ class Descriptions extends Story {
     static String solved011 = "Platzhalter in Story-Klasse";
     //Vorraum (UG)
     static String desc012 = """
-            Der Vorraum des Untergeschosses. Im Westen sitzt eine Tür zur "Vorratskammer" in der Wand.
-            Hinter einer Gittertür führt eine breite Steintreppe hinauf ins Erdgeschoss – Offiziere tragen einen Schlüssel.
+            Der Vorraum des Untergeschosses. Im Westen sitzt eine mit "Vorratskammer" beschriftete Tür in der Wand.
+            Hinter einer Gittertür – gesichert mit schwerem Vorhängeschloss – führt eine breite Steintreppe hinauf ins Erdgeschoss.
             Im Süden liegt der Kerker. Im Norden geht es zur Kantine, aus der das Grölen einiger Wachen hallt.
             """;
     static String descDoors012;
     static String descB012 = """
-            Der Vorraum des Untergeschosses. Im Westen sitzt eine Tür zur Vorratskammer in der Wand.
-            Hinter einer Gittertür führt eine breite Steintreppe hinauf ins Erdgeschoss – von einem Offizier könntest du einen Schlüssel erhalten.
+            Der Vorraum des Untergeschosses. Im Westen sitzt eine mit "Vorratskammer" beschriftete Tür in der Wand.
+            Hinter einer Gittertür – gesichert mit schwerem Vorhängeschloss – führt eine breite Steintreppe hinauf ins Erdgeschoss.
             Im Süden liegt der Kerker. Im Norden geht es zur Wachkantine.
             """;
     static String descSolved012;
@@ -270,8 +270,8 @@ class Descriptions extends Story {
             """;
     static String descDoors020;
     static String descSolved020;
-    static String daimon020 = "DAIMON: \"Da drüben, die Offiziersstube. Vielleicht sollten wir einfach mal klopfen und reinrufen, ob wer mit uns spricht?\"";
-    static String daimonSolved020;
+    static String daimon020 = "DAIMON: \"Da drüben, die Offiziersstube, da murmelt wer. Vielleicht sollten wir einfach mal reinrufen, ob wer mit uns spricht?\"";
+    static String daimonSolved020 = "DAIMON: \"Der Horror-Chef har die Tür zur Offiziersstube offen gelassen.\"";
     static String solved020 = "Platzhalter in Story-Klasse";
     static String descPostBattle020 = """
             Am Westende ist ein Kessel aufgestellt, aus dem, wenn angeheizt, warmes Wasser geschöpft werden kann. Daneben ein großer Kübel mit kaltem Wasser.
@@ -566,6 +566,7 @@ class Dialogue extends Story {
                     break;
                 case "2":
                     BuildCastle.castle[0][2][0].south = true;
+                    BuildCastle.castle[0][2][0].daimon = Descriptions.daimonSolved020;
                     Item.consume(BuildItems.sandwich);
                     System.out.println("STIMME HINTER DER TÜR: \"Wurde auch Zeit.\"");
                     System.out.println("Mit einem Klacken wird die Tür entriegelt, öffnet sich einen Spalt, eine Hand kommt hervor, greift sich das Käsebrot und zieht sich hinter die Tür zurück. \nDie Tür schließt sich wieder, doch das Schloss klickt nicht erneut.");

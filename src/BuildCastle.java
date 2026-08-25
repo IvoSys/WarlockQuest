@@ -122,6 +122,10 @@ public class BuildCastle {
     //000 Zelle
     static RoomObject dummyKey = new RoomObject("Schlüssel", "Zellenschlüssel", "Schlüsselring", "", "Ein rostiger Klumpen von Schlüssel, der dem Wärter am Gürtel hängt.", "Du kommst nicht dran.", null);
     static RoomObject guard = new RoomObject("Wärter", "Wächter", "Gefängniswärter", "", "Ein leicht untersetzter Mann mit Schlüsselring, Schlagstock und schlechtem Schlafmanagement", "… nein.", null);
+    static RoomObject bars = new RoomObject("Eisenstangen", "Stangen", "Gitter", "", "Rostige Gitter. In einigen Jahren zerbröseln sie wahrscheinlich von allein.", "Wohl kaum.", null);
+    static RoomObject cell = new RoomObject("Nische", "Zelle", "Gefängniszelle", "", "Eine Zelle mit nichts als einer nackten Pritsche und einem stinkendem Eimer. Aber DICH nennen sie einen Unmenschen …", "Das ergibt keinen Sinn.", null);
+    static RoomObject cot = new RoomObject("Pritsche", "Bett", "Liege", "", "An erholsamen Schlaf ist auf diesem Gestell nicht zu denken.", "Ich bevorzuge mein eigenes Bett in meinem Quartier.", null);
+    static RoomObject bucket = new RoomObject("Eimer", "Nachttopf", "Toilette", "", "Ein Eimer, um die natürlichen Bedürfnisse aufzufangen.", "Auf gar keinen Fall.", null);
 
     //001 Kerker
     static RoomObject stuff = new RoomObject("Zeug", "Sachen", "Ausrüstung", "Eigentum", "", "Dein Eigentum ist nicht zu finden.", "Deine Besitztümer müssen sich woanders befinden.", null);
@@ -152,6 +156,7 @@ public class BuildCastle {
 
     //012 Vorraum
     static RoomObject gate = new RoomObject("Gitter", "Gittertür", "Treppe", "", "Die Gittertür vor der Treppe ins Erdgeschoss ist fest verschlossen. \nEinen Schlüssel könntest du von einem Aufseher erhalten.", "Fest verankert.", null);
+    static RoomObject padlock = new RoomObject("Vorhängeschloss", "Schloss", "", "Verschließt die Gittertür vor der Treppe ins Erdgeschoss. \nEinen Schlüssel könntest du von einem Aufseher erhalten.", "Hängt fest.", null);
 
     //020 Badestube
     static RoomObject tub = new RoomObject("Badezuber", "Zuber", "Mit lauwarmem Seifenwasser angefüllt. Da schwimmt etwas … sind das Blüten?", "Mit lauwarmem Seifenwasser angefüllt.", "Viel zu schwer.", BuildItems.alche106);
@@ -165,12 +170,12 @@ public class BuildCastle {
     static RoomObject pot = new RoomObject("Topf", "Kessel", "", "Braun und eintönig köchelt ein Eintopf da drin schon ewig vor sich hin.", "Zu schwer. Zu schmutzig.", null);
 
     public static void addRoomObjects() {
-        castle[0][0][0].objects.add(guard); castle[0][0][0].objects.add(dummyKey);
-        castle[0][0][1].objects.add(guard); castle[0][0][1].objects.add(candleClock); castle[0][0][1].objects.add(stuff);
+        castle[0][0][0].objects.add(guard); castle[0][0][0].objects.add(dummyKey); castle[0][0][0].objects.add(bars); castle[0][0][0].objects.add(cell); castle[0][0][0].objects.add(cot); castle[0][0][0].objects.add(bucket);
+        castle[0][0][1].objects.add(guard); castle[0][0][1].objects.add(candleClock); castle[0][0][1].objects.add(stuff); castle[0][0][1].objects.add(cell);
         castle[0][0][2].objects.add(earth); castle[0][0][2].objects.add(rocks);
         castle[0][1][0].objects.add(sword); castle[0][1][0].objects.add(bat); castle[0][1][0].objects.add(shield); castle[0][1][0].objects.add(armor);
         castle[0][1][1].objects.add(sausage); castle[0][1][1].objects.add(ham); castle[0][1][1].objects.add(beer); castle[0][1][1].objects.add(wine); castle[0][1][1].objects.add(bread); castle[0][1][1].objects.add(cheese); castle[0][1][1].objects.add(pickles);
-        castle[0][1][2].objects.add(gate);
+        castle[0][1][2].objects.add(gate); castle[0][1][2].objects.add(padlock);
         castle[0][2][0].objects.add(tub); castle[0][2][0].objects.add(water); castle[0][2][0].objects.add(hair);
         //castle[0][2][1].objects.add();
         castle[0][2][2].objects.add(pot);
