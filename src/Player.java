@@ -128,7 +128,7 @@ public class Player {
             }
         }
 
-        if (!received && !room.objects.isEmpty()){        // In Raumobjekten suchen
+        if (!room.objects.isEmpty()){        // In Raumobjekten suchen
             for (RoomObject o : room.objects){
                 if (o.loot != null && (o.loot.name.toLowerCase().equals(input) || o.loot.nameVague.toLowerCase().equals(input) )) {
                     if (o.loot instanceof Spellscroll) {
@@ -227,7 +227,7 @@ public class Player {
             System.out.printf("%s \n", i.name.toUpperCase());
             System.out.printf("Manakosten: %d ", i.mpCost);
             if (i.dur != 0)
-                System.out.printf("\tDauer: %d Runden\n", i.dur);
+                System.out.printf("\t\tDauer: %d Runden\n", i.dur);
             else
                 System.out.println();
             System.out.printf("%s \n\n", i.desc);

@@ -39,7 +39,7 @@ public abstract class Demon {
         else
             for (Demon d : Player.team) {
                 System.out.println(d.name.toUpperCase());
-                System.out.printf("Leben: %d \t\tMacht: %d \t\tGewandheit: %d\n", d.hpMax, d.power, d.dex);
+                System.out.printf("Leben: %d/%d \t\tMacht: %d \t\tGewandheit: %d\n", d.hp, d.hpMax, d.power, d.dex);
                 System.out.println(d.desc);
                 System.out.println();
                 System.out.println("1. " + d.attackName);
@@ -175,7 +175,7 @@ class Minotauros extends Demon{
         aoeAttackDesc = "Minotauros verfällt in blinde Wut und verursacht bei \nallen Gegnern Schaden in unvorhersehbarer Höhe.";
         aoeAttackBattleDesc = "In Raserei schlägt Minotauros wild um sich:";
         selfBuffName = "Schreckliches Gebrüll";
-        selfBuffDesc = "Minotauros brüllt fürchterlich. Bis zum nächsten Zug weicht Minotaurus keinen Angriffen aus, erhält nur halben Schaden \nund sein nächster Angriff mit der Streitaxt wird um den erlittenen Schaden erhöht. ";
+        selfBuffDesc = "Minotauros brüllt fürchterlich. Bis zum nächsten Zug weicht Minotaurus \nkeinen Angriffen aus, erhält nur halben Schaden und sein nächster Angriff \nmit der Streitaxt wird um den erlittenen Schaden erhöht. ";
         //obliterated = "wird gespalten.";  // wenn Gegner mit besonders starken Schlag besiegt wird: "Gegner erhält 27 Schaden und …"
     }
 

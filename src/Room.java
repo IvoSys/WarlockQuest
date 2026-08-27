@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Room {
 
+    protected int ID;                           // ID des Raumes für Abgleich mit Schlüsseln, Puzzle-Items, Dialoge usw., von Raumkoordinate abgeleitet (nur Raum 000 hat -1)
     protected String name;                      // Name des Raums
     protected String desc;                      // Beschreibung des Raums
     protected String descB;                     // Beschreibung des Raums nach ???
@@ -20,8 +21,7 @@ public class Room {
     protected boolean hasDialogue;              // Marker, ob Dialog vorhanden
     protected ArrayList<Item> loot = new ArrayList<>();                     // Liste von erhältlichen Objekten
     protected ArrayList<RoomObject> objects = new ArrayList<>();            // Liste von Objekten im Raum, mit denen interagiert werden kann und die daraufhin verschiedene Beschreibungen und weiteren Loot ausgeben können
-    protected Item reward;                       // Nach Lösung des Rätsels erhältlicher Gegenstand, wird in Loot-Array verschoben.
-    protected int ID;                            // ID des Raumes für Abgleich mit Schlüsseln, Puzzle-Items, Dialoge usw., von Raumkoordinate abgeleitet (nur Raum 000 hat -1)
+    protected Item reward;                      // Nach Lösung des Rätsels erhältlicher Gegenstand, wird in Loot-Array verschoben.
 
     protected Encounter encounter;
     protected boolean encounterBeaten = false;
@@ -42,20 +42,21 @@ public class Room {
     }
 
     public static void describe(){
-        boolean loot = false;
+        boolean first = true;
         System.out.println();
         System.out.println(Player.room.name.toUpperCase());
         System.out.print(Player.room.desc);
         for (Item i : Player.room.loot){
             if (i.descInRoom != null) {
-                if (!loot)
+                if (first)
                     System.out.println();
                 System.out.print(i.descInRoom);
-                loot = true;
+                first = false;
             }
         }
-        if (Player.room.descDoors != null) {
+        if (!first)
             System.out.println();
+        if (Player.room.descDoors != null) {
             System.out.println(Player.room.descDoors);
         }
     }

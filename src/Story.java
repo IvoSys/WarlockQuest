@@ -297,7 +297,7 @@ class Descriptions extends Story {
     static String daimonSolved022;
     static String solved022;
     static String enc022Intro = "An einem der Tische sitzen drei Wachen mit Bierhumpen.\nEiner hält ein Stück auseinandergerolltes Pergament in der Hand und liest wild gestikulierend daraus vor, \ndie anderen kichern rotnasig. Dramatisch reckt der Vortragende seine Faust gen Zimmerdecke, \nwährend er eine ausgedachte Zauberformel rezitiert und seine Stimme immer höher schraubt, \nals würde sie sich vor Aufregung überschlagen. \nDabei wirkt er irgendwie wie … wie du! \nDie anderen Wachen brechen in haltloses Gelächter aus. \nAngesäuert stößt du die Tür auf, drei Augenpaare wenden sich überrascht zu dir um. ";
-    static String enc022Outro = "Röchelnd gehen die Wachen zu Boden. Im nächsten Leben wird ihnen das eine Lehre sein. Du sammelst die Schriftrolle auf.";
+    static String enc022Outro = "Röchelnd gehen die Wachen zu Boden. Im nächsten Leben wird ihnen das eine Lehre sein. \nDu sammelst die Schriftrolle auf.";
 
     static String desc100 = "Platzhalter unten in Story-Klasse";
     static String descDoors100;

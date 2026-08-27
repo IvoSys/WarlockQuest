@@ -28,7 +28,6 @@ public class BuildCastle {
         // 002 Kellergang
         castle[0][0][2] = new Room("Zugiger Kellergang", Descriptions.desc002, Descriptions.descDoors002, Descriptions.daimon002,
                 true, false, false, true, false, false, false, 2);
-        castle[0][0][2].loot.add(BuildItems.rock);
         castle[0][0][2].descB = Descriptions.descB002;
 
         // 010 Offiziersstube
@@ -54,7 +53,6 @@ public class BuildCastle {
         // 020 Badestube
         castle[0][2][0] = new Room("Badestube", Descriptions.desc020, Descriptions.descDoors020, Descriptions.daimon020,
                 false, true, false, false, false, false, true, 20);
-        castle[0][2][0].loot.add(BuildItems.alche106);
         castle[0][2][0].descPostBattle = Descriptions.descPostBattle020;
 
         // 021 Schlafsaal
