@@ -271,7 +271,7 @@ class Descriptions extends Story {
     static String descDoors020;
     static String descSolved020;
     static String daimon020 = "DAIMON: \"Da drüben, die Offiziersstube, da murmelt wer. Vielleicht sollten wir einfach mal reinrufen, ob wer mit uns spricht?\"";
-    static String daimonSolved020 = "DAIMON: \"Der Horror-Chef har die Tür zur Offiziersstube offen gelassen.\"";
+    static String daimonSolved020 = "DAIMON: \"Der Horror-Chef hat die Tür zur Offiziersstube offen gelassen.\"";
     static String solved020 = "Platzhalter in Story-Klasse";
     static String descPostBattle020 = """
             Am Westende ist ein Kessel aufgestellt, aus dem, wenn angeheizt, warmes Wasser geschöpft werden kann. Daneben ein großer Kübel mit kaltem Wasser.

@@ -15,7 +15,7 @@ public abstract class Item {
         if (Player.inv.contains(itemConsumed)) {
             int i = Player.inv.indexOf(itemConsumed);
             Player.inv.get(i).num--;
-            System.out.printf("%s verbraucht", Player.inv.get(i).name);
+            System.out.printf("%s verbraucht \n", Player.inv.get(i).name);
             if  (Player.inv.get(i).num <= 0) {
                 Player.inv.remove(i);
                 //System.out.println(", Vorrat erschöpft");

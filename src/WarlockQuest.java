@@ -123,8 +123,8 @@ public class WarlockQuest {
         System.out.println("Erdacht und umgesetzt von Ivo Haarmann");
         System.out.println("Handgetippt am Ammersee, 2026");
         System.out.println();
-        System.out.println("Mit besonderem Dank an meine Trainer \n");
-        System.out.println();
+        // System.out.println("Mit besonderem Dank an meine Trainer \n");
+        // System.out.println();
         System.out.println("Herzlichen Dank an die Betatester \nfür die wertvollen Rückmeldungen:");
         System.out.println("- Sebastian Bathiany");
     }

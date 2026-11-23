@@ -274,7 +274,7 @@ class Efreet extends Demon{
         desc = "Ein Geistwesen, geschaffen aus rauchlosem Feuer.";
         textWhenSummoned = "Flammen ziehen sich in einem Strudel zusammen und bilden eine Frau in roten Seidengewändern. Ihre goldenen Armreife glühen heiß.";
         textWhenBound = "Du sprichst den wahren Namen der Efreet aus und die Beschwörungsformel verbrennt unter deinen Fingern. \nEinen kurzen Moment lang glaubst du, in Flammen zu stehen.\n\n(Über den Befehl \"Dämonen\" erfährst du mehr über deine Dämonen.)";
-        hpBase = 120;
+        hpBase = 80;
         hpMax = hpBase;
         hp = hpMax;
         powerBase = 20;

@@ -222,7 +222,7 @@ public class Player {
     public static void showSpells() {
         boolean empty = true;
         System.out.println("============= ZAUBERBUCH ============");
-        System.out.println("Wirke diese Zauber IM KAMPF gegen MP:\n");
+        System.out.println("Wirke diese Zauber IM KAMPF gegen MP:");
         for (Spell i : spellbook) {
             System.out.printf("%s \n", i.name.toUpperCase());
             System.out.printf("Manakosten: %d ", i.mpCost);
@@ -261,8 +261,8 @@ public class Player {
         System.out.println("Verwende diese Tränke AUSSERHALB von Kämpfen:");
         for (Item i : inv) {
             if (i instanceof Potion) {
-                System.out.printf("· \t%s \n", i.name);
-                System.out.printf("\t%s \n", i.desc);
+                System.out.printf("· %s [%d]\n", i.name, i.num);
+                System.out.printf("  %s \n", i.desc);
                 noPotion = false;
             }
         }
