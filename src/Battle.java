@@ -51,8 +51,9 @@ public class Battle {
                             case 2:                                 // AOE Attack
                                 System.out.println(demon.aoeAttackBattleDesc);
                                 for (Enemy e : enemyTeam)
-                                    if (!e.ko)
+                                    if (!e.ko) {
                                         e.applyDmgEvade(demon.aoeAttack());
+                                    }
                                 isPlayerTurn = false;
                                 WarlockQuest.enterToContinue();
                                 break;
@@ -83,7 +84,7 @@ public class Battle {
                                         } else {
                                             pickedSpell.cast();
                                             malActed = true;
-                                            WarlockQuest.enterToContinue();
+                                            //WarlockQuest.enterToContinue();           //Zerschießt Aderlass?
                                         }
                                     }
                                 } else {

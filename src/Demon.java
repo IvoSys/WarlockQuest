@@ -3,7 +3,6 @@ import java.util.Random;
 public abstract class Demon {
 
     String name;
-    String trueName;
     String otherNames;
     String desc;
     String textWhenSummoned;
@@ -33,28 +32,6 @@ public abstract class Demon {
 
 
     public Demon() {
-    }
-
-    public static void showDemons() {
-        System.out.println("============= DÄMONEN ==============\n");
-        if (Player.team.isEmpty())
-            System.out.println("Du hast noch keine Dämonen gebunden.");
-        else
-            for (Demon d : Player.team) {
-                System.out.println(d.name.toUpperCase());
-                System.out.printf("Leben: %d/%d \t\tMacht: %d \t\tGewandheit: %d\n", d.hp, d.hpMax, d.power, d.dex);
-                System.out.println(d.otherNames);
-                System.out.println(d.desc);
-                System.out.println();
-                System.out.println("1. " + d.attackName);
-                System.out.println(d.attackDesc);
-                System.out.println("2. " + d.aoeAttackName);
-                System.out.println(d.aoeAttackDesc);
-                System.out.println("3. " + d.selfBuffName);
-                System.out.println(d.selfBuffDesc);
-                System.out.println("------------------------------------\n");
-            }
-        System.out.println("====================================");
     }
 
     public void toPlayerLevel() {
@@ -160,12 +137,11 @@ class Minotauros extends Demon{
     protected int roar = 0;
 
     public Minotauros() {
-        name = "Minotauros";
-        trueName = Descriptions.trueNameDem01;
-        otherNames = "Der gehörnte König; der wütende Wächter";
+        name = Descriptions.trueNameDem01;
+        otherNames = "der gehörnte König";
         desc = "Ein aufrecht gehender Stier, bewaffnet mit einer mächtigen Streitaxt. ";
         textWhenSummoned = "Aus Fleisch, Knochen und kochendem Blut formt sich der Körper eines gehörnten Untiers. Wut lodert in seinen Augen.";
-        textWhenBound = "Du sprichst den wahren Namen des Minotauros aus und die Beschwörungsformel zerreißt unter deinen Fingern. \nAus den Tiefen der Unterwelt hebt sich ein Gebrüll der reinen Wut.\n\n(Über den Befehl \"Dämonen\" erfährst du mehr über deine Dämonen.)";
+        textWhenBound = "Du sprichst den wahren Namen des gehörnten Königs aus und die Beschwörungsformel zerreißt unter deinen Fingern. \nAus den Tiefen der Unterwelt hebt sich ein Gebrüll der reinen Wut.\n\n(Im (C)odex infernalis erfährst du mehr über deine Dämonen.) \n";
         hpBase = 100;
         hpMax = hpBase;
         hp = hpMax;
@@ -279,12 +255,11 @@ class Efreet extends Demon{
     protected String aoeAttackBattleDescBlazing;
 
     public Efreet() {
-        name = "Efreet";
-        trueName = Descriptions.trueNameDem02;
-        otherNames = "Die entflammte Dame, die Maid der Läuterung";
+        name = Descriptions.trueNameDem02;
+        otherNames = "die entflammte Dame";
         desc = "Ein Geistwesen, geschaffen aus rauchlosem Feuer.";
         textWhenSummoned = "Flammen ziehen sich in einem Strudel zusammen und bilden eine Frau in roten Seidengewändern. Ihre goldenen Armreife glühen heiß.";
-        textWhenBound = "Du sprichst den wahren Namen der Efreet aus und die Beschwörungsformel verbrennt unter deinen Fingern. \nEinen kurzen Moment lang glaubst du, in Flammen zu stehen.\n\n(Über den Befehl \"Dämonen\" erfährst du mehr über deine Dämonen.)";
+        textWhenBound = "Du sprichst den wahren Namen der entflammten Dame aus und die Beschwörungsformel verbrennt unter deinen Fingern. \nEinen kurzen Moment lang glaubst du, in Flammen zu stehen.\n\n(Über den Befehl \"Dämonen\" erfährst du mehr über deine Dämonen.)";
         hpBase = 80;
         hpMax = hpBase;
         hp = hpMax;
@@ -341,12 +316,11 @@ class Abaddon extends Demon{
     Random rnd = new Random();
 
     public Abaddon() {
-        name = "Abaddon";
-        trueName = Descriptions.trueNameDem03;
-        otherNames = "Der Abgründige, der Engel des Schlunds";
+        name = Descriptions.trueNameDem03;
+        otherNames = "der Engel des Abgrunds";
         desc = "";
         textWhenSummoned = "Aus den Schatten tritt eine verhüllte Gestalt. Eine schwarze Pfütze \nwandert an ihren Füßen mit ihr, dünne Tentakel züngeln daraus hevor.";
-        textWhenBound = "Du sprichst den wahren Namen des Abaddon aus und die Beschwörungsformel verwelkt unter deinen Fingern. \nDie Schatten rücken näher, knurren und greifen nach dir.\n\n(Über den Befehl \"Dämonen\" erfährst du mehr über deine Dämonen.)";
+        textWhenBound = "Du sprichst den wahren Namen des Abgründigen aus und die Beschwörungsformel verwelkt unter deinen Fingern. \nDie Schatten rücken näher, knurren und greifen nach dir.\n\n(Über den Befehl \"Dämonen\" erfährst du mehr über deine Dämonen.)";
         hpBase = 150;
         hpMax = hpBase;
         hp = hpMax;

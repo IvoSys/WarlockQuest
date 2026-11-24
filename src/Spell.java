@@ -85,9 +85,9 @@ class Bloodletting extends Spell{
 
     public Bloodletting() {
         name = "Aderlass";
-        desc = "Opfert Lebenspunkte deines Dämon, um deine Manareserven aufzufüllen. \nDer Dämon wird außerdem wütend und verursacht in dieser Runde höheren Schaden.";
+        desc = "Opfert Lebenspunkte deines Dämons, um deine Manareserven aufzufüllen. \nDer Dämon wird außerdem wütend und verursacht in dieser Runde höheren Schaden.";
         textWhenLearned = "Du erlernst den Zauber \"Aderlass\".";
-        str = Player.spellpower * 2;
+        str = Player.spellpower;
         mpCost = 0;
         aoe = false;
         onDemon = true;
@@ -105,14 +105,13 @@ class Bloodletting extends Spell{
             Battle.demon.savage =  true;
         }
 
-
         Player.mp += mpRestored;
         if (Player.mp > Player.mpMax) {
             Player.mp = Player.mpMax;
         }
-        System.out.println("Maleficarius opfert " + mpRestored + " HP seines Dämons und füllt seinen Manavorrat um denselben Wert auf.");
+        System.out.println("Maleficarius opfert " + mpRestored + " HP seines Dämons und erzeugt daraus " + mpRestored + " MP.");
         if (Battle.demon.ko) {
-            System.out.println(Battle.demon.name + " übelebt den Lebensentzug nicht.");
+            System.out.println(Battle.demon.name + " überlebt den Lebensentzug nicht.");
         }
     }
 }
@@ -318,10 +317,12 @@ class ViciousSeed extends Spell {
     @Override
     public void explode(Enemy e) {
         e.carriesVSeed = false;
-        System.out.println("Der Keim des Übels in " + e.name + " platzt auf.");
+        System.out.println("Der Keim des Übels in " + e.name + " platzt auf:");
         for (Enemy f : Player.room.encounter.enemyTeam) {
-            if (!f.ko)
+            if (!f.ko) {
+                System.out.print("\t");
                 f.applyDmg(rnd.nextInt(Player.spellpower + 1) + str);
+            }
         }
     }
 

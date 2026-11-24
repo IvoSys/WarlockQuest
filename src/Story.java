@@ -126,8 +126,8 @@ class Daimon extends Story {
         System.out.print("> ");
         input = sc.nextLine().toLowerCase().trim();
         switch (input) {
-            case "1": System.out.println("DAIMON: \"Meh, was hab ich erwartet.\"\n"); break;
-            case "2": System.out.println("DAIMON: \"Na, das hat doch gar nicht weh getan!\"\n"); break;
+            case "1": System.out.println("DAIMON: \"Meh, was hab ich erwartet.\""); break;
+            case "2": System.out.println("DAIMON: \"Na, das hat doch gar nicht weh getan!\""); break;
             default:
                 System.out.println(daimonDidNotUnderstand);
         }
@@ -204,7 +204,7 @@ class Descriptions extends Story {
     static String daimonSolved000 = "DAIMON: \"Der Wärter ratzt einfach weiter …\"";
     static String unlocked000 = "Mit rostigem Knarzen schwingt die Zellentür auf, \ndu kannst nach Osten aus der Zelle heraustreten.\n";
     //Kerker
-    static String desc001 = "Der Wachraum liefert guten Blick auf die westliche Zelle – wenn man wach bleibt. Durch die offene Tür im Osten kriecht ein kalter Zug. \nDer Wächter schläft immer noch. Auf dem Tisch steht eine Stundenkerze und eine Schale Radieschen.";
+    static String desc001 = "Der Wachraum liefert guten Blick auf die westliche Zelle – wenn man wach bleibt. \nDurch die offene Tür im Osten kriecht ein kalter Zug. \nDer Wächter schläft immer noch. Auf dem Tisch steht eine Stundenkerze und eine Schale Radieschen.";
     static String descDoors001;
     static String descSolved001;
     static String daimon001 = "DAIMON: \"Sieh mal zu, dass du dein Zeug wiederbekommst. Die Königsgarde hat dir alles abgenommen, bevor man dich eingebuchtet hat.\"";
@@ -231,7 +231,7 @@ class Descriptions extends Story {
     static String desc011 = """
             Eine Vielzahl von Gerüchen umgibt dich: Von der Decke hängen verschiedene Würste und Schinken,
             ein angeschnittener Laib Käse liegt auf einem Tisch, daneben einige in Leinen geschlagene Brote.
-            An der Wand sind Fässer mit Bier und Wein aufgestapelt, ein weiteres Fass ist mit Essiggurken gefüllt.""";
+            An der Wand sind Fässer mit Bier und Wein aufgestapelt, ein weiteres Fass ist mit Essiggurken gefüllt. """;
     static String descDoors011 = "Die Tür im Osten führt zurück in den Vorraum.";
     static String descSolved011;
     static String daimon011 = "DAIMON: \"Eine Vorratskammer! Nimm alles mit, was nicht niet- und nagelfest ist!\"";
@@ -627,8 +627,11 @@ class Tutorials extends Story {
                         ----------------------------------------------------------------------------------------------------------------------------
                         Daimon fragen\t\t| (D)aimon \t\t\t| Bittet das Teufelchen auf deiner Schulter um Hilfe. Tue dies regelmäßig!   
                         \t\t\t\t\t|\t\t\t\t\t|               
-                        Sprechen\t\t\t| (S)prechen \t\t| Beginnt ein Gespräch, wenn eine interessierte Person anwesend ist. 
+                        Person ansprechen\t| (A)nsprechen \t\t| Beginnt ein Gespräch, wenn eine interessierte Person anwesend ist. 
                         \t\t\t\t\t|\t\t\t\t\t|
+                        Status anzeigen\t\t| (S)tatus\t\t\t| Zeigt den Stand von Lebens- und Magiepunkten an.
+                        Zauberbuch\t\t\t| (Z)auber\t\t\t| Listet die von dir gelernten Zauber auf, nutze sie im Kampf.
+                        Codex infernalis\t| (C)odex\t\t\t| Öffnet das Nachschlagewerk zu den dir dienenden Dämonen.
                         Inventar zeigen\t\t| (I)tems\t\t\t| Zeigt an, welche Gegenstände du besitzt.
                         \t\t\t\t\t|\t\t\t\t\t|                        
                         Nimm Item\t\t\t| N.[Item]\t\t\t| Legt einen erreichbaren Gegenstand ins Inventar, z. B. "n.Zellenschlüssel".
@@ -637,25 +640,21 @@ class Tutorials extends Story {
                         \t\t\t\t\t|\t\t\t\t\t| \toder Objekten im aktuellen Raum an.
                         \t\t\t\t\t|\t\t\t\t\t|
                         Verwende Item \t\t| V.[Item]\t\t\t| Verwendet einen Gegenstand IM INVENTAR:                         
-                        \t\t\t\t\t|\t\t\t\t\t| \tVerwende Schlüssel und sonstige Items, um sie im aktuellen Raum anzuwenden.
-                        \t\t\t\t\t|\t\t\t\t\t| \tVerwende Schriftrollen und Formeln, um die darin verborgenen Künste zu erlernen.
-                        \t\t\t\t\t|\t\t\t\t\t| \tVerwende Taschen und Beutel, um die Inhalte auszupacken und ins Inventar zu legen.
-                        \t\t\t\t\t|\t\t\t\t\t| \tz. B. "v.Zellenschlüssel", "v.Zauberschriftrolle der üblen Saat", "v.Hexertasche"
+                        \t\t\t\t\t|\t\t\t\t\t| \t· Verwende Schlüssel und sonstige Items, um sie im aktuellen Raum anzuwenden.
+                        \t\t\t\t\t|\t\t\t\t\t| \t· Verwende Schriftrollen und Formeln, um die darin verborgenen Künste zu erlernen.
+                        \t\t\t\t\t|\t\t\t\t\t| \t· Verwende Taschen und Beutel, um die Inhalte auszupacken und ins Inventar zu legen.
+                        \t\t\t\t\t|\t\t\t\t\t| \t  z. B. "v.Zellenschlüssel", "v.Zauberschriftrolle der üblen Saat", "v.Hexertasche"
                         \t\t\t\t\t|\t\t\t\t\t|
                         Kombiniere Items\t| K.[Item].[Item]\t| Kombiniert zwei Items aus dem Inventar miteinander,
-                          ("combine")\t\t| oder\t\t\t\t| \tz. B. "k.blaue Farbe.gelbe Farbe" -> Maleficarius erhält grüne Farbe.
-                        \t\t\t\t\t| C.[Item].[Item]\t| \tAuf gleiche Weise kannst du aus Alchemiezutaten Tränke brauen:
+                          \t\t\t\t\t| \t\t\t\t\t| \tz. B. "k.blaue Farbe.gelbe Farbe" -> Maleficarius erhält grüne Farbe.
+                        \t\t\t\t\t| \t\t\t\t\t| \tAuf gleiche Weise kannst du aus Alchemiezutaten Tränke brauen:
                         \t\t\t\t\t|\t\t\t\t\t| \tKombiniere z. B. rote Zutaten für Heiltränke, blaue für Manatränke.
                         \t\t\t\t\t|\t\t\t\t\t|
                         Gehe in Richtung\t| G.[Richtung]\t\t| Versucht, den aktuellen Ort in gewählter Richtung zu verlassen.
-                          (Raum wechseln)\t| oder\t\t\t\t| \tRichtungen: Nord (N), Ost (O), Süd (S), West (W), hoch (h), runter (r),
-                          ("move")\t\t\t| M.[Richtung]\t\t| \tz. B. "G.Norden" oder einfach "g.n" / "m.n".
-                        \t\t\t\t\t|\t\t\t\t\t| \tJedes Stockwerk des Schlosses besteht aus 3x3 Räumen.
+                        (Raum wechseln)\t\t| \t\t\t\t\t| \tRichtungen: Nord (N), Ost (O), Süd (S), West (W), hoch (h), runter (r),
+                          \t\t\t\t\t| \t\t\t\t\t| \tz. B. "G.Norden" oder einfach "g.n".                        
                         \t\t\t\t\t|\t\t\t\t\t|
-                        Status anzeigen\t\t| Stat\t\t\t\t| Zeigt den Stand von Lebens- und Magiepunkten an.
                         Raum ansehen\t\t| (R)aum \t\t\t| Zeigt erneut Namen und Beschreibung des aktuellen Raums an.
-                        Zauberbuch\t\t\t| (Z)auber\t\t\t| Listet die von dir gelernten Zauber auf, nutze sie im Kampf.
-                        Dämonen-Kompendium\t| Dämon\t\t\t\t| Zeigt nähere Informationen zu den von dir gebundenen Dämonen an.
                         \t\t\t\t\t|\t\t\t\t\t|\s
                         Spielanleitung\t\t| (H)ilfe \t\t\t| Ruft diese Anleitung auf.
                         Kampftutorial\t\t| Kampf \t\t\t| Ruft die Anleitung zum Kampfsystem auf.
@@ -678,12 +677,12 @@ class Tutorials extends Story {
                         Zu Beginn des Kampfes beschwörst du einen Dämon. Wenn du am Zug bist, wird eine Liste mit Optionen angezeigt.
                         Oben stehen die Fähigkeiten des Dämons, unter der gestrichelten Linie die Möglichkeiten von Maleficarius.
                         Nach deinem Dämon sind die Gegner an der Reihe. Soll Maleficarius handeln, kann er dies vor dem Dämon tun,
-                        ohne dass dessen Zug verfällt. Einen Zauber zu wirken, kostet MP.
+                        ohne dass dessen Zug verfällt. Einen Zauber zu wirken, kostet Manapunkte (MP).
                         
                         Beispiel für eine Kampfsituation:
                         
                         [NAME GEGNERTEAM]
-                        Soldat Max\t(53/80 HP) \t\t\t\t\t<--- Name und HP der Gegner
+                        Soldat Max\t(53/80 HP) \t\t\t\t\t<--- Name und Lebenspunkte der Gegner
                         Soldat Jörg\t(63/80 HP) – Üble Saat (2)\t<--- Auf Gegner wirkende Zauber und verbleibende Dauer
                         Soldatin Franziska\t(80/80 HP)\t\s
                         
@@ -700,8 +699,8 @@ class Tutorials extends Story {
                         
                         Neben ">" gibst du die Zahl der gewünschten Aktion ein.
                         
-                        Den meisten Angriffen (Schwertern, Pfeilen, magischen Projektilen) kann mit gewisser Chance ausgewichen werden.
-                        Die Flüche eines Hexenmeisters binden sich an die Seele eines Lebewesens und verfehlen niemals.
+                        Den meisten konventionellen Angriffen kann mit gewisser Chance ausgewichen werden.
+                        Die Flüche eines Hexenmeisters binden sich an die Seele eines Wesens und verfehlen niemals.
                         
                         Jeder Dämon verfügt über drei Fähigkeiten: Einen Angriff gegen einen Gegner,
                         einen Angriff gegen alle Gegner und eine Fähigkeit, die den Dämon selbst verstärkt.

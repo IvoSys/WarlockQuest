@@ -6,7 +6,7 @@ public class BuildItems {
 
     //BESCHWÖRUNGSFORMELN
     static Evocation evoc01 = new Evocation("Beschwörungsformel des gehörnten Königs", "Schriftrolle", Descriptions.riddleDem01, "Minotauros", "Die \"Pflastersteine\" sind die Tasten auf der Tastatur.");
-    static Evocation evoc02 = new Evocation("Beschwörungsformel der entflammten Dame", "Schriftrolle", Descriptions.riddleDem02, "Efreet", "");
+    static Evocation evoc02 = new Evocation("Beschwörungsformel der entflammten Dame", "Schriftrolle", Descriptions.riddleDem02, "Efreet", "Das Feuer verzehrt sich nach seiner Meisterin.");
     static Evocation evoc03 = new Evocation("Beschwörungsformel des Abgründigen", "Schriftrolle", Descriptions.riddleDem03, "Abaddon", "Fahre mit dem Finger über den Tintenklecks");
 
     //DÄMONEN
@@ -60,10 +60,10 @@ public class BuildItems {
     //SCHRIFTROLLEN
     static Spellscroll scrollBloodletting = new Spellscroll("Zauberschriftrolle des Aderlasses", "", "Diese Schriftrolle lehrt verbotene Blutmagie.", null, "Aderlass");
     static Spellscroll scrollDoom = new Spellscroll("Zauberschriftrolle des Untergangs", "", "Diese Schriftrolle lehrt einen furchtbaren Fluch.", null, "Untergang");
-    static Spellscroll scrollIronMaiden = new Spellscroll("Zauberschriftrolle der Eisernen Jungfrau", "", "Diese Schriftrolle lehrt einen furchtbaren Fluch.", null, "Eiserne Jungfrau");
+    static Spellscroll scrollIronMaiden = new Spellscroll("Zauberschriftrolle der eisernen Jungfrau", "", "Diese Schriftrolle lehrt einen furchtbaren Fluch.", null, "Eiserne Jungfrau");
     static Spellscroll scrollLifeline = new Spellscroll("Zauberschriftrolle der Lebenslinie", "", "Diese Schriftrolle lehrt verbotene Blutmagie.", null, "Lebenslinie");
     static Spellscroll scrollSoulreaper = new Spellscroll("Zauberschriftrolle des Seelendiebes", "", "Diese Schriftrolle lehrt finstere Hexerei.", null, "Seelendieb");
-    static Spellscroll scrollViciousSeed = new Spellscroll("Zauberschriftrolle der Üblen Saat", "", "Diese Schriftrolle lehrt finstere Hexerei.", null, "Üble Saat");
+    static Spellscroll scrollViciousSeed = new Spellscroll("Zauberschriftrolle der üblen Saat", "", "Diese Schriftrolle lehrt finstere Hexerei.", null, "Üble Saat");
 
     //ZAUBER
     static Spell bloodletting = new Bloodletting();
@@ -76,13 +76,17 @@ public class BuildItems {
     static Spell[] allSpells = {bloodletting, doom, lifeline, soulreaper, viciousSeed};
     static ArrayList<Spell> freeSpells = new ArrayList<>(Arrays.asList(allSpells));
 
-    //ITEMS
-    static GeneralItem bagAlche = new GeneralItem("Alchemiebeutel", "", "Ein samtener Beutel, in dem du all deine alchemistischen Zutaten aufbewahrst: \n", null, 0, 0);
-    static GeneralItem bagPotions = new GeneralItem("Trankgurt", "", "Ein System aus Lederriemen, mit denen du Trankfläschchen am Gürtel befestigen kannst. \n", null, 0, 0);
-    static GeneralItem bookSpells = new GeneralItem("Zauberbuch", "", "Ein ledergebundener Foliant, in dem all deine Zauber verzeichnet sind: \n", null, 0, 0);
-    static GeneralItem bookBlackArts = new GeneralItem("\"Die schwarzen Künste\"", "", Descriptions.bookBlackArtsDesc, null, 0, 0);
-    static GeneralItem evoc00 = new GeneralItem("Beschwörungsformel des vertrauten Geistes", "Schriftrolle", Descriptions.riddleDem00, null, 0, 0);
+    //General Items
+    static GeneralItem coreItems = new GeneralItem("Maleficarius' Habseligkeiten", "Habe", Descriptions.coreItemsDesc, "", 0, 0);
     static GeneralItem bag011 = new GeneralItem("Hexertasche", "Tasche", "Eine robuste Stofftasche, in der Maleficarius seine Schriftrollenbehälter transportiert.", "Eine dir wohlbekannte Tasche wurde achtlos in die Ecke geworfen. \n", 0, -1);
+
+    //Core-Items
+    static CoreItem bagAlche = new CoreItem("Alchemiebeutel", "Ein samtener Beutel, in dem du all deine alchemistischen Zutaten aufbewahrst: \n");
+    static CoreItem bagPotions = new CoreItem("Trankgurt", "Ein System aus Lederriemen, mit denen du Trankfläschchen am Gürtel befestigen kannst. \n");
+    static CoreItem bookSpells = new CoreItem("Zauberbuch", "Ein ledergebundener Foliant, in dem all deine Zauber verzeichnet sind: \n");
+    static CoreItem bookBlackArts = new CoreItem("\"Die schwarzen Künste\"", Descriptions.bookBlackArtsDesc);
+    static CoreItem bookCodex = new CoreItem("Codex infernalis", "Ein Foliant, gebunden in mysteriöses Leder. \n");
+    static CoreItem evoc00 = new CoreItem("Beschwörungsformel des vertrauten Geistes", Descriptions.riddleDem00);
 
 
     //Schlüssel
@@ -96,11 +100,13 @@ public class BuildItems {
     static PuzzleItem pickle = new PuzzleItem("Essiggurke", "Essiggurken", "Süß-sauer eingelegt mit Senfkörnern und Dill. Rundet geschmacklich so einiges gelungen ab.", null, 0, 13);
     static PuzzleItem sandwich = new PuzzleItem("Käsebrot mit Essiggurke", "Käsebrot mit Essiggurke", "Ein herzhaft-würziges Käsebrot mit Essiggurke. Eine ideale Zwischenmahlzeit.", null, 0, 0);    // roomID 0, da Item in Dialog verwendet
     static PuzzleItem rock = new PuzzleItem("Stein", "Steine", "Es ist ein Stein.", null, 20, 0);
-    static PuzzleItem gold = new PuzzleItem("Goldklumpen", "", "Alechimistisch betrachtet wertlos.", null, 0, 0);
+    static PuzzleItem gold = new PuzzleItem("Goldklumpen", "", "Alchemistisch betrachtet wertlos.", null, 0, 0);
 
     //Startitems
     public static void giveStartItems() {
+        Player.inv.add(coreItems);
         Player.inv.add(bookBlackArts);
+        Player.inv.add(bookCodex);
         Player.inv.add(bookSpells);
         Player.inv.add(bagAlche);
         Player.inv.add(bagPotions);

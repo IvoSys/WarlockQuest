@@ -187,14 +187,14 @@ public abstract class Item {
 
 class Evocation extends Item {
 
-    String demonShortName;
+    String demonName;
     String hint;
 
-    public Evocation(String scrollTitle, String nameVague, String desc, String demonShortName, String hint) {
+    public Evocation(String scrollTitle, String nameVague, String desc, String demonName, String hint) {
         name = scrollTitle;                     //Name der Beschwörungsformel
         this.nameVague = nameVague;
         this.desc = desc;                       //Text mit Rätsel zum trueName des Dämonen
-        this.demonShortName = demonShortName;   //Kann mit name-Variablen des Dämonen abgeglichen werden
+        this.demonName = demonName;   //Kann mit name-Variablen des Dämonen abgeglichen werden
         this.hint = hint;
     }
 
@@ -203,7 +203,7 @@ class Evocation extends Item {
         System.out.print("Du machst dich bereit, einen neuen Dämon zu versklaven. \nGib seinen wahren Namen ein, und sei genau! \n> ");
         WarlockQuest.input = WarlockQuest.sc.nextLine().trim();                     // Nutzer gibt ein, was er für wahren Namen eines Dämonen hält.
         for (int i = 0; i < BuildItems.freeDem.size(); i++) {                     // Liste durchgehen und
-            if (BuildItems.freeDem.get(i).trueName.equals(WarlockQuest.input)) {  // Dämon finden, dessen trueName mit der Eingabe übereinstimmt.
+            if (BuildItems.freeDem.get(i).name.equals(WarlockQuest.input)) {  // Dämon finden, dessen trueName mit der Eingabe übereinstimmt.
                 Demon toBind = BuildItems.freeDem.get(i);                         // Treffer für Lesbarkeit in temp-Variablen speichern.
 
                 if (Player.team.contains(toBind)) {                                 // Prüfen, ob dieser Dämon bereits gebunden wurde.
@@ -212,7 +212,7 @@ class Evocation extends Item {
                 } else {                                                            // Wenn nicht, dann
                     for (Item j : Player.inv) {                                     // Inventar durchgehen und prüfen,
                         if (j.name.contains("Beschwörungsformel") && !j.name.contains("des vertrauten Geistes")) {
-                            if (((Evocation) j).demonShortName.equals(toBind.name)) { // ob Beschwörungsformel für diesen Dämon in Besitz ist
+                            if (((Evocation) j).demonName.equals(toBind.name)) { // ob Beschwörungsformel für diesen Dämon in Besitz ist
                                 Player.inv.remove(j);                                   // Wenn ja, kann Formel vernichtet und Dämon gebunden werden.
                                 toBind.toPlayerLevel();                                 // Dämon-Stufe anpassen und …
                                 Player.team.add(toBind);                                // endlich ins Team aufnehmen!
@@ -256,6 +256,15 @@ class GeneralItem extends Item {
         this.descInRoom = descInRoom;
         this.ID = roomID;
         this.combiID = combiID;
+    }
+}
+
+class CoreItem extends Item {
+    public CoreItem(String name, String desc) {
+        this.name = name;
+        this.desc = desc;
+        this.ID = 0;
+        this.combiID = 0;
     }
 }
 
@@ -360,7 +369,7 @@ class Healthpotion extends Potion{
                     healedDemon.hp = healedDemon.hpMax;
                     System.out.println(healedDemon.name + " wurde vollständig geheilt.");
                 } else {
-                    System.out.printf("%s wurde geheilt und hat nun %d/%d HP.\n", healedDemon.name, healedDemon.hp, healedDemon.hpMax);
+                    System.out.printf("%s wurde auf %d/%d HP geheilt.\n", healedDemon.name, healedDemon.hp, healedDemon.hpMax);
                 }
             }
         }

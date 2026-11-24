@@ -48,7 +48,7 @@ public class WarlockQuest {
             WarlockQuest.input = WarlockQuest.sc.nextLine().toLowerCase().trim();
             if (input.equals("d") || input.equals("daimon")){
                 Daimon.speak();                                                                                         // Daimon
-            } else if (input.equals("s") || input.equals("sprechen")){
+            } else if (input.equals("a") || input.equals("ansprechen")){
                 Dialogue.speak();                                                                                       // Sprechen
             } else if (input.equals("i") || input.equals("items")){
                 Player.showInv();                                                                                       // Inventar
@@ -71,23 +71,23 @@ public class WarlockQuest {
                     } else {
                         Player.room.unlockOrSolve(inputSplit[1]);                                                       // Verwende Item
                     }
-                } else if (inputSplit[0].equals("b") || inputSplit[0].equals("e")) {
+                } else if (inputSplit[0].equals("b")) {
                     Player.examine(inputSplit[1]);                                                                      // Betrachte Item
-                } else if (inputSplit[0].equals("k") || inputSplit[0].equals("c")) {
+                } else if (inputSplit[0].equals("k")){
                     Item.combine(inputSplit[1], inputSplit[2]);                                                         // Kombiniere Items
                 } else if (inputSplit[0].equals("g") || inputSplit[0].equals("m")){
                     Player.move(inputSplit[1]);                                                                         // Bewegen
                 } else {
                     System.out.println("Du redest wirr!");
                 }
-            } else if (input.equals("stat")|| input.equals("status")){
+            } else if (input.equals("s")|| input.equals("status")){
                 Player.showStatus();                                                                                    // Status
             } else if (input.equals("z") || input.equals("zauber")){
                 Player.showSpells();                                                                                    // Zauberbuch
             } else if (input.equals("r") || input.equals("raum")){
                 Room.describe();                                                                                        // Raum ansehen
-            } else if (input.equals("dämonen") || input.equals("dämon")){
-                Demon.showDemons();                                                                                     // Kompendium infernale
+            } else if (input.equals("c") || input.equals("codex")){
+                Player.showDemons();                                                                                    // Dämonen anzeigen
             } else if (input.equals("h") || input.equals("hilfe")){
                 Tutorials.help();                                                                                       // Hilfe
             } else if (input.equals("kampf")){

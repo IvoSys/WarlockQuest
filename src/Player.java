@@ -2,6 +2,8 @@ import java.util.ArrayList;
 
 public class Player {
 
+    static String name = "Maleficarius";
+
     static int mp = 50;
     static int mpMax = 50;
     static int spellpower = 10;
@@ -60,6 +62,8 @@ public class Player {
                 System.out.println(i.desc);
                 if (i == BuildItems.bagAlche)
                     showIngredients();
+                else if (i == BuildItems.coreItems)
+                    showCoreItems();
                 else if (i == BuildItems.bagPotions)
                     showPotions();
                 else if (i == BuildItems.bookSpells)
@@ -176,9 +180,9 @@ public class Player {
     }
 
     public static void showInv() {
-        System.out.println("================= INVENTAR =================");
+        System.out.println("================== INVENTAR ==================");
         for (Item i : inv) {
-            if ((i instanceof Ingredience) || (i instanceof Potion))
+            if ((i instanceof Ingredience) || (i instanceof Potion) || (i instanceof CoreItem))
                 continue;
             System.out.printf("· %s ", i.name);
             if (i.num > 1)
@@ -188,13 +192,13 @@ public class Player {
         }
         System.out.println();
 
-        System.out.println("------------------ TRÄNKE ------------------");
+        System.out.println("------------------- TRÄNKE -------------------");
         System.out.println("Verwende diese Tränke AUSSERHALB von Kämpfen:");
         boolean noPotion = true;
         for (Item i : inv) {
             if (i instanceof Potion) {
-                System.out.printf("· \t%s \n", i.name);
-                System.out.printf("\t%s \n", i.desc);
+                System.out.printf("· %s [%d]\n", i.name, i.num);
+                System.out.printf("  %s \n", i.desc);
                 noPotion = false;
             }
         }
@@ -203,7 +207,7 @@ public class Player {
         }
         System.out.println();
 
-        System.out.println("-------------- ALCHEMIEZUTATEN -------------");
+        System.out.println("--------------- ALCHEMIEZUTATEN --------------");
         System.out.println("Braue Tränke aus diesen Zutaten:");
         boolean noIngred = true;
         for (Item i : inv) {
@@ -216,13 +220,42 @@ public class Player {
             System.out.println("[Keine einzige Zutat]");
         }
         System.out.println();
-        System.out.println("============================================");
+        System.out.println("==============================================");
+    }
+
+    public static void showDemons() {
+        System.out.println("==================== CODEX INFERNALIS ====================");
+        if (Player.team.isEmpty())
+            System.out.println("Du hast noch keine Dämonen gebunden. \n");
+        else {
+            boolean first = true;
+            for (Demon d : Player.team) {
+                if (first) {
+                    System.out.println("Das Nachschlagewerk zu den dir dienenden Dämonen.\n");
+                } else {
+                    System.out.println("------------------------------------------------------\n");
+                }
+                System.out.print(d.name.toUpperCase());
+                System.out.println(", " + d.otherNames);
+                System.out.printf("Leben: %d/%d \t\tMacht: %d \t\tGewandheit: %d\n", d.hp, d.hpMax, d.power, d.dex);
+                System.out.println(d.desc);
+                System.out.println();
+                System.out.println("1. " + d.attackName);
+                System.out.println(d.attackDesc);
+                System.out.println("2. " + d.aoeAttackName);
+                System.out.println(d.aoeAttackDesc);
+                System.out.println("3. " + d.selfBuffName);
+                System.out.println(d.selfBuffDesc);
+                first = false;
+            }
+        }
+        System.out.println("==========================================================");
     }
 
     public static void showSpells() {
         boolean empty = true;
-        System.out.println("============= ZAUBERBUCH ============");
-        System.out.println("Wirke diese Zauber IM KAMPF gegen MP:");
+        System.out.println("======================= ZAUBERBUCH =======================");
+        System.out.println("Wirke diese Zauber IM KAMPF gegen MP: \n");
         for (Spell i : spellbook) {
             System.out.printf("%s \n", i.name.toUpperCase());
             System.out.printf("Manakosten: %d ", i.mpCost);
@@ -234,9 +267,9 @@ public class Player {
             empty = false;
         }
         if (empty) {
-            System.out.println("Kein einziger Zauber.");
+            System.out.println("Du hast noch keinen Zauber gelernt.");
         }
-        System.out.println("=====================================");
+        System.out.println("==========================================================");
     }
 
     public static void showIngredients() {
@@ -272,20 +305,47 @@ public class Player {
         System.out.println("======================================");
     }
 
-    public static void showStatus() {
-        boolean first = true;
-        System.out.printf("Maleficarius: \t%d/%d MP \n", mp, mpMax);
-        for (Demon i : team) {
-            if (first) {
-                System.out.println("----------------------------");
+    public static void showCoreItems() {
+        System.out.println("Maleficarius trägt eine bodenlange violette Robe, hohe Stiefel und eine Umhängetasche mit all dem vermeintlichen Tand, den die Wachen dir gelassen haben, als sie dich in den Kerker geworfen haben.");
+        System.out.println("Deine wichtigsten Besitztümer: \n");
+        boolean noCoreItem = true;
+        for (Item i : inv) {
+            if (i instanceof CoreItem) {
+                System.out.printf("· %s \n", i.name);
+                noCoreItem = false;
             }
-            System.out.printf("%s: \t%d/%d HP \n", i.name, i.hp, i.hpMax);
-            first = false;
         }
-        if (first) {
+        if (noCoreItem) {
+            System.out.println("Nichts. \n");
+        }
+    }
+
+    public static void showStatus() {
+        System.out.println("=============== STATUS ===============");
+        System.out.printf("%s: \t%d/%d MP \n", name, mp, mpMax);
+        System.out.printf("Hexenmeister der Stufe %d \n", level);
+        System.out.printf("Zaubermacht: %d \n", spellpower);
+        System.out.println("--------------------------------------");
+        boolean noDemon = true;
+        for (Demon i : team) {
+            System.out.printf("%s: \t%d/%d HP \n", i.name, i.hp, i.hpMax);
+            noDemon = false;
+        }
+        if (noDemon) {
             System.out.println("Keine Dämonen gebunden");
         }
-
+        System.out.println("--------------------------------------");
+        boolean noPotion = true;
+        for (Item i : inv) {
+            if (i instanceof Potion) {
+                System.out.printf("· %s [%d]\n", i.name, i.num);
+                noPotion = false;
+            }
+        }
+        if (noPotion) {
+            System.out.println("Keine Tränke in Besitz");
+        }
+        System.out.println("======================================");
     }
 
     public static boolean levelUp() {
@@ -306,15 +366,14 @@ public class Player {
         }
 
         if (alreadyMax) {
-            System.out.println("Maleficarius kann nicht mehr stärker werden.");
+            System.out.println(name + " kann nicht mehr stärker werden.");
         } else {
-            System.out.println("Maleficarius und seine Dämonen steigen auf Stufe " + level + " auf.");
+            System.out.println(name + " und seine Dämonen steigen auf Stufe " + level + " auf.");
         }
 
         return !alreadyMax;
 
     }
-
 
     public static boolean applyMpCost(int mpCost){
         if (mp - mpCost >= 0) {
