@@ -85,8 +85,9 @@ public abstract class Item {
             case -1:
                 obtain(BuildItems.evoc01);
                 obtain(BuildItems.scrollViciousSeed);
+                obtain(BuildItems.scrollBloodletting);
                 Player.inv.remove(toUnpack);
-                System.out.println("\nSchriftrollen! … Zwei von etlichen mehr. Die Wachen müssen einen Großteil deiner Pergamente und Trankzutaten gestohlen haben. \nOb diese Proleten überhaupt lesen können? Hoffentlich treiben sie mit deinen wertvollen Formeln keinen Mumpitz.");
+                System.out.println("\nSchriftrollen! … Drei von etlichen mehr. Die Wachen müssen einen Großteil deiner Pergamente und Trankzutaten gestohlen haben. \nOb diese Proleten überhaupt lesen können? Hoffentlich treiben sie mit deinen wertvollen Formeln keinen Mumpitz.");
                 break;
                     /*case -2:
                         obtainItem();

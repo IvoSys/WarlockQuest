@@ -454,17 +454,23 @@ class Descriptions extends Story {
     static String riddleDem01 = """
             Du blickst auf die Schriftrolle, da steht:
             
-            Du hörst es hallen, das schreckliche Gebrüll aus den Gängen.
-            Wenn das Ungeheuer dich in die Irre führt, findest du dann noch den Weg zurück?
-            Schau hinab und suche den Pflasterstein, der vorher kam, immer ein Schritt nach dem anderen:
-            ;ompzsitpd. e+zrmfrt E#vjzrt
+            Du hörst es hallen, das Gebrüll aus den Gängen.
+            Wenn er dich in die Irre führt, findest du dann noch zurück?
+            Schau hinab und suche den Pflasterstein, der vorher kam,
+            ein Schritt nach dem anderen:
+            ;ompzsitpd
             """;
-    static String trueNameDem01 = "Minotauros, wütender Wächter";
+    static String trueNameDem01 = "Minotauros";
 
     static String riddleDem02 = """
-            Du blickst auf die Schriftrolle, da steht:
+            Du blickst auf die Schriftrolle, das wellige Papier
+            ist an den Rändern verkohlt, und immer wieder wird
+            der Text von verbrannte Stellen unterbrochen:
             
-            [Rätsel Efreet]
+            Gebor⬤n aus Feuer und Wüstenwind
+            Deinem Willen ⬤eindlich gesinnt
+            Ein Geist de⬤ Flammen, lod⬤rnder Zorn
+            Sprich m⬤inen Namen, oder du bis⬤ verlor'n
             """;
     static String trueNameDem02 = "Efreet";
 
@@ -474,9 +480,9 @@ class Descriptions extends Story {
             ⠀⠀⠀⠀⠀⠀⠀         ⠀⠀⠀\u001B[30m\u001B[40m⢀⣀⣤⣤⣤⣤⣴⣤⣤⣄⡀\u001B[0m⠀⠀⠀⠀⠀⠀⠀⠀⠀
                     ⠀⠀⠀⠀⠀⠀⠀\u001B[30m\u001B[40m⣀⣴⣾⠿⠛⠋⠉⠁⠀⠀⠀⠈⠙⠻⢷⣦⡀\u001B[0m⠀⠀⠀⠀⠀⠀
                     ⠀⠀⠀⠀⠀\u001B[30m\u001B[40m⣤⣾⡿⠋⠁⠀⣠⣶⣿⡿⢿⣷⣦⡀⠀⠀⠀⠙⠿⣦⣀\u001B[0m⠀⠀⠀⠀
-                    ⠀⠀\u001B[30m\u001B[40m⢀⣴⣿⡿⠋⠀⠀⢀⣼Abaddon,⣿⡆⠀⠀⠀⠀⢻⣿⣷⣶⣄\u001B[0m⠀
-                    ⠀\u001B[30m\u001B[40m⣴⣿⣿⠋⠀⠀⠀⠀⠸ Engel des ⣿⠀⠀⠀⠐⡄⡌⢻⣿⣿⡷\u001B[0m
-                    \u001B[30m\u001B[40m⢸⣿⣿⠃⢂⡋⠄⠀⠀⠀⢿ Abgrunds⠏⠀⠀⠀⠀⢦⣷⣿⠿⠛⠁\u001B[0m
+                    ⠀⠀\u001B[30m\u001B[40m⢀⣴⣿⡿⠋⠀⠀⢀⣼⣿⣿⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀⠀⢻⣿⣷⣶⣄\u001B[0m⠀
+                    ⠀\u001B[30m\u001B[40m⣴⣿⣿⠋⠀⠀⠀⠀⠸⣿⣿Abaddon⣿⣿⡆⠀⠀⠐⡄⡌⢻⣿⣿⡷\u001B[0m
+                    \u001B[30m\u001B[40m⢸⣿⣿⠃⢂⡋⠄⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠀⠀⢦⣷⣿⠿⠛⠁\u001B[0m
                     ⠀\u001B[30m\u001B[40m⠙⠿⢾⣤⡈⠙⠂⢤⢀⠀⠙⠿⢿⣿⣿⡿⠟⠁⠀⣀⣀⣤⣶⠟⠋⠁\u001B[0m⠀⠀⠀
                     ⠀⠀⠀⠀\u001B[30m\u001B[40m⠈⠙⠿⣾⣠⣆⣅⣀⣠⣄⣤⣴⣶⣾⣽⢿⠿⠟⠋\u001B[0m⠀⠀⠀⠀⠀⠀⠀
                     ⠀⠀⠀⠀⠀⠀⠀⠀⠀\u001B[30m\u001B[40m⠉⠙⠛⠛⠙⠋⠉⠉\u001B[0m⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -484,7 +490,7 @@ class Descriptions extends Story {
             Du fühlst dich beobachtet.
             """;
 
-    static String trueNameDem03 = "Abaddon, Engel des Abgrunds";
+    static String trueNameDem03 = "Abaddon";
 }
 
 class Dialogue extends Story {

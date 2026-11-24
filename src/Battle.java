@@ -110,12 +110,16 @@ public class Battle {
                     }
                     checkVictory();                                 // Spieler hat Aktion ausgeführt, Prüfung auf Sieg, Flüche bei toten Gegnern aufösen
                     if (demon.ko) {                                 // Dämon könnte durch Zauber wie Aderlass sterben, ggf. Lifeline auflösen und Prüfung auf Niederlage:
+                        demon.savage =  false;
                         for (Enemy e : enemyTeam)
                             e.lifelined = false;
                         if (!encounter.beaten)
                             checkDefeat();
                     }
                 }                                                   // Ende while(isPlayerTurn)
+
+                demon.savage = false;                               // Effekte für diese Runde auflösen
+
                 while (!isPlayerTurn && !encounter.beaten) {        // GEGNERZUG
                     if (encounter.nameIsPlural)
                         System.out.println(encounter.teamName + " sind am Zug:\n");

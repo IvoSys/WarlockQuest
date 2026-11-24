@@ -81,9 +81,11 @@ public abstract class Spell {
 
 class Bloodletting extends Spell{
 
+    static float savageBonus = 1.3f;
+
     public Bloodletting() {
         name = "Aderlass";
-        desc = "Opfert Lebenspunkte deines Dämon, um deine Manareserven aufzufüllen.";
+        desc = "Opfert Lebenspunkte deines Dämon, um deine Manareserven aufzufüllen. \nDer Dämon wird außerdem wütend und verursacht in dieser Runde höheren Schaden.";
         textWhenLearned = "Du erlernst den Zauber \"Aderlass\".";
         str = Player.spellpower * 2;
         mpCost = 0;
@@ -99,7 +101,11 @@ class Bloodletting extends Spell{
             mpRestored += Battle.demon.hp;
             Battle.demon.hp = 0;
             Battle.demon.ko = true;
+        } else {
+            Battle.demon.savage =  true;
         }
+
+
         Player.mp += mpRestored;
         if (Player.mp > Player.mpMax) {
             Player.mp = Player.mpMax;

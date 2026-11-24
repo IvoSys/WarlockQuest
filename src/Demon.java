@@ -4,6 +4,7 @@ public abstract class Demon {
 
     String name;
     String trueName;
+    String otherNames;
     String desc;
     String textWhenSummoned;
     String textWhenBound;
@@ -19,6 +20,8 @@ public abstract class Demon {
     boolean melee;
 
     boolean ko = false;
+
+    boolean savage = false;
 
     String attackName;
     String attackDesc;
@@ -40,6 +43,7 @@ public abstract class Demon {
             for (Demon d : Player.team) {
                 System.out.println(d.name.toUpperCase());
                 System.out.printf("Leben: %d/%d \t\tMacht: %d \t\tGewandheit: %d\n", d.hp, d.hpMax, d.power, d.dex);
+                System.out.println(d.otherNames);
                 System.out.println(d.desc);
                 System.out.println();
                 System.out.println("1. " + d.attackName);
@@ -158,6 +162,7 @@ class Minotauros extends Demon{
     public Minotauros() {
         name = "Minotauros";
         trueName = Descriptions.trueNameDem01;
+        otherNames = "Der gehörnte König; der wütende Wächter";
         desc = "Ein aufrecht gehender Stier, bewaffnet mit einer mächtigen Streitaxt. ";
         textWhenSummoned = "Aus Fleisch, Knochen und kochendem Blut formt sich der Körper eines gehörnten Untiers. Wut lodert in seinen Augen.";
         textWhenBound = "Du sprichst den wahren Namen des Minotauros aus und die Beschwörungsformel zerreißt unter deinen Fingern. \nAus den Tiefen der Unterwelt hebt sich ein Gebrüll der reinen Wut.\n\n(Über den Befehl \"Dämonen\" erfährst du mehr über deine Dämonen.)";
@@ -238,6 +243,8 @@ class Minotauros extends Demon{
             System.out.print("Mit dampfendem Atem attackiert Minotauros mit seiner Streitaxt – ");
 
         int dmg = rnd.nextInt(11) + power + roar;
+        if (savage)
+            dmg = (int) (dmg * Bloodletting.savageBonus);
         roar = 0;
         isRoar = false;
         return dmg;
@@ -246,7 +253,10 @@ class Minotauros extends Demon{
     @Override
     public int aoeAttack() {
         isRoar = false;
-        return rnd.nextInt((power+1)*2);
+        int dmg = rnd.nextInt((power+1)*2);
+        if (savage)
+            dmg = (int) (dmg * Bloodletting.savageBonus);
+        return dmg;
     }
 
     @Override
@@ -271,6 +281,7 @@ class Efreet extends Demon{
     public Efreet() {
         name = "Efreet";
         trueName = Descriptions.trueNameDem02;
+        otherNames = "Die entflammte Dame, die Maid der Läuterung";
         desc = "Ein Geistwesen, geschaffen aus rauchlosem Feuer.";
         textWhenSummoned = "Flammen ziehen sich in einem Strudel zusammen und bilden eine Frau in roten Seidengewändern. Ihre goldenen Armreife glühen heiß.";
         textWhenBound = "Du sprichst den wahren Namen der Efreet aus und die Beschwörungsformel verbrennt unter deinen Fingern. \nEinen kurzen Moment lang glaubst du, in Flammen zu stehen.\n\n(Über den Befehl \"Dämonen\" erfährst du mehr über deine Dämonen.)";
@@ -297,17 +308,24 @@ class Efreet extends Demon{
     @Override
     public int attack() {
         isBlazing = false;
-        return rnd.nextInt(11) + power;
+        int dmg = rnd.nextInt(11) + power;
+        if (savage)
+            dmg = (int) (dmg * Bloodletting.savageBonus);
+        return dmg;
     }
 
     @Override
     public int aoeAttack() {
+        int dmg;
         if (isBlazing) {
             isBlazing = false;
-            return rnd.nextInt((power + 1) * 3);
+            dmg = rnd.nextInt((power + 1) * 3);
         }
         else
-            return rnd.nextInt((power+1)*2);
+            dmg = rnd.nextInt((power+1) * 2);
+        if (savage)
+            dmg = (int) (dmg * Bloodletting.savageBonus);
+        return dmg;
     }
 
     @Override
@@ -325,6 +343,7 @@ class Abaddon extends Demon{
     public Abaddon() {
         name = "Abaddon";
         trueName = Descriptions.trueNameDem03;
+        otherNames = "Der Abgründige, der Engel des Schlunds";
         desc = "";
         textWhenSummoned = "Aus den Schatten tritt eine verhüllte Gestalt. Eine schwarze Pfütze \nwandert an ihren Füßen mit ihr, dünne Tentakel züngeln daraus hevor.";
         textWhenBound = "Du sprichst den wahren Namen des Abaddon aus und die Beschwörungsformel verwelkt unter deinen Fingern. \nDie Schatten rücken näher, knurren und greifen nach dir.\n\n(Über den Befehl \"Dämonen\" erfährst du mehr über deine Dämonen.)";
@@ -348,12 +367,18 @@ class Abaddon extends Demon{
 
     @Override
     public int attack() {
-        return rnd.nextInt(11) + power;
+        int dmg = rnd.nextInt(11) + power;
+        if (savage)
+            dmg = (int) (dmg * Bloodletting.savageBonus);
+        return dmg;
     }
 
     @Override
     public int aoeAttack() {
-        return rnd.nextInt((power+1)*2);
+        int dmg = rnd.nextInt((power+1)*2);
+        if (savage)
+            dmg = (int) (dmg * Bloodletting.savageBonus);
+        return dmg;
     }
 
     @Override
