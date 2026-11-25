@@ -78,13 +78,14 @@ public class Battle {
                                             sc.next();
                                         }
                                         Spell pickedSpell = Player.spellbook.get(pick - 1); // Zielauswahl Zauber
-                                        if (!pickedSpell.aoe && !pickedSpell.onDemon) {
+                                        if (!pickedSpell.aoe && !pickedSpell.onDemon) { // Wenn Zauber auf einzelnen Gegner
                                             printEnemies();
                                             pickSpellTarget(pickedSpell);
-                                        } else {
+                                        } else {        // Wenn Zauber auf Dämon ODER auf alle Gegner
                                             pickedSpell.cast();
                                             malActed = true;
-                                            //WarlockQuest.enterToContinue();           //Zerschießt Aderlass?
+                                            inputValid = true;
+                                            WarlockQuest.enterToContinue();
                                         }
                                     }
                                 } else {
@@ -205,7 +206,7 @@ public class Battle {
 
         System.out.println("Wähle einen Dämon zum Beschwören:");
         for (Demon d : Player.team) {
-            System.out.printf("[%d] %s \t", counter, d.name);
+            System.out.printf("[%d] %s \t", counter, d.nameList);
             if (d.ko) {
                 System.out.println(">> BESIEGT <<");
             }
@@ -270,6 +271,8 @@ public class Battle {
         }
         System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
         System.out.printf("%s \t\t\t(%d/%d HP)\n", demon.name.toUpperCase(), demon.hp, demon.hpMax);
+        if (demon.savage)
+            System.out.println("(wütend)");
         System.out.print("[1] " + demon.attackName);
         if (demon == BuildItems.dem01 && BuildItems.dem01.roar > 0)
             System.out.printf(" (+%d)\n", BuildItems.dem01.roar);
@@ -329,7 +332,7 @@ public class Battle {
         counter = 1;
         System.out.println("=============Dämonen============");
         for (Demon d : Player.team) {
-            System.out.printf("[%d] %s \t", counter, d.name);
+            System.out.printf("[%d] %s \t", counter, d.nameList);
             if (d.ko) {
                 System.out.println(">> BESIEGT <<");
             } else {

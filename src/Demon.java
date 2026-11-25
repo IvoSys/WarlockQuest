@@ -3,6 +3,7 @@ import java.util.Random;
 public abstract class Demon {
 
     String name;
+    String nameList;
     String otherNames;
     String desc;
     String textWhenSummoned;
@@ -138,10 +139,11 @@ class Minotauros extends Demon{
 
     public Minotauros() {
         name = Descriptions.trueNameDem01;
+        nameList = Descriptions.trueNameDem01;
         otherNames = "der gehörnte König";
         desc = "Ein aufrecht gehender Stier, bewaffnet mit einer mächtigen Streitaxt. ";
         textWhenSummoned = "Aus Fleisch, Knochen und kochendem Blut formt sich der Körper eines gehörnten Untiers. Wut lodert in seinen Augen.";
-        textWhenBound = "Du sprichst den wahren Namen des gehörnten Königs aus und die Beschwörungsformel zerreißt unter deinen Fingern. \nAus den Tiefen der Unterwelt hebt sich ein Gebrüll der reinen Wut.\n\n(Im (C)odex infernalis erfährst du mehr über deine Dämonen.) \n";
+        textWhenBound = "Du sprichst den wahren Namen des gehörnten Königs aus und die Beschwörungsformel zerreißt unter deinen Fingern. \nAus den Tiefen der Unterwelt hebt sich ein Gebrüll der reinen Wut.\n\n(Im [C]odex infernalis erfährst du mehr über deine Dämonen.) \n";
         hpBase = 100;
         hpMax = hpBase;
         hp = hpMax;
@@ -256,6 +258,7 @@ class Efreet extends Demon{
 
     public Efreet() {
         name = Descriptions.trueNameDem02;
+        nameList = (Descriptions.trueNameDem02 + "\t");
         otherNames = "die entflammte Dame";
         desc = "Ein Geistwesen, geschaffen aus rauchlosem Feuer.";
         textWhenSummoned = "Flammen ziehen sich in einem Strudel zusammen und bilden eine Frau in roten Seidengewändern. Ihre goldenen Armreife glühen heiß.";
@@ -317,6 +320,7 @@ class Abaddon extends Demon{
 
     public Abaddon() {
         name = Descriptions.trueNameDem03;
+        nameList = Descriptions.trueNameDem03;
         otherNames = "der Engel des Abgrunds";
         desc = "";
         textWhenSummoned = "Aus den Schatten tritt eine verhüllte Gestalt. Eine schwarze Pfütze \nwandert an ihren Füßen mit ihr, dünne Tentakel züngeln daraus hevor.";

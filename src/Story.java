@@ -413,9 +413,9 @@ class Descriptions extends Story {
     //Items mit langen Beschreibungen
     static String bookBlackArtsDesc =
             """
-                    Das Standardwerk über Hexerei, Alchemie und Dämonologie in drei Bänden, verfasst von Meister Maleficarius Liebwerk:
+                    Das Standardwerk über Hexerei, Alchemie und Dämonologie, verfasst von Meister Maleficarius Liebwerk:
                     […] Zauber werden mittels Schriftrollen erlernt und können bis zur geistigen Erschöpfung gewirkt werden.
-                    […] Tränke werden mit Verabreichung verbraucht und entfalten unvergleichliche Wirkungen, selbst bei Dämonen.
+                    […] Tränke werden aus gleichfarbigen Ingredienzen gebraut und entfalten unvergleichliche Wirkungen, selbst bei Dämonen.
                     […] Spricht man den wahren Namen eines Dämonen deutlich aus, zwingt man ihn in seinen Dienst. Doch Obacht, er wird dies nicht schätzen!""";
 
     static String employeeOfTheMonth =
@@ -442,8 +442,10 @@ class Descriptions extends Story {
 
     //Rätsel Dämonen
     static String riddleDem00 = """
-            Diesen okkulten Text hast du vor einer Weile schon entschlüsselt.
-            Der wahre Name des Daimon lautet:
+            Diese okkulte Formel hast du vor einer Weile schon entschlüsselt
+            und ihre Kraft entladen, als du den Dämon an dich gebunden hast.
+            
+            Der wahre Name des vertrauten Geistes lautet:
             \033[3mGenius Daimonion, Spritus familiaris\033[0m
             
             DAIMON: "Nooohh, Malle, ich bin doch schon bei dir!"
@@ -464,7 +466,7 @@ class Descriptions extends Story {
 
     static String riddleDem02 = """
             Du blickst auf die Schriftrolle, das wellige Papier
-            ist an den Rändern verkohlt, und immer wieder wird
+            ist an den Rändern angesengt, und immer wieder wird
             der Text von verbrannte Stellen unterbrochen:
             
             Gebor⬤n aus Feuer und Wüstenwind
@@ -643,12 +645,11 @@ class Tutorials extends Story {
                         \t\t\t\t\t|\t\t\t\t\t| \t· Verwende Schlüssel und sonstige Items, um sie im aktuellen Raum anzuwenden.
                         \t\t\t\t\t|\t\t\t\t\t| \t· Verwende Schriftrollen und Formeln, um die darin verborgenen Künste zu erlernen.
                         \t\t\t\t\t|\t\t\t\t\t| \t· Verwende Taschen und Beutel, um die Inhalte auszupacken und ins Inventar zu legen.
-                        \t\t\t\t\t|\t\t\t\t\t| \t  z. B. "v.Zellenschlüssel", "v.Zauberschriftrolle der üblen Saat", "v.Hexertasche"
+                        \t\t\t\t\t|\t\t\t\t\t| \tz. B. "v.Zellenschlüssel", "v.Zauberschriftrolle der üblen Saat", "v.Hexertasche"
                         \t\t\t\t\t|\t\t\t\t\t|
                         Kombiniere Items\t| K.[Item].[Item]\t| Kombiniert zwei Items aus dem Inventar miteinander,
-                          \t\t\t\t\t| \t\t\t\t\t| \tz. B. "k.blaue Farbe.gelbe Farbe" -> Maleficarius erhält grüne Farbe.
-                        \t\t\t\t\t| \t\t\t\t\t| \tAuf gleiche Weise kannst du aus Alchemiezutaten Tränke brauen:
-                        \t\t\t\t\t|\t\t\t\t\t| \tKombiniere z. B. rote Zutaten für Heiltränke, blaue für Manatränke.
+                          \t\t\t\t\t| \t\t\t\t\t| \tz. B. "k.Papier.Stift" -> Maleficarius erhält eine Zeichnung.
+                        \t\t\t\t\t| \t\t\t\t\t| \tBraue außerdem Tränke, indem du Alchemiezutaten gleicher Farbe kombinierst.                        
                         \t\t\t\t\t|\t\t\t\t\t|
                         Gehe in Richtung\t| G.[Richtung]\t\t| Versucht, den aktuellen Ort in gewählter Richtung zu verlassen.
                         (Raum wechseln)\t\t| \t\t\t\t\t| \tRichtungen: Nord (N), Ost (O), Süd (S), West (W), hoch (h), runter (r),
@@ -717,17 +718,17 @@ class Tutorials extends Story {
     }
 
     public static void answers() {
-        System.out.println("\n======================================= LÖSUNGEN DER RÄTSEL =======================================");
+        System.out.println("\n================ LÖSUNGEN DER RÄTSEL ================");
         System.out.print("Erster Dämon, ");
-        System.out.print(BuildItems.dem01.name + ": \t");
+        System.out.print(BuildItems.dem01.otherNames + ": \t\t");
         System.out.println(Descriptions.trueNameDem01);
         System.out.print("Zweiter Dämon, ");
-        System.out.print(BuildItems.dem02.name + ": \t\t");
+        System.out.print(BuildItems.dem02.otherNames + ": \t");
         System.out.println(Descriptions.trueNameDem02);
         System.out.print("Dritter Dämon, ");
-        System.out.print(BuildItems.dem03.name + ": \t");
+        System.out.print("der Abgründige: \t\t\t");
         System.out.println(Descriptions.trueNameDem03);
-        System.out.println("\n===================================================================================================");
+        System.out.println("=====================================================");
     }
 
 }

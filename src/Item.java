@@ -80,7 +80,6 @@ public abstract class Item {
                 id = i.combiID;
             }
         }
-
         switch (id) {
             case -1:
                 obtain(BuildItems.evoc01);
@@ -265,6 +264,7 @@ class CoreItem extends Item {
         this.desc = desc;
         this.ID = 0;
         this.combiID = 0;
+        this.nameVague = "";
     }
 }
 

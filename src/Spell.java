@@ -112,6 +112,8 @@ class Bloodletting extends Spell{
         System.out.println("Maleficarius opfert " + mpRestored + " HP seines Dämons und erzeugt daraus " + mpRestored + " MP.");
         if (Battle.demon.ko) {
             System.out.println(Battle.demon.name + " überlebt den Lebensentzug nicht.");
+        } else {
+            System.out.println(Battle.demon.name + " ist wütend.");
         }
     }
 }

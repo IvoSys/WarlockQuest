@@ -18,6 +18,15 @@ public class WarlockQuest {
 
         ASCII.title();
         Intro.intro();
+
+        // KAMPF-TEST
+        Player.curX = 2;
+        Player.curY = 2;
+        Player.curZ = 2;
+        Player.cheatAllDemsAndSpells();
+        // ^-- Kampf-Test
+
+        /* Für Kampftest auskommentiert
         Intro.needHelp();
         input = sc.nextLine().toLowerCase().trim();
         if (input.contains("j")){
@@ -27,6 +36,8 @@ public class WarlockQuest {
         System.out.println();
         Daimon.intro();
 
+         */
+
         gameLoop();
 
     }
@@ -35,8 +46,8 @@ public class WarlockQuest {
     public static void gameLoop(){
         while (running){
             Player.room = BuildCastle.castle[Player.curZ][Player.curY][Player.curX];
-            if (Player.curZ >= 1)
-                demoFinished();
+            //if (Player.curZ >= 1)
+                //demoFinished();
             if (Player.moved) {
                 Room.describe();
                 if (Player.room.encounter != null && !Player.room.encounterBeaten) {

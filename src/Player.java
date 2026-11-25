@@ -60,12 +60,14 @@ public class Player {
         for (Item i : inv) {
             if (input.contains(i.name.toLowerCase())) {
                 System.out.println(i.desc);
-                if (i == BuildItems.bagAlche)
-                    showIngredients();
-                else if (i == BuildItems.coreItems)
+                if (i == BuildItems.belongings)
                     showCoreItems();
+                else if (i == BuildItems.bagAlche)
+                    showIngredients();
                 else if (i == BuildItems.bagPotions)
                     showPotions();
+                else if (i == BuildItems.bookCodex)
+                    showDemons();
                 else if (i == BuildItems.bookSpells)
                     showSpells();
 
@@ -274,7 +276,7 @@ public class Player {
 
     public static void showIngredients() {
         boolean noIngred = true;
-        System.out.println("========== ALCHEMIEZUTATEN ==========");
+        System.out.println("=============== ALCHEMIEZUTATEN ==============");
         System.out.println("Braue Tränke aus diesen Zutaten:");
         for (Item i : inv) {
             if (i instanceof Ingredience) {
@@ -283,14 +285,14 @@ public class Player {
             }
         }
         if (noIngred) {
-            System.out.println("Keine einzige Zutat.");
+            System.out.println("[Keine einzige Zutat]");
         }
-        System.out.println("=====================================");
+        System.out.println("==============================================");
     }
 
     public static void showPotions() {
         boolean noPotion = true;
-        System.out.println("=============== TRÄNKE ===============");
+        System.out.println("=================== TRÄNKE ===================");
         System.out.println("Verwende diese Tränke AUSSERHALB von Kämpfen:");
         for (Item i : inv) {
             if (i instanceof Potion) {
@@ -300,24 +302,18 @@ public class Player {
             }
         }
         if (noPotion) {
-            System.out.println("Kein einziger Trank.");
+            System.out.println("[Kein einziger Trank]");
         }
-        System.out.println("======================================");
+        System.out.println("==============================================");
     }
 
     public static void showCoreItems() {
-        System.out.println("Maleficarius trägt eine bodenlange violette Robe, hohe Stiefel und eine Umhängetasche mit all dem vermeintlichen Tand, den die Wachen dir gelassen haben, als sie dich in den Kerker geworfen haben.");
-        System.out.println("Deine wichtigsten Besitztümer: \n");
-        boolean noCoreItem = true;
         for (Item i : inv) {
             if (i instanceof CoreItem) {
                 System.out.printf("· %s \n", i.name);
-                noCoreItem = false;
             }
         }
-        if (noCoreItem) {
-            System.out.println("Nichts. \n");
-        }
+        System.out.println("\nSieh dir deine Besitztümer jederzeit genauer an.");
     }
 
     public static void showStatus() {

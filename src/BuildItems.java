@@ -77,15 +77,15 @@ public class BuildItems {
     static ArrayList<Spell> freeSpells = new ArrayList<>(Arrays.asList(allSpells));
 
     //General Items
-    static GeneralItem coreItems = new GeneralItem("Maleficarius' Habseligkeiten", "Habe", Descriptions.coreItemsDesc, "", 0, 0);
+    static GeneralItem belongings = new GeneralItem("Maleficarius' Habseligkeiten", "Habe", "Maleficarius trägt eine bodenlange violette Robe, hohe Stiefel \nund eine Umhängetasche mit wichtigen Büchern und Utensilien:\n", "", 0, 0);
     static GeneralItem bag011 = new GeneralItem("Hexertasche", "Tasche", "Eine robuste Stofftasche, in der Maleficarius seine Schriftrollenbehälter transportiert.", "Eine dir wohlbekannte Tasche wurde achtlos in die Ecke geworfen. \n", 0, -1);
 
     //Core-Items
+    static CoreItem bookBlackArts = new CoreItem("\"Die schwarzen Künste\"", Descriptions.bookBlackArtsDesc);
+    static CoreItem bookSpells = new CoreItem("Zauberbuch", "Ein ledergebundener Foliant, in dem all deine Zauber verzeichnet sind: \n");
+    static CoreItem bookCodex = new CoreItem("Codex infernalis", "Ein Foliant, gebunden in mysteriöses Leder. \n");
     static CoreItem bagAlche = new CoreItem("Alchemiebeutel", "Ein samtener Beutel, in dem du all deine alchemistischen Zutaten aufbewahrst: \n");
     static CoreItem bagPotions = new CoreItem("Trankgurt", "Ein System aus Lederriemen, mit denen du Trankfläschchen am Gürtel befestigen kannst. \n");
-    static CoreItem bookSpells = new CoreItem("Zauberbuch", "Ein ledergebundener Foliant, in dem all deine Zauber verzeichnet sind: \n");
-    static CoreItem bookBlackArts = new CoreItem("\"Die schwarzen Künste\"", Descriptions.bookBlackArtsDesc);
-    static CoreItem bookCodex = new CoreItem("Codex infernalis", "Ein Foliant, gebunden in mysteriöses Leder. \n");
     static CoreItem evoc00 = new CoreItem("Beschwörungsformel des vertrauten Geistes", Descriptions.riddleDem00);
 
 
@@ -104,12 +104,12 @@ public class BuildItems {
 
     //Startitems
     public static void giveStartItems() {
-        Player.inv.add(coreItems);
+        Player.inv.add(belongings);
         Player.inv.add(bookBlackArts);
-        Player.inv.add(bookCodex);
         Player.inv.add(bookSpells);
-        Player.inv.add(bagAlche);
+        Player.inv.add(bookCodex);
         Player.inv.add(bagPotions);
+        Player.inv.add(bagAlche);
         Player.inv.add(evoc00);
     }
 
