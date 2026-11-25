@@ -44,9 +44,9 @@ public class Room {
     public static void describe(){
         boolean first = true;
         System.out.println();
-        System.out.println(Player.room.name.toUpperCase());
-        System.out.print(Player.room.desc);
-        for (Item i : Player.room.loot){
+        System.out.println(Player.room.name.toUpperCase());             // RAUMNAME
+        System.out.print(Player.room.desc);                             // Raumbeschreibung; Loot-Beschreibung 1, 2, 3
+        for (Item i : Player.room.loot){                                // Tür-Beschreibung
             if (i.descInRoom != null) {
                 if (first)
                     System.out.println();
@@ -65,34 +65,34 @@ public class Room {
         Room room = Player.room;
         boolean found = false;
         for (Item i : Player.inv){
-            if (input.contains(i.name.toLowerCase())){              // Wenn Eingabe den Namen eines Key-Items im Inventar enthält und
-                if(i.ID == Player.room.ID){                         // wenn die puzzleID dieses Key-Items zu der des aktuellen Raums passt, dann
+            if (input.contains(i.name.toLowerCase())){              // Wenn Eingabe den Namen eines Items im Inventar enthält und
+                if(i.ID == Player.room.ID){                         // wenn die puzzleID dieses Items zu der des aktuellen Raums passt, dann …
 
-                    if (i instanceof Key){
+                    if (i instanceof Key){                          // a) wenn Item ein Schlüssel ist,
                         if (room.descDoorsB != null)
-                            room.descDoors = room.descDoorsB;
+                            room.descDoors = room.descDoorsB;       // Türbeschreibungen aktualisieren
                         if (room.unlockedText != null)
-                            System.out.println(room.unlockedText);
-                        unlockThisRoom();                                // spezifisches Ereignis für Raum, falls vorhanden, z.B. Tür öffnet sich und bestimmter boolean wird umgeschaltet
+                            System.out.println(room.unlockedText);  // Text zum Aufschließen des Raums ausgeben
+                        unlockThisRoom();                           // Tür aufschließen oder sonstige Ereignisse speziell für diesen Raum
                         if (i.isConsumed)
-                            Player.inv.remove(i);
+                            Player.inv.remove(i);                   // Schlüssel ggf. aus Inventar nehmen
 
-                    } else if (i instanceof PuzzleItem){
-                        System.out.println(Player.room.solvedText);     // Raum gelöst! Entsprechender Text wird ausgegeben.
-                        if (room.reward != null){                // Wenn es eine Belohnung gibt,
-                            loot.add(room.reward);               // wird sie ins Loot-Array verschoben und kann mit n. eingesammelt werden
+                    } else if (i instanceof PuzzleItem){            // b) Wenn Item ein Puzzle-Item ist,
+                        System.out.println(Player.room.solvedText); // Text zum gelösten Rätsel ausgeben
+                        if (room.reward != null){
+                            loot.add(room.reward);                  // Belohnung wird in Loot-Array verschoben und kann eingesammelt werden
                             room.reward = null;
                         }
-                        if (room.descSolved != null){            // Raumbeschreibung und Daimon-Kommentar werden ggf. aktualisiert
+                        if (room.descSolved != null){               // Raumbeschreibung aktualisieren
                             room.desc = room.descSolved;
                         }
-                        if (room.daimonSolved != null) {
+                        if (room.daimonSolved != null) {            // Daimon-Kommentar aktualisieren
                             room.daimon = room.daimonSolved;
                         }
-                        if (i.isConsumed) {                              // Wenn das Key-Item verbraucht wird, wird es aus dem Inventar gelöscht
+                        if (i.isConsumed) {                         // Puzzle-Item ggf. aus Inventar nehmen
                             Player.inv.remove(i);
                         }
-                        room.PuzzleSolved = true;                 // Raum als gelöst markieren
+                        room.PuzzleSolved = true;                   // Raum als gelöst markieren
                     }
 
                 } else {
@@ -119,7 +119,5 @@ public class Room {
                 System.out.println("DEBUG: Passende IDs, aber kein Case in unlockThisRoom() hinterlegt.");
         }
     }
-
-
 
 }

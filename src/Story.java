@@ -15,6 +15,17 @@ public class Story {
         Story.input = Story.sc.nextLine().toLowerCase().trim();
     }
 
+    public static void enterToContinue() {
+        System.out.println("(Weiter mit Eingabetaste)");
+        System.out.print("> ");
+        try {
+            System.in.read();
+        }
+        catch(Exception e){
+            System.out.println("ERROR: " + e.getMessage());
+        }
+    }
+
 
     //Fähigkeiten von Dämonen mit flavor
 
@@ -24,8 +35,9 @@ public class Story {
 class Daimon extends Story {
 
     public static void speak() {
-        System.out.println(Player.room.daimon);                                 //Daimon-Kommentar für diesen Raum
-        if ((Player.room.ID == -1) && (Player.room.reward != null)) {     //In bestimmten Räumen führt Daimon spezielle Methoden aus
+        System.out.println(Player.room.daimon);                           // Daimon-Kommentar für diesen Raum
+
+        if ((Player.room.ID == -1) && (Player.room.reward != null)) {     // Methoden für bestimmte Räume
             getKey000();
         }
         if ((Player.room.ID == 12) && (!Player.team.contains(BuildItems.dem01))) {
@@ -39,11 +51,11 @@ class Daimon extends Story {
     public static void intro() {
         System.out.println(
                 """
-                        "Malefiz, alter Halunke, da hast du dir aber was eingebrockt!
+                        DAIMON: "Malefiz, alter Halunke, da hast du dir aber was eingebrockt!
                         Kein Wunder, dass ein Griesgram wie du irgendwann im Kerker endet."
                         
-                        Daimon, dein persönliches Teufelchen, hockt betont lässig auf deiner Schulter
-                        und spielt schelmisch mit seiner Schwanzspitze.
+                        Daimon, dein persönliches Teufelchen, erscheint in einer aufbrausenden Flamme,
+                        hockt sich betont lässig auf deine Schulter und spielt schelmisch mit seiner Schwanzspitze.
                         """);
         do {
             System.out.println(
@@ -59,24 +71,74 @@ class Daimon extends Story {
             input = sc.nextLine().toLowerCase().trim();
             switch (input) {
                 case "1":
-                    System.out.println("Daimon: \"Und ich kann meinen vollen Namen nicht leiden. Hat dich aber auch nicht interessiert. \nIm Gegenteil, der Herr Liebwerk muss natürlich ein Riesending darum aufziehen, mit Beschwörungsformel und allem. \nTja.\n");
+                    System.out.println("DAIMON: \"Und ich kann meinen richtigen Namen nicht leiden. Hat dich aber auch nicht interessiert. \nIm Gegenteil, der Herr Liebwerk muss natürlich ein Riesending darum aufziehen, mit Beschwörungsformel und allem. \nTja.\"\n");
                     break;
                 case "2":
-                    System.out.println("Daimon: \"Dabei siehst du so aus, als hättest du lange bei deiner Mutter im Keller gewohnt.\"\n");
+                    System.out.println("DAIMON: \"Dabei siehst du so aus, als hättest du lange bei deiner Mutter im Keller gewohnt.\"\n");
                     break;
                 case "3":
-                    System.out.println("Daimon: \"Du kannst ja nicht mal dich selbst ausstehen.\"\n");
+                    System.out.println("DAIMON: \"Du kannst ja nicht mal dich selbst ausstehen.\"\n");
                     break;
                 case "4":
-                    System.out.println("Daimon: \"Er mag dich anscheinend auch nicht. Die Zelle ist bestimmt ein Diss speziell gegen dich – schau, die \nGitterstäbe sind so weit auseinander, dass du nicht durchpasst, ich aber schon. Bestimmt mag er mich lieber als dich.\"\n");
+                    System.out.println("DAIMON: \"Ach, er dich auch. Aber mich mag er bestimmt – schau, die Gitterstäbe \nstehen gerade so weit auseinander, dass du nicht durchpasst, ich aber schon.\"\n");
                     break;
                 case "0":
-                    System.out.println("Eine Weile sitzt ihr schweigend da. Wie kommst du nun aus dieser Zelle heraus? \nDu siehst dich noch einmal um:");
+                    System.out.println("Eine Weile sitzt ihr schweigend da.");
+                    enterToContinue();
+                    System.out.println("Irgendwann wird Daimon auf deine Umhängetasche aufmerksam.");
                     break;
                 default:
                     System.out.println(daimonDidNotUnderstand);
             }
         } while (!input.equals("0"));
+    }
+
+    public static void intro2() {
+        System.out.println(
+                """
+                        DAIMON: "Ach schau, du hast ja noch deinen ganzen Kram dabei. Zauberbuch, Alchemiebeutel …
+                        Nimmt man dem bösen Hexenmeister sowas nicht weg, bevor man ihn in den Kerker wirft?
+                        """
+        );
+        do {
+            System.out.println(
+                    """
+                            Wähle eine Antwort:
+                            [1]\t Sie haben die Seiten aus dem Zauberbuch gerissen.
+                            [2]\t Sie haben meine Trankzutaten gestohlen.
+                            [3]\t Sie haben den Codex infernalis verunstaltet!
+                            [4]\t Ich muss ganz von vorne anfangen.
+                            [0]\t (Schweigen)"""
+            );
+            System.out.print("> ");
+            input = sc.nextLine().toLowerCase().trim();
+            switch (input) {
+                case "1":
+                    System.out.println("In gespielter Bestürzung wirft sich Daimon einen Handrücken vor die Stirn.");
+                    System.out.println("DAIMON: \"Oh nein! Dabei dienen die Runen in den Formeln doch als Fokus, um die Magick zu kanalisieren. \nSelbst wenn du die Arcana aus dem Gedächtnis wüsstest, ließen sie sich ohne das Zauberbuch nicht adäquat katalysieren!\"");
+                    enterToContinue();
+                    System.out.println("DAIMON: \"… so klingst du, Malibub. So klingst du.\"\n");
+                    break;
+                case "2":
+                    System.out.println("DAIMON: \"Ugh, wer klaut denn Molchaugen und Spinnenbeine?! Wer, Mal, wer?");
+                    System.out.println("Also abgesehen von Leuten, die sich Getränke daraus mixen. Wie du.\"\n");
+                    break;
+                case "3":
+                    System.out.println("DAIMON: \"Dieses satanische Beschwörungsbuch? \nHaben sie den Dämonen etwa falsche Schnurrbärte aufgemalt?\"\n");
+                    break;
+                case "4":
+                    System.out.println("DAIMON: \"Nicht gaaaanz von vorne, du hast doch mich, Maleficus! \nLass uns ein paar Flüche lernen, Tinkturen brauen und Dämonen versklaven! \nUnd dann stürzen wir den König und unterwerfen das Reich!\"");
+                    enterToContinue();
+                    System.out.println("DAIMON: \"Also … gleich sobald du hier raus bist.\"\n");
+                    break;
+                case "0":
+                    System.out.println("Wieder sitzt ihr schweigend da. Wie kommst du nun aus dieser Zelle heraus? \n");
+                    break;
+                default:
+                    System.out.println(daimonDidNotUnderstand);
+            }
+        } while (!input.equals("0"));
+
     }
 
     public static void getKey000() {
@@ -149,7 +211,7 @@ class Daimon extends Story {
                 System.out.println("DAIMON: \"Na klar, Chef!\"");
                 break;
             case "2":
-                System.out.println("DAIMON: \"Ach Malefex, weißt du überhaupt, wonach du fragst?\"");
+                System.out.println("DAIMON: \"Ach Malefex, frag ich dich etwa, warum sie dich in den Kerker geworfen haben?\"");
                 break;
             case "3":
                 refuseViolence();
@@ -414,7 +476,7 @@ class Descriptions extends Story {
     static String bookBlackArtsDesc =
             """
                     Das Standardwerk über Hexerei, Alchemie und Dämonologie, verfasst von Meister Maleficarius Liebwerk:
-                    […] Zauber werden mittels Schriftrollen erlernt und können bis zur geistigen Erschöpfung gewirkt werden.
+                    […] Zauber werden mittels Schriftrollen im Zauberbuch festgehalten und können dann bis zur geistigen Erschöpfung gewirkt werden.
                     […] Tränke werden aus gleichfarbigen Ingredienzen gebraut und entfalten unvergleichliche Wirkungen, selbst bei Dämonen.
                     […] Spricht man den wahren Namen eines Dämonen deutlich aus, zwingt man ihn in seinen Dienst. Doch Obacht, er wird dies nicht schätzen!""";
 
@@ -604,14 +666,24 @@ class Intro extends Story {
                         
                         Und dann haben sie dich in den Kerker geworfen. Bauerntrampel ohne Ambition oder Vorstellungskraft!
                         Es wird Zeit, den König über kleiner Flamme zu rösten!
+                        
+                        Dein Kopf brodelt vor Wut. Erst einmal solltest du wieder zu klaren Gedanken kommen.
                         """
         );
+        enterToContinue();
     }
 
     public static void needHelp() {
-        System.out.println("Dein Kopf brodelt vor Wut. Erst einmal solltest du wieder zu klaren Gedanken kommen. Wie ging das Ganze hier noch gleich?");
+        System.out.println("Du hast dich wieder etwas beruhigt. Also, wie ging das Ganze hier noch gleich?");
         System.out.println("Anleitung anzeigen? (j/n)");
         System.out.print("> ");
+
+        input = sc.nextLine().toLowerCase().trim();
+        if (input.contains("j")){
+            Tutorials.help();
+            enterToContinue();
+        }
+        System.out.println("Du siehst dich noch einmal um: ");
     }
 
 }
@@ -664,7 +736,7 @@ class Tutorials extends Story {
                         Mitwirkende\t\t\t| Credits \t\t\t| Zeigt die Mitwirkenden.
                         Beenden\t\t\t\t| Ende \t\t\t\t| Beendet das Spiel.
                         
-                        Groß-/Kleinschreibung wird ignoriert, außer bei Beschwörungsformeln. Copy-paste ist hilfreich.                        
+                        Groß-/Kleinschreibung wird ignoriert. Copy-paste ist hilfreich.                        
                         ============================================================================================================================
                         """
         );

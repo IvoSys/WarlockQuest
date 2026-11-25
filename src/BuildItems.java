@@ -77,7 +77,7 @@ public class BuildItems {
     static ArrayList<Spell> freeSpells = new ArrayList<>(Arrays.asList(allSpells));
 
     //General Items
-    static GeneralItem belongings = new GeneralItem("Maleficarius' Habseligkeiten", "Habe", "Maleficarius trägt eine bodenlange violette Robe, hohe Stiefel \nund eine Umhängetasche mit wichtigen Büchern und Utensilien:\n", "", 0, 0);
+    //static GeneralItem belongings = new GeneralItem("Maleficarius' Habseligkeiten", "Habe", "Maleficarius trägt eine bodenlange violette Robe, hohe Stiefel \nund eine Umhängetasche mit wichtigen Büchern und Utensilien:\n", "", 0, 0);
     static GeneralItem bag011 = new GeneralItem("Hexertasche", "Tasche", "Eine robuste Stofftasche, in der Maleficarius seine Schriftrollenbehälter transportiert.", "Eine dir wohlbekannte Tasche wurde achtlos in die Ecke geworfen. \n", 0, -1);
 
     //Core-Items
@@ -104,7 +104,7 @@ public class BuildItems {
 
     //Startitems
     public static void giveStartItems() {
-        Player.inv.add(belongings);
+        //Player.inv.add(belongings);
         Player.inv.add(bookBlackArts);
         Player.inv.add(bookSpells);
         Player.inv.add(bookCodex);

@@ -19,27 +19,18 @@ public class WarlockQuest {
         ASCII.title();
         Intro.intro();
 
-        // KAMPF-TEST
+        /* KAMPF-TEST: einmal "g.w" für Encounter
         Player.curX = 2;
         Player.curY = 2;
         Player.curZ = 2;
         Player.cheatAllDemsAndSpells();
-        // ^-- Kampf-Test
+        */
 
-        /* Für Kampftest auskommentiert
-        Intro.needHelp();
-        input = sc.nextLine().toLowerCase().trim();
-        if (input.contains("j")){
-            Tutorials.help();
-            enterToContinue();
-        }
-        System.out.println();
         Daimon.intro();
-
-         */
+        Daimon.intro2();
+        Intro.needHelp();
 
         gameLoop();
-
     }
 
     // GAME LOOP
@@ -67,7 +58,7 @@ public class WarlockQuest {
                 inputSplit = input.split("\\.", 3);
                 if (inputSplit[0].equals("n") || inputSplit[0].equals("t")){
                     Player.loot(inputSplit[1]);                                                                         // Nimm Item
-                } else if (inputSplit[0].equals("v") || inputSplit[0].equals("u")) {
+                } else if (inputSplit[0].equals("v") || inputSplit[0].equals("u")) {                            // Verwenden
                     if (inputSplit[1].contains("trank") && !inputSplit[1].contains("gurt")) {
                         Potion.drink(inputSplit[1]);                                                                    // Trinke Trank
                     } else if (inputSplit[1].contains("zauberschriftrolle ")) {
@@ -80,7 +71,7 @@ public class WarlockQuest {
                     } else if (inputSplit[1].contains("tasche") || inputSplit[1].contains("bündel")) {
                         Item.unpack(inputSplit[1]);                                                                     // Entpacke Bündel
                     } else {
-                        Player.room.unlockOrSolve(inputSplit[1]);                                                       // Verwende Item
+                        Player.room.unlockOrSolve(inputSplit[1]);                                                       // aufschließen/lösen
                     }
                 } else if (inputSplit[0].equals("b")) {
                     Player.examine(inputSplit[1]);                                                                      // Betrachte Item
@@ -116,16 +107,6 @@ public class WarlockQuest {
             } else {
                 System.out.println("Sprich deutlich!");
             }
-        }
-    }
-
-    public static void enterToContinue() {
-        System.out.println("(Weiter mit Eingabetaste)");
-        try {
-            System.in.read();
-        }
-        catch(Exception e){
-            System.out.println("ERROR: " + e.getMessage());
         }
     }
 

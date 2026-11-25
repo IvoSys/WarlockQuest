@@ -28,7 +28,8 @@ public abstract class Spell {
         } else {
             Player.spellbook.add(toLearn);
             System.out.println("Du brichst das Siegel, rollst das Pergament auseinander und beginnst zu lesen.");
-            System.out.println("Du prägst dir die Zauberformel und die erforderlichen Gesten ein und übst sie, bis sie sitzen.");
+            System.out.println("Du prägst dir die erforderlichen Gesten ein und übst sie, bis sie sitzen.");
+            System.out.println("Dann überträgst du die Formel auf eine neue Seite deines Zauberbuchs.");
             System.out.println("Die Schriftrolle verbrennt unter deinen Fingern und du lernst den Zauber \"" + toLearn.name + "\".");
         }
 
@@ -59,7 +60,8 @@ public abstract class Spell {
                 Player.spellbook.add(toLearn);
                 Player.inv.remove(toUse);
                 System.out.println("Du brichst das Siegel, rollst das Pergament auseinander und beginnst zu lesen.");
-                System.out.println("Du prägst dir die Zauberformel und die erforderlichen Gesten ein und übst sie, bis sie sitzen.");
+                System.out.println("Du prägst dir die erforderlichen Gesten ein und übst sie, bis sie sitzen.");
+                System.out.println("Dann überträgst du die Formel auf eine neue Seite deines Zauberbuchs.");
                 System.out.println("Die Schriftrolle verbrennt unter deinen Fingern und du lernst den Zauber \"" + toLearn.name + "\".");
             }
         }

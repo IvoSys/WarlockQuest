@@ -202,7 +202,7 @@ class Evocation extends Item {
         System.out.print("Du machst dich bereit, einen neuen Dämon zu versklaven. \nGib seinen wahren Namen ein, und sei genau! \n> ");
         WarlockQuest.input = WarlockQuest.sc.nextLine().trim();                     // Nutzer gibt ein, was er für wahren Namen eines Dämonen hält.
         for (int i = 0; i < BuildItems.freeDem.size(); i++) {                     // Liste durchgehen und
-            if (BuildItems.freeDem.get(i).name.equals(WarlockQuest.input)) {  // Dämon finden, dessen trueName mit der Eingabe übereinstimmt.
+            if (BuildItems.freeDem.get(i).name.equalsIgnoreCase(WarlockQuest.input)) {  // Dämon finden, dessen name mit der Eingabe übereinstimmt.
                 Demon toBind = BuildItems.freeDem.get(i);                         // Treffer für Lesbarkeit in temp-Variablen speichern.
 
                 if (Player.team.contains(toBind)) {                                 // Prüfen, ob dieser Dämon bereits gebunden wurde.

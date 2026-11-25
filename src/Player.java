@@ -57,12 +57,12 @@ public class Player {
         boolean inRoomLoot = false;
         boolean inRoomObjects = false;
 
-        for (Item i : inv) {
-            if (input.contains(i.name.toLowerCase())) {
+        for (Item i : inv) {                                // Inventar durchsuchen,
+            if (input.contains(i.name.toLowerCase())) {     // bei Treffer Beschreibung ausgeben
                 System.out.println(i.desc);
-                if (i == BuildItems.belongings)
-                    showCoreItems();
-                else if (i == BuildItems.bagAlche)
+                //if (i == BuildItems.belongings)             // Bei bestimmten Items ausßerdem Methode starten
+                //    showCoreItems();
+                if (i == BuildItems.bagAlche)
                     showIngredients();
                 else if (i == BuildItems.bagPotions)
                     showPotions();
@@ -76,7 +76,7 @@ public class Player {
             }
         }
 
-        if (!inInv) {
+        if (!inInv) {                                       // Wenn nichts in Inventar, Raum-Loot durchsuchen,
             for (Item i : Player.room.loot) {
                 if (input.contains(i.nameVague.toLowerCase()) || input.contains(i.name.toLowerCase())) {
                     System.out.println(i.desc);
@@ -84,7 +84,7 @@ public class Player {
                     break;
                 }
             }
-            if (!inRoomLoot) {
+            if (!inRoomLoot) {                              // Wenn kein Treffer, in Loot von Raum-Objekten nachsehen
                 for (RoomObject o : room.objects) {
                     if (o.loot != null && (input.equals(o.loot.name.toLowerCase()) || input.equals(o.loot.nameVague.toLowerCase()))) {
                         System.out.println(o.loot.desc);
@@ -95,7 +95,7 @@ public class Player {
             }
         }
 
-        if (!inInv && !inRoomLoot) {
+        if (!inInv && !inRoomLoot) {                        // Wenn kein Treffer, Raum-Objekte selbst prüfen und zutreffende Beschreibung ausgeben
             for (RoomObject o : room.objects){
                 if (input.equals(o.name.toLowerCase()) || input.equals(o.name2.toLowerCase()) || input.equals(o.name3.toLowerCase()) || input.equals(o.name4.toLowerCase())) {
                     if (o.loot != null)
@@ -109,7 +109,7 @@ public class Player {
             }
         }
 
-        if (!inInv && !inRoomLoot && !inRoomObjects)
+        if (!inInv && !inRoomLoot && !inRoomObjects)        // Zonk
             System.out.println("Nicht zu finden.");
     }
 
@@ -183,6 +183,7 @@ public class Player {
 
     public static void showInv() {
         System.out.println("================== INVENTAR ==================");
+        boolean empty = true;
         for (Item i : inv) {
             if ((i instanceof Ingredience) || (i instanceof Potion) || (i instanceof CoreItem))
                 continue;
@@ -191,6 +192,10 @@ public class Player {
                 System.out.printf("[%d] \n", i.num);
             else
                 System.out.print("\n");
+            empty = false;
+        }
+        if (empty) {
+            System.out.println("[Kein einziger Gegenstand]");
         }
         System.out.println();
 
@@ -222,6 +227,13 @@ public class Player {
             System.out.println("[Keine einzige Zutat]");
         }
         System.out.println();
+
+        System.out.println("----------- WICHTIGE HABSELIGKEITEN ----------");
+        for (Item i : inv) {
+            if (i instanceof CoreItem) {
+                System.out.printf("· %s \n", i.name);
+            }
+        }
         System.out.println("==============================================");
     }
 
@@ -269,7 +281,7 @@ public class Player {
             empty = false;
         }
         if (empty) {
-            System.out.println("Du hast noch keinen Zauber gelernt.");
+            System.out.println("Alle beschrifteten Seiten wurden herausgerissen. \nFinde Schriftrollen mit neuen Zaubern und trage sie ein!");
         }
         System.out.println("==========================================================");
     }
