@@ -6,6 +6,7 @@ public abstract class Enemy {
 
     String name;
     String weapon;
+    String onDeath;
     int hp;
     int hpMax;
     int power;
@@ -31,6 +32,8 @@ public abstract class Enemy {
     boolean carriesVSeed = false;
     int counterVSeed;
 
+    int cry;
+    int cryEnraged;
 
     // Setter und Klassen-Methoden
     //region
@@ -48,8 +51,9 @@ public abstract class Enemy {
             if (hp > 0) {
                 System.out.println(".");
             } else {
-                hp = 0;
                 System.out.println(" und stirbt.");
+                if (onDeath != null)
+                    System.out.printf("%s: \"%s\"", name, onDeath);
                 die();
             }
         }
@@ -61,8 +65,9 @@ public abstract class Enemy {
         if (hp > 0) {
             System.out.println(".");
         } else {
-            hp = 0;
             System.out.println(" und stirbt.");
+            if (onDeath != null)
+                System.out.printf("%s: \"%s\"", name, onDeath);
             die();
         }
     }
@@ -120,6 +125,8 @@ public abstract class Enemy {
         inIronMaiden = false;
         if (carriesVSeed)
             BuildItems.viciousSeed.explode(this);
+        if (onDeath != null)
+            System.out.println(onDeath);
     }
 
     //Standard-Angriff
@@ -144,6 +151,29 @@ public abstract class Enemy {
         return rnd.nextInt(6) + power;
     }
 
+    public void battlecry(){
+        cry = rnd.nextInt(6) + 1;
+        switch (cry) {
+            case 1: System.out.println(name + ": \"Nimm das, Dämon!\""); break;
+            case 2: System.out.println(name + ": \"Du hättest in deiner Zelle bleiben sollen!\""); break;
+            case 3:
+            case 4:
+            case 5:
+            case 6: break;
+            default: System.out.println("DEBUG: Ungültiger Wert in Guard.battlecry()"); break;
+        }
+    }
+
+    public void battlecryEnraged(){
+        cryEnraged = rnd.nextInt(3) + 1;
+        switch (cry) {
+            case 1: System.out.println(); break;
+            case 2: System.out.println(); break;
+            case 3: System.out.println(); break;
+            default: System.out.println("DEBUG: Ungültiger Wert in Boss01.battlecryEnraged()"); break;
+        }
+    }
+
 //endregion
 }
 
@@ -164,9 +194,11 @@ class Guard extends Enemy{
 
     @Override
     public int attack(){
+        battlecry();
         System.out.printf("%s greift mit %s an – ", name, weapon);
         return (super.attack());
     }
+
 }
 
 
@@ -264,6 +296,8 @@ class Apprentice extends Enemy{
 
 class Novice extends Enemy {
 
+    int cry = 0;
+
     public Novice(String name, String weapon, int hp, int power, int dex, int potions) {
         this.name = name;
         this.weapon = weapon;
@@ -288,6 +322,17 @@ class Novice extends Enemy {
         System.out.printf("%s wirkt einen Heilzauber – ", name);
         casts--;
         return super.heal();
+    }
+
+    @Override
+    public void battlecry(){
+        cry++;
+        switch (cry) {
+            case 1: System.out.println(name + ": \"Nimm mir die Furcht, oh Herr …\""); break;
+            case 2: System.out.println(name + ": \"… denn du allein bist das Licht …\""); break;
+            case 3: System.out.println(name + ": \"… und kein Dunkel vermag dir zu trotzen.\""); cry = 0; break;
+            default: System.out.println("DEBUG: Ungültiger Wert in Guard.battlecry()"); break;
+        }
     }
 
 }
@@ -326,7 +371,6 @@ class Knight extends Enemy{
             if (hp > 0) {
                 System.out.println(".");
             } else {
-                hp = 0;
                 System.out.println(" und stirbt.");
                 die();
             }
@@ -337,6 +381,19 @@ class Knight extends Enemy{
     public int attack(){
         System.out.printf("%s greift mit %s an – ", name, weapon);
         return (super.attack());
+    }
+
+    @Override
+    public void battlecry(){
+        int cry = rnd.nextInt(3) + 1;
+        switch (cry) {
+            case 1: System.out.println("\"Schmecke meine Klinge, Höllenbrut!\""); break;
+            case 2: System.out.println("\"Für den König!\""); break;
+            case 3: System.out.println("\"Du wirst brennen, Hexer!\""); break;
+            default: System.out.println("DEBUG: Ungültiger Wert in battlecry()"); break;
+
+
+        }
     }
 
 }
@@ -427,9 +484,13 @@ class Cleric extends Enemy {
 // ========== EBENE 3: BOSS ==========
 class Boss01 extends Enemy{
 
+    int cry = 0;
+    int cryEnraged = 0;
+
     public Boss01(String name, String weapon, int hp, int power, int dex, int potions) {
         this.name = name;
         this.weapon = weapon;
+        onDeath = "Nein … so darf es nicht enden.";
         meele = true;
         this.hp = hp;
         hpMax = hp;
@@ -439,11 +500,53 @@ class Boss01 extends Enemy{
         potionStr = hpMax / 2;
     }
 
+    //applyDmgEvade-Setter: Ausweichen wird zu Parieren und Kontern.
     @Override
-    public int attack(){
-        System.out.printf("%s greift mit %s an – ", name, weapon);
-        return (super.attack());
+    public void applyDmgEvade(int dmg){
+        if (Battle.rnd.nextInt(100) < dex) {
+            if (Battle.demon.melee) {
+                System.out.println(name + " pariert den Schlag und kontert!");
+                Battle.counterAtk = true;
+            } else
+                System.out.println(name + " wehrt den Angriff mit der Klinge ab.");
+        }
+        else {
+            hp -= dmg;
+            System.out.printf("%s erhält %d Schaden", name, dmg);
+            if (hp > 0) {
+                System.out.println(".");
+            } else {
+                System.out.println(" und stirbt.");
+                if (onDeath != null)
+                    System.out.printf("%s: \"%s\"", name, onDeath);
+                die();
+            }
+        }
     }
+
+    @Override
+    public void battlecry(){
+        cry++;
+        switch (cry) {
+            case 1: System.out.println(name + ": \"Schmecke meine Klinge, Höllenbrut!\""); break;
+            case 2: System.out.println(name + ": \"Für den König!\""); break;
+            case 3: System.out.println(name + ": \"Du wirst brennen, Hexer!\""); cry = 0; break;
+
+            default: System.out.println("DEBUG: Ungültiger Wert in Boss01.battlecry()"); break;
+        }
+    }
+
+    @Override
+    public void battlecryEnraged(){
+        cry++;
+        switch (cry) {
+            case 1: System.out.println(name + ": \"Ich bin der Schild dieses Schlosses!\""); break;
+            case 2: System.out.println(name + ": \"Ich bin das Feuer, mein Schwert ist die Flamme.\""); break;
+            case 3: System.out.println(name + ": \"\""); break;
+            default: System.out.println("DEBUG: Ungültiger Wert in Boss01.battlecryEnraged()"); break;
+        }
+    }
+
 }
 
 class Boss02 extends Enemy{

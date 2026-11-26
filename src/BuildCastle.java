@@ -111,7 +111,7 @@ public class BuildCastle {
                 false, false, false, false, false, false, false, 220);
         castle[2][2][1] = new Room("TESTRAUM A", Descriptions.desc221, Descriptions.descDoors221, Descriptions.daimon221,
                 false, true, false, false, false, false, false, 221);
-        castle[2][2][1].encounter = BuildEncounters.encStandard;
+        castle[2][2][1].encounter = BuildEncounters.enc012;
         castle[2][2][2] = new Room("TESTRAUM B", Descriptions.desc222, Descriptions.descDoors222, Descriptions.daimon222,
                 false, false, false, true, false, false, false, 222);
     }

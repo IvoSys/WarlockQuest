@@ -61,15 +61,15 @@ public class BuildEncounters {
     static Enemy novice08 = new Novice("Bruder X", "dem Streitkolben", 55, 10, 8, 0);
     static Enemy novice09 = new Novice("Schwester X", "dem Streitkolben", 55, 10, 8, 0);
 
-    static Enemy knight01 = new Knight("Dame Beatrix", "dem Zweihänder", 100, 10, 8, 20, 0);
-    static Enemy knight02 = new Knight("Lady Irina", "dem Zweihänder", 100, 10, 8, 20, 0);
-    static Enemy knight03 = new Knight("Sir X", "dem Zweihänder", 100, 10, 8, 20, 0);
-    static Enemy knight04 = new Knight("Dame Beatrix", "dem Zweihänder", 100, 10, 8, 20, 0);
-    static Enemy knight05 = new Knight("Sir X", "dem Zweihänder", 100, 10, 8, 20, 0);
-    static Enemy knight06 = new Knight("Dame X", "dem Zweihänder", 100, 10, 8, 20, 0);
-    static Enemy knight07 = new Knight("Sir X", "dem Zweihänder", 100, 10, 8, 20, 0);
-    static Enemy knight08 = new Knight("Dame X", "dem Zweihänder", 100, 10, 8, 20, 0);
-    static Enemy knight09 = new Knight("Sir X", "dem Zweihänder", 100, 10, 8, 20, 0);
+    static Enemy knight01 = new Knight("Dame X", "dem Ritterschwert", 100, 10, 8, 20, 0);
+    static Enemy knight02 = new Knight("Lady Irina", "dem Ritterschwert", 100, 10, 8, 20, 0);
+    static Enemy knight03 = new Knight("Sir X", "dem Ritterschwert", 100, 10, 8, 20, 0);
+    static Enemy knight04 = new Knight("Dame X", "dem Ritterschwert", 100, 10, 8, 20, 0);
+    static Enemy knight05 = new Knight("Sir X", "dem Ritterschwert", 100, 10, 8, 20, 0);
+    static Enemy knight06 = new Knight("Dame X", "dem Ritterschwert", 100, 10, 8, 20, 0);
+    static Enemy knight07 = new Knight("Sir X", "dem Ritterschwert", 100, 10, 8, 20, 0);
+    static Enemy knight08 = new Knight("Dame X", "dem Ritterschwert", 100, 10, 8, 20, 0);
+    static Enemy knight09 = new Knight("Sir X", "dem Ritterschwert", 100, 10, 8, 20, 0);
 
     static Enemy ranger01 = new Ranger("Assassine XX", "dem Langbogen", 80, 10, 8, 0);
     static Enemy ranger02 = new Ranger("Assassine XY", "dem Langbogen", 80, 10, 8, 0);
@@ -100,7 +100,7 @@ public class BuildEncounters {
     static Enemy cleric08 = new Cleric("Vater X", "dem Morgenstern", 80, 10, 8, 0);
     static Enemy cleric09 = new Cleric("Mutter X", "dem Morgenstern", 80, 10, 8, 0);
 
-    static Enemy boss01 = new Boss01("X X", "X", 80, 10, 8, 0);
+    static Enemy boss01 = new Boss01("Dame Beatrix", "Ignis", 100, 10, 30, 0);
     static Enemy boss02 = new Boss02("X X", "X", 80, 10, 8, 0);
     static Enemy boss03 = new Boss03("X X", "X", 80, 10, 8, 0);
 
@@ -110,6 +110,6 @@ public class BuildEncounters {
     static Encounter enc022 = new Encounter("Angeheiterte Wachen", true, guard02, guard03, guard04, Descriptions.enc022Intro, Descriptions.enc022Outro, BuildItems.scrollLifeline, null);
     static Encounter enc010 = new Encounter("Aufseher Otto", false, dog01, soldier01, dog02, Descriptions.enc010Intro, Descriptions.enc010Outro, BuildItems.key012, null);
     static Encounter enc021 = new Encounter("Erwachte Wachen", true, guard05, guard06, guard07, Descriptions.enc021Intro, Descriptions.enc021Outro, BuildItems.alche201, BuildItems.alche202);
-    static Encounter enc012 = new Encounter("Dame Beatrix", false, guard01, knight01, novice01, Descriptions.enc012Intro, Descriptions.enc012Outro, BuildItems.evoc02, BuildItems.alche502);
+    static Encounter enc012 = new Encounter("Dame Beatrix", false, guard01, boss01, novice01, Descriptions.enc012Intro, Descriptions.enc012Outro, BuildItems.evoc02, BuildItems.alche502);
 
 }

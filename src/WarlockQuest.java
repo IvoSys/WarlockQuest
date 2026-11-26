@@ -18,16 +18,18 @@ public class WarlockQuest {
         ASCII.title();
         Intro.intro();
 
-        /* KAMPF-TEST: einmal "g.w" für Encounter
+        //KAMPF-TEST: einmal "g.w" für Encounter
         Player.curX = 2;
         Player.curY = 2;
         Player.curZ = 2;
         Player.cheatAllDemsAndSpells();
-        */
+        //KAMPF-TEST ENDE
 
+        /*
         Daimon.intro();
         Daimon.intro2();
         Intro.needHelp();
+        */
 
         gameLoop();
     }

@@ -34,7 +34,8 @@ public class Battle {
         ifNoDemons();
         forcePickDemon();
         do {                                                        //Äußerer Battle Loop – wiederholt nach Prüfung auf Niederlage
-            initiative();
+            //initiative();         // Dämon doch immer beginnen lassen?
+            isPlayerTurn = true;    // Variable auf true, als ob initiative() durchgeführt und Dämon immer gewonnen
             do {                                                    //Innerer Battle Loop – wiederholt nach Gegner-Zug, solange Dämon nicht K.O.
                 malActed = false;
                 while (isPlayerTurn) {
@@ -362,7 +363,7 @@ public class Battle {
                     inputValid = true;
                     isPlayerTurn = false;
                     if (counterAtk) {
-                        demon.applyDmg(enemyTeam.get(pickedTarget - 1).attack());
+                        demon.applyDmgEvade(enemyTeam.get(pickedTarget - 1).attack());
                         counterAtk = false;
                     }
                     enterToContinue();
@@ -538,6 +539,7 @@ public class Battle {
     }
 
     public static void noviceTurn(Enemy e) {
+        e.battlecry();
         Enemy toHeal = null;
         if (e.casts > 0) {
             for (Enemy f : enemyTeam) {
@@ -560,7 +562,11 @@ public class Battle {
     }
 
     public static void knightTurn(Enemy e) {
-
+        if ((e.hp <= e.hpMax * 0.5f) && (e.potions > 0)) {
+            e.drinkPotion();
+        } else if (!demon.ko){
+            demon.applyDmgEvade(e.attack());
+        }
     }
 
     public static void rangerTurn(Enemy e) {
@@ -576,7 +582,17 @@ public class Battle {
     }
 
     public static void boss01Turn(Enemy e) {
-
+        if (!demon.ko){
+            if (e.hp >= e.hpMax/3) {
+                e.battlecry();
+                System.out.printf("Der Raum leuchtet hell auf, als %s mit %s angreift – \n", e.name, e.weapon);
+                demon.applyDmgEvade(e.attack());
+            } else {
+                demon.applyDmgEvade(e.attackEnraged());
+                System.out.printf("Der Raum leuchtet hell auf, als %s mit %s angreift – \n", e.name, e.weapon);
+                demon.applyDmgEvade(e.attackEnraged());
+            }
+        }
     }
 
     public static void boss02Turn(Enemy e) {
@@ -598,7 +614,7 @@ public class Battle {
             } else if (pick == 3) {
                 e.ability3();
             } else
-                System.out.println("DEBUG: Fehler beim Auswürfeln der Gegneraktion."); */
+                System.out.println("DEBUG: Fehler beim Auswürfeln der Gegneraktion."); */ // Alternative: Aktion auswürfeln
     }
 
 

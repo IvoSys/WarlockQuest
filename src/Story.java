@@ -333,7 +333,7 @@ class Descriptions extends Story {
     "Stehen bleiben, Hexer!"
     Dame Beatrix steht vor dir, die sagenumwobene Schwertmeisterin. Ihr schneidender Anblick soll weinende Kinder verstummen lassen.
     An ihrer Seite stehen eine Heilerin und der (jetzt nicht mehr schlafende) Wächter aus dem Kerker, mit einer auffälligen Schramme am Kinn.
-    Beatrix zieht ihren Zweihänder: "Dein nächster Zellenaufenthalt wird weit weniger angenehm."
+    Beatrix zieht Ignis, ihr legendäres Flambergschwert: "Dein nächster Zellenaufenthalt wird weit weniger angenehm."
     """;
     static String enc012Outro = "";
     //Waschraum
