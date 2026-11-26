@@ -71,16 +71,20 @@ class Daimon extends Story {
             input = sc.nextLine().toLowerCase().trim();
             switch (input) {
                 case "1":
-                    System.out.println("DAIMON: \"Und ich kann meinen richtigen Namen nicht leiden. Hat dich aber auch nicht interessiert. \nIm Gegenteil, der Herr Liebwerk muss natürlich ein Riesending darum aufziehen, mit Beschwörungsformel und allem. \nTja.\"\n");
+                    System.out.println("DAIMON: \"Und ich kann meinen richtigen Namen nicht leiden. Hat dich aber auch nicht interessiert. \nIm Gegenteil, der Herr Liebwerk muss natürlich ein Riesending darum aufziehen, mit Beschwörungsformel und allem. \nTja.\"");
+                    enterToContinue();
                     break;
                 case "2":
-                    System.out.println("DAIMON: \"Dabei siehst du so aus, als hättest du lange bei deiner Mutter im Keller gewohnt.\"\n");
+                    System.out.println("DAIMON: \"Dabei siehst du so aus, als hättest du lange bei deiner Mutter im Keller gewohnt.\"");
+                    enterToContinue();
                     break;
                 case "3":
-                    System.out.println("DAIMON: \"Du kannst ja nicht mal dich selbst ausstehen.\"\n");
+                    System.out.println("DAIMON: \"Du kannst ja nicht mal dich selbst ausstehen.\"");
+                    enterToContinue();
                     break;
                 case "4":
-                    System.out.println("DAIMON: \"Ach, er dich auch. Aber mich mag er bestimmt – schau, die Gitterstäbe \nstehen gerade so weit auseinander, dass du nicht durchpasst, ich aber schon.\"\n");
+                    System.out.println("DAIMON: \"Ach, er dich auch. Aber mich mag er bestimmt – schau, die Gitterstäbe \nstehen gerade so weit auseinander, dass du nicht durchpasst, ich aber schon.\"");
+                    enterToContinue();
                     break;
                 case "0":
                     System.out.println("Eine Weile sitzt ihr schweigend da.");
@@ -117,19 +121,28 @@ class Daimon extends Story {
                     System.out.println("In gespielter Bestürzung wirft sich Daimon einen Handrücken vor die Stirn.");
                     System.out.println("DAIMON: \"Oh nein! Dabei dienen die Runen in den Formeln doch als Fokus, um die Magick zu kanalisieren. \nSelbst wenn du die Arcana aus dem Gedächtnis wüsstest, ließen sie sich ohne das Zauberbuch nicht adäquat katalysieren!\"");
                     enterToContinue();
-                    System.out.println("DAIMON: \"… so klingst du, Malibub. So klingst du.\"\n");
+                    System.out.println("DAIMON: \"… so klingst du, Malibub. So klingst du.\"");
+                    enterToContinue();
                     break;
                 case "2":
                     System.out.println("DAIMON: \"Ugh, wer klaut denn Molchaugen und Spinnenbeine?! Wer, Mal, wer?");
-                    System.out.println("Also abgesehen von Leuten, die sich Getränke daraus mixen. Wie du.\"\n");
+                    System.out.println("Also abgesehen von Leuten, die sich Getränke daraus mixen. Wie du.\"");
+                    enterToContinue();
                     break;
                 case "3":
-                    System.out.println("DAIMON: \"Dieses satanische Beschwörungsbuch? \nHaben sie den Dämonen etwa falsche Schnurrbärte aufgemalt?\"\n");
+                    System.out.println("DAIMON: \"Und ausgerechnet meine Seite haben sie übersehen, so ein … Glück!");
+                    System.out.println("Du kannst also keine gefährlichen Dämonen herbeirufen und bist wehrlos wie ein Baby.\"");
+                    enterToContinue();
+                    System.out.println("DAIMON: \"Sieh mich nicht so an, ich bin nicht SO ein Dämon!");
+                    System.out.println("Wenn du hier rauskommst und die Wachen dich erwischen, verarbeiten sie dich zu Hexerhack.\"");
+                    refuseViolence++;
+                    enterToContinue();
                     break;
                 case "4":
                     System.out.println("DAIMON: \"Nicht gaaaanz von vorne, du hast doch mich, Maleficus! \nLass uns ein paar Flüche lernen, Tinkturen brauen und Dämonen versklaven! \nUnd dann stürzen wir den König und unterwerfen das Reich!\"");
                     enterToContinue();
-                    System.out.println("DAIMON: \"Also … gleich sobald du hier raus bist.\"\n");
+                    System.out.println("DAIMON: \"Also … gleich sobald du hier raus bist.\"");
+                    enterToContinue();
                     break;
                 case "0":
                     System.out.println("Wieder sitzt ihr schweigend da. Wie kommst du nun aus dieser Zelle heraus? \n");
@@ -259,12 +272,12 @@ class Descriptions extends Story {
     //region
     //Zelle
     static String desc000 = "Eine klamme Nische hinter Eisenstangen, gegenüber ein schnarchender Wärter mit einem Schlüssel am Gürtel. Klassiker. \n";
-    static String descDoors000 = "Die Tür nach Osten steht offen, aber erstmal musst du dich aus der Zelle befreien.";
+    static String descDoors000 = "Die Tür nach Osten steht offen, aber erst mal muss Maleficarius sich aus der Zelle befreien.";
     static String descDoorsB000 = "Die Zellentür nach Osten steht nun offen.";
     static String descSolved000;
     static String daimon000 = "DAIMON: \"Bei dem Schnarchen ist's nur eine Frage der Zeit, bis der Wärter die Gitterstäbe selbst durchgesägt hat …\"";
     static String daimonSolved000 = "DAIMON: \"Der Wärter ratzt einfach weiter …\"";
-    static String unlocked000 = "Mit rostigem Knarzen schwingt die Zellentür auf, \ndu kannst nach Osten aus der Zelle heraustreten.\n";
+    static String unlocked000 = "Mit rostigem Knarzen schwingt die Zellentür auf, \nMaleficarius kann nach Osten aus der Zelle heraustreten.\n";
     //Kerker
     static String desc001 = "Der Wachraum liefert guten Blick auf die westliche Zelle – wenn man wach bleibt. \nDurch die offene Tür im Osten kriecht ein kalter Zug. \nDer Wächter schläft immer noch. Auf dem Tisch steht eine Stundenkerze und eine Schale Radieschen.";
     static String descDoors001;
@@ -473,6 +486,18 @@ class Descriptions extends Story {
     //endregion
 
     //Items mit langen Beschreibungen
+    static String daimonDesc = """
+            Dieses Teufelchen hat Maleficarius vor einer Weile an sich gebunden, nun
+            nimmt es vornehmlich auf seiner Schulter Platz und erteilt unerbetene Ratschläge.
+            Der Pakt zwingt ihn, Maleficarius zu unterstützen. Nichts zwingt ihn, angenehm zu sein.
+            … Ob es so eine gute Idee war, diesen Plagegeist zu beschwören?""";
+
+    static String malDesc = """
+            Meister Maleficarius Liebwerk, der große Hexenmeister, Alchemist und Dämonologe,
+            trägt eine bodenlange violette Robe, hohe Stiefel und eine Umhängetasche mit wichtigen
+            Büchern und Utensilien. Seine schmalen Lippen werden von einem Ziegenbart eingerahmt.
+            Maleficarius hält sich überwiegend in Kellern auf; nicht einmal dort lacht er.""";
+
     static String bookBlackArtsDesc =
             """
                     Das Standardwerk über Hexerei, Alchemie und Dämonologie, verfasst von Meister Maleficarius Liebwerk:
@@ -503,7 +528,7 @@ class Descriptions extends Story {
                     """;
 
     //Rätsel Dämonen
-    static String riddleDem00 = """
+    /*static String riddleDem00 = """
             Diese okkulte Formel hast du vor einer Weile schon entschlüsselt
             und ihre Kraft entladen, als du den Dämon an dich gebunden hast.
             
@@ -514,6 +539,8 @@ class Descriptions extends Story {
             
             … ob es so eine gute Idee war, diesen Plagegeist zu beschwören?
             """;
+
+     */  // Beschreibung Beschwörungsformel Daimon
 
     static String riddleDem01 = """
             Du blickst auf die Schriftrolle, da steht:
@@ -716,11 +743,11 @@ class Tutorials extends Story {
                         Verwende Item \t\t| V.[Item]\t\t\t| Verwendet einen Gegenstand IM INVENTAR:                         
                         \t\t\t\t\t|\t\t\t\t\t| \t· Verwende Schlüssel und sonstige Items, um sie im aktuellen Raum anzuwenden.
                         \t\t\t\t\t|\t\t\t\t\t| \t· Verwende Schriftrollen und Formeln, um die darin verborgenen Künste zu erlernen.
-                        \t\t\t\t\t|\t\t\t\t\t| \t· Verwende Taschen und Beutel, um die Inhalte auszupacken und ins Inventar zu legen.
-                        \t\t\t\t\t|\t\t\t\t\t| \tz. B. "v.Zellenschlüssel", "v.Zauberschriftrolle der üblen Saat", "v.Hexertasche"
+                        \t\t\t\t\t|\t\t\t\t\t| \t· Verwende Taschen und Behälter, um die Inhalte auszupacken und ins Inventar zu legen.
+                        \t\t\t\t\t|\t\t\t\t\t| \tz. B. "v.Zellenschlüssel", "v.Schriftrollenbehälter"
                         \t\t\t\t\t|\t\t\t\t\t|
                         Kombiniere Items\t| K.[Item].[Item]\t| Kombiniert zwei Items aus dem Inventar miteinander,
-                          \t\t\t\t\t| \t\t\t\t\t| \tz. B. "k.Papier.Stift" -> Maleficarius erhält eine Zeichnung.
+                        (und braue Tränke)\t| \t\t\t\t\t| \tz. B. "k.Papier.Stift" -> Maleficarius erhält eine Zeichnung.
                         \t\t\t\t\t| \t\t\t\t\t| \tBraue außerdem Tränke, indem du Alchemiezutaten gleicher Farbe kombinierst.                        
                         \t\t\t\t\t|\t\t\t\t\t|
                         Gehe in Richtung\t| G.[Richtung]\t\t| Versucht, den aktuellen Ort in gewählter Richtung zu verlassen.
@@ -792,13 +819,13 @@ class Tutorials extends Story {
     public static void answers() {
         System.out.println("\n================ LÖSUNGEN DER RÄTSEL ================");
         System.out.print("Erster Dämon, ");
-        System.out.print(BuildItems.dem01.otherNames + ": \t\t");
+        System.out.print(BuildItems.dem01.altName + ": \t\t");
         System.out.println(Descriptions.trueNameDem01);
         System.out.print("Zweiter Dämon, ");
-        System.out.print(BuildItems.dem02.otherNames + ": \t");
+        System.out.print(BuildItems.dem02.altName + ": \t\t");
         System.out.println(Descriptions.trueNameDem02);
         System.out.print("Dritter Dämon, ");
-        System.out.print("der Abgründige: \t\t\t");
+        System.out.print(BuildItems.dem02.altName + ": \t\t");
         System.out.println(Descriptions.trueNameDem03);
         System.out.println("=====================================================");
     }

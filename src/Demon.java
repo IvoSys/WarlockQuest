@@ -4,7 +4,7 @@ public abstract class Demon {
 
     String name;
     String nameList;
-    String otherNames;
+    String altName;
     String desc;
     String textWhenSummoned;
     String textWhenBound;
@@ -140,10 +140,10 @@ class Minotauros extends Demon{
     public Minotauros() {
         name = Descriptions.trueNameDem01;
         nameList = Descriptions.trueNameDem01;
-        otherNames = "der gehörnte König";
+        altName = "der Gehörnte";
         desc = "Ein aufrecht gehender Stier, bewaffnet mit einer mächtigen Streitaxt. ";
         textWhenSummoned = "Aus Fleisch, Knochen und kochendem Blut formt sich der Körper eines gehörnten Untiers. Wut lodert in seinen Augen.";
-        textWhenBound = "Du sprichst den wahren Namen des gehörnten Königs aus und die Beschwörungsformel zerreißt unter deinen Fingern. \nAus den Tiefen der Unterwelt hebt sich ein Gebrüll der reinen Wut.\n\n(Im [C]odex infernalis erfährst du mehr über deine Dämonen.) \n";
+        textWhenBound = "Du sprichst den wahren Namen des gehörnten Königs aus. \nDie Beschwörungsformel zerreißt unter deinen Fingern, als sich der Kontrakt \nin blutroten Linien in den Codex infernalis einprägt. \nAus den Tiefen der Unterwelt hebt sich ein Gebrüll der reinen Wut.\n\n(Im [C]odex infernalis erfährst du mehr über deine Dämonen.) \n";
         hpBase = 100;
         hpMax = hpBase;
         hp = hpMax;
@@ -259,10 +259,10 @@ class Efreet extends Demon{
     public Efreet() {
         name = Descriptions.trueNameDem02;
         nameList = (Descriptions.trueNameDem02 + "\t");
-        otherNames = "die entflammte Dame";
+        altName = "die Entflammte";
         desc = "Ein Geistwesen, geschaffen aus rauchlosem Feuer.";
         textWhenSummoned = "Flammen ziehen sich in einem Strudel zusammen und bilden eine Frau in roten Seidengewändern. Ihre goldenen Armreife glühen heiß.";
-        textWhenBound = "Du sprichst den wahren Namen der entflammten Dame aus und die Beschwörungsformel verbrennt unter deinen Fingern. \nEinen kurzen Moment lang glaubst du, in Flammen zu stehen.\n\n(Über den Befehl \"Dämonen\" erfährst du mehr über deine Dämonen.)";
+        textWhenBound = "Du sprichst den wahren Namen der Entflammten aus. \nDie Beschwörungsformel verbrennt unter deinen Fingern, \nals sich der Kontrakt in den Codex infernalis einbrennt. \nEinen kurzen Moment lang glaubst du, in Flammen zu stehen.";
         hpBase = 80;
         hpMax = hpBase;
         hp = hpMax;
@@ -321,10 +321,10 @@ class Abaddon extends Demon{
     public Abaddon() {
         name = Descriptions.trueNameDem03;
         nameList = Descriptions.trueNameDem03;
-        otherNames = "der Engel des Abgrunds";
-        desc = "";
+        altName = "der Abgründige";
+        desc = "Der gefallene Engel, der zurückblickt, wenn du tief in den Schlund schaust.";
         textWhenSummoned = "Aus den Schatten tritt eine verhüllte Gestalt. Eine schwarze Pfütze \nwandert an ihren Füßen mit ihr, dünne Tentakel züngeln daraus hevor.";
-        textWhenBound = "Du sprichst den wahren Namen des Abgründigen aus und die Beschwörungsformel verwelkt unter deinen Fingern. \nDie Schatten rücken näher, knurren und greifen nach dir.\n\n(Über den Befehl \"Dämonen\" erfährst du mehr über deine Dämonen.)";
+        textWhenBound = "Du sprichst den wahren Namen des Abgründigen aus. \nDie Beschwörungsformel verwelkt unter deinen Fingern, \nals sich der Kontrakt in pechschwarzen Linien im Codex infernalis verewigt. \nDie Schatten rücken näher, knurren und greifen nach dir.";
         hpBase = 150;
         hpMax = hpBase;
         hp = hpMax;

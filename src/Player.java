@@ -56,13 +56,14 @@ public class Player {
         boolean inInv = false;
         boolean inRoomLoot = false;
         boolean inRoomObjects = false;
+        boolean isPerson = false;
 
         for (Item i : inv) {                                // Inventar durchsuchen,
             if (input.contains(i.name.toLowerCase())) {     // bei Treffer Beschreibung ausgeben
                 System.out.println(i.desc);
-                //if (i == BuildItems.belongings)             // Bei bestimmten Items ausßerdem Methode starten
+                //if (i == BuildItems.belongings)
                 //    showCoreItems();
-                if (i == BuildItems.bagAlche)
+                if (i == BuildItems.bagAlche)               // Bei bestimmten Items außerdem Methode starten
                     showIngredients();
                 else if (i == BuildItems.bagPotions)
                     showPotions();
@@ -70,7 +71,6 @@ public class Player {
                     showDemons();
                 else if (i == BuildItems.bookSpells)
                     showSpells();
-
                 inInv = true;
                 break;
             }
@@ -96,7 +96,7 @@ public class Player {
         }
 
         if (!inInv && !inRoomLoot) {                        // Wenn kein Treffer, Raum-Objekte selbst prüfen und zutreffende Beschreibung ausgeben
-            for (RoomObject o : room.objects){
+            for (RoomObject o : room.objects) {
                 if (input.equals(o.name.toLowerCase()) || input.equals(o.name2.toLowerCase()) || input.equals(o.name3.toLowerCase()) || input.equals(o.name4.toLowerCase())) {
                     if (o.loot != null)
                         System.out.println(o.descFull);
@@ -109,11 +109,22 @@ public class Player {
             }
         }
 
-        if (!inInv && !inRoomLoot && !inRoomObjects)        // Zonk
+        if (!inInv && !inRoomLoot && !inRoomObjects) {      // Will Spieler vll mehr über eine Person wissen?
+            if (input.equals(Player.name.toLowerCase()) || input.equals("maleficarius") || input.equals("mal")) {
+                System.out.println(Descriptions.malDesc);
+                isPerson = true;
+            } else if (input.equals("daimon")) {
+                System.out.println(Descriptions.daimonDesc);
+                isPerson = true;
+            }
+        }
+
+
+        if (!inInv && !inRoomLoot && !inRoomObjects && !isPerson)        // Zonk
             System.out.println("Nicht zu finden.");
     }
 
-    public static void loot(String input){
+    public static void loot(String input) {
         boolean received = false;
         boolean lootExists = false;
 
@@ -134,9 +145,9 @@ public class Player {
             }
         }
 
-        if (!room.objects.isEmpty()){        // In Raumobjekten suchen
-            for (RoomObject o : room.objects){
-                if (o.loot != null && (o.loot.name.toLowerCase().equals(input) || o.loot.nameVague.toLowerCase().equals(input) )) {
+        if (!room.objects.isEmpty()) {        // In Raumobjekten suchen
+            for (RoomObject o : room.objects) {
+                if (o.loot != null && (o.loot.name.toLowerCase().equals(input) || o.loot.nameVague.toLowerCase().equals(input))) {
                     if (o.loot instanceof Spellscroll) {
                         System.out.println("Du erhältst die " + o.loot.name + ".");
                         Spell.learnOnTake(((Spellscroll) o.loot).nameSpell);
@@ -239,30 +250,25 @@ public class Player {
 
     public static void showDemons() {
         System.out.println("==================== CODEX INFERNALIS ====================");
-        if (Player.team.isEmpty())
-            System.out.println("Du hast noch keine Dämonen gebunden. \n");
-        else {
-            boolean first = true;
-            for (Demon d : Player.team) {
-                if (first) {
-                    System.out.println("Das Nachschlagewerk zu den dir dienenden Dämonen.\n");
-                } else {
-                    System.out.println("------------------------------------------------------\n");
-                }
-                System.out.print(d.name.toUpperCase());
-                System.out.println(", " + d.otherNames);
-                System.out.printf("Leben: %d/%d \t\tMacht: %d \t\tGewandheit: %d\n", d.hp, d.hpMax, d.power, d.dex);
-                System.out.println(d.desc);
-                System.out.println();
-                System.out.println("1. " + d.attackName);
-                System.out.println(d.attackDesc);
-                System.out.println("2. " + d.aoeAttackName);
-                System.out.println(d.aoeAttackDesc);
-                System.out.println("3. " + d.selfBuffName);
-                System.out.println(d.selfBuffDesc);
-                first = false;
-            }
+        System.out.println("Das Nachschlagewerk zu den dir dienenden Dämonen.\n");
+        boolean first = true;
+        for (Demon d : Player.team) {
+            System.out.print(d.name.toUpperCase());
+            System.out.println(", " + d.altName);
+            System.out.printf("Leben: %d/%d \t\tMacht: %d \t\tGewandheit: %d\n", d.hp, d.hpMax, d.power, d.dex);
+            System.out.println(d.desc);
+            System.out.println();
+            System.out.println("1. " + d.attackName);
+            System.out.println(d.attackDesc);
+            System.out.println("2. " + d.aoeAttackName);
+            System.out.println(d.aoeAttackDesc);
+            System.out.println("3. " + d.selfBuffName);
+            System.out.println(d.selfBuffDesc);
+            System.out.println("------------------------------------------------------\n");
+            first = false;
         }
+        System.out.println("DAIMON, der Vertraute");
+        System.out.println("Das Teufelchen auf deiner Schulter.");
         System.out.println("==========================================================");
     }
 
@@ -361,12 +367,36 @@ public class Player {
         boolean alreadyMax = false;
 
         switch (level) {
-            case 1: mpMax = 50; spellpower = 10; break;
-            case 2: mpMax = 65; mp = mpMax; spellpower = 13; break;
-            case 3: mpMax = 80; mp = mpMax; spellpower = 16; break;
-            case 4: mpMax = 100; mp = mpMax; spellpower = 20; break;
-            case 5: mpMax = 125; mp = mpMax; spellpower = 25; break;
-            default: level = 5; mpMax = 125; spellpower = 25; alreadyMax = true; break;
+            case 1:
+                mpMax = 50;
+                spellpower = 10;
+                break;
+            case 2:
+                mpMax = 65;
+                mp = mpMax;
+                spellpower = 13;
+                break;
+            case 3:
+                mpMax = 80;
+                mp = mpMax;
+                spellpower = 16;
+                break;
+            case 4:
+                mpMax = 100;
+                mp = mpMax;
+                spellpower = 20;
+                break;
+            case 5:
+                mpMax = 125;
+                mp = mpMax;
+                spellpower = 25;
+                break;
+            default:
+                level = 5;
+                mpMax = 125;
+                spellpower = 25;
+                alreadyMax = true;
+                break;
         }
 
         for (Demon d : team) {
@@ -383,7 +413,7 @@ public class Player {
 
     }
 
-    public static boolean applyMpCost(int mpCost){
+    public static boolean applyMpCost(int mpCost) {
         if (mp - mpCost >= 0) {
             mp -= mpCost;
             return true;

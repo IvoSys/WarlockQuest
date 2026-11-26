@@ -5,8 +5,8 @@ import java.util.List;
 public class BuildItems {
 
     //BESCHWÖRUNGSFORMELN
-    static Evocation evoc01 = new Evocation("Beschwörungsformel des gehörnten Königs", "Schriftrolle", Descriptions.riddleDem01, "Minotauros", "Die \"Pflastersteine\" sind die Tasten auf der Tastatur.");
-    static Evocation evoc02 = new Evocation("Beschwörungsformel der entflammten Dame", "Schriftrolle", Descriptions.riddleDem02, "Efreet", "Das Feuer verzehrt sich nach seiner Meisterin.");
+    static Evocation evoc01 = new Evocation("Beschwörungsformel des Gehörnten", "Schriftrolle", Descriptions.riddleDem01, "Minotauros", "Die \"Pflastersteine\" sind die Tasten auf der Tastatur.");
+    static Evocation evoc02 = new Evocation("Beschwörungsformel der Entflammten", "Schriftrolle", Descriptions.riddleDem02, "Efreet", "Das Feuer verzehrt sich nach seiner Meisterin.");
     static Evocation evoc03 = new Evocation("Beschwörungsformel des Abgründigen", "Schriftrolle", Descriptions.riddleDem03, "Abaddon", "Fahre mit dem Finger über den Tintenklecks");
 
     //DÄMONEN
@@ -47,14 +47,14 @@ public class BuildItems {
 
     //TRÄNKE
     static Item potHealth1 = new Healthpotion("Heiltrank", "", "Ein rot strahlender Trank, stellt 80 HP wiederher.", 80, 11);
-    static Item potHealth2 = new Healthpotion("Starker Heiltrank", "", "Ein rot strahlender Trank, der sich lauwarm anfühlt. Stellt 120 HP wiederher.", 120, 110);
-    static Item potHealth3 = new Healthpotion("Mächtiger Heiltrank", "", "Ein rot strahlender Trank, in dem goldene Partikel umherwirbeln. stellt 250 HP wiederher.", 250, 1100);
+    static Item potHealth2 = new Healthpotion("Starker Heiltrank", "", "Ein rot strahlender Trank, der sich \nlauwarm anfühlt. Stellt 120 HP wiederher.", 120, 110);
+    static Item potHealth3 = new Healthpotion("Mächtiger Heiltrank", "", "Ein rot strahlender Trank, in dem goldene \nPartikel umherwirbeln. Stellt 250 HP wiederher.", 250, 1100);
     static Item potMana1 = new Manapotion("Manatrank", "", "Ein blau schimmernder Trank, stellt 40 MP wiederher.", 40, 22);
-    static Item potMana2 = new Manapotion("Starker Manatrank", "", "Ein blau schimmernder Trank, der sich angenehm kühl anfühlt. Stellt 60 MP wiederher.", 60, 220);
-    static Item potMana3 = new Manapotion("Mächtiger Manatrank", "", "Ein blau schimmernder Trank, in dem silberne Partikel umherwirbeln. Stellt 125 MP wiederher.", 125, 2200);
+    static Item potMana2 = new Manapotion("Starker Manatrank", "", "Ein blau schimmernder Trank, der sich angenehm \nkühl anfühlt. Stellt 60 MP wiederher.", 60, 220);
+    static Item potMana3 = new Manapotion("Mächtiger Manatrank", "", "Ein blau schimmernder Trank, in dem silberne \nPartikel umherwirbeln. Stellt 125 MP wiederher.", 125, 2200);
     //static Item potYellow1 = new ItemPotion("Gelber Trank", "", "", 30, 33);
     //static Item potGreen1 = new ItemPotion("Grüner Trank", "", "", 30, 44);
-    static Item potLevelUp = new Levelpotion("Trank des Abgrunds", "", "Ein tiefschwarzer Trank. \nDas Elixir ist so perfekt schwarz, dass die kugelrunde Flasche unnatürlich formlos erscheint, wie ein blinder Fleck in deinem Sichtfeld. \nSie nimmt den Blick gefangen, und nach einer Weile verfestigt sich das Gefühl, dass irgendetwas zurückstarrt. ", 55);
+    static Item potLevelUp = new Levelpotion("Trank des Abgrunds", "", "Ein tiefschwarzer Trank. \nDas Elixir ist so perfekt schwarz, dass die kugelrunde Flasche unnatürlich formlos erscheint, wie ein blinder Fleck in deinem Sichtfeld. \nSie nimmt den Blick gefangen, und nach einer Weile verfestigt \nsich das Gefühl, dass irgendetwas zurückstarrt. ", 55);
 
 
     //SCHRIFTROLLEN
@@ -78,15 +78,15 @@ public class BuildItems {
 
     //General Items
     //static GeneralItem belongings = new GeneralItem("Maleficarius' Habseligkeiten", "Habe", "Maleficarius trägt eine bodenlange violette Robe, hohe Stiefel \nund eine Umhängetasche mit wichtigen Büchern und Utensilien:\n", "", 0, 0);
-    static GeneralItem bag011 = new GeneralItem("Hexertasche", "Tasche", "Eine robuste Stofftasche, in der Maleficarius seine Schriftrollenbehälter transportiert.", "Eine dir wohlbekannte Tasche wurde achtlos in die Ecke geworfen. \n", 0, -1);
+    static GeneralItem bag011 = new GeneralItem("Schriftrollenbehälter", "Behälter", "Eine verschließbare Röhre aus Leder, in der Maleficarius seine Schriftrollen transportiert.", "Ein dir wohlbekannter Schriftrollenbehälter wurde achtlos in die Ecke geworfen. \n", 0, -1);
 
     //Core-Items
     static CoreItem bookBlackArts = new CoreItem("\"Die schwarzen Künste\"", Descriptions.bookBlackArtsDesc);
-    static CoreItem bookSpells = new CoreItem("Zauberbuch", "Ein ledergebundener Foliant, in dem all deine Zauber verzeichnet sind: \n");
-    static CoreItem bookCodex = new CoreItem("Codex infernalis", "Ein Foliant, gebunden in mysteriöses Leder. \n");
-    static CoreItem bagAlche = new CoreItem("Alchemiebeutel", "Ein samtener Beutel, in dem du all deine alchemistischen Zutaten aufbewahrst: \n");
-    static CoreItem bagPotions = new CoreItem("Trankgurt", "Ein System aus Lederriemen, mit denen du Trankfläschchen am Gürtel befestigen kannst. \n");
-    static CoreItem evoc00 = new CoreItem("Beschwörungsformel des vertrauten Geistes", Descriptions.riddleDem00);
+    static CoreItem bookSpells = new CoreItem("Zauberbuch", "Ein gelbseitiger Foliant, in dem Maleficarius Flüche und Hexereien verzeichnet: \n");
+    static CoreItem bookCodex = new CoreItem("Codex infernalis", "Ein schwarzes Buch, gebunden in mysteriöses Leder. \n");
+    static CoreItem bagAlche = new CoreItem("Alchemiebeutel", "Ein samtener Beutel, in dem Maleficarius \nall seine alchemistischen Zutaten aufbewahrt: \n");
+    static CoreItem bagPotions = new CoreItem("Trankgurt", "Ein System aus Lederriemen, mit denen Maleficarius \ngefüllte Trankfläschchen am Gürtel befestigt. \n");
+    //static CoreItem evoc00 = new CoreItem("Beschwörungsformel des Vertrauten", Descriptions.riddleDem00);
 
 
     //Schlüssel
@@ -110,7 +110,7 @@ public class BuildItems {
         Player.inv.add(bookCodex);
         Player.inv.add(bagPotions);
         Player.inv.add(bagAlche);
-        Player.inv.add(evoc00);
+        //Player.inv.add(evoc00);
     }
 
 }

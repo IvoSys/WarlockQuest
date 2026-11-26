@@ -2,8 +2,7 @@ import java.util.Scanner;
 
 public class WarlockQuest {
 
-    static String version = "v0.5.0";
-    static boolean running = true;
+    static String version = "v0.5.5";
 
     static Scanner sc = new Scanner(System.in);
     static String input;
@@ -35,7 +34,7 @@ public class WarlockQuest {
 
     // GAME LOOP
     public static void gameLoop(){
-        while (running){
+        while (true){
             Player.room = BuildCastle.castle[Player.curZ][Player.curY][Player.curX];
             //if (Player.curZ >= 1)
                 //demoFinished();
@@ -68,7 +67,7 @@ public class WarlockQuest {
                             inputSplit[1].contains(BuildItems.evoc03.name.toLowerCase())) {
                         Player.examine(inputSplit[1]);
                         Evocation.bind();                                                                               // Binde Dämon
-                    } else if (inputSplit[1].contains("tasche") || inputSplit[1].contains("bündel")) {
+                    } else if (inputSplit[1].contains("tasche") || inputSplit[1].contains("behälter")) {
                         Item.unpack(inputSplit[1]);                                                                     // Entpacke Bündel
                     } else {
                         Player.room.unlockOrSolve(inputSplit[1]);                                                       // aufschließen/lösen
