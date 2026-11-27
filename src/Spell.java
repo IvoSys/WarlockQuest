@@ -34,7 +34,6 @@ public abstract class Spell {
         }
 
     }
-
     public static void learnOnUse(String nameScroll) {              //Zauber lernen, wenn Schriftrolle VERWENDEN
         Spellscroll toUse = null;
         Spell toLearn = null;
@@ -67,22 +66,15 @@ public abstract class Spell {
         }
     }
 
-
-
     public void cast(int enemyIndex) { }     // Single target
+    public void cast() { }                   // AOE
 
-    public void cast() { }                   // AOE    }
-
-    public void tick(Enemy e) { }             // Verzögerte Wirkung setzt bei betroffenem Gegner ein
-
+    public void tick(Enemy e) { }            // Verzögerte Wirkung setzt bei betroffenem Gegner ein
     public void ironMaiden(Enemy e) { }
-
     public void explode(Enemy e) { }
-
 }
 
 class Bloodletting extends Spell{
-
     static float savageBonus = 1.3f;
 
     public Bloodletting() {
@@ -129,7 +121,7 @@ class Doom extends Spell {
         textWhenLearned = "Du erlernst den Zauber \"Untergang\".";
         str = Player.spellpower;
         dur = 4;
-        mpCost = 20;
+        mpCost = 15;
         aoe = false;
     }
 
@@ -148,17 +140,21 @@ class Doom extends Spell {
 
     @Override
     public void tick(Enemy e) {
-        e.counterDoom--;
-        System.out.printf("Der Fluch \"%s\" wirkt: ", name);
-        e.applyDmg(str * (dur - e.counterDoom));        // Tick 1: 10; Tick 2: 20; Tick 3: 30; Tick 4: 40
-        if (e.counterDoom <= 0) {
-            e.doomed = false;
-            if (!e.ko)
-                System.out.printf("%s hat den Zauber \"%s\" überlebt. \n", e.name, name);
+        if (e.counterDoom == dur) {
+            e.counterDoom--;
+            System.out.printf("Der Fluch \"%s\" baut sich auf. \n", name);
+        } else {
+            System.out.printf("Der Fluch \"%s\" wirkt: ", name);
+            e.applyDmg(str * (dur - e.counterDoom));        // Tick 1: 0; Tick 2: 10; Tick 3: 20; Tick 4: 30
+            e.counterDoom--;
+            if (e.counterDoom <= 0) {
+                e.doomed = false;
+                if (!e.ko)
+                    System.out.printf("%s hat den Fluch \"%s\" überlebt. \n", e.name, name);
+            }
         }
     }
 }
-
 
 class IronMaiden extends Spell {
 
@@ -196,7 +192,6 @@ class IronMaiden extends Spell {
     }
 }
 
-
 class Lifeline extends Spell {
 
     public Lifeline() {
@@ -205,7 +200,7 @@ class Lifeline extends Spell {
         textWhenLearned = "Du erlernst den Zauber \"Lebenslinie\".";
         str = Player.spellpower/2;
         dur = 3;
-        mpCost = 15;
+        mpCost = 10;
         aoe = false;
     }
 
@@ -229,7 +224,6 @@ class Lifeline extends Spell {
         e.hp -= hpRestored;
         if (e.hp <= 0) {
             hpRestored += e.hp;
-            System.out.println(e.name + " überlebt den Lebensentzug nicht.");
             e.die();
         }
         e.counterlifeline--;
@@ -239,18 +233,18 @@ class Lifeline extends Spell {
         Battle.demon.applyHeal(hpRestored);
 
         System.out.printf("Über die Lebenslinie fließen %d HP von %s zu %s. \n", hpRestored, e.name, Battle.demon.name);
+        if (e.ko)
+            System.out.println(e.name + " verwelkt unter der Blutmagie, das Lebenm wurde vollstänig entzogen.");
         if (!e.ko && !e.lifelined) {
             System.out.println("Die Lebenslinie erlischt.");
         }
 
     }
-
 }
 
 class RaiseUndead extends Spell {
     // Code
 }
-
 
 class Soulreaper extends Spell {
 
@@ -329,7 +323,5 @@ class ViciousSeed extends Spell {
             }
         }
     }
-
-
 }
 

@@ -330,11 +330,12 @@ class Descriptions extends Story {
     static String daimonSolved012;
     static String solved012 = "Platzhalter in Story-Klasse";
     static String enc012Intro = """
-    "Stehen bleiben, Hexer!"
-    Dame Beatrix steht vor dir, die sagenumwobene Schwertmeisterin. Ihr schneidender Anblick soll weinende Kinder verstummen lassen.
-    An ihrer Seite stehen eine Heilerin und der (jetzt nicht mehr schlafende) Wächter aus dem Kerker, mit einer auffälligen Schramme am Kinn.
-    Beatrix zieht Ignis, ihr legendäres Flambergschwert: "Dein nächster Zellenaufenthalt wird weit weniger angenehm."
-    """;
+    "Dies endet nun, Hexer!"
+    Dame Beatrix, die sagenumwobene Schwertmeisterin, tritt die Treppe herab.
+    Der Anblick dieses Paladins in silberner Rüstung soll weinende Kinder verstummen lassen. Ihr folgen eine Heilerin
+    und der – jetzt nicht mehr schlafende – Wächter aus dem Kerker, mit einer auffälligen Schramme am Kinn.
+    Beatrix zieht ihr Flambergschwert Ignis, die gewellte Klinge taucht den Vorraum in ein magisches Licht.
+    "Hier und jetzt ziehe ich Euch zur Rechenschaft." """;
     static String enc012Outro = "";
     //Waschraum
     static String desc020 = """

@@ -8,7 +8,6 @@ public abstract class Demon {
     String desc;
     String textWhenSummoned;
     String textWhenBound;
-    String obliterated;
 
     int hp;
     int hpMax;
@@ -20,7 +19,6 @@ public abstract class Demon {
     boolean melee;
 
     boolean ko = false;
-
     boolean savage = false;
 
     String attackName;
@@ -70,7 +68,6 @@ public abstract class Demon {
                 break;
         }
     }
-
     public static void summon(int index) {
         Battle.demon = Player.team.get(index);
         System.out.println(Battle.demon.textWhenSummoned);
@@ -97,7 +94,6 @@ public abstract class Demon {
         }
         return hit;
     }
-
     public void applyDmg(int dmg) {
         hp -= dmg;
         if (hp < 0)
@@ -111,25 +107,19 @@ public abstract class Demon {
         else
             System.out.println(".");
     }
-
     public void applyHeal(int heal) {
         hp += heal;
         if (hp > hpMax)
             hp = hpMax;
     }
 
-
     //Angriffe
     public abstract int attack();
-
     public abstract int aoeAttack();
-
     public abstract void selfBuff();
-
 }
 
 // ============= MINOTAURUS =============
-
 class Minotauros extends Demon{
 
     Random rnd = new Random();
@@ -144,7 +134,7 @@ class Minotauros extends Demon{
         desc = "Ein aufrecht gehender Stier, bewaffnet mit einer mächtigen Streitaxt. ";
         textWhenSummoned = "Aus Fleisch, Knochen und kochendem Blut formt sich der Körper eines gehörnten Untiers. Wut lodert in seinen Augen.";
         textWhenBound = "Du sprichst den wahren Namen des gehörnten Königs aus. \nDie Beschwörungsformel zerreißt unter deinen Fingern, als sich der Kontrakt \nin blutroten Linien in den Codex infernalis einprägt. \nAus den Tiefen der Unterwelt hebt sich ein Gebrüll der reinen Wut.\n\n(Im [C]odex infernalis erfährst du mehr über deine Dämonen.) \n";
-        hpBase = 100;
+        hpBase = 120;
         hpMax = hpBase;
         hp = hpMax;
         powerBase = 15;
@@ -220,7 +210,7 @@ class Minotauros extends Demon{
         else
             System.out.print("Mit dampfendem Atem attackiert Minotauros mit seiner Streitaxt – ");
 
-        int dmg = rnd.nextInt(11) + power + roar;
+        int dmg = rnd.nextInt(power+1) + power + roar;
         if (savage)
             dmg = (int) (dmg * Bloodletting.savageBonus);
         roar = 0;
@@ -231,7 +221,7 @@ class Minotauros extends Demon{
     @Override
     public int aoeAttack() {
         isRoar = false;
-        int dmg = rnd.nextInt((power+1)*2);
+        int dmg = (rnd.nextInt(power+1));
         if (savage)
             dmg = (int) (dmg * Bloodletting.savageBonus);
         return dmg;
@@ -239,7 +229,6 @@ class Minotauros extends Demon{
 
     @Override
     public void selfBuff() {
-        roar = 0;
         isRoar = true;
         System.out.println("Minotauros brüllt markerschütternd, eine unmissverständliche Drohung.");
     }
@@ -325,7 +314,7 @@ class Abaddon extends Demon{
         desc = "Der gefallene Engel, der zurückblickt, wenn du tief in den Schlund schaust.";
         textWhenSummoned = "Aus den Schatten tritt eine verhüllte Gestalt. Eine schwarze Pfütze \nwandert an ihren Füßen mit ihr, dünne Tentakel züngeln daraus hevor.";
         textWhenBound = "Du sprichst den wahren Namen des Abgründigen aus. \nDie Beschwörungsformel verwelkt unter deinen Fingern, \nals sich der Kontrakt in pechschwarzen Linien im Codex infernalis verewigt. \nDie Schatten rücken näher, knurren und greifen nach dir.";
-        hpBase = 150;
+        hpBase = 100;
         hpMax = hpBase;
         hp = hpMax;
         powerBase = 25;

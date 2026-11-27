@@ -71,15 +71,15 @@ public class BuildEncounters {
     static Enemy knight08 = new Knight("Dame X", "dem Ritterschwert", 100, 10, 8, 20, 0);
     static Enemy knight09 = new Knight("Sir X", "dem Ritterschwert", 100, 10, 8, 20, 0);
 
-    static Enemy ranger01 = new Ranger("Assassine XX", "dem Langbogen", 80, 10, 8, 0);
-    static Enemy ranger02 = new Ranger("Assassine XY", "dem Langbogen", 80, 10, 8, 0);
-    static Enemy ranger03 = new Ranger("Assassine XX", "dem Langbogen", 80, 10, 8, 0);
-    static Enemy ranger04 = new Ranger("Assassine XY", "dem Langbogen", 80, 10, 8, 0);
-    static Enemy ranger05 = new Ranger("Assassine XX", "dem Langbogen", 80, 10, 8, 0);
-    static Enemy ranger06 = new Ranger("Assassine XY", "dem Langbogen", 80, 10, 8, 0);
-    static Enemy ranger07 = new Ranger("Assassine XX", "dem Langbogen", 80, 10, 8, 0);
-    static Enemy ranger08 = new Ranger("Assassine XY", "dem Langbogen", 80, 10, 8, 0);
-    static Enemy ranger09 = new Ranger("Assassine XX", "dem Langbogen", 80, 10, 8, 0);
+    static Enemy ranger01 = new Ranger("Agent XX", "dem Langbogen", 80, 10, 8, 0);
+    static Enemy ranger02 = new Ranger("Agent XY", "dem Langbogen", 80, 10, 8, 0);
+    static Enemy ranger03 = new Ranger("Agent XX", "dem Langbogen", 80, 10, 8, 0);
+    static Enemy ranger04 = new Ranger("Agent XY", "dem Langbogen", 80, 10, 8, 0);
+    static Enemy ranger05 = new Ranger("Agent XX", "dem Langbogen", 80, 10, 8, 0);
+    static Enemy ranger06 = new Ranger("Agent XY", "dem Langbogen", 80, 10, 8, 0);
+    static Enemy ranger07 = new Ranger("Agent XX", "dem Langbogen", 80, 10, 8, 0);
+    static Enemy ranger08 = new Ranger("Agent XY", "dem Langbogen", 80, 10, 8, 0);
+    static Enemy ranger09 = new Ranger("Agent XX", "dem Langbogen", 80, 10, 8, 0);
 
     static Enemy mage02 = new Mage("Professor X", "dem Zauber \"Feuerpfeil\"", 40, 10, 8, 0);
     static Enemy mage03 = new Mage("Professorin Elvira", "dem Zauber \"Feuerpfeil\"", 80, 10, 8, 0);
@@ -100,7 +100,7 @@ public class BuildEncounters {
     static Enemy cleric08 = new Cleric("Vater X", "dem Morgenstern", 80, 10, 8, 0);
     static Enemy cleric09 = new Cleric("Mutter X", "dem Morgenstern", 80, 10, 8, 0);
 
-    static Enemy boss01 = new Boss01("Dame Beatrix", "Ignis", 100, 10, 30, 0);
+    static Enemy boss01 = new Boss01("Dame Beatrix", "Ignis", 100, 10, 25, 0);
     static Enemy boss02 = new Boss02("X X", "X", 80, 10, 8, 0);
     static Enemy boss03 = new Boss03("X X", "X", 80, 10, 8, 0);
 

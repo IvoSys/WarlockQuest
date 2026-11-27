@@ -125,8 +125,6 @@ public abstract class Enemy {
         inIronMaiden = false;
         if (carriesVSeed)
             BuildItems.viciousSeed.explode(this);
-        if (onDeath != null)
-            System.out.println(onDeath);
     }
 
     //Standard-Angriff
@@ -328,9 +326,10 @@ class Novice extends Enemy {
     public void battlecry(){
         cry++;
         switch (cry) {
-            case 1: System.out.println(name + ": \"Nimm mir die Furcht, oh Herr …\""); break;
-            case 2: System.out.println(name + ": \"… denn du allein bist das Licht …\""); break;
-            case 3: System.out.println(name + ": \"… und kein Dunkel vermag dir zu trotzen.\""); cry = 0; break;
+            case 1: System.out.println(name + " beginnt ein Gebet: \"Nimm mir die Furcht, oh Herr …\""); break;
+            case 2: System.out.println(name + ": \"… denn Du allein bist das Licht, …\""); break;
+            case 3: System.out.println(name + ": \"… kein Dunkel vermag dir zu trotzen …\""); break;
+            case 4: System.out.println(name + ": \"… und ich wandere aufrecht durch tiefste Nacht.\""); cry = 0; break;
             default: System.out.println("DEBUG: Ungültiger Wert in Guard.battlecry()"); break;
         }
     }
@@ -529,20 +528,19 @@ class Boss01 extends Enemy{
         cry++;
         switch (cry) {
             case 1: System.out.println(name + ": \"Schmecke meine Klinge, Höllenbrut!\""); break;
-            case 2: System.out.println(name + ": \"Für den König!\""); break;
+            case 2: System.out.println(name + ": \"Wir weichen niemals dem Bösen!\""); break;
             case 3: System.out.println(name + ": \"Du wirst brennen, Hexer!\""); cry = 0; break;
-
             default: System.out.println("DEBUG: Ungültiger Wert in Boss01.battlecry()"); break;
         }
     }
 
     @Override
     public void battlecryEnraged(){
-        cry++;
+        cryEnraged++;
         switch (cry) {
             case 1: System.out.println(name + ": \"Ich bin der Schild dieses Schlosses!\""); break;
             case 2: System.out.println(name + ": \"Ich bin das Feuer, mein Schwert ist die Flamme.\""); break;
-            case 3: System.out.println(name + ": \"\""); break;
+            case 3: System.out.println(name + ": \"Mein Herz ist stärker als Euer Hass!\""); cryEnraged = 0; break;
             default: System.out.println("DEBUG: Ungültiger Wert in Boss01.battlecryEnraged()"); break;
         }
     }
